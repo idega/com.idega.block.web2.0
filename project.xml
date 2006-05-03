@@ -7,9 +7,30 @@
   <currentVersion>1.0-SNAPSHOT</currentVersion>
   <inceptionYear>2006</inceptionYear>
   <shortDescription>Web2.0, scripts for enabling web 2.0 features</shortDescription>
+  
+  <!-- build stuff copied from base-project.xml -->
+  <organization>
+  	<name>idega software</name>
+  	<url>http://www.idega.com</url>
+  	<logo>http://developer.idega.com/idega_onwhite_120.gif</logo>
+  </organization>
+  <groupId>bundles</groupId>
+	<package>${pom.artifactId}</package>
+    <repository>
+        <connection>scm:cvs:ext:${cvs.username}@einstein.idega.is:/idega/cvs:${pom.groupId}/${pom.artifactId}.bundle/</connection>
+        <developerConnection>scm:cvs:ext:${cvs.username}@einstein.idega.is:/idega/cvs:${pom.groupId}/${pom.artifactId}.bundle/</developerConnection>
+    </repository>
+
+  <url>http://developer.idega.com/${pom.groupId}/${pom.artifactId}/</url>
+  <issueTrackingUrl>http://issues.idega.is/</issueTrackingUrl>
+  <siteAddress>developer.idega.com</siteAddress>
+  <siteDirectory>/var/www/webs/developer.idega.com/${pom.groupId}/${pom.artifactId}/</siteDirectory>
+  
   <versions>
   </versions>
   <branches/>
+  
+  
   <developers>
     <developer>
       <name>Eirikur S. Hrafnsson</name>
@@ -19,6 +40,66 @@
       <roles/>
     </developer>
   </developers>
+   <build>
+		<nagEmailAddress>tryggvi@idega.com</nagEmailAddress>
+        <sourceDirectory>src/java</sourceDirectory>
+        <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
+        <unitTest>
+            <includes>
+                <include>**/*Test.java</include>
+            </includes>
+        </unitTest>
+	    <resources>
+	      <resource>
+	       <directory>${basedir}/resources</directory>
+	       <targetPath>resources</targetPath>
+	        <includes>
+	          <include>**/**</include>
+	        </includes>
+	      </resource>
+	      <resource>
+	       <directory>${basedir}/properties</directory>
+	       <targetPath>properties</targetPath>
+	        <includes>
+	          <include>**/**</include>
+	        </includes>
+	      </resource>
+	      <resource>
+	       <directory>${basedir}/WEB-INF</directory>
+	       <targetPath>WEB-INF</targetPath>
+	        <includes>
+	          <include>**/**</include>
+	        </includes>
+	      </resource>
+	      <resource>
+	       <directory>${basedir}/jsp</directory>
+	       <targetPath>jsp</targetPath>
+	        <includes>
+	          <include>**/**</include>
+	        </includes>
+	      </resource>
+	      <resource>
+	       <directory>${basedir}/WEB-INF/tld</directory>
+	       <targetPath>META-INF</targetPath>
+	        <includes>
+	          <include>**/*.tld</include>
+	        </includes>
+	      </resource>
+	      <resource>
+	       <directory>${basedir}/WEB-INF</directory>
+	       <targetPath>META-INF</targetPath>
+	        <includes>
+	          <include>faces-config.xml</include>
+	        </includes>
+	      </resource>
+	      <resource>
+	       <directory>${basedir}/src/java</directory>
+	        <includes>
+	          <include>**/*.wsdd</include>
+	        </includes>
+	      </resource>
+	    </resources>
+    </build>
   <dependencies>
     <dependency>
       <groupId>bundles</groupId>
@@ -49,14 +130,7 @@
     </dependency>
         
   </dependencies>
-  <build>
-    <sourceDirectory>src/java</sourceDirectory>
-    <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
-    <unitTest>
-      <includes>
-        <include>**/*Test.java</include>
-      </includes>
-    </unitTest>
-  </build>
   <properties/>
+  
+  
 </project>
