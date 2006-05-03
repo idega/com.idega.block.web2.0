@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <extend>${base.project.dir}/block-dependencies.xml</extend>
   <pomVersion>3</pomVersion>
   <name>Web2.0</name>
   <artifactId>com.idega.block.web2.0</artifactId>
   <currentVersion>1.0-SNAPSHOT</currentVersion>
-  <inceptionYear>2005</inceptionYear>
+  <inceptionYear>2006</inceptionYear>
   <shortDescription>Web2.0, scripts for enabling web 2.0 features</shortDescription>
   <versions>
   </versions>
