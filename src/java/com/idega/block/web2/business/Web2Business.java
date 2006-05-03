@@ -1,5 +1,5 @@
 /*
- * $Id: Web2Business.java,v 1.1 2006/05/03 14:55:22 eiki Exp $
+ * $Id: Web2Business.java,v 1.2 2006/05/03 15:05:59 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -14,10 +14,10 @@ import com.idega.business.IBOService;
 
 /**
  * 
- *  Last modified: $Date: 2006/05/03 14:55:22 $ by $Author: eiki $
+ *  Last modified: $Date: 2006/05/03 15:05:59 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">eiki</a>
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public interface Web2Business extends IBOService {
 
@@ -44,7 +44,7 @@ public interface Web2Business extends IBOService {
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToScriptaculousLib
 	 */
-	public String getBundleURIToScriptaculousLib(String libraryVersion) throws java.rmi.RemoteException;
+	public String getBundleURIToScriptaculousLib(String scriptaculousLibraryVersion) throws java.rmi.RemoteException;
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToScriptaculousLibRootFolder
@@ -54,17 +54,18 @@ public interface Web2Business extends IBOService {
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToScriptaculousLibRootFolder
 	 */
-	public String getBundleURIToScriptaculousLibRootFolder(String libraryVersion) throws java.rmi.RemoteException;
+	public String getBundleURIToScriptaculousLibRootFolder(String scriptaculousLibraryVersion)
+			throws java.rmi.RemoteException;
 
 	/**
-	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToScriptFolder
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToScriptsFolder
 	 */
-	public String getBundleURIToScriptFolder() throws java.rmi.RemoteException;
+	public String getBundleURIToScriptsFolder() throws java.rmi.RemoteException;
 
 	/**
-	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIWithinScriptFolder
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIWithinScriptsFolder
 	 */
-	public String getBundleURIWithinScriptFolder(String uriExtension) throws java.rmi.RemoteException;
+	public String getBundleURIWithinScriptsFolder(String uriExtension) throws java.rmi.RemoteException;
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleIdentifier

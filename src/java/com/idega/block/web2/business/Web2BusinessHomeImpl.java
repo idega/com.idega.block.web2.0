@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessHomeImpl.java,v 1.1 2006/05/03 14:55:22 eiki Exp $
+ * $Id: Web2BusinessHomeImpl.java,v 1.2 2006/05/03 15:05:59 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -14,10 +14,10 @@ import com.idega.business.IBOHomeImpl;
 
 /**
  * 
- *  Last modified: $Date: 2006/05/03 14:55:22 $ by $Author: eiki $
+ *  Last modified: $Date: 2006/05/03 15:05:59 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">eiki</a>
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class Web2BusinessHomeImpl extends IBOHomeImpl implements Web2BusinessHome {
 
