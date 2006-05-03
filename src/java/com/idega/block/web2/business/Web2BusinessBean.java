@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.1 2006/05/03 14:55:22 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.2 2006/05/03 14:59:55 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -33,10 +33,10 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	/**
 	 * 
-	 * @return The full URI with context to the latest version of the behaviour library (special modified version to work alongside Scriptaculous)
+	 * @return The full URI with context to the latest version of the behaviour.js library (special modified version to work alongside Scriptaculous)
 	 */
 	public String getBundleURIToBehaviourLib(){
-		return getBundleURIToPrototypeLib(SCRIPTACULOUS_LATEST_VERSION);
+		return getBundleURIWithinScriptFolder(BEHAVIOUR_JS_FILE_NAME);
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 */
 	public String getBundleURIToPrototypeLib(String scriptaculousLibraryVersion){
 		StringBuffer buf = new StringBuffer(getBundleURIToScriptaculousLibRootFolder(scriptaculousLibraryVersion));
-		buf.append("/lib/").append(PROTOTYPE_JS_FILE_NAME);
+		buf.append("lib/").append(PROTOTYPE_JS_FILE_NAME);
 		return buf.toString();
 	}
 	
@@ -71,7 +71,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 */
 	public String getBundleURIToScriptaculousLib(String libraryVersion){
 		StringBuffer buf = new StringBuffer(getBundleURIToScriptaculousLibRootFolder(libraryVersion));
-		buf.append("/src/").append(SCRIPTACULOUS_JS_FILE_NAME);
+		buf.append("src/").append(SCRIPTACULOUS_JS_FILE_NAME);
 		return buf.toString();
 	}
 	
