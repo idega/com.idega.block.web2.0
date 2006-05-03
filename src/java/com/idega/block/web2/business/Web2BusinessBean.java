@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.2 2006/05/03 14:59:55 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.3 2006/05/03 15:01:24 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -59,7 +59,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	/**
 	 * 
-	 * @return The full URI with context to the latest version of the scriptaculous.js
+	 * @return The full URI with context to the latest version of the scriptaculous.js, ATTENTION scriptaculous needs prototype.js added before it!
 	 */
 	public String getBundleURIToScriptaculousLib(){
 		return getBundleURIToScriptaculousLib(SCRIPTACULOUS_LATEST_VERSION);
@@ -67,7 +67,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	/**
 	 * 
-	 * @return The full URI with context to the specific version of the scriptaculous.js
+	 * @return The full URI with context to the specific version of the scriptaculous.js, ATTENTION scriptaculous needs prototype.js added before it!
 	 */
 	public String getBundleURIToScriptaculousLib(String libraryVersion){
 		StringBuffer buf = new StringBuffer(getBundleURIToScriptaculousLibRootFolder(libraryVersion));
