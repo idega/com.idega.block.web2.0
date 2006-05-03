@@ -30,6 +30,24 @@
         <eclipse.dependency>true</eclipse.dependency>
       </properties>
     </dependency>
+    
+    <dependency>
+	    <groupId>ejb</groupId>
+	    <artifactId>ejb</artifactId>
+	    <version>2.0</version>
+	    <type>jar</type>
+	    <url>http://java.sun.com/products/ejb/docs.html</url>
+	    <properties/>
+    </dependency>
+    <dependency>
+	    <groupId>jta</groupId>
+	    <artifactId>jta</artifactId>
+	    <version>spec1_0_1</version>
+	    <type>jar</type>
+	    <url>http://java.sun.com/products/jta/jta-1_0_1B-doc</url>
+		<properties/>
+    </dependency>
+        
   </dependencies>
   <build>
     <sourceDirectory>src/java</sourceDirectory>
