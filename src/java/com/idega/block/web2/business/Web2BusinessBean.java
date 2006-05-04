@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.6 2006/05/04 13:12:08 laddi Exp $
+ * $Id: Web2BusinessBean.java,v 1.7 2006/05/04 13:16:17 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -14,11 +14,16 @@ import com.idega.idegaweb.IWBundle;
 
 /**
  * A service bean with handy methods for getting paths to Web 2.0 script libraries and more.
+ * Scripts include<br>
+ * Scriptaculous - Effects and drag and drop, just include prototype.js file first then scriptaculous.js file, <a href="http://script.aculo.us/">http://script.aculo.us/</a><br/> 
+ * Prototype - Dom search and manipulation and Ajax and OOP addons for javascript, just include the prototype.js file, <a href="http://prototype.conio.net/ ">http://prototype.conio.net/</a><br/> 
+ * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
+ * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- *  Last modified: $Date: 2006/05/04 13:12:08 $ by $Author: laddi $
+ * Last modified: $Date: 2006/05/04 13:16:17 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -32,18 +37,43 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
 	public static final String BEHAVIOUR_JS_FILE_NAME = "behaviour.js";
+	public static final String REFLECTION_JS_FILE_NAME = "reflection.js";
 
 	public static final String WEB2_BUNDLE_IDENTIFIER = "com.idega.block.web2.0";
 
 	protected String rootScriptsFolderBundleURI;
+	protected String behaviourScriptPath;
+	protected String reflectionScriptPath;
+	protected String scriptaculousScriptPath;
+	protected String prototypeScriptPath;
 	
+	
+	private static final String REFLECTION_FOLDER_NAME = "reflection";	
 	
 	/**
 	 * 
 	 * @return The full URI with context to the latest version of the behaviour.js library (special modified version to work alongside Scriptaculous)
 	 */
 	public String getBundleURIToBehaviourLib(){
-		return getBundleURIWithinScriptsFolder(BEHAVIOUR_JS_FILE_NAME);
+		if(behaviourScriptPath==null){
+			behaviourScriptPath = getBundleURIWithinScriptsFolder(BEHAVIOUR_JS_FILE_NAME);
+		}
+		
+		return behaviourScriptPath;
+	}
+	
+	/**
+	 * 
+	 * @return The full URI with context to the latest version of the reflection.js library, works with all browser that support the "canvas" tag
+	 */
+	public String getBundleURIToReflectionLib(){
+		if(reflectionScriptPath==null){
+			StringBuffer buf = new StringBuffer();
+			buf.append("REFLECTION_FOLDER_NAME").append("/").append(REFLECTION_JS_FILE_NAME);
+			
+			reflectionScriptPath = getBundleURIWithinScriptsFolder(buf.toString());
+		}
+		return reflectionScriptPath;
 	}
 	
 	/**
@@ -51,7 +81,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 * @return The full URI with context to the latest version of the prototype.js library (within the latest Scriptaculous folder) 
 	 */
 	public String getBundleURIToPrototypeLib(){
-		return getBundleURIToPrototypeLib(SCRIPTACULOUS_LATEST_VERSION);
+		if(prototypeScriptPath==null){
+			prototypeScriptPath =  getBundleURIToPrototypeLib(SCRIPTACULOUS_LATEST_VERSION);
+		}
+		
+		return prototypeScriptPath;
 	}
 	
 	/**
@@ -69,7 +103,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 * @return The full URI with context to the latest version of the scriptaculous.js, ATTENTION scriptaculous needs prototype.js added before it!
 	 */
 	public String getBundleURIToScriptaculousLib(){
-		return getBundleURIToScriptaculousLib(SCRIPTACULOUS_LATEST_VERSION);
+		if(scriptaculousScriptPath==null){
+			scriptaculousScriptPath =  getBundleURIToScriptaculousLib(SCRIPTACULOUS_LATEST_VERSION);
+		}
+		
+		return scriptaculousScriptPath;
 	}
 	
 	/**
@@ -105,11 +143,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 * @return The full URI with context to the all the script's parent folder e.g. web2.0.bundle/resources/javascript/
 	 */
 	public String getBundleURIToScriptsFolder(){
-		if(this.rootScriptsFolderBundleURI == null){
+		if(rootScriptsFolderBundleURI == null){
 			IWBundle iwb = this.getBundle();
-			this.rootScriptsFolderBundleURI = iwb.getResourcesVirtualPath()+"/javascript/";
+			rootScriptsFolderBundleURI = iwb.getResourcesVirtualPath()+"/javascript/";
 		}
-		return this.rootScriptsFolderBundleURI;
+		return rootScriptsFolderBundleURI;
 	}
 	
 	

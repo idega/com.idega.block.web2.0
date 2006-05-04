@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>reflection.js</title>
+<script type="text/javascript" src="reflection.js"></script>
+<style type="text/css">
+a { color: white; font-style:italic; }
+body { background-color: black; color: white; font-family: Georgia; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<table><tr><td>
+<h1><img src="reflection.png" class="reflect wholeimage" alt="reflection.js" style="float:left; padding-right: 15px;" /></h1>
+</td><td style="line-height: 1.5; font-style: italic;">
+<p><strong>Reflection.js 1.0</strong> allows you to add reflections to images on your webpages. It uses unobtrusive javascript to keep your code clean.</p>
+
+<p>It works in all the major browsers - Internet Explorer 5.5+, Mozilla Firefox 1.5+, Opera 9+ and Safari. On older browsers, it'll degrade and your visitors won't notice a thing. Best of all, it's under 4KB.</p>
+</td></tr></table>
+
+<h2 style="clear:left;">Setting Up</h2>
+
+<p>Upload reflection.js and prototype.js and include them into your webpage.</p>
+
+<code>
+&lt;script type="text/javascript" src="reflection.js"&gt;&lt;/script&gt;
+</code>
+
+<h2>Using It</h2>
+
+<p>To add a reflection just add a class="reflect" to the image. View source to see example.</p>
+
+<!-- This image has a reflection applied to it -->
+<img src="example.jpg" alt="Example Image" class="reflect" />
+
+<p>The reflection will automatically fade into the background colour.</p>
+
+<p>If you run a forum, you can modify your templates and add class="reflect" to the avatar HTML code to add reflections.</p>
+
+<h2>Notes</h2>
+
+<p>The reflection by default will be half the height of the original image. Thus, the height of the image plus reflection will be 1.5 times the original height of the image. You can try the experimental wholeimage class (does not always work) by adding class="reflect wholeimage" to your images. This will create a reflection the same size as the original image.</p>
+
+<h2>Known Issues</h2>
+
+<img src="attention.png" alt="Attention!" class="reflect" style="float: left; padding-right: 20px;" />
+
+<ul>
+<li>Reflections of animated images only work correctly in Internet Explorer.</li>
+</ul>
+
+<h2 style="clear: left;">Improvements</h2>
+
+<p>If you've made any changes or bug fixes to reflection.js, feel free to publish and distribute them. If you contact me through <a href="http://cow.neondragon.net/index.php/383-Reflectionjs-Demo">my blog</a> I can also include the changes in the main reflection.js download.</p>
+
+<h2>Supported Browsers</h2>
+
+<ul>
+<li>Internet Explorer 5.5+</li>
+<li>Mozilla Firefox 1.5+</li>
+<li>Opera 9+</li>
+<li>Safari 2+</li>
+</ul>
+
+<h2>Changelog</h2>
+
+<p>Version 1.0</p>
+
+<ul>
+<li>Add Internet Explorer support</li>
+<li>Remove prototype.js dependency (filesize down from 32KB to 4KB)</li>
+<li>Code cleanup</li>
+</ul>
+
+<p>Version 0.4</p>
+
+<ul>
+<li>Fix problem with floated images, borders, etc.</li>
+<li>Removed unnecessary linebreak</li>
+</ul>
+
+<p>Version 0.3</p>
+
+<ul>
+<li>Fix for Safari in standards compliant mode</li>
+</ul>
+
+<p>Version 0.2</p>
+
+<ul>
+<li>Fix for Safari</li>
+</ul>
+
+<p>Version 0.1</p>
+
+<ul>
+<li>Initial Release</li>
+</ul>
+
+<h2>Credits</h2>
+
+<p>Original idea and inspiration for the script came from <a href="http://www.jroller.com/page/gfx/">Romain Guy</a>'s <a href="http://www.jroller.com/page/gfx/?anchor=cool_effect_with_the_canvas">Crystal CD Case</a>. <a href="http://www.sitharus.com/">Sitharus</a> made it all work in Safari. <a href="http://www.andreaslinde.de/">Andreas Linde</a> helped make the script work better with CSS styles. Kudos!</p>
+
+<p>Also thanks to <a href="http://www.neondragon.net">neonDragon</a> and the <a href="http://ev5.neondragon.net">Evolution Community</a> for feedback and assistance.</p>
+
+<p><a href="http://cow.neondragon.net">cow.neondragon.net</a></p>
+
+</body>
+</html>
