@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.5 2006/05/03 18:40:33 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.6 2006/05/04 13:12:08 laddi Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -15,10 +15,10 @@ import com.idega.idegaweb.IWBundle;
 /**
  * A service bean with handy methods for getting paths to Web 2.0 script libraries and more.
  * 
- *  Last modified: $Date: 2006/05/03 18:40:33 $ by $Author: eiki $
+ *  Last modified: $Date: 2006/05/04 13:12:08 $ by $Author: laddi $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -105,11 +105,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 * @return The full URI with context to the all the script's parent folder e.g. web2.0.bundle/resources/javascript/
 	 */
 	public String getBundleURIToScriptsFolder(){
-		if(rootScriptsFolderBundleURI == null){
+		if(this.rootScriptsFolderBundleURI == null){
 			IWBundle iwb = this.getBundle();
-			rootScriptsFolderBundleURI = iwb.getResourcesVirtualPath()+"/javascript/";
+			this.rootScriptsFolderBundleURI = iwb.getResourcesVirtualPath()+"/javascript/";
 		}
-		return rootScriptsFolderBundleURI;
+		return this.rootScriptsFolderBundleURI;
 	}
 	
 	
