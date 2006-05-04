@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.7 2006/05/04 13:16:17 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.8 2006/05/04 14:48:30 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -16,14 +16,14 @@ import com.idega.idegaweb.IWBundle;
  * A service bean with handy methods for getting paths to Web 2.0 script libraries and more.
  * Scripts include<br>
  * Scriptaculous - Effects and drag and drop, just include prototype.js file first then scriptaculous.js file, <a href="http://script.aculo.us/">http://script.aculo.us/</a><br/> 
- * Prototype - Dom search and manipulation and Ajax and OOP addons for javascript, just include the prototype.js file, <a href="http://prototype.conio.net/ ">http://prototype.conio.net/</a><br/> 
+ * Prototype - Dom search and manipulation and Ajax and OOP addons for javascript, just include the prototype.js file, <a href="http://prototype.conio.net/ ">http://prototype.conio.net/</a> , a quick guide http://particletree.com/features/quick-guide-to-prototype/<br/> 
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2006/05/04 13:16:17 $ by $Author: eiki $
+ * Last modified: $Date: 2006/05/04 14:48:30 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
