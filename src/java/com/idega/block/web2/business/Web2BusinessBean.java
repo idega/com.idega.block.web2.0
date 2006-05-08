@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.8 2006/05/04 14:48:30 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.9 2006/05/08 11:20:09 laddi Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,10 +20,10 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2006/05/04 14:48:30 $ by $Author: eiki $
+ * Last modified: $Date: 2006/05/08 11:20:09 $ by $Author: laddi $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -47,19 +47,18 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	protected String scriptaculousScriptPath;
 	protected String prototypeScriptPath;
 	
-	
-	private static final String REFLECTION_FOLDER_NAME = "reflection";	
+	//private static final String REFLECTION_FOLDER_NAME = "reflection";	
 	
 	/**
 	 * 
 	 * @return The full URI with context to the latest version of the behaviour.js library (special modified version to work alongside Scriptaculous)
 	 */
 	public String getBundleURIToBehaviourLib(){
-		if(behaviourScriptPath==null){
-			behaviourScriptPath = getBundleURIWithinScriptsFolder(BEHAVIOUR_JS_FILE_NAME);
+		if(this.behaviourScriptPath==null){
+			this.behaviourScriptPath = getBundleURIWithinScriptsFolder(BEHAVIOUR_JS_FILE_NAME);
 		}
 		
-		return behaviourScriptPath;
+		return this.behaviourScriptPath;
 	}
 	
 	/**
@@ -67,13 +66,13 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 * @return The full URI with context to the latest version of the reflection.js library, works with all browser that support the "canvas" tag
 	 */
 	public String getBundleURIToReflectionLib(){
-		if(reflectionScriptPath==null){
+		if(this.reflectionScriptPath==null){
 			StringBuffer buf = new StringBuffer();
 			buf.append("REFLECTION_FOLDER_NAME").append("/").append(REFLECTION_JS_FILE_NAME);
 			
-			reflectionScriptPath = getBundleURIWithinScriptsFolder(buf.toString());
+			this.reflectionScriptPath = getBundleURIWithinScriptsFolder(buf.toString());
 		}
-		return reflectionScriptPath;
+		return this.reflectionScriptPath;
 	}
 	
 	/**
@@ -81,11 +80,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 * @return The full URI with context to the latest version of the prototype.js library (within the latest Scriptaculous folder) 
 	 */
 	public String getBundleURIToPrototypeLib(){
-		if(prototypeScriptPath==null){
-			prototypeScriptPath =  getBundleURIToPrototypeLib(SCRIPTACULOUS_LATEST_VERSION);
+		if(this.prototypeScriptPath==null){
+			this.prototypeScriptPath =  getBundleURIToPrototypeLib(SCRIPTACULOUS_LATEST_VERSION);
 		}
 		
-		return prototypeScriptPath;
+		return this.prototypeScriptPath;
 	}
 	
 	/**
@@ -103,11 +102,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 * @return The full URI with context to the latest version of the scriptaculous.js, ATTENTION scriptaculous needs prototype.js added before it!
 	 */
 	public String getBundleURIToScriptaculousLib(){
-		if(scriptaculousScriptPath==null){
-			scriptaculousScriptPath =  getBundleURIToScriptaculousLib(SCRIPTACULOUS_LATEST_VERSION);
+		if(this.scriptaculousScriptPath==null){
+			this.scriptaculousScriptPath =  getBundleURIToScriptaculousLib(SCRIPTACULOUS_LATEST_VERSION);
 		}
 		
-		return scriptaculousScriptPath;
+		return this.scriptaculousScriptPath;
 	}
 	
 	/**
@@ -143,11 +142,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 * @return The full URI with context to the all the script's parent folder e.g. web2.0.bundle/resources/javascript/
 	 */
 	public String getBundleURIToScriptsFolder(){
-		if(rootScriptsFolderBundleURI == null){
+		if(this.rootScriptsFolderBundleURI == null){
 			IWBundle iwb = this.getBundle();
-			rootScriptsFolderBundleURI = iwb.getResourcesVirtualPath()+"/javascript/";
+			this.rootScriptsFolderBundleURI = iwb.getResourcesVirtualPath()+"/javascript/";
 		}
-		return rootScriptsFolderBundleURI;
+		return this.rootScriptsFolderBundleURI;
 	}
 	
 	
