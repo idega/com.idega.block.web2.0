@@ -1,0 +1,19 @@
+<document>
+  <properties>
+    <title>Web 2.0 changes</title>
+    <author email="tryggvi@idega.com">Tryggvi Larusson</author>
+  </properties>
+  <body>
+      <release version="3.1.0" date="2005-06-16">
+      <action dev="tryggvil" type="update">
+      	Declaration of version for including in ePlatform release 3.1
+      </action>
+      <action dev="tryggvil" type="update">
+      	Web 2.0 module created which includes several javascript libraries such as
+      	Scriptaculous, Behaviour, Reflection and Prototype Lite.
+      </action>            
+    </release>
+
+
+  </body>
+</document>
