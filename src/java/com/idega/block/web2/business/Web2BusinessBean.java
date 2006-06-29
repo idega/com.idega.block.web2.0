@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.9 2006/05/08 11:20:09 laddi Exp $
+ * $Id: Web2BusinessBean.java,v 1.10 2006/06/29 12:12:43 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,17 +20,17 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2006/05/08 11:20:09 $ by $Author: laddi $
+ * Last modified: $Date: 2006/06/29 12:12:43 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	
 	public static final String SCRIPTACULOUS_LATEST_VERSION = Web2BusinessBean.SCRIPTACULOUS_VERSION_1_6_1;
 
-	public static final String SCRIPTACULOUS_VERSION_1_5_1 = "1.5.1";
+	public static final String SCRIPTACULOUS_VERSION_1_5_3 = "1.5.3";
 	public static final String SCRIPTACULOUS_VERSION_1_6_1 = "1.6.1";
 	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous-js-";
