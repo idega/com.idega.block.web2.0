@@ -4,7 +4,7 @@
   <pomVersion>3</pomVersion>
   <name>Web2.0</name>
   <artifactId>com.idega.block.web2.0</artifactId>
-  <currentVersion>3.1.0</currentVersion>
+  <currentVersion>3.1.1</currentVersion>
   <inceptionYear>2006</inceptionYear>
   <shortDescription>Web2.0, scripts for enabling web 2.0 features</shortDescription>
   <!-- build stuff copied from base-project.xml -->

@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.10 2006/06/29 12:12:43 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.9.2.1 2006/06/30 15:40:27 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,10 +20,10 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2006/06/29 12:12:43 $ by $Author: eiki $
+ * Last modified: $Date: 2006/06/30 15:40:27 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.9.2.1 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
