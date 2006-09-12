@@ -1,0 +1,80 @@
+	.slidingMenu{
+        position: absolute;
+		width:260px;
+		float:left;
+		padding-left:5px;
+		padding-right:5px;
+		height:300px;
+        visiblity: hidden;
+        overflow:hidden;
+	}
+
+	.dhtmlgoodies_menu{		
+		font-family:arial;	/* Font for main menu items */
+		width:150px;	/* Width of main menu */
+        visibility :hidden;
+	}
+	.dhtmlgoodies_menu	li{	/* Main menu <li> */
+		list-style-type:none;	/* No bullets */
+		margin:0px;	/* No margin - needed for Opera */
+	}
+	.dhtmlgoodies_menu ul{	
+		margin:0px;	/* No <ul> air */
+		padding:0px;	/* No <ul> air */
+	}
+	.dhtmlgoodies_menu ul li ul{	/* Styling for those who doesn't have javascript enabled */
+		padding-left:10px;
+	}
+    
+	.dhtmlgoodies_menu	li a{	/* Main menu links */
+		text-decoration:none;	/* No underline */
+		color:#000;	/* Black text color */
+		
+		height:20px;	/* 20 pixel height */
+		line-height:20px;	/* 20 pixel height */
+		vertical-align:middle;	/* Align text in the middle */
+		border:1px solid #000;	/* Black border */
+		background-color:#FAFAFA;	/* Light blue background color */
+		margin:1px;	/* A little bit of air */
+		padding:1px;	/* Air between border and text inside */
+		
+		display:block;
+	}
+	.dhtmlgoodies_menu	li a:hover,.dhtmlgoodies_menu .activeMainMenuItem{
+		color:#FFF;
+		background-color:#6B98FF;
+	}
+	.dhtmlgoodies_subMenu{
+		visibility:hidden;
+		position:absolute;
+		overflow:hidden;
+		border:1px solid #000;
+		background-color:#FAFAFA;
+		font-family:arial;
+		text-align:left;
+	
+	}
+	.dhtmlgoodies_subMenu ul{
+		margin:0px;
+		padding:0px;	
+	}
+	.dhtmlgoodies_subMenu ul li{
+		list-style-type:none;
+		margin:0px;
+		padding:1px;	/* 1px of air between submenu border and sub menu item - (the "white" space you see on mouse over )*/
+	}
+	.dhtmlgoodies_subMenu ul li a{	/* Sub menu items */
+		white-space:nowrap;	/* No line break */
+		text-decoration:none;	/* No underline */
+		color:#000;	/* Black text color */
+		
+		height:16px;	/* 16 pixels height */
+		line-height:16px;	/* 16 pixels height */
+		padding:1px;	/* 1px of "air" inside */
+		
+		display:block;	/* Display as block - you shouldn't change this */
+	}
+	.dhtmlgoodies_subMenu ul li a:hover{	/* Sub menu items - mouse over effects */
+		color:#FFF;	/* White text */
+		background-color:#6B98FF;	/* Blue background */
+	}

@@ -1,0 +1,4 @@
+.slider {position:relative; margin-left:60px;width:218px;float:left;}
+.vertHandleDiv { cursor:default; width:20px; height:18px; position:absolute;background:url(img/vertSlider.png) no-repeat; }
+.vertBGDiv {position:relative;top:0px; float:left; width:26px; left:10px;background:url(img/vertBg.png) no-repeat;height:218px; }
+.vertValueDiv { position:relative; top: 100px; left:40px; }

@@ -1,0 +1,6 @@
+ <div id="${uuid}" class="captcha">
+ </div>
+    <form onsubmit="alert('Maches=' + jmaki.attributes.get('${uuid}').matches(document.getElementById('${uuid}_input').value));return false;">
+    <input type="text" id="${uuid}_input" length="10">
+    <input type="submit" name="Check Captcha">
+   </form>
