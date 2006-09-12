@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.10 2006/06/29 12:12:43 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.11 2006/09/12 10:56:00 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,24 +20,26 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2006/06/29 12:12:43 $ by $Author: eiki $
+ * Last modified: $Date: 2006/09/12 10:56:00 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	
-	public static final String SCRIPTACULOUS_LATEST_VERSION = Web2BusinessBean.SCRIPTACULOUS_VERSION_1_6_1;
+	public static final String SCRIPTACULOUS_LATEST_VERSION = Web2BusinessBean.SCRIPTACULOUS_VERSION_1_6_2;
 
 	public static final String SCRIPTACULOUS_VERSION_1_5_3 = "1.5.3";
 	public static final String SCRIPTACULOUS_VERSION_1_6_1 = "1.6.1";
+	public static final String SCRIPTACULOUS_VERSION_1_6_2 = "1.6.2";
 	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous-js-";
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
 	public static final String BEHAVIOUR_JS_FILE_NAME = "behaviour.js";
 	public static final String REFLECTION_JS_FILE_NAME = "reflection.js";
+	public static final String JMAKI_JS_FILE_NAME = "jmaki.js";
 
 	public static final String WEB2_BUNDLE_IDENTIFIER = "com.idega.block.web2.0";
 
@@ -46,6 +48,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	protected String reflectionScriptPath;
 	protected String scriptaculousScriptPath;
 	protected String prototypeScriptPath;
+	protected String jMakiWidgetsURI;
+	protected String jMakiScriptPath;
 	
 	//private static final String REFLECTION_FOLDER_NAME = "reflection";	
 	
@@ -164,4 +168,26 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		return WEB2_BUNDLE_IDENTIFIER;
 	}
 	
+	/**
+	 * 
+	 * @return The full URI with context to the jMaki widgets parent folder e.g. web2.0.bundle/resources/jmaki/
+	 */
+	public String getBundleURIToJMakiWidgetsFolder(){
+		if(this.jMakiWidgetsURI == null){
+			IWBundle iwb = this.getBundle();
+			this.jMakiWidgetsURI = iwb.getResourcesVirtualPath()+"/jmaki/";
+		}
+		return this.jMakiWidgetsURI;
+	}
+	
+	/**
+	 * 
+	 * @return The full URI with context to the jmaki.js library
+	 */
+	public String getBundleURIToJMakiLib(){
+		if(this.jMakiScriptPath == null){
+			this.jMakiScriptPath = getBundleURIWithinScriptsFolder(JMAKI_JS_FILE_NAME);
+		}
+		return this.jMakiScriptPath;
+	}
 }
