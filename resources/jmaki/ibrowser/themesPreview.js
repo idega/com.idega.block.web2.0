@@ -1,20 +1,4 @@
-/* Copyright 2006 Sun Microsystems, Inc. All rights reserved. You may not modify, use, reproduce, or distribute this software except in compliance with the terms of the License at: http://developer.sun.com/berkeley_license.html
-
-$Id: themesPreview.js,v 1.1 2006/09/12 11:19:48 valdas Exp $ */
-
-
-
-/**
-
-* ImageScroller - A multipurpose item brower
-
-* @ Author: Greg Murray
-
-*
-
-*/
-
-
+/* $Id: themesPreview.js,v 1.2 2006/09/25 14:20:06 valdas Exp $ */
 
 function ImageScroller(divId) {
 
@@ -23,7 +7,6 @@ function ImageScroller(divId) {
     var initialized = false;
 
    // this is the main container div
-
     var containerDiv = document.getElementById(uuid);
     var imageDiv;
 
@@ -33,7 +16,7 @@ function ImageScroller(divId) {
     if (typeof startWidth != 'undefined') {
         VIEWPORT_WIDTH = Number(startWidth);
     } else {
-        VIEWPORT_WIDTH = 400;
+        VIEWPORT_WIDTH = 510;
     }
 
     var VIEWPORT_HEIGHT;
@@ -44,26 +27,18 @@ function ImageScroller(divId) {
         VIEWPORT_HEIGHT = 300;
     }
 
-    //containerDiv.style.width = VIEWPORT_WIDTH + "px";
-    //containerDiv.style.height = VIEWPORT_HEIGHT + "px";
-
     // all sizes are realitive the the viewport width
-
     var IMAGEPANE_WIDTH = VIEWPORT_WIDTH;
     var NAV_WIDTH = Math.round(VIEWPORT_WIDTH * .0575);
     var NAV_HEIGHT = NAV_WIDTH;
     var ICON_SIZE = Math.round(VIEWPORT_WIDTH * .035);
     var IMAGEPANE_HEIGHT = Math.round(VIEWPORT_WIDTH / 1.49);
 
-        
-
-    var INFOPANE_DEFAULT_HEIGHT = Math.round(VIEWPORT_WIDTH / 6.67);
+    var INFOPANE_DEFAULT_HEIGHT = Math.round(VIEWPORT_WIDTH / 17);
     var INFOPANE_EXPAND_HEIGHT = Math.round(VIEWPORT_WIDTH / 2.86);
-    var THUMB_WIDTH = Math.round(VIEWPORT_WIDTH / 5);;
-
-    var THUMB_HEIGHT = Math.round(VIEWPORT_WIDTH / 6.67);
-
     
+    var THUMB_WIDTH = Math.round(VIEWPORT_WIDTH / 5);;
+    var THUMB_HEIGHT = Math.round(VIEWPORT_WIDTH / 6.67);
 
     this.CHUNK_SIZE=5;
     this.PREFETCH_THRESHHOLD = 3;
@@ -85,15 +60,9 @@ function ImageScroller(divId) {
     var rightButton;
 
     // this is an array of the tiles which are divs for each thumb
-
     var tiles = [];
 
-    
-
     // for scrolling
-
-
-
     var SCROLL_INCREMENT = 5;
     var INFOPANE_INCREMENT = 3;
 
@@ -110,21 +79,16 @@ function ImageScroller(divId) {
     var isScrollingRight = false;
     var isScrollingLeft = false;
 
-    
-
     // large image pane
     var imageDiv;
     var imagePane;
     var imageLoadingPane;
 
     // images 
-
     var minimizeImage;
     var indicatorImage;
 
-
     // infopane
-
     var infoPane;
 
     var minimizeLink;
@@ -134,16 +98,13 @@ function ImageScroller(divId) {
     var maximized = false;
 
     // prefetch thresh-hold
-
     var prefetchThreshold = 2;
 
     // a growing list of items;
-
     var items = [];
 
 
     // used for debugging when debug is true
-
     var debug = false;
     var statusDiv;
     var status2Div;   
@@ -153,12 +114,10 @@ function ImageScroller(divId) {
     var IMG_RELOAD_RETRY_MAX = 30;
     
     // used for url book marking
-
     var pid;
     var currentChunck;
 
-     // this map contains all the items 
-
+    // this map contains all the items 
     var map;
 
     // callback handler
@@ -187,7 +146,6 @@ function ImageScroller(divId) {
  
 
     // load up
-
     _this.initialize();
 
     
@@ -209,6 +167,10 @@ function ImageScroller(divId) {
         offset = 0;
         currentChunck = 0;
 
+    }
+    
+    this.resetMap = function() {
+    	map.clear();
     }
 
     
@@ -686,7 +648,6 @@ function ImageScroller(divId) {
         infoPane.style.height = INFOPANE_DEFAULT_HEIGHT + "px";
         infoPane.style.top = (tileY + IMAGEPANE_HEIGHT + (PADDING)) + "px";
         infoPane.style.left = tileX + "px";
-        var infoTableMinimize = document.getElementById(uuid + "_infopaneDetailsIcon");
         indicatorImage = document.createElement("div");
         indicatorImage.className = "indicatorIcon";
         indicatorImage.style.width = ICON_SIZE + "px";
@@ -696,25 +657,6 @@ function ImageScroller(divId) {
         if (indicatorCell) {
             indicatorCell.style.width = (10);
             indicatorCell.appendChild(indicatorImage);
-        }        
-
-        minimizeLink = document.createElement("a");
-        minimizeLink.className = "infopaneDetailsIcon";
-        minimizeLink.title = MAXIMIZE_IMG_TOOLTIP;
-        minimizeImage = document.createElement("div");
-        minimizeImage.className = "infopaneMaximizeIcon";
-        minimizeImage.style.width = ICON_SIZE + "px";
-        minimizeImage.style.height = ICON_SIZE + "px";
-
-        if (infoTableMinimize) {
-            minimizeLink.appendChild(minimizeImage);
-            infoTableMinimize.appendChild(minimizeLink);
-        }
-        // attach event listeners for the expanding onf the infopane
-        if (typeof minimizeLink.attachEvent != 'undefined') {
-            minimizeLink.attachEvent("onclick",function(e){_this.doMaximize();});
-        } else {
-            minimizeLink.addEventListener("click",function(e){_this.doMaximize();}, true);
         }
 
         var clipMe = 'rect(' + '0px,' + VIEWPORT_WIDTH +  'px,'+  INFOPANE_DEFAULT_HEIGHT +'px,' +  0 + 'px)';
@@ -812,7 +754,6 @@ function ImageScroller(divId) {
 function Controller() {
 
   // this object structure contains a list of the groups and chunks that have been loaded
-
   var pList = new GroupList();
 
   var CHUNK_SIZE=5;
@@ -837,22 +778,8 @@ function Controller() {
   function showItemDetails(id, uuid) {
 
       var infoName = document.getElementById(uuid + "_infopaneName");
-      var infoDescription =  document.getElementById(uuid + "_infopaneDescription");
-      var infoShortDescription =  document.getElementById(uuid + "_infopaneShortDescription");  
       var i = pList.getItem(id);
       setNodeText(infoName, genHTML(i.name));
-
-      var sd = "";
-      var description = "";
-      if (i.description) description = genHTML(i.description)
-      if (description.length > 70) {
-        description.substring(0,71) + "...";
-      } else {
-          sd = description;
-      }
-
-      setNodeText(infoShortDescription,sd);
-      setNodeText(infoDescription, description);
 
   }
 
@@ -937,7 +864,6 @@ function Controller() {
   
 
   // this needs to happen after we have loaded the intial data
-
   function processURLParameters() {
 
       originalURL = decodeURIComponent(window.location.href);
@@ -971,12 +897,16 @@ function Controller() {
 
       // TODO: may be a problem with multiple concurrent feeds
 	 tmpScroller = scroller;
-	 ThemesPreviewsProvider.getImagesInfo(preProccessFlicker);
-
-	//if (useLocal && flickerParams) {
-		//var _scroller = scroller;
-		//postProcessFlicker({'items': [{'title': 'test1', 'type': 'png', 'source': 'http://localhost:8080/content/files/public/themes/preview/ajaxian.png'}, {'title': 'test2', 'type': 'jpeg', 'source': 'http://localhost:8080/content/files/public/themes/preview/2is.jpeg'}]}, _scroller);
-	//}
+	 ThemesPreviewsProvider.getThemesPreviewsInfo(preProccessFlicker);
+	 //ThemesPreviewsProvider.getPagePreview(isPagedPreparedForPreview);
+  }
+  
+  function isPagedPreparedForPreview(result) {
+  	if (result) {
+  		if (result == "2") { // Needs to get info, because atleast one new image was generated
+  			ThemesPreviewsProvider.getThemesPreviewsInfo(preProccessFlicker);
+  		}
+  	}
   }
   
   function preProccessFlicker(flickerParams) {
@@ -986,10 +916,6 @@ function Controller() {
 
   function postProcessFlicker (obj, scroller) {
 	var tmp = obj.split(";");
-	
-    //var flickrPhotos = obj;
-
-	// get info from the JSON object
 
 	var fi = [];
 	
@@ -1006,21 +932,7 @@ function Controller() {
         fi.push(i);
 	}
 
-      /*for (var l=0; l < flickrPhotos.items.length; l++) {
-	  	var itemId = "flickr_" + l;
-		var source = flickrPhotos.items[l].source;
-		var imageBase = source;
-		var fileType = flickrPhotos.items[l].type;
-		var thumbURL = imageBase;
-		var imageURL = imageBase;
-		var description = "Theme preview " + l;
-		var name = flickrPhotos.items[l].title;
-		var i = {id:itemId , name: name, thumbnailURL: thumbURL, imageURL: imageURL, description: description};
-		fi.push(i);
-      }*/
-
       scroller.addItems(fi);
-      //var tags = flickrPhotos.items[0].tags
 	  var tags = tmp[0].tags
       scroller.setGroupId(tags);
       pList.addChunck(tags, 0, fi);
@@ -1104,20 +1016,15 @@ function Controller() {
           }
 
       }
-
       
-
+      
       this.get = function(key) {
-
-          for (i=0; i < size; i++) {
-
-              if (keys[i] == key) {
-
-                  return values[i];
-   d            }
-          }
-
-          return null;
+      	for (i=0; i < size; i++) {
+      		if (keys[i] == key) {
+      			return values[i];
+      		}
+      	}
+      	return null;
       }
 
       
@@ -1144,13 +1051,11 @@ var is = new ImageScroller(widget.uuid, widget.args.width, widget.args.height);
 is.callbackHandler = controller.handleEvent;
 
 if (typeof widget.args.type != 'undefined') {
-    if (widget.args.type == 'flickr') {
+    if (widget.args.type == 'ibrowser') {
         controller.loadFlickr([widget.args.tag], is);
     } else if (widget.args.type == 'json'){
-
         controller.loadJSON([widget.args.url], is);
     }
-
 }
 
 jmaki.attributes.put(widget.uuid, is);

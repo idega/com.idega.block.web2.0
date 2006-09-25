@@ -1,0 +1,104 @@
+.ibrowser {
+    position: relative;
+    height: 450px;
+    width: 800px;
+}
+
+.rightNav {
+    cursor:pointer;
+    position: absolute;
+    z-index:18;
+    opacity: .99;
+    background: url(images/right.gif) no-repeat;
+}
+
+.leftNav {
+    width:23;
+    height:23;
+    cursor:pointer;
+    position: absolute;
+    z-index:14;
+    opacity: .99;
+    margin: 0px auto 0;
+    background: url(images/left.gif) no-repeat top left;
+}
+
+.indicatorIcon {
+    width:14;
+    height:14;
+    cursor:pointer;
+    z-index:14;
+    opacity: .99;
+    margin: 0px auto 0;
+    background: url(images/indicator-black.gif) no-repeat top left;
+}
+
+.infopaneMaximizeIcon {
+    width:14;
+    height:14;
+    cursor:pointer;
+    z-index:14;
+    opacity: .99;
+    background: url(images/maximize.gif) no-repeat top right;
+}
+
+.infopaneMinimizeIcon {
+    width:14;
+    height:14;
+    cursor:pointer;
+    z-index:14;
+    opacity: .99;
+    background: url(images/minimize.gif) no-repeat top right;
+}
+
+.imagePane {
+    position: absolute;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    background:#404040;
+}
+
+.tile {
+    position: absolute;
+    top:0px;
+    left:0px;
+    cursor:pointer;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;  
+    visibility:hidden;
+    z-index:3;
+    opacity: .99;
+}
+
+.infopane {
+    z-index:2;
+    position: absolute;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    background:black;
+    opacity: .65;
+}
+
+.infopaneDescription {
+    color:white;
+    font-size:12px;
+}
+
+.infopaneShortDescription {
+    color:white;
+    font-size:16px;
+}
+
+.infopaneDetailsIcon {
+    vertical-align:top;
+}
+
+.infopaneTitle {
+    width: 95%;
+    color:white;
+    font-size:18px;
+    align: center;
+}
