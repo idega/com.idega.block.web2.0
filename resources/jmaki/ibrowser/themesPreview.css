@@ -1,6 +1,6 @@
 .ibrowser {
     position: relative;
-    height: 450px;
+    height: 510px;
     width: 800px;
 }
 
@@ -58,6 +58,12 @@
     border-color:black;
     background:#404040;
 }
+
+.imagePane div {
+	
+	
+    margin-left: 5px;
+	}
 
 .tile {
     position: absolute;

@@ -1,4 +1,4 @@
-/* $Id: themesPreview.js,v 1.2 2006/09/25 14:20:06 valdas Exp $ */
+/* $Id: themesPreview.js,v 1.3 2006/10/12 17:52:11 valdas Exp $ */
 
 function ImageScroller(divId) {
 
@@ -16,7 +16,7 @@ function ImageScroller(divId) {
     if (typeof startWidth != 'undefined') {
         VIEWPORT_WIDTH = Number(startWidth);
     } else {
-        VIEWPORT_WIDTH = 510;
+        VIEWPORT_WIDTH = 550;
     }
 
     var VIEWPORT_HEIGHT;
@@ -24,7 +24,7 @@ function ImageScroller(divId) {
     if (typeof startHeight != 'undefined') {
         VIEWPORT_HEIGHT = Number(startHeight);
     } else {
-        VIEWPORT_HEIGHT = 300;
+        VIEWPORT_HEIGHT = 150;
     }
 
     // all sizes are realitive the the viewport width
@@ -63,8 +63,8 @@ function ImageScroller(divId) {
     var tiles = [];
 
     // for scrolling
-    var SCROLL_INCREMENT = 5;
-    var INFOPANE_INCREMENT = 3;
+    var SCROLL_INCREMENT = 20;
+    var INFOPANE_INCREMENT = 16;
 
     var tileY;
     var tileX;
@@ -316,7 +316,7 @@ function ImageScroller(divId) {
             imagePane.style.height = (IMAGEPANE_HEIGHT - border) + "px";
             imageLoadingPane.style.width = (IMAGEPANE_WIDTH - border) + "px";
             imageLoadingPane.style.height = (IMAGEPANE_HEIGHT - border) + "px";
-            loadImage(i.imageURL, false);
+            loadImage(i.imageURL, false, i.id);
         } else {
              imageLoadingPane.style.visibility = "visible";            
              if (showingBuffer) {
@@ -324,19 +324,19 @@ function ImageScroller(divId) {
              } else {
                  showingBuffer = true;
              }
-             loadImage(i.imageURL, showingBuffer);
+             loadImage(i.imageURL, showingBuffer, i.id);
         }
     }
 
-    function loadImage(url, loadIntoBuffer) {
+    function loadImage(url, loadIntoBuffer, imageID) {
         imageReloadTries = 0;
         imageBuffer = new Image();
         if (loadIntoBuffer) {
             imageBuffer.src = url;
-            imageLoadingPane.onLoad = setTimeout(function(){this.url=url;this.loadIntoBuffer = loadIntoBuffer;postImageLoad(loadIntoBuffer,url);},0);
+            imageLoadingPane.onLoad = setTimeout(function(){getThemeStyleVariations(imageID);this.url=url;this.loadIntoBuffer = loadIntoBuffer;postImageLoad(loadIntoBuffer,url);},0);
         } else {
             imageBuffer.src = url;
-            imageBuffer.onLoad = setTimeout(function(){this.url = url;this.loadIntoBuffer = loadIntoBuffer;postImageLoad(loadIntoBuffer,url);},0);
+            imageBuffer.onLoad = setTimeout(function(){getThemeStyleVariations(imageID);this.url = url;this.loadIntoBuffer = loadIntoBuffer;postImageLoad(loadIntoBuffer,url);},0);
         }
     }
 
@@ -897,6 +897,7 @@ function Controller() {
 
       // TODO: may be a problem with multiple concurrent feeds
 	 tmpScroller = scroller;
+	 showLoadingMessage('Generating preview...');
 	 ThemesPreviewsProvider.getThemesPreviewsInfo(preProccessFlicker);
 	 //ThemesPreviewsProvider.getPagePreview(isPagedPreparedForPreview);
   }
@@ -910,6 +911,7 @@ function Controller() {
   }
   
   function preProccessFlicker(flickerParams) {
+  	closeLoadingMessage();
 	postProcessFlicker(flickerParams, tmpScroller);
   }
   
@@ -920,9 +922,9 @@ function Controller() {
 	var fi = [];
 	
 	for (var index = 0; index < tmp.length; index++) {
-		var itemId = "flickr_" + index;
 		var itemInfo = tmp[index];
 		var item = itemInfo.split("@");
+		var itemId = item[2];
 		var source = item[1];
 		var thumbURL = source;
 		var imageURL = source;
@@ -1040,8 +1042,6 @@ function Controller() {
 
 }
 
-
-
 var controller = new Controller();
 
 controller.initialize();
@@ -1059,4 +1059,3 @@ if (typeof widget.args.type != 'undefined') {
 }
 
 jmaki.attributes.put(widget.uuid, is);
-
