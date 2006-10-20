@@ -1,4 +1,4 @@
-/* $Id: themesPreview.js,v 1.3 2006/10/12 17:52:11 valdas Exp $ */
+/* $Id: themesPreview.js,v 1.4 2006/10/20 12:25:47 valdas Exp $ */
 
 function ImageScroller(divId) {
 
@@ -290,6 +290,9 @@ function ImageScroller(divId) {
         if (typeof this.callbackHandler != 'undefined') {
                     this.callbackHandler({type:"showingItem", id: itemId, gid: pid, uuid: uuid});
         }
+        
+        setGlobalId(i.id);
+        setThemeName(i.name);
 
         // create the image pane and append the description nodes
         // asumption is that if the imagePane is not set neigher are the info children
