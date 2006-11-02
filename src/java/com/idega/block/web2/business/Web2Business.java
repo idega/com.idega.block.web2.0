@@ -1,5 +1,5 @@
 /*
- * $Id: Web2Business.java,v 1.4 2006/09/12 10:56:00 valdas Exp $
+ * $Id: Web2Business.java,v 1.5 2006/11/02 15:27:54 gimmi Exp $
  * Created on May 4, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -14,10 +14,10 @@ import com.idega.business.IBOService;
 
 /**
  * 
- *  Last modified: $Date: 2006/09/12 10:56:00 $ by $Author: valdas $
+ *  Last modified: $Date: 2006/11/02 15:27:54 $ by $Author: gimmi $
  * 
  * @author <a href="mailto:eiki@idega.com">eiki</a>
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public interface Web2Business extends IBOService {
 
@@ -40,6 +40,12 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToPrototypeLib
 	 */
 	public String getBundleURIToPrototypeLib(String scriptaculousLibraryVersion) throws java.rmi.RemoteException;
+
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToRico
+	 */
+	public String getBundleURIToRico();
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToScriptaculousLib
