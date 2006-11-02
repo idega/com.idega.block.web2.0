@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.9.2.1 2006/06/30 15:40:27 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.9.2.2 2006/11/02 15:21:51 gimmi Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,10 +20,10 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2006/06/30 15:40:27 $ by $Author: eiki $
+ * Last modified: $Date: 2006/11/02 15:21:51 $ by $Author: gimmi $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.9.2.1 $
+ * @version $Revision: 1.9.2.2 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -38,6 +38,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
 	public static final String BEHAVIOUR_JS_FILE_NAME = "behaviour.js";
 	public static final String REFLECTION_JS_FILE_NAME = "reflection.js";
+	public static final String RICO_JS_FILE_NAME = "rico.js";
 
 	public static final String WEB2_BUNDLE_IDENTIFIER = "com.idega.block.web2.0";
 
@@ -46,7 +47,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	protected String reflectionScriptPath;
 	protected String scriptaculousScriptPath;
 	protected String prototypeScriptPath;
-	
+	protected String prototype_1_4ScriptPath;
+	protected String ricoScriptPath;
+
 	//private static final String REFLECTION_FOLDER_NAME = "reflection";	
 	
 	/**
@@ -162,6 +165,19 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	public String getBundleIdentifier(){
 		return WEB2_BUNDLE_IDENTIFIER;
+	}
+	
+	
+	/**
+	 * 
+	 * @return The full URI with context to version 1.4 of the prototype.js library (standard download) 
+	 */
+	public String getBundleURIToRico(){
+		if(this.ricoScriptPath==null){
+			this.ricoScriptPath =  getBundleURIWithinScriptsFolder(RICO_JS_FILE_NAME);
+		}
+		
+		return this.ricoScriptPath;
 	}
 	
 }
