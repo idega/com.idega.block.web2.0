@@ -108,7 +108,8 @@ public class Accordion extends Block {
 		super.encodeBegin(fc);
 		
 		Layer panels = (Layer)this.getFacet("PANELS");
-		panels.encodeBegin(fc);
+		this.renderChild(fc,panels);
+		
 	}
 	
 	public Object clone(){
