@@ -2,12 +2,8 @@ package com.idega.block.web2.presentation;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.Vector;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-
 import com.idega.block.web2.business.Web2Business;
 import com.idega.business.IBOLookup;
 import com.idega.presentation.Block;
@@ -50,9 +46,7 @@ public class Accordion extends Block {
 				parentPage.setOnLoad("javascript:bodyOnLoad()");
 				
 				this.getChildren().add(s);
-				
 
-				
 				StringBuffer b = new StringBuffer();
 				b.append("<script> \n")
 				.append("\tvar onloads = new Array();\n")
@@ -75,21 +69,20 @@ public class Accordion extends Block {
 			}
 		}
 		
-		if (!panels.isEmpty()) {
-			Iterator i = panels.iterator();
-			Layer l = new Layer();
-			l.setId(id);
-			while (i.hasNext()) {
-				l.addChild((Layer) i.next());
-			}
-			this.getChildren().add(l);
-		}
-	
 		
 	}
 	
 
 	public void addPanel(String panelID, UIComponent header, UIComponent content) {
+		//get outerlayer (facet)
+		Layer panels = (Layer)this.getFacet("PANELS");
+		if(panels==null){
+			panels = new Layer();
+			panels.setId(id);
+			this.facetMap.put("PANELS", panels);
+		}
+		
+		//add panel to outerlayer
 		Layer l = new Layer();
 		l.setId(panelID);
 		
@@ -103,17 +96,18 @@ public class Accordion extends Block {
 		c.setStyleClass("accordionTabContentBox");
 		c.getChildren().add(content);
 		
-		l.getChildren().add(h);
-		l.getChildren().add(c);
+		l.add(h);
+		l.add(c);
 		
-		if (panels == null) {
-			panels = new Vector();
-		}
 		panels.add(l);
+
 	}
 	
 	public void encodeBegin(FacesContext fc)throws IOException{
 		super.encodeBegin(fc);
+		
+		Layer panels = (Layer)this.getFacet("PANELS");
+		panels.encodeBegin(fc);
 	}
 	
 	public Object clone(){
@@ -128,18 +122,16 @@ public class Accordion extends Block {
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[4];
 		values[0] = super.saveState(context);
-		values[1] = this.panels;
-		values[2] = this.id;
-		values[3] = this.height;
+		values[1] = this.id;
+		values[2] = this.height;
 		return values;
 	}
 	
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[])state;
 		super.restoreState(context, values[0]);
-		this.panels = (Collection) values[1];
-		this.id = (String) values[2];
-		this.height = (String) values[3];
+		this.id = (String) values[1];
+		this.height = (String) values[2];
 	}
 
 	public String getHeight() {
