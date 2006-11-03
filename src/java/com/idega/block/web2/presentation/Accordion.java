@@ -121,7 +121,7 @@ public class Accordion extends Block {
 	
 	
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[4];
+		Object values[] = new Object[3];
 		values[0] = super.saveState(context);
 		values[1] = this.id;
 		values[2] = this.height;
