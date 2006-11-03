@@ -79,7 +79,8 @@ public class Accordion extends Block {
 		if(panels==null){
 			panels = new Layer();
 			panels.setId(id);
-			this.facetMap.put("PANELS", panels);
+			
+			this.getFacets().put("PANELS", panels);
 		}
 		
 		//add panel to outerlayer
