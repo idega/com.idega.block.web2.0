@@ -12,11 +12,11 @@ public class AccordionTest extends Block {
 
 		Accordion acc =new Accordion("gimmi");
 		acc.setHeight("100");
-		acc.addPanel("panel1", new Text("gimmi1"), new Text("gimmi 1 texxt"));
-		acc.addPanel("panel2", new Text("gimmi2"), new Text("gimmi 2 texxt"));
-		acc.addPanel("panel3", new Text("gimmi3"), new Text("gimmi 3 texxt"));
-		acc.addPanel("panel4", new Text("Svana"), new Text("Svana 3 texxt"));
-		acc.addPanel("panel5", new Text("Svana1"), new Text("Svana 4 texxt"));
+		acc.addPanel(new Text("gimmi1"), new Text("gimmi 1 texxt"));
+		acc.addPanel(new Text("gimmi2"), new Text("gimmi 2 texxt"));
+		acc.addPanel(new Text("gimmi3"), new Text("gimmi 3 texxt"));
+		acc.addPanel(new Text("Svana"), new Text("Svana 3 texxt"));
+		acc.addPanel(new Text("Svana1"), new Text("Svana 4 texxt"));
 		
 		Layer l = new Layer();
 		l.setID("1");
@@ -43,7 +43,7 @@ public class AccordionTest extends Block {
 		l3.add(l4);
 		l4.add(l5);
 		
-		acc.addPanel("multi1", new Text("MultiLayered Content"), l);
+		acc.addPanel(new Text("MultiLayered Content"), l);
 		
 		add(acc);
 	}

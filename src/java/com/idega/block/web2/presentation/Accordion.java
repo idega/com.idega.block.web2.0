@@ -24,6 +24,7 @@ public class Accordion extends Block {
 	private Collection panels = null;
 	private String id = null;
 	private String height = "200";
+	private int panelCount = 0;
 
 	public Accordion(String id) {
 		super();
@@ -88,7 +89,10 @@ public class Accordion extends Block {
 		
 	}
 	
-
+	public void addPanel(UIComponent header, UIComponent content) {
+		addPanel("panel"+(panelCount++), header, content);
+	}
+	
 	public void addPanel(String panelID, UIComponent header, UIComponent content) {
 		Layer l = new Layer();
 		l.setId(panelID);
