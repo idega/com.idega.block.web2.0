@@ -4,7 +4,7 @@
   <pomVersion>3</pomVersion>
   <name>Web2.0</name>
   <artifactId>com.idega.block.web2.0</artifactId>
-  <currentVersion>3.1.0</currentVersion>
+  <currentVersion>3.1.2</currentVersion>
   <inceptionYear>2006</inceptionYear>
   <shortDescription>Web2.0, scripts for enabling web 2.0 features</shortDescription>
   <!-- build stuff copied from base-project.xml -->
@@ -29,6 +29,16 @@
       <id>3.1.0</id>
       <name>3.1.0</name>
       <tag>WEB20_3_1_0</tag>
+    </version>
+    <version>
+      <id>3.1.1</id>
+      <name>3.1.1</name>
+      <tag>WEB20_3_1_1</tag>
+    </version>
+    <version>
+      <id>3.1.2</id>
+      <name>3.1.2</name>
+      <tag>WEB20_3_1_2</tag>
     </version>
   </versions>
   <branches/>
@@ -105,7 +115,7 @@
     <dependency>
       <groupId>bundles</groupId>
       <artifactId>com.idega.core</artifactId>
-      <version>3.1.0</version>
+      <version>3.1.1</version>
       <type>jar</type>
       <url>http://www.idega.com/</url>
       <properties>
@@ -127,6 +137,16 @@
       <type>jar</type>
       <url>http://java.sun.com/products/jta/jta-1_0_1B-doc</url>
       <properties/>
+    </dependency>
+    <dependency>
+      <groupId>myfaces</groupId>
+      <artifactId>myfaces-jsf-api</artifactId>
+      <version>1.1.3</version>
+      <type>jar</type>
+      <url>http://java.sun.com/j2ee/javaserverfaces/</url>
+      <properties>
+        <idegaweb.bundle.include>true</idegaweb.bundle.include>
+      </properties>
     </dependency>
   </dependencies>
   <properties/>
