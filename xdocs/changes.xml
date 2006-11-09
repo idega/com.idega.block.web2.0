@@ -9,11 +9,13 @@
       <action dev="gimmi" type="add">
       	the panels in the Accordion Object are now stored in a facet
       </action>        
+    </release>   	
    	<release version="3.1.2" date="2005-11-06">
       <action dev="gimmi" type="add">
       	Accordion object.
       </action>        
-    </release>   	<release version="3.1.1" date="2005-06-30">
+    </release>   	
+    <release version="3.1.1" date="2005-06-30">
       <action dev="eiki" type="fix">
       	Bugfix from HEAD. The version number for scriptaculous was wrong.
       </action>        
