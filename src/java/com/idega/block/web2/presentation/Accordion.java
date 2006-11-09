@@ -1,9 +1,6 @@
 package com.idega.block.web2.presentation;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Vector;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -21,7 +18,6 @@ import com.idega.presentation.text.Text;
 
 public class Accordion extends Block {
 
-	private Collection panels = null;
 	private String id = null;
 	private String height = "200";
 	private int panelCount = 0;
@@ -44,22 +40,20 @@ public class Accordion extends Block {
 				s.addScriptSource(protoURI);
 				s.addScriptSource(ricoURI);
 
-				parentPage.addScriptSource(protoURI);
-				parentPage.addScriptSource(ricoURI);
+//				parentPage.addScriptSource(protoURI);
+//				parentPage.addScriptSource(ricoURI);
 				
 				// THIS HAS TO BE ADDED TO THE <BODY> in the html, if not it does not work in Safari
 				parentPage.setOnLoad("javascript:bodyOnLoad()");
 				
 				this.getChildren().add(s);
-				
 
-				
 				StringBuffer b = new StringBuffer();
 				b.append("<script> \n")
 				.append("\tvar onloads = new Array();\n")
 				.append("\tfunction bodyOnLoad() {\n")
-				.append("\t\tnew Rico.Effect.Round( null, 'roundNormal' );\n")
-				.append("\t\tnew Rico.Effect.Round( null, 'roundCompact', {compact:true} );\n")
+//				.append("\t\tnew Rico.Effect.Round( null, 'roundNormal' );\n")
+//				.append("\t\tnew Rico.Effect.Round( null, 'roundCompact', {compact:true} );\n")
 				.append("\t\tfor ( var i = 0 ; i < onloads.length ; i++ )\n")
 				.append("\t\t\tonloads[i]();\n")
 				.append("\t}\n")
@@ -68,7 +62,7 @@ public class Accordion extends Block {
 
 				StringBuffer b2 = new StringBuffer();
 				b2.append("<script> onloads.push( accord ); function accord() { new Rico.Accordion( '"+id+"', {panelHeight:"+height+"} ); }  </script>");
-				
+				//b2.append("<script> new Rico.Accordion( $('"+id+"'), {panelHeight:"+height+"} ); </script>");
 				this.getChildren().add(new Text(b2.toString()));
 
 			} catch (Exception e) {
@@ -76,24 +70,23 @@ public class Accordion extends Block {
 			}
 		}
 		
-		if (!panels.isEmpty()) {
-			Iterator i = panels.iterator();
-			Layer l = new Layer();
-			l.setId(id);
-			while (i.hasNext()) {
-				l.addChild((Layer) i.next());
-			}
-			this.getChildren().add(l);
-		}
-	
 		
 	}
 	
 	public void addPanel(UIComponent header, UIComponent content) {
 		addPanel("panel"+(panelCount++), header, content);
 	}
-	
+
 	public void addPanel(String panelID, UIComponent header, UIComponent content) {
+		Layer panels = (Layer)this.getFacet("PANELS");
+		if(panels==null){
+			panels = new Layer();
+			panels.setId(id);
+			
+			this.getFacets().put("PANELS", panels);
+		}
+		
+		//add panel to outerlayer
 		Layer l = new Layer();
 		l.setId(panelID);
 		
@@ -107,22 +100,23 @@ public class Accordion extends Block {
 		c.setStyleClass("accordionTabContentBox");
 		c.getChildren().add(content);
 		
-		l.getChildren().add(h);
-		l.getChildren().add(c);
+		l.add(h);
+		l.add(c);
 		
-		if (panels == null) {
-			panels = new Vector();
-		}
 		panels.add(l);
+
 	}
 	
 	public void encodeBegin(FacesContext fc)throws IOException{
 		super.encodeBegin(fc);
+		
+		Layer panels = (Layer)this.getFacet("PANELS");
+		this.renderChild(fc,panels);
+		
 	}
 	
 	public Object clone(){
 		Accordion obj = (Accordion) super.clone();
-		obj.panels = panels;
 		obj.id = id;
 		obj.height = height;
 		return obj;
@@ -130,20 +124,18 @@ public class Accordion extends Block {
 	
 	
 	public Object saveState(FacesContext context) {
-		Object values[] = new Object[4];
+		Object values[] = new Object[3];
 		values[0] = super.saveState(context);
-		values[1] = this.panels;
-		values[2] = this.id;
-		values[3] = this.height;
+		values[1] = this.id;
+		values[2] = this.height;
 		return values;
 	}
 	
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[])state;
 		super.restoreState(context, values[0]);
-		this.panels = (Collection) values[1];
-		this.id = (String) values[2];
-		this.height = (String) values[3];
+		this.id = (String) values[1];
+		this.height = (String) values[2];
 	}
 
 	public String getHeight() {
