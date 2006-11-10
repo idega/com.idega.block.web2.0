@@ -4,7 +4,7 @@
   <pomVersion>3</pomVersion>
   <name>Web2.0</name>
   <artifactId>com.idega.block.web2.0</artifactId>
-  <currentVersion>3.1.3</currentVersion>
+  <currentVersion>3.1.4</currentVersion>
   <inceptionYear>2006</inceptionYear>
   <shortDescription>Web2.0, scripts for enabling web 2.0 features</shortDescription>
   <!-- build stuff copied from base-project.xml -->
@@ -44,6 +44,11 @@
       <id>3.1.3</id>
       <name>3.1.3</name>
       <tag>WEB20_3_1_3</tag>
+    </version>
+    <version>
+      <id>3.1.4</id>
+      <name>3.1.4</name>
+      <tag>WEB20_3_1_4</tag>
     </version>
   </versions>
   <branches/>

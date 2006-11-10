@@ -275,6 +275,7 @@ Rico.Accordion.Tab.prototype = {
    initialize: function(accordion, titleBar, content) {
       this.accordion = accordion;
       this.titleBar  = titleBar;
+      this.styleClassName = titleBar.className;
       this.content   = content;
       this._attachBehaviors();
    },
@@ -286,16 +287,13 @@ Rico.Accordion.Tab.prototype = {
 
    showCollapsed: function() {
       this.expanded = false;
-      this.titleBar.style.backgroundColor = this.accordion.options.collapsedBg;
-      this.titleBar.style.color           = this.accordion.options.collapsedTextColor;
-      this.titleBar.style.fontWeight      = this.accordion.options.collapsedFontWeight;
+      this.titleBar.className			  = this.styleClassName + " collapsed";
       this.content.style.overflow = "hidden";
    },
 
    showExpanded: function() {
       this.expanded = true;
-      this.titleBar.style.backgroundColor = this.accordion.options.expandedBg;
-      this.titleBar.style.color           = this.accordion.options.expandedTextColor;
+      this.titleBar.className			  = this.styleClassName + " expanded";
       this.content.style.overflow         = "auto";
    },
 
@@ -306,20 +304,23 @@ Rico.Accordion.Tab.prototype = {
    },
 
    hover: function(e) {
-		this.titleBar.style.backgroundColor = this.accordion.options.hoverBg;
-		this.titleBar.style.color           = this.accordion.options.hoverTextColor;
+      if ( this.expanded ) {
+      	this.titleBar.className			  = this.styleClassName + " expanded hover";
+      }
+      else {
+      	this.titleBar.className			  = this.styleClassName + " collapsed hover";
+      }
    },
 
    unhover: function(e) {
       if ( this.expanded ) {
-         this.titleBar.style.backgroundColor = this.accordion.options.expandedBg;
-         this.titleBar.style.color           = this.accordion.options.expandedTextColor;
+      	this.titleBar.className			  = this.styleClassName + " expanded";
       }
       else {
-         this.titleBar.style.backgroundColor = this.accordion.options.collapsedBg;
-         this.titleBar.style.color           = this.accordion.options.collapsedTextColor;
+      	this.titleBar.className			  = this.styleClassName + " collapsed";
       }
    },
+
 
    _attachBehaviors: function() {
       this.content.style.border = "1px solid " + this.accordion.options.borderColor;
