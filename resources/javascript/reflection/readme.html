@@ -1,108 +1,419 @@
 <html>
+
 <head>
+
 <title>reflection.js</title>
+
 <script type="text/javascript" src="reflection.js"></script>
+
 <style type="text/css">
+
 a { color: white; font-style:italic; }
+
 body { background-color: black; color: white; font-family: Georgia; line-height: 1.5; }
+
 </style>
+
 </head>
+
 <body>
 
-<table><tr><td>
-<h1><img src="reflection.png" class="reflect wholeimage" alt="reflection.js" style="float:left; padding-right: 15px;" /></h1>
-</td><td style="line-height: 1.5; font-style: italic;">
-<p><strong>Reflection.js 1.0</strong> allows you to add reflections to images on your webpages. It uses unobtrusive javascript to keep your code clean.</p>
 
-<p>It works in all the major browsers - Internet Explorer 5.5+, Mozilla Firefox 1.5+, Opera 9+ and Safari. On older browsers, it'll degrade and your visitors won't notice a thing. Best of all, it's under 4KB.</p>
+
+<table><tr><td style="padding-right: 15px;">
+
+<h1><img src="reflection.png" class="reflect" alt="reflection.js" style="float:left;" /></h1>
+
+</td><td style="line-height: 1.5; font-style: italic;">
+
+<p><strong>Reflection.js 1.6</strong> allows you to add reflections to images on your webpages. It uses unobtrusive javascript to keep your code clean.</p>
+
+
+
+<p>It works in all the major browsers - Internet Explorer 5.5+, Mozilla Firefox 1.5+, Opera 9+ and Safari. On older browsers, it'll degrade and your visitors won't notice a thing. Best of all, it's under 5KB.</p>
+
 </td></tr></table>
 
-<h2 style="clear:left;">Setting Up</h2>
+
+
+<h2>Contents</h2>
+
+
+
+<ul>
+
+<li><a href="#settingup">Setting Up</a></li>
+
+<li><a href="#using">Using It</a></li>
+
+<li><a href="#custom">Customizing Reflections</a></li>
+
+<li><a href="#scripting">Scripting Reflections</a></li>
+
+<li><a href="#issues">Known Issues</a></li>
+
+<li><a href="#improvements">Improvements</a></li>
+
+<li><a href="#changelog">Changelog</a></li>
+
+<li><a href="#credits">Credits</a></li>
+
+</ul>
+
+
+
+<h2 id="settingup" style="clear:left;">Setting Up</h2>
+
+
 
 <p>Upload reflection.js and prototype.js and include them into your webpage.</p>
 
+
+
 <code>
+
 &lt;script type="text/javascript" src="reflection.js"&gt;&lt;/script&gt;
+
 </code>
 
-<h2>Using It</h2>
+
+
+<h2 id="using">Using It</h2>
+
+
 
 <p>To add a reflection just add a class="reflect" to the image. View source to see example.</p>
 
+
+
 <!-- This image has a reflection applied to it -->
+
 <img src="example.jpg" alt="Example Image" class="reflect" />
+
+
 
 <p>The reflection will automatically fade into the background colour.</p>
 
+
+
 <p>If you run a forum, you can modify your templates and add class="reflect" to the avatar HTML code to add reflections.</p>
 
-<h2>Notes</h2>
 
-<p>The reflection by default will be half the height of the original image. Thus, the height of the image plus reflection will be 1.5 times the original height of the image. You can try the experimental wholeimage class (does not always work) by adding class="reflect wholeimage" to your images. This will create a reflection the same size as the original image.</p>
 
-<h2>Known Issues</h2>
+<h2 id="custom">Customizing Reflections</h2>
 
-<img src="attention.png" alt="Attention!" class="reflect" style="float: left; padding-right: 20px;" />
+
+
+<p>By default, the reflection will have a height 50% of the original image. Thus the height of an image with a reflection will be 1.5 times the height of the original image. The default opacity of reflections is 50%.</p>
+
+
 
 <ul>
-<li>Reflections of animated images only work correctly in Internet Explorer.</li>
+
+<li><p><strong>Varying the Height</strong><br />You can vary the height of a reflection by adding rheight followed by the desired height in percent to the CSS class list.</p>
+
+<p>To use a reflection 33% the height of the original image:</p>
+
+<code>class="reflect rheight33"</code>
+
+
+
+<p>Example:</p>
+
+
+
+<table><tr>
+
+<td style="vertical-align: top; text-align: center;"><img src="user.png" class="reflect rheight33" alt="" /><code>class="reflect rheight33"</code></td>
+
+<td style="vertical-align: top; text-align: center;"><img src="user.png" class="reflect rheight66" alt="" /><code>class="reflect rheight66"</code></td>
+
+<td style="vertical-align: top; text-align: center;"><img src="user.png" class="reflect rheight100" alt="" /><code>class="reflect rheight100"</code></td>
+
+</tr></table>
+
+
+
+<p>Tip: Especially for larger photographs, small reflections work really well (try 10%).</p>
+
+
+
+</li>
+
+<li><p><strong>Varying the Opacity</strong><br />You can vary the opacity of a reflection by adding ropacity followed by the desired opacity in percent to the CSS class list.</p>
+
+<p>To use a reflection with 30% opacity:</p>
+
+<code>class="reflect ropacity30"</code>
+
+
+
+<p>Example:</p>
+
+
+
+<table><tr>
+
+<td style="vertical-align: top; text-align: center;"><img src="user.png" class="reflect ropacity33" alt="" /><code>class="reflect ropacity33"</code></td>
+
+<td style="vertical-align: top; text-align: center;"><img src="user.png" class="reflect ropacity66" alt="" /><code>class="reflect ropacity66"</code></td>
+
+<td style="vertical-align: top; text-align: center;"><img src="user.png" class="reflect ropacity100" alt="" /><code>class="reflect ropacity100"</code></td>
+
+</tr></table>
+
+
+
+</li>
+
 </ul>
 
-<h2 style="clear: left;">Improvements</h2>
+
+
+<p>You can combine these two options. To create a 80% height 40% opacity reflection use:</p>
+
+
+
+<code>class="reflect rheight80 ropacity40"</code>
+
+
+
+<h2 id="scripting">Scripting Reflections</h2>
+
+
+
+<p>If you want tons of flexibility, use scripted reflections. You can make your reflections respond to user actions (e.g. changing the reflection opacity when the image is hovered over) or add reflections to scripts such as Lightbox.</p>
+
+
+
+<p><code>Reflection.add(image, options);</code></p>
+
+
+
+<blockquote>
+
+
+
+<p>Adds or modifies a reflection to an image using Javascript. If the image is already reflected but the specified opacity or height has changed, the reflection will be changed accordingly.</p>
+
+
+
+<p><em>image</em> should be an image element.</p>
+
+
+
+<p><em>options</em> can contain a value for opacity or height. Both values should be between 0 and 1.</p>
+
+
+
+<code>Reflection.add(document.getElementById("ohboy"), { height: 3/4, opacity: 2/3 });</code>
+
+</blockquote>
+
+
+
+<p><code>Reflection.remove(image);</code></p>
+
+
+
+<blockquote>
+
+
+
+<p>Removes the reflection from an image.</p>
+
+
+
+<code>Reflection.remove(document.getElementById("orly"));</code>
+
+
+
+</blockquote>
+
+
+
+<code>Reflection.defaultHeight = height;<br />Reflection.defaultOpacity = opacity;</code>
+
+
+
+<blockquote>
+
+
+
+<p>Changes the default height and opacity of reflections. The default value for both settings is 0.5.</p>
+
+
+
+</blockquote>
+
+
+
+<h2 id="issues">Known Issues</h2>
+
+
+
+<img src="attention.png" alt="Attention!" class="reflect" style="float: left;" />
+
+
+
+<ul style="margin-left: 75px;">
+
+<li>Reflections of animated images only work correctly in Internet Explorer.</li>
+
+<li>Reflections of scaled images will look stretched in Internet Explorer.</li>
+
+</ul>
+
+
+
+<h2 id="improvements" style="clear: left;">Improvements</h2>
+
+
 
 <p>If you've made any changes or bug fixes to reflection.js, feel free to publish and distribute them. If you contact me through <a href="http://cow.neondragon.net/index.php/383-Reflectionjs-Demo">my blog</a> I can also include the changes in the main reflection.js download.</p>
 
+
+
 <h2>Supported Browsers</h2>
 
+
+
 <ul>
+
 <li>Internet Explorer 5.5+</li>
+
 <li>Mozilla Firefox 1.5+</li>
+
 <li>Opera 9+</li>
+
 <li>Safari 2+</li>
+
 </ul>
 
-<h2>Changelog</h2>
+
+
+<h2 id="changelog">Changelog</h2>
+
+
+
+<p>Version 1.6</p>
+
+
+
+<ul>
+
+<li>Don't create a &lt;div&gt; in browsers not supporting canvas but supporting JS</li>
+
+<li>Fix gap between image and reflection in XHTML Strict</li>
+
+</ul>
+
+
+
+<p>Version 1.5</p>
+
+
+
+<ul>
+
+<li>Fix issue with reflection not appearing for wide images</li>
+
+<li>Add scriptable reflections - Reflection.add(), Reflection.remove()</li>
+
+<li>Make reflection of images with specified dimensions better</li>
+
+<li>Fix Safari issue</li>
+
+<li>Removed wholeimage class</li>
+
+<li>Created Test Suite</li>
+
+</ul>
+
+
 
 <p>Version 1.0</p>
 
+
+
 <ul>
+
 <li>Add Internet Explorer support</li>
+
 <li>Remove prototype.js dependency (filesize down from 32KB to 4KB)</li>
+
 <li>Code cleanup</li>
+
 </ul>
+
+
 
 <p>Version 0.4</p>
 
+
+
 <ul>
+
 <li>Fix problem with floated images, borders, etc.</li>
+
 <li>Removed unnecessary linebreak</li>
+
 </ul>
+
+
 
 <p>Version 0.3</p>
 
+
+
 <ul>
+
 <li>Fix for Safari in standards compliant mode</li>
+
 </ul>
+
+
 
 <p>Version 0.2</p>
 
+
+
 <ul>
+
 <li>Fix for Safari</li>
+
 </ul>
+
+
 
 <p>Version 0.1</p>
 
+
+
 <ul>
+
 <li>Initial Release</li>
+
 </ul>
 
-<h2>Credits</h2>
 
-<p>Original idea and inspiration for the script came from <a href="http://www.jroller.com/page/gfx/">Romain Guy</a>'s <a href="http://www.jroller.com/page/gfx/?anchor=cool_effect_with_the_canvas">Crystal CD Case</a>. <a href="http://www.sitharus.com/">Sitharus</a> made it all work in Safari. <a href="http://www.andreaslinde.de/">Andreas Linde</a> helped make the script work better with CSS styles. Kudos!</p>
 
-<p>Also thanks to <a href="http://www.neondragon.net">neonDragon</a> and the <a href="http://ev5.neondragon.net">Evolution Community</a> for feedback and assistance.</p>
+<h2 id="credits">Credits</h2>
+
+
+
+<p>Original idea and inspiration for the script came from <a href="http://www.jroller.com/page/gfx/">Romain Guy</a>'s <a href="http://www.jroller.com/page/gfx/?anchor=cool_effect_with_the_canvas">Crystal CD Case</a>. <a href="http://www.sitharus.com/">Sitharus</a> made it all work in Safari. <a href="http://www.andreaslinde.de/">Andreas Linde</a> helped make the script work better with CSS styles. Tralala at <a href="http://www.vbulletin.org">vBulletin.org</a> did a great job of finding bugs with reflection in Safari and fixed them! <a href="http://rakaz.nl/">Niels Leenheer</a> provided a fix for an issue in Opera 8.5 where Reflection.js may move images around. "Withinreach" informed me about an issue with XHTML Strict. Thanks and Kudos!</p>
+
+
+
+<p>A big thank you to everybody who has left their thoughts and comments. Your feedback has been invaluable.</p>
+
+
 
 <p><a href="http://cow.neondragon.net">cow.neondragon.net</a></p>
 
+
+
 </body>
+
 </html>
