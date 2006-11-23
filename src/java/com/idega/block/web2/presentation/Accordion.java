@@ -48,29 +48,19 @@ public class Accordion extends Block {
 				
 				this.getChildren().add(s);
 
-				StringBuffer b = new StringBuffer();
-				b.append("<script> \n")
-				.append("\tvar onloads = new Array();\n")
-				.append("\tfunction bodyOnLoad() {\n")
-				.append("\t\tnew Rico.Effect.Round( null, 'roundNormal' );\n")
-				.append("\t\tnew Rico.Effect.Round( null, 'roundCompact', {compact:true} );\n")
-				.append("\t\tfor ( var i = 0 ; i < onloads.length ; i++ )\n")
-				.append("\t\t\tonloads[i]();\n")
-				.append("\t}\n")
-				.append("</script>\n");
-				this.getChildren().add(new Text(b.toString()));
 
 				StringBuffer b2 = new StringBuffer();
-				b2.append("<script> onloads.push( accord ); function accord() { new Rico.Accordion( '"+id+"', {panelHeight:"+height+"} ); }  </script>");
-				
+//				b2.append("<script> onloads.push( accord ); function accord() { new Rico.Accordion( '"+id+"', {panelHeight:"+height+"} ); }  </script>");
+				b2.append("<script type=\"text/javascript\" > \t\tnew Rico.Effect.Round( null, 'roundNormal' );\n")
+				.append("\t\tnew Rico.Effect.Round( null, 'roundCompact', {compact:true} );\n")
+				.append("new Rico.Accordion( $('"+id+"'), {panelHeight:"+height+"} );  </script>");
+
 				this.getChildren().add(new Text(b2.toString()));
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
-		
 	}
 	
 	public void addPanel(UIComponent header, UIComponent content) {
