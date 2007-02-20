@@ -2,8 +2,11 @@ package com.idega.block.web2.presentation;
 
 import java.io.IOException;
 import java.util.Collection;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.el.ValueBinding;
+
 import com.idega.block.web2.business.Web2Business;
 import com.idega.business.IBOLookup;
 import com.idega.presentation.Block;
@@ -21,10 +24,16 @@ public class Accordion extends Block {
 	private String id = null;
 	private String height = "200";
 	private int panelCount = 0;
+	private String currentPanel;
+	
+	public Accordion() {
+		super();
+	}
 
 	public Accordion(String id) {
 		super();
 		this.id = id;
+		this.currentPanel = "0";
 	}
 	
 	public void main(IWContext iwc) {
@@ -53,7 +62,16 @@ public class Accordion extends Block {
 //				b2.append("<script> onloads.push( accord ); function accord() { new Rico.Accordion( '"+id+"', {panelHeight:"+height+"} ); }  </script>");
 				b2.append("<script type=\"text/javascript\" > \t\tnew Rico.Effect.Round( null, 'roundNormal' );\n")
 				.append("\t\tnew Rico.Effect.Round( null, 'roundCompact', {compact:true} );\n")
-				.append("new Rico.Accordion( $('"+id+"'), {panelHeight:"+height+"} );  </script>");
+				.append("var acc = new Rico.Accordion( $('"+id+"'), {panelHeight:"+height+"} );\n");
+				
+				ValueBinding vb = getValueBinding("currentPanel");
+				if(vb != null) {
+					currentPanel = (String) vb.getValue(iwc);
+					if(currentPanel != null) {
+						b2.append("acc.showTabByIndex(" + currentPanel + ",false);\n");
+					}
+				}
+				b2.append("</script>\n");
 
 				this.getChildren().add(new Text(b2.toString()));
 
@@ -140,6 +158,14 @@ public class Accordion extends Block {
 
 	public String getFamily() {
 		return null;
+	}
+
+	public String getCurrentPanel() {
+		return currentPanel;
+	}
+
+	public void setCurrentPanel(String currentPanel) {
+		this.currentPanel = currentPanel;
 	}
 
 }

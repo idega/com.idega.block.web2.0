@@ -288,7 +288,7 @@ Rico.Accordion.Tab.prototype = {
    showCollapsed: function() {
       this.expanded = false;
       this.titleBar.className			  = this.styleClassName + " collapsed";
-      this.content.style.overflow = "hidden";
+      this.content.style.overflow = "auto";
    },
 
    showExpanded: function() {
