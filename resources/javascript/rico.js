@@ -1,3 +1,4 @@
+var STATIC_ACCORDEON;
 /**
   *
   *  Copyright 2005 Sabre Airline Solutions
@@ -294,7 +295,7 @@ Rico.Accordion.Tab.prototype = {
    showExpanded: function() {
       this.expanded = true;
       this.titleBar.className			  = this.styleClassName + " expanded";
-      this.content.style.overflow         = "auto";
+      this.content.style.overflow         = "visible";
    },
 
    titleBarClicked: function(e) {
