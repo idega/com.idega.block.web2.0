@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.12 2006/11/02 15:27:54 gimmi Exp $
+ * $Id: Web2BusinessBean.java,v 1.13 2007/03/13 14:17:46 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,21 +20,32 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2006/11/02 15:27:54 $ by $Author: gimmi $
+ * Last modified: $Date: 2007/03/13 14:17:46 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
+	private static final long serialVersionUID = -3243625218823349983L;
 	
-	public static final String SCRIPTACULOUS_LATEST_VERSION = Web2BusinessBean.SCRIPTACULOUS_VERSION_1_6_2;
+	private static final String SLASH = "/";
+
+	public static final String SCRIPTACULOUS_LATEST_VERSION = Web2BusinessBean.SCRIPTACULOUS_VERSION_1_7_0;
 
 	public static final String SCRIPTACULOUS_VERSION_1_5_3 = "1.5.3";
 	public static final String SCRIPTACULOUS_VERSION_1_6_1 = "1.6.1";
 	public static final String SCRIPTACULOUS_VERSION_1_6_2 = "1.6.2";
+	public static final String SCRIPTACULOUS_VERSION_1_7_0 = "1.7.0";
 	
-	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous-js-";
+	public static final String LIGHTBOX_LATEST_VERSION = Web2BusinessBean.LIGHTBOX_VERSION_2_02;
+
+	public static final String LIGHTBOX_VERSION_2_02 = "2.02";
+	public static final String LIGTHBOX_SCRIPT_FILE = "lightbox.js";
+	public static final String LIGTHBOX_STYLE_FILE = "lightbox.css";
+	
+	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
+	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
 	public static final String BEHAVIOUR_JS_FILE_NAME = "behaviour.js";
@@ -53,7 +64,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	protected String jMakiWidgetsURI;
 	protected String jMakiScriptPath;
 	
-	//private static final String REFLECTION_FOLDER_NAME = "reflection";	
+	private String lightboxScriptPath = null;
+	private String lightboxStylePath = null;
+	private String lightboxImagesPath = null;
+	private String lightboxScriptFilePath = null;
+	private String lightboxStyleFilePath = null;
 	
 	/**
 	 * 
@@ -74,7 +89,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public String getBundleURIToReflectionLib(){
 		if(this.reflectionScriptPath==null){
 			StringBuffer buf = new StringBuffer();
-			buf.append("REFLECTION_FOLDER_NAME").append("/").append(REFLECTION_JS_FILE_NAME);
+			buf.append("REFLECTION_FOLDER_NAME").append(SLASH).append(REFLECTION_JS_FILE_NAME);
 			
 			this.reflectionScriptPath = getBundleURIWithinScriptsFolder(buf.toString());
 		}
@@ -109,7 +124,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 */
 	public String getBundleURIToScriptaculousLib(){
 		if(this.scriptaculousScriptPath==null){
-			this.scriptaculousScriptPath =  getBundleURIToScriptaculousLib(SCRIPTACULOUS_LATEST_VERSION);
+			this.scriptaculousScriptPath = getBundleURIToScriptaculousLib(SCRIPTACULOUS_LATEST_VERSION);
 		}
 		
 		return this.scriptaculousScriptPath;
@@ -139,7 +154,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	 */
 	public String getBundleURIToScriptaculousLibRootFolder(String scriptaculousLibraryVersion){
 		StringBuffer buf = new StringBuffer();
-		buf.append(SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX).append(scriptaculousLibraryVersion).append("/");
+		buf.append(SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX).append(SLASH).append(scriptaculousLibraryVersion).append(SLASH);
 		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 	
@@ -205,4 +220,55 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		}
 		return this.jMakiScriptPath;
 	}
+	
+	public String getBundleURIToLightboxLibRootFolder() {
+		return getBundleURIToLightboxLibRootFolder(LIGHTBOX_LATEST_VERSION);
+	}
+	
+	public String getBundleURIToLightboxLibRootFolder(String versionNumber) {
+		StringBuffer buf = new StringBuffer();
+		buf.append(LIGHTBOX_ROOT_FOLDER_NAME_PREFIX).append(SLASH).append(versionNumber).append(SLASH);
+		return getBundleURIWithinScriptsFolder(buf.toString());
+	}
+
+	public String getLightboxImagesPath() {
+		if (lightboxImagesPath == null) {
+			StringBuffer images = new StringBuffer(getBundleURIToLightboxLibRootFolder()).append("images").append(SLASH);
+			lightboxImagesPath = images.toString();
+		}
+		return lightboxImagesPath;
+	}
+
+	public String getLightboxScriptPath() {
+		if (lightboxScriptPath == null) {
+			StringBuffer script = new StringBuffer(getBundleURIToLightboxLibRootFolder()).append("js").append(SLASH);
+			lightboxScriptPath = script.toString();
+		}
+		return lightboxScriptPath;
+	}
+
+	public String getLightboxStylePath() {
+		if (lightboxStylePath == null) {
+			StringBuffer style = new StringBuffer(getBundleURIToLightboxLibRootFolder()).append("css").append(SLASH);
+			lightboxStylePath = style.toString();
+		}
+		return lightboxStylePath;
+	}
+	
+	public String getLightboxScriptFilePath() {
+		if (lightboxScriptFilePath == null) {
+			StringBuffer script = new StringBuffer(getLightboxScriptPath()).append(LIGTHBOX_SCRIPT_FILE);
+			lightboxScriptFilePath = script.toString();
+		}
+		return lightboxScriptFilePath;
+	}
+	
+	public String getLightboxStyleFilePath() {
+		if (lightboxStyleFilePath == null) {
+			StringBuffer style = new StringBuffer(getLightboxStylePath()).append(LIGTHBOX_STYLE_FILE);
+			lightboxStyleFilePath = style.toString();
+		}
+		return lightboxStyleFilePath;
+	}
+	
 }
