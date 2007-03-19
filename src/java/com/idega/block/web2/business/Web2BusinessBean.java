@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.14 2007/03/19 08:46:15 alexis Exp $
+ * $Id: Web2BusinessBean.java,v 1.15 2007/03/19 09:21:56 alexis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,10 +20,10 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2007/03/19 08:46:15 $ by $Author: alexis $
+ * Last modified: $Date: 2007/03/19 09:21:56 $ by $Author: alexis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -37,6 +37,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String SCRIPTACULOUS_VERSION_1_6_1 = "1.6.1";
 	public static final String SCRIPTACULOUS_VERSION_1_6_2 = "1.6.2";
 	public static final String SCRIPTACULOUS_VERSION_1_7_0 = "1.7.0";
+	
+	public static final String DOJO_LATEST_VERSION = Web2BusinessBean.DOJO_VERSION_0_4_1;
+
+	public static final String DOJO_VERSION_0_3_1 = "version.3.1";
+	public static final String DOJO_VERSION_0_4_1 = "version.4.1";
 	
 	public static final String LIGHTBOX_LATEST_VERSION = Web2BusinessBean.LIGHTBOX_VERSION_2_02;
 
@@ -123,7 +128,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	public String getBundleURIToDojoLib() {
 		if(this.dojoScriptPath == null){
-			this.dojoScriptPath =  getBundleURIWithinLibsFolder(DOJO_JS_FILE_NAME);
+			this.dojoScriptPath =  getBundleURIWithinLibsFolder("dojo/" + DOJO_LATEST_VERSION + SLASH + DOJO_JS_FILE_NAME);
 		}
 		return this.dojoScriptPath;
 	}
@@ -183,7 +188,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public String getBundleURIToLibsFolder() {
 		if(this.rootLibsFolderBundleURI == null) {
 			IWBundle iwb = this.getBundle();
-			this.rootLibsFolderBundleURI = iwb.getResourcesVirtualPath() + "/libs/dojo/version.4.1/";
+			this.rootLibsFolderBundleURI = iwb.getResourcesVirtualPath() + "/libs/";
 		}
 		return this.rootLibsFolderBundleURI;
 	}
