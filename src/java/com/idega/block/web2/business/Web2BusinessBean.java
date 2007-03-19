@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.13 2007/03/13 14:17:46 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.14 2007/03/19 08:46:15 alexis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,10 +20,10 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2007/03/13 14:17:46 $ by $Author: valdas $
+ * Last modified: $Date: 2007/03/19 08:46:15 $ by $Author: alexis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -51,11 +51,13 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String BEHAVIOUR_JS_FILE_NAME = "behaviour.js";
 	public static final String REFLECTION_JS_FILE_NAME = "reflection.js";
 	public static final String RICO_JS_FILE_NAME = "rico.js";
+	public static final String DOJO_JS_FILE_NAME = "dojo.js";
 	public static final String JMAKI_JS_FILE_NAME = "jmaki.js";
 
 	public static final String WEB2_BUNDLE_IDENTIFIER = "com.idega.block.web2.0";
 
 	protected String rootScriptsFolderBundleURI;
+	protected String rootLibsFolderBundleURI;
 	protected String behaviourScriptPath;
 	protected String reflectionScriptPath;
 	protected String scriptaculousScriptPath;
@@ -63,6 +65,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	protected String ricoScriptPath;
 	protected String jMakiWidgetsURI;
 	protected String jMakiScriptPath;
+	protected String dojoScriptPath;
 	
 	private String lightboxScriptPath = null;
 	private String lightboxStylePath = null;
@@ -118,6 +121,13 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		return buf.toString();
 	}
 	
+	public String getBundleURIToDojoLib() {
+		if(this.dojoScriptPath == null){
+			this.dojoScriptPath =  getBundleURIWithinLibsFolder(DOJO_JS_FILE_NAME);
+		}
+		return this.dojoScriptPath;
+	}
+	
 	/**
 	 * 
 	 * @return The full URI with context to the latest version of the scriptaculous.js, ATTENTION scriptaculous needs prototype.js added before it!
@@ -170,6 +180,20 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		return this.rootScriptsFolderBundleURI;
 	}
 	
+	public String getBundleURIToLibsFolder() {
+		if(this.rootLibsFolderBundleURI == null) {
+			IWBundle iwb = this.getBundle();
+			this.rootLibsFolderBundleURI = iwb.getResourcesVirtualPath() + "/libs/dojo/version.4.1/";
+		}
+		return this.rootLibsFolderBundleURI;
+	}
+	
+	public String getBundleURIWithinLibsFolder(String uriExtension) {
+		StringBuffer buf = new StringBuffer(getBundleURIToLibsFolder());
+		buf.append(uriExtension);
+		return buf.toString();
+	}
+	
 	
 	/**
 	 * @param uriExtension a path within the scripts folder
@@ -183,6 +207,14 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	public String getBundleIdentifier(){
 		return WEB2_BUNDLE_IDENTIFIER;
+	}
+	
+	public String getBundleURIToRicoLib(){
+		if(this.ricoScriptPath==null){
+			this.ricoScriptPath =  getBundleURIWithinScriptsFolder(RICO_JS_FILE_NAME);
+		}
+		
+		return this.ricoScriptPath;
 	}
 	
 	
