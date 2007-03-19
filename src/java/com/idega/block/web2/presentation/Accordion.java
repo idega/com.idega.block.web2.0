@@ -23,8 +23,16 @@ public class Accordion extends Block {
 	private String id = null;
 	private String height = "200";
 	private int panelCount = 0;
-//	private String currentPanel;
+	private boolean includeJavascript = true;
 	
+	public boolean isIncludeJavascript() {
+		return includeJavascript;
+	}
+
+	public void setIncludeJavascript(boolean includeJavascript) {
+		this.includeJavascript = includeJavascript;
+	}
+
 	public Accordion() {
 		super();
 	}
@@ -32,7 +40,6 @@ public class Accordion extends Block {
 	public Accordion(String id) {
 		super();
 		this.id = id;
-//		this.currentPanel = "0";
 	}
 	
 	public void main(IWContext iwc) {
@@ -40,21 +47,23 @@ public class Accordion extends Block {
 		Page parentPage = PresentationObjectUtil.getParentPage(this);
 		if (parentPage != null) {
 			try {
-				Web2Business business = (Web2Business) IBOLookup.getServiceInstance(iwc, Web2Business.class);
-				String protoURI = business.getBundleURIToPrototypeLib();
-				String ricoURI = business.getBundleURIToRico();
+				if(includeJavascript == true) {
+					Web2Business business = (Web2Business) IBOLookup.getServiceInstance(iwc, Web2Business.class);
+					String protoURI = business.getBundleURIToPrototypeLib();
+					String ricoURI = business.getBundleURIToRico();
+		
+					Script s = parentPage.getAssociatedScript();
+					s.addScriptSource(protoURI);
+					s.addScriptSource(ricoURI);
 	
-				Script s = parentPage.getAssociatedScript();
-				s.addScriptSource(protoURI);
-				s.addScriptSource(ricoURI);
-
-				parentPage.addScriptSource(protoURI);
-				parentPage.addScriptSource(ricoURI);
-				
-				// THIS HAS TO BE ADDED TO THE <BODY> in the html, if not it does not work in Safari
-				parentPage.setOnLoad("javascript:bodyOnLoad()");
-				
-				this.getChildren().add(s);
+					parentPage.addScriptSource(protoURI);
+					parentPage.addScriptSource(ricoURI);
+					
+					// THIS HAS TO BE ADDED TO THE <BODY> in the html, if not it does not work in Safari
+					parentPage.setOnLoad("javascript:bodyOnLoad()");
+					
+					this.getChildren().add(s);
+				}
 
 
 				StringBuffer b2 = new StringBuffer();
