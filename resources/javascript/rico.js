@@ -1,4 +1,4 @@
-var STATIC_ACCORDEON;
+//var STATIC_ACCORDEON;
 /**
   *
   *  Copyright 2005 Sabre Airline Solutions
@@ -1496,7 +1496,7 @@ Rico.Dropzone.prototype = {
       this.saveBackgroundColor = null;
    },
 
-   showHover: function() {
+   showHover: function(e) {
       var htmlElement = this.getHTMLElement();
       if ( htmlElement == null || this.showingHover )
          return;
