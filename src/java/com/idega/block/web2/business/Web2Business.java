@@ -24,11 +24,11 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToPrototypeLib
 	 */
 	public String getBundleURIToPrototypeLib(String scriptaculousLibraryVersion) throws RemoteException;
-	
+
 	/**
-	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToRicoLib
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToDojoLib
 	 */
-	public String getBundleURIToRicoLib() throws RemoteException;
+	public String getBundleURIToDojoLib() throws RemoteException;
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToScriptaculousLib
@@ -54,21 +54,16 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToScriptsFolder
 	 */
 	public String getBundleURIToScriptsFolder() throws RemoteException;
-	
+
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToLibsFolder
 	 */
 	public String getBundleURIToLibsFolder() throws RemoteException;
-	
+
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIWithinLibsFolder
 	 */
 	public String getBundleURIWithinLibsFolder(String uriExtension) throws RemoteException;
-	
-	/**
-	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToDojoLib
-	 */
-	public String getBundleURIToDojoLib() throws RemoteException;
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIWithinScriptsFolder
@@ -79,6 +74,11 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleIdentifier
 	 */
 	public String getBundleIdentifier() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToRicoLib
+	 */
+	public String getBundleURIToRicoLib() throws RemoteException;
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToRico
@@ -129,4 +129,49 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getLightboxStyleFilePath
 	 */
 	public String getLightboxStyleFilePath() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToThickboxLibRootFolder
+	 */
+	public String getBundleURIToThickboxLibRootFolder() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToThickboxLibRootFolder
+	 */
+	public String getBundleURIToThickboxLibRootFolder(String versionNumber) throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getThickboxScriptPath
+	 */
+	public String getThickboxScriptPath() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getThickboxStylePath
+	 */
+	public String getThickboxStylePath() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getThickboxScriptFilePath
+	 */
+	public String getThickboxScriptFilePath() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getThickboxStyleFilePath
+	 */
+	public String getThickboxStyleFilePath() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToJQueryLib
+	 */
+	public String getBundleURIToJQueryLib() throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getPrototypeScriptFilePath
+	 */
+	public String getPrototypeScriptFilePath(String version) throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToControlModalLib
+	 */
+	public String getBundleURIToControlModalLib() throws RemoteException;
 }

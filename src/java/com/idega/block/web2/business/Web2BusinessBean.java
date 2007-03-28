@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.15 2007/03/19 09:21:56 alexis Exp $
+ * $Id: Web2BusinessBean.java,v 1.16 2007/03/28 13:14:54 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,10 +20,10 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2007/03/19 09:21:56 $ by $Author: alexis $
+ * Last modified: $Date: 2007/03/28 13:14:54 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -43,14 +43,27 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String DOJO_VERSION_0_3_1 = "version.3.1";
 	public static final String DOJO_VERSION_0_4_1 = "version.4.1";
 	
-	public static final String LIGHTBOX_LATEST_VERSION = Web2BusinessBean.LIGHTBOX_VERSION_2_02;
+	public static final String LIGHTBOX_LATEST_VERSION = Web2BusinessBean.LIGHTBOX_PARTICLETREE_VERSION;
 
 	public static final String LIGHTBOX_VERSION_2_02 = "2.02";
+	public static final String LIGHTBOX_PARTICLETREE_VERSION = "particletree";
 	public static final String LIGTHBOX_SCRIPT_FILE = "lightbox.js";
 	public static final String LIGTHBOX_STYLE_FILE = "lightbox.css";
 	
+	public static final String THICKBOX_LATEST_VERSION = Web2BusinessBean.THICKBOX_2_1_1_VERSION;
+	public static final String THICKBOX_2_1_1_VERSION = "2.1.1";
+	public static final String THICKBOX_SCRIPT_FILE = "thickbox.js";
+	public static final String THICKBOX_STYLE_FILE = "thickbox.css";
+	
+	public static final String PROTOTYPE_LATEST_VERSION = Web2BusinessBean.PROTOTYPE_1_5_0_VERSION;
+	public static final String PROTOTYPE_1_5_0_VERSION = "1.5.0";
+	public static final String PROTOTYPE_1_4_0_VERSION = "1.4.0";
+	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
+	public static final String PROTOTYPE_ROOT_FOLDER_NAME_PREFIX = "prototype";
 	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
+	public static final String THICKBOX_ROOT_FOLDER_NAME_PREFIX = "thickbox";
+	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
 	public static final String BEHAVIOUR_JS_FILE_NAME = "behaviour.js";
@@ -58,6 +71,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String RICO_JS_FILE_NAME = "rico.js";
 	public static final String DOJO_JS_FILE_NAME = "dojo.js";
 	public static final String JMAKI_JS_FILE_NAME = "jmaki.js";
+	public static final String JQUERY_COMPRESSED_JS_FILE_NAME = "jquery-compressed.js";
+	public static final String CONTROL_MODAL_JS_FILE_NAME = "control.modal.js";
 
 	public static final String WEB2_BUNDLE_IDENTIFIER = "com.idega.block.web2.0";
 
@@ -71,12 +86,19 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	protected String jMakiWidgetsURI;
 	protected String jMakiScriptPath;
 	protected String dojoScriptPath;
+	protected String jQueryCompressedScriptPath = null;
+	protected String controlModalScriptPath = null;
 	
 	private String lightboxScriptPath = null;
 	private String lightboxStylePath = null;
 	private String lightboxImagesPath = null;
 	private String lightboxScriptFilePath = null;
 	private String lightboxStyleFilePath = null;
+	
+	private String thickboxScriptPath = null;
+	private String thickboxStylePath = null;
+	private String thickboxScriptFilePath = null;
+	private String thickboxStyleFilePath = null;
 	
 	/**
 	 * 
@@ -306,6 +328,68 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 			lightboxStyleFilePath = style.toString();
 		}
 		return lightboxStyleFilePath;
+	}
+	
+	public String getBundleURIToThickboxLibRootFolder() {
+		return getBundleURIToThickboxLibRootFolder(THICKBOX_LATEST_VERSION);
+	}
+	
+	public String getBundleURIToThickboxLibRootFolder(String versionNumber) {
+		StringBuffer buf = new StringBuffer();
+		buf.append(THICKBOX_ROOT_FOLDER_NAME_PREFIX).append(SLASH).append(versionNumber).append(SLASH);
+		return getBundleURIWithinScriptsFolder(buf.toString());
+	}
+	
+	public String getThickboxScriptPath() {
+		if (thickboxScriptPath == null) {
+			StringBuffer script = new StringBuffer(getBundleURIToThickboxLibRootFolder()).append("js").append(SLASH);
+			thickboxScriptPath = script.toString();
+		}
+		return thickboxScriptPath;
+	}
+	
+	public String getThickboxStylePath() {
+		if (thickboxStylePath == null) {
+			StringBuffer style = new StringBuffer(getBundleURIToThickboxLibRootFolder()).append("css").append(SLASH);
+			thickboxStylePath = style.toString();
+		}
+		return thickboxStylePath;
+	}
+	
+	public String getThickboxScriptFilePath() {
+		if (thickboxScriptFilePath == null) {
+			StringBuffer script = new StringBuffer(getThickboxScriptPath()).append(THICKBOX_SCRIPT_FILE);
+			thickboxScriptFilePath = script.toString();
+		}
+		return thickboxScriptFilePath;
+	}
+	
+	public String getThickboxStyleFilePath() {
+		if (thickboxStyleFilePath == null) {
+			StringBuffer style = new StringBuffer(getThickboxStylePath()).append(THICKBOX_STYLE_FILE);
+			thickboxStyleFilePath = style.toString();
+		}
+		return thickboxStyleFilePath;
+	}
+	
+	public String getBundleURIToJQueryLib() {
+		if (jQueryCompressedScriptPath == null) {
+			jQueryCompressedScriptPath = getBundleURIWithinScriptsFolder(JQUERY_COMPRESSED_JS_FILE_NAME);
+		}
+		return jQueryCompressedScriptPath;
+	}
+	
+	public String getPrototypeScriptFilePath(String version) {
+		StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(PROTOTYPE_ROOT_FOLDER_NAME_PREFIX);
+		script.append(SLASH).append(version).append(SLASH).append(PROTOTYPE_JS_FILE_NAME);
+		return script.toString();
+	}
+	
+	public String getBundleURIToControlModalLib() {
+		if (controlModalScriptPath == null) {
+			controlModalScriptPath = getBundleURIWithinScriptsFolder(CONTROL_MODAL_JS_FILE_NAME);
+		}
+		return controlModalScriptPath;
 	}
 	
 }
