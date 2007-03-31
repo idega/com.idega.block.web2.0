@@ -8,7 +8,7 @@
  */
 
 // on page load call TB_init
-//$(document).ready(TB_init);
+$(document).ready(TB_init);
 
 // add thickbox to href elements that have a class of .thickbox
 function TB_init(){
@@ -44,7 +44,10 @@ function TB_show(caption, url, rel) {
 	TB_overlaySize();
 	
 	// TODO create loader only once, hide and show on demand
-	$("body").append("<div id='TB_load'><img src='../images/loadingAnimation.gif' /></div>");
+	//TODO IDEGA put webappcontext before path
+	$("body").append("<div id='TB_load'><img src='/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/javascript/thickbox/2.1.1/images/loadingAnimation.gif' /></div>");
+	
+	//$("body").append("<div id='TB_load'><img src='../images/loadingAnimation.gif' /></div>");
 	TB_load_position();
 	
 	// check if a query string is involved
