@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.16 2007/03/28 13:14:54 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.17 2007/04/02 16:32:25 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,10 +20,10 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2007/03/28 13:14:54 $ by $Author: valdas $
+ * Last modified: $Date: 2007/04/02 16:32:25 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -63,6 +63,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String PROTOTYPE_ROOT_FOLDER_NAME_PREFIX = "prototype";
 	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
 	public static final String THICKBOX_ROOT_FOLDER_NAME_PREFIX = "thickbox";
+	public static final String NIFTYCUBE_FOLDER_NAME_PREFIX = "niftycube";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -73,6 +74,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String JMAKI_JS_FILE_NAME = "jmaki.js";
 	public static final String JQUERY_COMPRESSED_JS_FILE_NAME = "jquery-compressed.js";
 	public static final String CONTROL_MODAL_JS_FILE_NAME = "control.modal.js";
+	public static final String NIFTYCUBE_JS_FILE_NAME = "niftycube.js";
 
 	public static final String WEB2_BUNDLE_IDENTIFIER = "com.idega.block.web2.0";
 
@@ -390,6 +392,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 			controlModalScriptPath = getBundleURIWithinScriptsFolder(CONTROL_MODAL_JS_FILE_NAME);
 		}
 		return controlModalScriptPath;
+	}
+	
+	public String getNiftyCubeScriptFilePath() {
+		StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(NIFTYCUBE_FOLDER_NAME_PREFIX);
+		script.append(SLASH).append(NIFTYCUBE_JS_FILE_NAME);
+		return script.toString();
 	}
 	
 }

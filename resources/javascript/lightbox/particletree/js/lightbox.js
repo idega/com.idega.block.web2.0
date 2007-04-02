@@ -188,6 +188,11 @@ function initialize(){
 // Overlay holds the shadow
 // Lightbox is the centered square that the content is put into.
 function addLightboxMarkup() {
+	var exists = document.getElementById("lightbox");
+	if (exists) {
+		return;
+	}
+	
 	bod 				= document.getElementsByTagName('body')[0];
 	overlay 			= document.createElement('div');
 	overlay.id		= 'overlay';

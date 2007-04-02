@@ -174,4 +174,9 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToControlModalLib
 	 */
 	public String getBundleURIToControlModalLib() throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getNiftyCubeScriptFilePath
+	 */
+	public String getNiftyCubeScriptFilePath() throws RemoteException;
 }

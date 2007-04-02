@@ -15,11 +15,11 @@ Modified : February 1, 2006
 	top:50%;
 	left:50%;
 	z-index:9999;
-	width:500px;
-	height:400px;
-	margin:-220px 0 0 -250px;
+	width:600px;
+	height:600px;
+	margin:-300px 0 0 -300px;
 	border:1px solid #fff;
-	background:#FDFCE9;
+	background:#fff;
 	text-align:left;
 }
 #lightbox[id]{
@@ -54,6 +54,12 @@ Modified : February 1, 2006
 }
 #lightbox.loading #lbLoadMessage{
 	display:block;
+	background: url(../images/loader.gif) center no-repeat;
+	height: 465px;
+}
+
+#lightbox.loading #lbLoadMessage p {
+	display: none;
 }
 
 #lightbox.done img{
