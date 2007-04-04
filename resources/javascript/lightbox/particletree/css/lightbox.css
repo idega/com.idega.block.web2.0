@@ -46,8 +46,15 @@ Modified : February 1, 2006
 #lightbox.done #lbLoadMessage{
 	display:none;
 }
+
+#lightbox.done {
+	overflow: auto;
+}
+
 #lightbox.done #lbContent{
-	display:block;
+	/*display:block;*/
+	overflow: auto;
+	padding: 0px 5px 5px;
 }
 #lightbox.loading #lbContent{
 	display:none;
