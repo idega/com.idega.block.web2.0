@@ -1,8 +1,9 @@
 package com.idega.block.web2.business;
 
 
-import com.idega.business.IBOService;
 import java.rmi.RemoteException;
+
+import com.idega.business.IBOService;
 
 public interface Web2Business extends IBOService {
 	/**
@@ -179,4 +180,14 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getNiftyCubeScriptFilePath
 	 */
 	public String getNiftyCubeScriptFilePath() throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsLib
+	 */
+	public String getBundleURIToMootoolsLib();
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsLib
+	 */
+	public String getBundleURIToMootoolsLib(String mootoolsLibraryVersion);
 }

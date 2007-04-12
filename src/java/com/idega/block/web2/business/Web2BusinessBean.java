@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.17 2007/04/02 16:32:25 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.18 2007/04/12 13:58:52 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,10 +20,10 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2007/04/02 16:32:25 $ by $Author: valdas $
+ * Last modified: $Date: 2007/04/12 13:58:52 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -55,6 +55,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String THICKBOX_SCRIPT_FILE = "thickbox.js";
 	public static final String THICKBOX_STYLE_FILE = "thickbox.css";
 	
+	public static final String MOOTOOLS_LATEST_VERSION = Web2BusinessBean.MOOTOOLS_1_0_0_VERSION;
+	public static final String MOOTOOLS_1_0_0_VERSION = "1.0.0";
+	public static final String MOOTOOLS_SCRIPT_FILE = "mootools-all.js";
+	public static final String MOOTOOLS_COMPRESSED_SCRIPT_FILE = "mootools-all-compressed.js";
+	public static final String MOOTOOLS_STYLE_FILE = "mootools.css";
+	
 	public static final String PROTOTYPE_LATEST_VERSION = Web2BusinessBean.PROTOTYPE_1_5_0_VERSION;
 	public static final String PROTOTYPE_1_5_0_VERSION = "1.5.0";
 	public static final String PROTOTYPE_1_4_0_VERSION = "1.4.0";
@@ -64,6 +70,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
 	public static final String THICKBOX_ROOT_FOLDER_NAME_PREFIX = "thickbox";
 	public static final String NIFTYCUBE_FOLDER_NAME_PREFIX = "niftycube";
+	public static final String MOOTOOLS_FOLDER_NAME_PREFIX = "mootools";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -101,6 +108,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	private String thickboxStylePath = null;
 	private String thickboxScriptFilePath = null;
 	private String thickboxStyleFilePath = null;
+
+	private String mooToolsScriptPath = null;
 	
 	/**
 	 * 
@@ -194,6 +203,31 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public String getBundleURIToScriptaculousLibRootFolder(String scriptaculousLibraryVersion){
 		StringBuffer buf = new StringBuffer();
 		buf.append(SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX).append(SLASH).append(scriptaculousLibraryVersion).append(SLASH);
+		return getBundleURIWithinScriptsFolder(buf.toString());
+	}
+	
+	
+	/**
+	 * 
+	 * @return The full URI with context to the latest version of the mootools-all-compressed.js
+	 */
+	public String getBundleURIToMootoolsLib(){
+		if(this.mooToolsScriptPath==null){
+			this.mooToolsScriptPath = getBundleURIToMootoolsLib(MOOTOOLS_LATEST_VERSION);
+		}
+		
+		return this.mooToolsScriptPath;
+	}
+	
+	/**
+	 * @param mootoolsLibraryVersion The version for the mootools library
+	 * @return The full URI with context to the specific version of the mootools-all-compressed.js
+	 */
+	public String getBundleURIToMootoolsLib(String mootoolsLibraryVersion){
+		StringBuffer buf = new StringBuffer();
+		buf.append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(mootoolsLibraryVersion).append(SLASH).append(MOOTOOLS_COMPRESSED_SCRIPT_FILE);
+		//temp 
+		//buf.append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(mootoolsLibraryVersion).append(SLASH).append("mootools.js");
 		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 	
