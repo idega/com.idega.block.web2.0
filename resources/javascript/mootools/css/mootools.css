@@ -1,6 +1,9 @@
 /** Idega's default styles for mootools plugins **/
 
 /** Accordion **/
+.accordionContainer{
+}
+
 .acToggle {
 	width:auto; 
 	height: auto;
@@ -19,10 +22,9 @@
 }
 
 
-/*div#site_templates{
-height: auto;
-position: relative;
-top: 
-}*/
-
-
+div#siteTemplatesContainer .wf_blockmainarea{
+	/*border: solid 1px red;*/
+	height: auto;
+	top: 0;
+	position: relative;
+}

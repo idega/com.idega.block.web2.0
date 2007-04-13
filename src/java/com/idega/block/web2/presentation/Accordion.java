@@ -143,6 +143,9 @@ public class Accordion extends Block {
 		Layer panels = (Layer)this.getFacet(PANELS_FACET_NAME);
 		if(panels==null){
 			panels = new Layer();
+			if(!"".equals(id)){
+				id = "accordionContainer";
+			}
 			panels.setId(id);
 			panels.setStyleClass("accordionContainer");
 			
