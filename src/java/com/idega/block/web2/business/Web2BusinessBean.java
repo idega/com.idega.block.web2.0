@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.18 2007/04/12 13:58:52 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.19 2007/04/13 18:07:45 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -20,10 +20,10 @@ import com.idega.idegaweb.IWBundle;
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * 
- * Last modified: $Date: 2007/04/12 13:58:52 $ by $Author: eiki $
+ * Last modified: $Date: 2007/04/13 18:07:45 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -110,6 +110,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	private String thickboxStyleFilePath = null;
 
 	private String mooToolsScriptPath = null;
+	private String mooToolsStylePath = null;
 	
 	/**
 	 * 
@@ -229,6 +230,18 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		//temp 
 		//buf.append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(mootoolsLibraryVersion).append(SLASH).append("mootools.js");
 		return getBundleURIWithinScriptsFolder(buf.toString());
+	}
+	
+	/**
+	 * 
+	 * @return The full URI with context to the mootools.css (same for all versions)
+	 */
+	public String getBundleURIToMootoolsStyleFile() {
+		if (mooToolsStylePath == null) {
+			StringBuffer style = new StringBuffer().append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append("css").append(SLASH).append(MOOTOOLS_STYLE_FILE);
+			mooToolsStylePath = getBundleURIWithinScriptsFolder(style.toString());
+		}
+		return mooToolsStylePath;
 	}
 	
 	/**

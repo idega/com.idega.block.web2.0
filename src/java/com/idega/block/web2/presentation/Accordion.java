@@ -6,6 +6,8 @@ import java.util.Collection;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
+import org.apache.myfaces.custom.stylesheet.Stylesheet;
+
 import com.idega.block.web2.business.Web2Business;
 import com.idega.business.IBOLookup;
 import com.idega.presentation.Block;
@@ -19,12 +21,30 @@ import com.idega.presentation.text.Text;
 
 public class Accordion extends Block {
 
+	protected static final String PANELS_FACET_NAME = "PANELS";
 	private Collection panels = null;
-	private String id = null;
-	private String height = "200";
+	private String id = "";
 	private int panelCount = 0;
 	private boolean includeJavascript = true;
+	private String onActiveScriptString = null;
+	private String onBackgroundScriptString = null;
 	
+	public String getOnActiveScriptString() {
+		return onActiveScriptString;
+	}
+
+	public void setOnActiveScriptString(String onActiveScriptString) {
+		this.onActiveScriptString = onActiveScriptString;
+	}
+
+	public String getOnBackgroundScriptString() {
+		return onBackgroundScriptString;
+	}
+
+	public void setOnBackgroundScriptString(String onBackgroundScriptString) {
+		this.onBackgroundScriptString = onBackgroundScriptString;
+	}
+
 	public boolean isIncludeJavascript() {
 		return includeJavascript;
 	}
@@ -49,30 +69,64 @@ public class Accordion extends Block {
 			try {
 				if(includeJavascript == true) {
 					Web2Business business = (Web2Business) IBOLookup.getServiceInstance(iwc, Web2Business.class);
-					String protoURI = business.getBundleURIToPrototypeLib();
-					String ricoURI = business.getBundleURIToRico();
-		
-					Script s = parentPage.getAssociatedScript();
-					s.addScriptSource(protoURI);
-					s.addScriptSource(ricoURI);
-	
-					parentPage.addScriptSource(protoURI);
-					parentPage.addScriptSource(ricoURI);
+					String mootoolsURI = business.getBundleURIToMootoolsLib();
+					String styleURI = business.getBundleURIToMootoolsStyleFile();
 					
-					// THIS HAS TO BE ADDED TO THE <BODY> in the html, if not it does not work in Safari
-					parentPage.setOnLoad("javascript:bodyOnLoad()");
+					//hack until WFPage can add scripts and stylesheets
+					if (parentPage==null || (parentPage.getClassName().indexOf("WorkspacePage")) > -1) {
+//						FIXME in the workspace the parentpage.addScriptsource does nothing it seems so we have to add also!
+						Script script = new Script();
+						script.addScriptSource(mootoolsURI);
+						this.getChildren().add(script);
+						
+						Stylesheet style = new Stylesheet();
+						style.setPath(styleURI);
+						
+												
+						this.getChildren().add(style);	
+					}
+					else{
+						parentPage.addScriptSource(mootoolsURI);
+						parentPage.addStyleSheetURL(styleURI);
+					}
 					
-					this.getChildren().add(s);
 				}
 
 
-				StringBuffer b2 = new StringBuffer();
-//				b2.append("<script> onloads.push( accord ); function accord() { new Rico.Accordion( '"+id+"', {panelHeight:"+height+"} ); }  </script>");
-				b2.append("<script type=\"text/javascript\" > \t\tnew Rico.Effect.Round( null, 'roundNormal' );\n")
-				.append("\t\tnew Rico.Effect.Round( null, 'roundCompact', {compact:true} );\n")
-				.append("STATIC_ACCORDEON = new Rico.Accordion( $('"+id+"'), {panelHeight:"+height+"} );</script>\n");
-
-				this.getChildren().add(new Text(b2.toString()));
+				StringBuffer scriptString = new StringBuffer();
+				scriptString.append("<script type=\"text/javascript\" > \n")
+				//.append("window.onload = function() {")
+				.append("function createAccordion").append(id).append("()").append("{ \n")
+				.append("\tvar stretchers = $$('div.acStretch'); \n")
+				.append("\tvar togglers = $$('div.acToggle'); \n")
+				.append("\tvar iwAccordion").append(id).append(" = new Fx.Accordion(togglers, stretchers, { alwaysHide:true, opacity:false, transition: Fx.Transitions.quadOut, \n")
+				//.append("var myAccordion = new Fx.Accordion(togglers, stretchers, { transition: Fx.Transitions.elasticOut, \n")
+					.append("\t\tonActive: function(toggler, i){ \n");
+					if(getOnActiveScriptString()!=null){
+						scriptString.append("\t\t\t").append(getOnActiveScriptString());
+						
+					}
+					scriptString.append("\t\t}, \n")
+					.append("\t\tonBackground: function(toggler, i){ \n");
+					if(getOnBackgroundScriptString()!=null){
+						scriptString.append("\t\t\t").append(getOnBackgroundScriptString());
+					}
+					scriptString.append("\t\t} \n")
+				.append("\t}); \n")
+				.append("} \n");
+				
+				if(iwc.isSafari()){
+					//method from iwcore.js, seems to clash with mootools on firefox but the latter window addEvent does not work on safari! stupid.
+					//TODO find a method that works on both
+					scriptString.append("addEvent(window, 'load',createAccordion").append(id).append("); \n");
+				}
+				else{
+					scriptString.append("window.addEvent('domready',createAccordion").append(id).append("); \n");
+				}
+				
+				scriptString.append("</script> \n");
+								
+				this.getChildren().add(new Text(scriptString.toString()));
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -86,12 +140,12 @@ public class Accordion extends Block {
 
 	public void addPanel(String panelID, UIComponent header, UIComponent content) {
 		//get outerlayer (facet)
-		Layer panels = (Layer)this.getFacet("PANELS");
+		Layer panels = (Layer)this.getFacet(PANELS_FACET_NAME);
 		if(panels==null){
 			panels = new Layer();
 			panels.setId(id);
 			
-			this.getFacets().put("PANELS", panels);
+			this.getFacets().put(PANELS_FACET_NAME, panels);
 		}
 		
 		//add panel to outerlayer
@@ -100,12 +154,13 @@ public class Accordion extends Block {
 		
 		Layer h = new Layer();
 		h.setId(panelID+"Header");
-		h.setStyleClass("accordionTabTitleBar");
+		//for rapidweaver and typical mootools css
+		h.setStyleClass("acToggle");
 		h.getChildren().add(header);
 		
 		Layer c = new Layer();
 		c.setId(panelID+"Content");
-		c.setStyleClass("accordionTabContentBox");
+		c.setStyleClass("acStretch");
 		c.getChildren().add(content);
 		
 		l.add(h);
@@ -118,7 +173,7 @@ public class Accordion extends Block {
 	public void encodeBegin(FacesContext fc)throws IOException{
 		super.encodeBegin(fc);
 		
-		Layer panels = (Layer)this.getFacet("PANELS");
+		Layer panels = (Layer)this.getFacet(PANELS_FACET_NAME);
 		this.renderChild(fc,panels);
 		
 	}
@@ -127,7 +182,6 @@ public class Accordion extends Block {
 		Accordion obj = (Accordion) super.clone();
 		obj.panels = panels;
 		obj.id = id;
-		obj.height = height;
 		return obj;
 	}
 	
@@ -136,7 +190,6 @@ public class Accordion extends Block {
 		Object values[] = new Object[3];
 		values[0] = super.saveState(context);
 		values[1] = this.id;
-		values[2] = this.height;
 		return values;
 	}
 	
@@ -144,15 +197,6 @@ public class Accordion extends Block {
 		Object values[] = (Object[])state;
 		super.restoreState(context, values[0]);
 		this.id = (String) values[1];
-		this.height = (String) values[2];
-	}
-
-	public String getHeight() {
-		return height;
-	}
-
-	public void setHeight(String height) {
-		this.height = height;
 	}
 
 	public String getFamily() {
