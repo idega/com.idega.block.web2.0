@@ -144,6 +144,7 @@ public class Accordion extends Block {
 		if(panels==null){
 			panels = new Layer();
 			panels.setId(id);
+			panels.setStyleClass("accordionContainer");
 			
 			this.getFacets().put(PANELS_FACET_NAME, panels);
 		}
