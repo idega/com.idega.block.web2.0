@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.19 2007/04/13 18:07:45 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.20 2007/04/14 02:39:49 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -19,11 +19,15 @@ import com.idega.idegaweb.IWBundle;
  * Prototype - Dom search and manipulation and Ajax and OOP addons for javascript, just include the prototype.js file, <a href="http://prototype.conio.net/ ">http://prototype.conio.net/</a> , a quick guide http://particletree.com/features/quick-guide-to-prototype/<br/> 
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
+ * Mootools - A great Web2 library with effects, plugins, extendable and lightweight, http://www.mootools.net
+ * Lightbox - Displays a masked frame in a page, great for presenting images,iframes and more. Two implementations http://www.huddletogether.com/projects/lightbox2/ and http://particletree.com/features/lightbox-gone-wild/
+ * Thickbox - A lightbox clone that works better in most browsers, based on JQuery. http://jquery.com/demo/thickbox/
+ * Niftycube - A library to create rounded corners on anything, http://www.html.it/articoli/niftycube/index.html
  * 
- * Last modified: $Date: 2007/04/13 18:07:45 $ by $Author: eiki $
+ * Last modified: $Date: 2007/04/14 02:39:49 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -75,6 +79,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
 	public static final String BEHAVIOUR_JS_FILE_NAME = "behaviour.js";
+	public static final String REFLECTION_FOLDER_NAME = "reflection";
 	public static final String REFLECTION_JS_FILE_NAME = "reflection.js";
 	public static final String RICO_JS_FILE_NAME = "rico.js";
 	public static final String DOJO_JS_FILE_NAME = "dojo.js";
@@ -131,7 +136,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public String getBundleURIToReflectionLib(){
 		if(this.reflectionScriptPath==null){
 			StringBuffer buf = new StringBuffer();
-			buf.append("REFLECTION_FOLDER_NAME").append(SLASH).append(REFLECTION_JS_FILE_NAME);
+			buf.append(REFLECTION_FOLDER_NAME).append(SLASH).append(REFLECTION_JS_FILE_NAME);
 			
 			this.reflectionScriptPath = getBundleURIWithinScriptsFolder(buf.toString());
 		}
