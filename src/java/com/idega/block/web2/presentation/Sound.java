@@ -7,13 +7,21 @@ import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
 
 import com.idega.block.web2.business.Web2Business;
 import com.idega.business.IBOLookup;
+import com.idega.business.IBOLookupException;
+import com.idega.idegaweb.IWApplicationContext;
+import com.idega.idegaweb.IWMainApplication;
 import com.idega.presentation.Block;
 import com.idega.presentation.IWContext;
 import com.idega.presentation.Page;
 import com.idega.presentation.PresentationObjectUtil;
 import com.idega.presentation.text.Text;
 
-
+/**
+ * Adds sound support using SoundManager2 and a hidden flash object. You must wait until onload has finished to use it window.<br>
+ * Using for example window.onload = function() { your code }. Also you must add Sound before everything else
+ * @author eiki
+ *
+ */
 public class Sound extends Block {
 
 	private String id = "";
@@ -33,7 +41,7 @@ public class Sound extends Block {
 		if (parentPage != null) {
 			try {
 
-				Web2Business business = (Web2Business) IBOLookup.getServiceInstance(iwc, Web2Business.class);
+				Web2Business business = getWeb2(iwc);
 
 				String soundURI = business.getBundleURIToSoundManager2Lib();
 				String flashFile = business.getBundleURIToSoundManager2FlashFile();
@@ -47,29 +55,52 @@ public class Sound extends Block {
 				StringBuffer scriptString = new StringBuffer();
 				scriptString.append("<script type=\"text/javascript\" > \n")
 				.append("\tsoundManager.url = '").append(flashFile).append("'; \n")
-				.append("soundManager.onload = function() {")
-				.append("//function playSound").append(id).append("()").append("{ \n")
-				.append("//soundManager.defaultOptions.debugMode = false; // disable debug output \n")
-				.append("\tsoundManager.play('mySound','"+flashFile.substring(0,flashFile.lastIndexOf("/")+1)+"cameraclick.mp3'); \n")
-				.append("} \n");
-
-//				if(iwc.isSafari()){
-//				//method from iwcore.js, seems to clash with mootools on firefox but the latter window addEvent does not work on safari! stupid.
-//				//TODO find a method that works on both
-//				scriptString.append("addEvent(window, 'load',playSound").append(id).append("); \n");
-//				}
-//				else{
-//				scriptString.append("window.addEvent('domready',playSound").append(id).append("); \n");
-//				}
-
-				scriptString.append("</script> \n");
-
+				.append("\tsoundManager.defaultOptions.debugMode = false; // disable debug output \n")
+				.append("</script> \n");
 				this.getChildren().add(new Text(scriptString.toString()));
-
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	protected Web2Business getWeb2(IWApplicationContext iwac) throws IBOLookupException {
+		Web2Business business = (Web2Business) IBOLookup.getServiceInstance(iwac, Web2Business.class);
+		return business;
+	}
+
+	/**
+	 * Remember you cannot call the method before window.onload is called.
+	 * @param soundName
+	 * @param soundFileURL
+	 * @return a scriptlet for playing a sound file
+	 */
+	public String getPlayScriptlet(String soundName, String soundFileURL) {
+		StringBuffer scriptString = new StringBuffer();
+		scriptString.append("\tsoundManager.play('").append(soundName).append("','").append(soundFileURL).append("'); \n");
+		return scriptString.toString();
+	}
+	
+	/**
+	 * Remember you cannot call the method before window.onload is called.
+	 * @param soundName
+	 * @param soundFileURL
+	 * @return a scriptlet for stopping a sound file
+	 */
+	public String getStopScriptlet(String soundName, String soundFileURL) {
+		StringBuffer scriptString = new StringBuffer();
+		scriptString.append("\tsoundManager.stop('").append(soundName).append("','").append(soundFileURL).append("'); \n");
+		return scriptString.toString();
+	}
+	
+	public String getTestSoundURI() {
+		try {
+			return getWeb2(IWMainApplication.getDefaultIWApplicationContext()).getBundleURIToSoundManager2TestSoundFile();
+		} catch (IBOLookupException e) {
+			e.printStackTrace();
+		}
+		return "LOOKUP FAILED SEE LOGS";
 	}
 	
 	public Object clone(){

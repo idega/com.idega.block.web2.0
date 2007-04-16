@@ -27,9 +27,18 @@ public class Accordion extends Block {
 	private String onActiveScriptString = null;
 	private String onBackgroundScriptString = null;
 	private String scriptString = null;
+	private boolean useSound = true;
 	
 	public String getOnActiveScriptString() {
 		return onActiveScriptString;
+	}
+
+	public boolean isUseSound() {
+		return useSound;
+	}
+
+	public void setUseSound(boolean useSound) {
+		this.useSound = useSound;
 	}
 
 	public void setOnActiveScriptString(String onActiveScriptString) {
@@ -87,11 +96,23 @@ public class Accordion extends Block {
 //						parentPage.addStyleSheetURL(styleURI);	
 				}
 
+				//add sounds :)
+				if(useSound){
+					Sound sound = new Sound();
+					this.getChildren().add(sound);
+					StringBuffer soundPlay = new StringBuffer();
+					soundPlay.append("\tif(canStartUsingSound){  \n")
+					.append("\t\t\t").append(sound.getPlayScriptlet("click", sound.getTestSoundURI()))
+					.append("\t\t\t} \n")
+					.append("\t\t\tcanStartUsingSound=true; \n");
+					
+					setOnActiveScriptString(soundPlay.toString());				
+				}
 
-				
 				if (getScriptString()==null) {
 					StringBuffer scriptString = new StringBuffer();
 					scriptString.append("<script type=\"text/javascript\" > \n")
+							.append("var canStartUsingSound = false; \n")
 							.append("window.onload = function() {")
 							//.append("function createAccordion").append(id).append("()").append("{ \n")
 							.append("\tvar stretchers = $$('div.acStretch'); \n")
@@ -102,12 +123,12 @@ public class Accordion extends Block {
 					
 					scriptString.append("\t\tonActive: function(toggler, i){ \n");
 					if (getOnActiveScriptString() != null) {
-						scriptString.append("\t\t\t").append(getOnActiveScriptString());
+						scriptString.append("\t\t").append(getOnActiveScriptString());
 					}
 					
 					scriptString.append("\t\t}, \n").append("\t\tonBackground: function(toggler, i){ \n");
 						if (getOnBackgroundScriptString() != null) {
-							scriptString.append("\t\t\t").append(getOnBackgroundScriptString());
+							scriptString.append("\t\t").append(getOnBackgroundScriptString());
 					}
 					
 					scriptString.append("\t\t} \n").append("\t}); \n").append(
@@ -115,6 +136,8 @@ public class Accordion extends Block {
 					scriptString.append("</script> \n");
 					setScriptString(scriptString.toString());
 				}				
+				
+				
 				this.getChildren().add(new Text(getScriptString()));
 
 			} catch (Exception e) {
