@@ -195,4 +195,15 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsStyleFile
 	 */
 	public String getBundleURIToMootoolsStyleFile();
+	
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToSoundManager2Lib
+	 */
+	public String getBundleURIToSoundManager2Lib();
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToSoundManager2FlashFile
+	 */
+	public String getBundleURIToSoundManager2FlashFile();
 }

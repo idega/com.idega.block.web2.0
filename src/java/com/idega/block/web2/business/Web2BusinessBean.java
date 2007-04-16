@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.20 2007/04/14 02:39:49 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.21 2007/04/16 15:52:46 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -23,11 +23,12 @@ import com.idega.idegaweb.IWBundle;
  * Lightbox - Displays a masked frame in a page, great for presenting images,iframes and more. Two implementations http://www.huddletogether.com/projects/lightbox2/ and http://particletree.com/features/lightbox-gone-wild/
  * Thickbox - A lightbox clone that works better in most browsers, based on JQuery. http://jquery.com/demo/thickbox/
  * Niftycube - A library to create rounded corners on anything, http://www.html.it/articoli/niftycube/index.html
+ * SoundManager2 - A library that uses a flash object and JS to play sounds, http://www.schillmania.com/projects/soundmanager2/
  * 
- * Last modified: $Date: 2007/04/14 02:39:49 $ by $Author: eiki $
+ * Last modified: $Date: 2007/04/16 15:52:46 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -87,6 +88,10 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String JQUERY_COMPRESSED_JS_FILE_NAME = "jquery-compressed.js";
 	public static final String CONTROL_MODAL_JS_FILE_NAME = "control.modal.js";
 	public static final String NIFTYCUBE_JS_FILE_NAME = "niftycube.js";
+	
+	public static final String SOUNDMANAGER2_JS_FILE_NAME = "soundmanager2.js";
+	public static final String SOUNDMANAGER2_FLASH_FILE = "soundmanager2.swf";
+	public static final String SOUNDMANAGER2_FOLDER_NAME = "soundmanager2";
 
 	public static final String WEB2_BUNDLE_IDENTIFIER = "com.idega.block.web2.0";
 
@@ -117,6 +122,10 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	private String mooToolsScriptPath = null;
 	private String mooToolsStylePath = null;
 	
+	private String soundManager2ScriptPath = null;
+	private String soundManager2FlashFilePath = null;
+	
+	
 	/**
 	 * 
 	 * @return The full URI with context to the latest version of the behaviour.js library (special modified version to work alongside Scriptaculous)
@@ -127,6 +136,33 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		}
 		
 		return this.behaviourScriptPath;
+	}
+	
+	
+	/**
+	 * 
+	 * @return The full URI with context to the latest version of the SoundManager2 javascript sound api
+	 */
+	public String getBundleURIToSoundManager2Lib(){
+		if(this.soundManager2ScriptPath==null){
+			StringBuffer path = new StringBuffer(SOUNDMANAGER2_FOLDER_NAME).append(SLASH).append(SOUNDMANAGER2_JS_FILE_NAME);
+			this.soundManager2ScriptPath = getBundleURIWithinScriptsFolder(path.toString());
+		}
+		
+		return this.soundManager2ScriptPath;
+	}
+	
+	/**
+	 * 
+	 * @return The full URI with context to the latest version of the SoundManager2 javascript sound api's flash file
+	 */
+	public String getBundleURIToSoundManager2FlashFile(){
+		if(this.soundManager2FlashFilePath==null){
+			StringBuffer path = new StringBuffer(SOUNDMANAGER2_FOLDER_NAME).append(SLASH).append(SOUNDMANAGER2_FLASH_FILE);
+			this.soundManager2FlashFilePath = getBundleURIWithinScriptsFolder(path.toString());
+		}
+		
+		return this.soundManager2FlashFilePath;
 	}
 	
 	/**
@@ -233,7 +269,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		StringBuffer buf = new StringBuffer();
 		buf.append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(mootoolsLibraryVersion).append(SLASH).append(MOOTOOLS_COMPRESSED_SCRIPT_FILE);
 		//temp 
-		//buf.append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(mootoolsLibraryVersion).append(SLASH).append("mootools.js");
+	//	buf.append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(mootoolsLibraryVersion).append(SLASH).append("mootools.js");
 		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 	

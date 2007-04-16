@@ -6,16 +6,14 @@ import java.util.Collection;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
-import org.apache.myfaces.custom.stylesheet.Stylesheet;
+import org.apache.myfaces.renderkit.html.util.AddResource;
+import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
 
 import com.idega.block.web2.business.Web2Business;
 import com.idega.business.IBOLookup;
 import com.idega.presentation.Block;
 import com.idega.presentation.IWContext;
 import com.idega.presentation.Layer;
-import com.idega.presentation.Page;
-import com.idega.presentation.PresentationObjectUtil;
-import com.idega.presentation.Script;
 import com.idega.presentation.text.Text;
 
 
@@ -28,6 +26,7 @@ public class Accordion extends Block {
 	private boolean includeJavascript = true;
 	private String onActiveScriptString = null;
 	private String onBackgroundScriptString = null;
+	private String scriptString = null;
 	
 	public String getOnActiveScriptString() {
 		return onActiveScriptString;
@@ -49,6 +48,10 @@ public class Accordion extends Block {
 		return includeJavascript;
 	}
 
+	/**
+	 * Sometimes needed if you want or need to manually add the script after or before a conflicting script
+	 * @param includeJavascript
+	 */
 	public void setIncludeJavascript(boolean includeJavascript) {
 		this.includeJavascript = includeJavascript;
 	}
@@ -63,75 +66,61 @@ public class Accordion extends Block {
 	}
 	
 	public void main(IWContext iwc) {
-		
-		Page parentPage = PresentationObjectUtil.getParentPage(this);
-		if (parentPage != null) {
+	
+		//Page parentPage = PresentationObjectUtil.getParentPage(this);
+		//if (parentPage != null) {
 			try {
+				Web2Business business = (Web2Business) IBOLookup.getServiceInstance(iwc, Web2Business.class);
+				String styleURI = business.getBundleURIToMootoolsStyleFile();
+				AddResource resourceAdder = AddResourceFactory.getInstance(iwc.getRequest());
+				
+//				add style
+				resourceAdder.addStyleSheet(iwc, AddResource.HEADER_BEGIN,styleURI);
+
+				
+				
 				if(includeJavascript == true) {
-					Web2Business business = (Web2Business) IBOLookup.getServiceInstance(iwc, Web2Business.class);
 					String mootoolsURI = business.getBundleURIToMootoolsLib();
-					String styleURI = business.getBundleURIToMootoolsStyleFile();
-					
-					//hack until WFPage can add scripts and stylesheets
-					if (parentPage==null || (parentPage.getClassName().indexOf("WorkspacePage")) > -1) {
-//						FIXME in the workspace the parentpage.addScriptsource does nothing it seems so we have to add also!
-						Script script = new Script();
-						script.addScriptSource(mootoolsURI);
-						this.getChildren().add(script);
-						
-						Stylesheet style = new Stylesheet();
-						style.setPath(styleURI);
-						
-												
-						this.getChildren().add(style);	
-					}
-					else{
-						parentPage.addScriptSource(mootoolsURI);
-						parentPage.addStyleSheetURL(styleURI);
-					}
-					
+					//add a javascript to the header :)
+					resourceAdder.addJavaScriptAtPosition(iwc, AddResource.HEADER_BEGIN,mootoolsURI);
+//						parentPage.addScriptSource(mootoolsURI);
+//						parentPage.addStyleSheetURL(styleURI);	
 				}
 
 
-				StringBuffer scriptString = new StringBuffer();
-				scriptString.append("<script type=\"text/javascript\" > \n")
-				//.append("window.onload = function() {")
-				.append("function createAccordion").append(id).append("()").append("{ \n")
-				.append("\tvar stretchers = $$('div.acStretch'); \n")
-				.append("\tvar togglers = $$('div.acToggle'); \n")
-				.append("\tvar iwAccordion").append(id).append(" = new Fx.Accordion(togglers, stretchers, { alwaysHide:true, opacity:false, transition: Fx.Transitions.quadOut, \n")
-				//.append("var myAccordion = new Fx.Accordion(togglers, stretchers, { transition: Fx.Transitions.elasticOut, \n")
-					.append("\t\tonActive: function(toggler, i){ \n");
-					if(getOnActiveScriptString()!=null){
+				
+				if (getScriptString()==null) {
+					StringBuffer scriptString = new StringBuffer();
+					scriptString.append("<script type=\"text/javascript\" > \n")
+							.append("window.onload = function() {")
+							//.append("function createAccordion").append(id).append("()").append("{ \n")
+							.append("\tvar stretchers = $$('div.acStretch'); \n")
+							.append("\tvar togglers = $$('div.acToggle'); \n")
+							.append("\tvar iwAccordion")
+							.append(id)
+							.append(" = new Fx.Accordion(togglers, stretchers, { alwaysHide:true, opacity:false, transition: Fx.Transitions.quadOut, \n");
+					
+					scriptString.append("\t\tonActive: function(toggler, i){ \n");
+					if (getOnActiveScriptString() != null) {
 						scriptString.append("\t\t\t").append(getOnActiveScriptString());
-						
 					}
-					scriptString.append("\t\t}, \n")
-					.append("\t\tonBackground: function(toggler, i){ \n");
-					if(getOnBackgroundScriptString()!=null){
-						scriptString.append("\t\t\t").append(getOnBackgroundScriptString());
+					
+					scriptString.append("\t\t}, \n").append("\t\tonBackground: function(toggler, i){ \n");
+						if (getOnBackgroundScriptString() != null) {
+							scriptString.append("\t\t\t").append(getOnBackgroundScriptString());
 					}
-					scriptString.append("\t\t} \n")
-				.append("\t}); \n")
-				.append("} \n");
-				
-				if(iwc.isSafari()){
-					//method from iwcore.js, seems to clash with mootools on firefox but the latter window addEvent does not work on safari! stupid.
-					//TODO find a method that works on both
-					scriptString.append("addEvent(window, 'load',createAccordion").append(id).append("); \n");
-				}
-				else{
-					scriptString.append("window.addEvent('domready',createAccordion").append(id).append("); \n");
-				}
-				
-				scriptString.append("</script> \n");
-								
-				this.getChildren().add(new Text(scriptString.toString()));
+					
+					scriptString.append("\t\t} \n").append("\t}); \n").append(
+							"} \n");
+					scriptString.append("</script> \n");
+					setScriptString(scriptString.toString());
+				}				
+				this.getChildren().add(new Text(getScriptString()));
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		
 	}
 	
 	public void addPanel(UIComponent header, UIComponent content) {
@@ -143,7 +132,7 @@ public class Accordion extends Block {
 		Layer panels = (Layer)this.getFacet(PANELS_FACET_NAME);
 		if(panels==null){
 			panels = new Layer();
-			if(!"".equals(id)){
+			if("".equals(id)){
 				id = "accordionContainer";
 			}
 			panels.setId(id);
@@ -184,8 +173,12 @@ public class Accordion extends Block {
 	
 	public Object clone(){
 		Accordion obj = (Accordion) super.clone();
-		obj.panels = panels;
-		obj.id = id;
+		obj.panels = this.panels;
+		obj.id = this.id;
+		obj.includeJavascript = this.includeJavascript;
+		obj.onActiveScriptString = this.onActiveScriptString;
+		obj.onBackgroundScriptString = this.onBackgroundScriptString;
+		obj.scriptString = this.scriptString;
 		return obj;
 	}
 	
@@ -194,6 +187,7 @@ public class Accordion extends Block {
 		Object values[] = new Object[3];
 		values[0] = super.saveState(context);
 		values[1] = this.id;
+		//todo add the other params?
 		return values;
 	}
 	
@@ -207,4 +201,13 @@ public class Accordion extends Block {
 		return null;
 	}
 
+	public String getScriptString() {
+		return scriptString;
+	}
+
+	public void setScriptString(String scriptString) {
+		this.scriptString = scriptString;
+	}
+
 }
+
