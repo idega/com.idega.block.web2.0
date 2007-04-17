@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.22 2007/04/16 18:54:43 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.23 2007/04/17 12:46:33 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -25,10 +25,10 @@ import com.idega.idegaweb.IWBundle;
  * Niftycube - A library to create rounded corners on anything, http://www.html.it/articoli/niftycube/index.html
  * SoundManager2 - A library that uses a flash object and JS to play sounds, http://www.schillmania.com/projects/soundmanager2/
  * 
- * Last modified: $Date: 2007/04/16 18:54:43 $ by $Author: eiki $
+ * Last modified: $Date: 2007/04/17 12:46:33 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.22 $
+ * @version $Revision: 1.23 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -92,8 +92,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String SOUNDMANAGER2_JS_FILE_NAME = "soundmanager2.js";
 	public static final String SOUNDMANAGER2_FLASH_FILE = "soundmanager2.swf";
 	public static final String SOUNDMANAGER2_FOLDER_NAME = "soundmanager2";
-	public static final String SOUNDMANAGER2_TEST_FILE_NAME = "testsound.mp3";
-	
+	public static final String SOUNDMANAGER2_TEST_FILE_NAME = "test-click.mp3";
+		
 	public static final String WEB2_BUNDLE_IDENTIFIER = "com.idega.block.web2.0";
 
 

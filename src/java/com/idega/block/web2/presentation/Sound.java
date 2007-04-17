@@ -55,7 +55,8 @@ public class Sound extends Block {
 				StringBuffer scriptString = new StringBuffer();
 				scriptString.append("<script type=\"text/javascript\" > \n")
 				.append("\tsoundManager.url = '").append(flashFile).append("'; \n")
-				.append("\tsoundManager.defaultOptions.debugMode = false; // disable debug output \n")
+				//.append("\tsoundManager.debugMode = false; // disable debug output \n")
+				.append("\tsoundManager.consoleOnly = true; \n")
 				.append("</script> \n");
 				this.getChildren().add(new Text(scriptString.toString()));
 				
@@ -77,10 +78,35 @@ public class Sound extends Block {
 	 * @return a scriptlet for playing a sound file
 	 */
 	public String getPlayScriptlet(String soundName, String soundFileURL) {
+		return getPlayScriptlet(soundName, soundFileURL, null);
+	}
+	
+	/**
+	 * Remember you cannot call the method before window.onload is called.
+	 * @param soundName
+	 * @param soundFileURL
+	 * @param options in the form of a string e.g. "volume:50,pan:-10" see SoundManager docs
+	 * @return a scriptlet for playing a sound file
+	 */
+	public String getPlayScriptlet(String soundName, String soundFileURL, String options) {
 		StringBuffer scriptString = new StringBuffer();
-		scriptString.append("\tsoundManager.play('").append(soundName).append("','").append(soundFileURL).append("'); \n");
+		
+//		todo use create sound if the sound is NOT already loaded
+		scriptString.append("\nif(!soundManager.getSoundById('").append(soundName).append("', true)){  \n")
+		.append("soundManager.createSound({id:'").append(soundName).append("',url:'").append(soundFileURL).append("'}); \n").append("} \n");
+		
+		if(options==null){
+			scriptString.append("soundManager.play('").append(soundName).append("'); \n");
+		}
+		else{
+			scriptString.append("soundManager.play('").append(soundName).append("',{").append(options).append("}); \n");
+		}
+		
+		
+		
 		return scriptString.toString();
 	}
+	
 	
 	/**
 	 * Remember you cannot call the method before window.onload is called.
@@ -90,7 +116,7 @@ public class Sound extends Block {
 	 */
 	public String getStopScriptlet(String soundName, String soundFileURL) {
 		StringBuffer scriptString = new StringBuffer();
-		scriptString.append("\tsoundManager.stop('").append(soundName).append("','").append(soundFileURL).append("'); \n");
+		scriptString.append("\tsoundManager.stop('").append(soundName).append("'); \n");
 		return scriptString.toString();
 	}
 	

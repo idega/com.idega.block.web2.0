@@ -102,9 +102,9 @@ public class Accordion extends Block {
 					this.getChildren().add(sound);
 					StringBuffer soundPlay = new StringBuffer();
 					soundPlay.append("\tif(canStartUsingSound){  \n")
-					.append("\t\t\t").append(sound.getPlayScriptlet("click", sound.getTestSoundURI()))
-					.append("\t\t\t} \n")
-					.append("\t\t\tcanStartUsingSound=true; \n");
+					.append("\t").append(sound.getPlayScriptlet("clicksound", sound.getTestSoundURI(),"volume:10,pan:-50"))
+					.append("\t} \n")
+					.append("\tcanStartUsingSound=true; \n");
 					
 					setOnActiveScriptString(soundPlay.toString());				
 				}
@@ -113,7 +113,7 @@ public class Accordion extends Block {
 					StringBuffer scriptString = new StringBuffer();
 					scriptString.append("<script type=\"text/javascript\" > \n")
 							.append("var canStartUsingSound = false; \n")
-							.append("window.onload = function() {")
+							.append("window.onload = function() { \n")
 							//.append("function createAccordion").append(id).append("()").append("{ \n")
 							.append("\tvar stretchers = $$('div.acStretch'); \n")
 							.append("\tvar togglers = $$('div.acToggle'); \n")
