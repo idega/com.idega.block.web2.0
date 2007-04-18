@@ -21,7 +21,7 @@ public class Accordion extends Block {
 
 	protected static final String PANELS_FACET_NAME = "PANELS";
 	private Collection panels = null;
-	private String id = "";
+	private String accordionId = "";
 	private int panelCount = 0;
 	private boolean includeJavascript = true;
 	private String onActiveScriptString = null;
@@ -71,7 +71,7 @@ public class Accordion extends Block {
 
 	public Accordion(String id) {
 		super();
-		this.id = id;
+		this.accordionId = id;
 	}
 	
 	public void main(IWContext iwc) {
@@ -118,7 +118,7 @@ public class Accordion extends Block {
 							.append("\tvar stretchers = $$('div.acStretch'); \n")
 							.append("\tvar togglers = $$('div.acToggle'); \n")
 							.append("\tvar iwAccordion")
-							.append(id)
+							.append(accordionId)
 							.append(" = new Fx.Accordion(togglers, stretchers, { alwaysHide:true, opacity:false, transition: Fx.Transitions.quadOut, \n");
 					
 					scriptString.append("\t\tonActive: function(toggler, i){ \n");
@@ -155,10 +155,10 @@ public class Accordion extends Block {
 		Layer panels = (Layer)this.getFacet(PANELS_FACET_NAME);
 		if(panels==null){
 			panels = new Layer();
-			if("".equals(id)){
-				id = "accordionContainer";
+			if("".equals(accordionId)){
+				accordionId = "accordionContainer";
 			}
-			panels.setId(id);
+			panels.setId(accordionId);
 			panels.setStyleClass("accordionContainer");
 			
 			this.getFacets().put(PANELS_FACET_NAME, panels);
@@ -189,7 +189,7 @@ public class Accordion extends Block {
 	public void encodeBegin(FacesContext fc)throws IOException{
 		super.encodeBegin(fc);
 		
-		Layer panels = (Layer)this.getFacet(PANELS_FACET_NAME);
+		UIComponent panels = (UIComponent)this.getFacet(PANELS_FACET_NAME);
 		this.renderChild(fc,panels);
 		
 	}
@@ -197,7 +197,7 @@ public class Accordion extends Block {
 	public Object clone(){
 		Accordion obj = (Accordion) super.clone();
 		obj.panels = this.panels;
-		obj.id = this.id;
+		obj.accordionId = this.accordionId;
 		obj.includeJavascript = this.includeJavascript;
 		obj.onActiveScriptString = this.onActiveScriptString;
 		obj.onBackgroundScriptString = this.onBackgroundScriptString;
@@ -209,7 +209,7 @@ public class Accordion extends Block {
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[3];
 		values[0] = super.saveState(context);
-		values[1] = this.id;
+		values[1] = this.accordionId;
 		//todo add the other params?
 		return values;
 	}
@@ -217,7 +217,7 @@ public class Accordion extends Block {
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[])state;
 		super.restoreState(context, values[0]);
-		this.id = (String) values[1];
+		this.accordionId = (String) values[1];
 	}
 
 	public String getFamily() {
@@ -230,6 +230,14 @@ public class Accordion extends Block {
 
 	public void setScriptString(String scriptString) {
 		this.scriptString = scriptString;
+	}
+
+	public String getAccordionId() {
+		return accordionId;
+	}
+
+	public void setAccordionId(String accordionId) {
+		this.accordionId = accordionId;
 	}
 
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:web2="http://xmlns.idega.com/com.idega.block.web2.0"
+	xmlns:wf="http://xmlns.idega.com/com.idega.webface"
+	xmlns:ws="http://xmlns.idega.com/com.idega.workspace"
+	xmlns:x="http://myfaces.apache.org/tomahawk" version="1.2">
+	<jsp:directive.page contentType="text/html;charset=UTF-8"
+		pageEncoding="UTF-8" />
+	<f:view>
+		<ws:page id="componentTest">
+			<h:form id="componentTestForm">
+				<wf:wfblock id="componentTest" title="Web2.0 Components">
+					<wf:wfblock id="Accordion" title="Accordion">
+						<web2:accordion accordionId="myAccordion" includeJavascript="true">
+							<f:facet name="PANELS">
+								<f:verbatim>
+									<div class="acToggle">Accordion one</div>
+									<div class="acStretch">I'm inside! <br/>Bla bla bla bla bla
+									bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+									bla bla bla bla</div>
+									<div class="acToggle">Accordion two</div>
+									<div class="acStretch">Me too! <br/>Bla bla bla bla bla bla
+									bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+									bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+									bla bla bla bla bla bla bla bla bla bla bla bla bla</div>
+									<div class="acToggle">Accordion three</div>
+									<div class="acStretch">Me three! <br/>Bla bla bla bla bla bla
+									bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+									bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+									bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+									bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+									bla bla bla bla bla bla bla bla bla bla bla bla</div>
+
+								</f:verbatim>
+							</f:facet>
+						</web2:accordion>
+					</wf:wfblock>
+				</wf:wfblock>
+			</h:form>
+		</ws:page>
+	</f:view>
+</jsp:root>
