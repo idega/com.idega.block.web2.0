@@ -112,12 +112,15 @@ public class Accordion extends Block {
 				if (getScriptString()==null) {
 					StringBuffer scriptString = new StringBuffer();
 					scriptString.append("<script type=\"text/javascript\" > \n")
+							.append("var iwAccordion")
+							.append(accordionId)
+							.append(" = null; \n")
 							.append("var canStartUsingSound = false; \n")
 							.append("window.onload = function() { \n")
 							//.append("function createAccordion").append(id).append("()").append("{ \n")
 							.append("\tvar stretchers = $$('div.acStretch'); \n")
 							.append("\tvar togglers = $$('div.acToggle'); \n")
-							.append("\tvar iwAccordion")
+							.append("\tiwAccordion")
 							.append(accordionId)
 							.append(" = new Fx.Accordion(togglers, stretchers, { alwaysHide:true, opacity:false, transition: Fx.Transitions.quadOut, \n");
 					
