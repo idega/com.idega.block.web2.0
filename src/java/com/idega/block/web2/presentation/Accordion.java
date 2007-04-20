@@ -122,7 +122,7 @@ public class Accordion extends Block {
 							.append("\tvar togglers = $$('div.acToggle'); \n")
 							.append("\tiwAccordion")
 							.append(accordionId)
-							.append(" = new Fx.Accordion(togglers, stretchers, { alwaysHide:true, opacity:false, transition: Fx.Transitions.quadOut, \n");
+							.append(" = new Fx.Accordion(togglers, stretchers, { alwaysHide:false, opacity:false, transition: Fx.Transitions.quadOut, \n");
 					
 					scriptString.append("\t\tonActive: function(toggler, i){ \n");
 					if (getOnActiveScriptString() != null) {
