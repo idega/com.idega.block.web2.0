@@ -26,4 +26,4 @@ var BehaviourBaseClass = new Class({
     }
 });
 var Behaviour = new BehaviourBaseClass();
-Behaviour.initialize();
+//Behaviour.initialize();

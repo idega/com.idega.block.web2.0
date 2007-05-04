@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.23 2007/04/17 12:46:33 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.24 2007/05/04 11:07:36 justinas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -25,10 +25,10 @@ import com.idega.idegaweb.IWBundle;
  * Niftycube - A library to create rounded corners on anything, http://www.html.it/articoli/niftycube/index.html
  * SoundManager2 - A library that uses a flash object and JS to play sounds, http://www.schillmania.com/projects/soundmanager2/
  * 
- * Last modified: $Date: 2007/04/17 12:46:33 $ by $Author: eiki $
+ * Last modified: $Date: 2007/05/04 11:07:36 $ by $Author: justinas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.23 $
+ * @version $Revision: 1.24 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -96,7 +96,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		
 	public static final String WEB2_BUNDLE_IDENTIFIER = "com.idega.block.web2.0";
 
-
+	public static final String MOOTOOLS_BASED_BEHAVIOUR_FILE = "behaviour-mootools.js";
 
 	protected String rootScriptsFolderBundleURI;
 	protected String rootLibsFolderBundleURI;
@@ -504,5 +504,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		script.append(SLASH).append(NIFTYCUBE_JS_FILE_NAME);
 		return script.toString();
 	}
-	
+
+	public String getMootoolsBasedBehaviourScriptFilePath() {
+		StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(MOOTOOLS_BASED_BEHAVIOUR_FILE);
+		return script.toString();
+	}
 }
