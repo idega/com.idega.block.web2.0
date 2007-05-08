@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.24 2007/05/04 11:07:36 justinas Exp $
+ * $Id: Web2BusinessBean.java,v 1.25 2007/05/08 15:03:30 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -24,11 +24,12 @@ import com.idega.idegaweb.IWBundle;
  * Thickbox - A lightbox clone that works better in most browsers, based on JQuery. http://jquery.com/demo/thickbox/
  * Niftycube - A library to create rounded corners on anything, http://www.html.it/articoli/niftycube/index.html
  * SoundManager2 - A library that uses a flash object and JS to play sounds, http://www.schillmania.com/projects/soundmanager2/
+ * MOOdalBox - an HTML Lightbox, based on Mootools, http://www.e-magine.ro/web-dev-and-design/36/moodalbox/
  * 
- * Last modified: $Date: 2007/05/04 11:07:36 $ by $Author: justinas $
+ * Last modified: $Date: 2007/05/08 15:03:30 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.24 $
+ * @version $Revision: 1.25 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -60,8 +61,15 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String THICKBOX_SCRIPT_FILE = "thickbox.js";
 	public static final String THICKBOX_STYLE_FILE = "thickbox.css";
 	
-	public static final String MOOTOOLS_LATEST_VERSION = Web2BusinessBean.MOOTOOLS_1_0_0_VERSION;
+	public static final String MOODALBOX_LATEST_VERSION = Web2BusinessBean.MOODALBOX_1_2_1_VERSION;
+	public static final String MOODALBOX_1_2_1_VERSION = "1.2.1";
+	public static final String MOODALBOX_COMPRESSED_SCRIPT_FILE = "moodalbox.js";
+	public static final String MOODALBOX_STYLE_FILE = "moodalbox.css";
+	public static final String MOODALBOX_FULL_SCRIPT_FILE = "moodalbox_full.js";
+	
+	public static final String MOOTOOLS_LATEST_VERSION = Web2BusinessBean.MOOTOOLS_1_1_0_VERSION;
 	public static final String MOOTOOLS_1_0_0_VERSION = "1.0.0";
+	public static final String MOOTOOLS_1_1_0_VERSION = "1.1.0";
 	public static final String MOOTOOLS_SCRIPT_FILE = "mootools-all.js";
 	public static final String MOOTOOLS_COMPRESSED_SCRIPT_FILE = "mootools-all-compressed.js";
 	public static final String MOOTOOLS_STYLE_FILE = "mootools.css";
@@ -76,6 +84,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String THICKBOX_ROOT_FOLDER_NAME_PREFIX = "thickbox";
 	public static final String NIFTYCUBE_FOLDER_NAME_PREFIX = "niftycube";
 	public static final String MOOTOOLS_FOLDER_NAME_PREFIX = "mootools";
+	public static final String MOODALBOX_ROOT_FOLDER_NAME_PREFIX = "moodalbox";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -130,6 +139,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 
 	private String soundManager2TestFilePath = null;
 	
+	private String moodalboxScriptPath = null;
+	private String moodalboxStyleFilePath = null;
+	private String moodalboxStylePath = null;
 	
 	/**
 	 * 
@@ -509,4 +521,51 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(MOOTOOLS_BASED_BEHAVIOUR_FILE);
 		return script.toString();
 	}
+	
+	/** MOOdalBox starts **/
+	public String getMoodalboxScriptFilePath(boolean needFullScript) {
+		StringBuffer script = new StringBuffer(getMoodalboxScriptPath());
+		if (needFullScript) {
+			script.append(MOODALBOX_FULL_SCRIPT_FILE);
+		}
+		else {
+			script.append(MOODALBOX_COMPRESSED_SCRIPT_FILE);
+		}
+		return script.toString();
+	}
+	
+	public String getMoodalboxStyleFilePath() {
+		if (moodalboxStyleFilePath == null) {
+			StringBuffer style = new StringBuffer(getMoodalboxStylePath()).append(MOODALBOX_STYLE_FILE);
+			moodalboxStyleFilePath = style.toString();
+		}
+		return moodalboxStyleFilePath;
+	}
+	
+	public String getMoodalboxStylePath() {
+		if (moodalboxStylePath == null) {
+			StringBuffer style = new StringBuffer(getBundleURIToMoodalboxLibRootFolder()).append("css").append(SLASH);
+			moodalboxStylePath = style.toString();
+		}
+		return moodalboxStylePath;
+	}
+	
+	public String getMoodalboxScriptPath() {
+		if (moodalboxScriptPath == null) {
+			StringBuffer script = new StringBuffer(getBundleURIToMoodalboxLibRootFolder()).append("js").append(SLASH);
+			moodalboxScriptPath = script.toString();
+		}
+		return moodalboxScriptPath;
+	}
+	
+	public String getBundleURIToMoodalboxLibRootFolder() {
+		return getBundleURIToMoodalboxLibRootFolder(MOODALBOX_LATEST_VERSION);
+	}
+	
+	public String getBundleURIToMoodalboxLibRootFolder(String versionNumber) {
+		StringBuffer buf = new StringBuffer();
+		buf.append(MOODALBOX_ROOT_FOLDER_NAME_PREFIX).append(SLASH).append(versionNumber).append(SLASH);
+		return getBundleURIWithinScriptsFolder(buf.toString());
+	}
+	/** MOOdalBox ends **/
 }

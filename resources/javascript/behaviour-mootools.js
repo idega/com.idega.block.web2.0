@@ -2,7 +2,7 @@ var BehaviourBaseClass = new Class({
     initialize: function(){
         this.behaviours = [];
         var bhvr = this;
-        window.addEvent('domready', function(){bhvr.apply()});
+        Window.onDomReady(function(){bhvr.apply()});
     },
     register: function(actions){
         if(! this.behaviours.test(actions))
@@ -26,4 +26,4 @@ var BehaviourBaseClass = new Class({
     }
 });
 var Behaviour = new BehaviourBaseClass();
-//Behaviour.initialize();
+Behaviour.initialize();

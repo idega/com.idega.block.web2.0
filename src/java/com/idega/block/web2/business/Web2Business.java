@@ -1,15 +1,29 @@
 package com.idega.block.web2.business;
 
 
-import java.rmi.RemoteException;
-
 import com.idega.business.IBOService;
+import java.rmi.RemoteException;
 
 public interface Web2Business extends IBOService {
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToBehaviourLib
 	 */
 	public String getBundleURIToBehaviourLib() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToSoundManager2Lib
+	 */
+	public String getBundleURIToSoundManager2Lib() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToSoundManager2FlashFile
+	 */
+	public String getBundleURIToSoundManager2FlashFile() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToSoundManager2TestSoundFile
+	 */
+	public String getBundleURIToSoundManager2TestSoundFile();
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToReflectionLib
@@ -50,6 +64,21 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToScriptaculousLibRootFolder
 	 */
 	public String getBundleURIToScriptaculousLibRootFolder(String scriptaculousLibraryVersion) throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsLib
+	 */
+	public String getBundleURIToMootoolsLib() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsLib
+	 */
+	public String getBundleURIToMootoolsLib(String mootoolsLibraryVersion) throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsStyleFile
+	 */
+	public String getBundleURIToMootoolsStyleFile() throws RemoteException;
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToScriptsFolder
@@ -165,55 +194,54 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToJQueryLib
 	 */
 	public String getBundleURIToJQueryLib() throws RemoteException;
-	
+
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getPrototypeScriptFilePath
 	 */
 	public String getPrototypeScriptFilePath(String version) throws RemoteException;
-	
+
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToControlModalLib
 	 */
 	public String getBundleURIToControlModalLib() throws RemoteException;
-	
+
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getNiftyCubeScriptFilePath
 	 */
 	public String getNiftyCubeScriptFilePath() throws RemoteException;
-	
-	/**
-	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsLib
-	 */
-	public String getBundleURIToMootoolsLib();
-	
-	/**
-	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsLib
-	 */
-	public String getBundleURIToMootoolsLib(String mootoolsLibraryVersion);
-	
-	/**
-	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsStyleFile
-	 */
-	public String getBundleURIToMootoolsStyleFile();
-	
-	
-	/**
-	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToSoundManager2Lib
-	 */
-	public String getBundleURIToSoundManager2Lib();
-	
-	/**
-	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToSoundManager2FlashFile
-	 */
-	public String getBundleURIToSoundManager2FlashFile();
-	
-	/**
-	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToSoundManager2TestSoundFile
-	 */
-	public String getBundleURIToSoundManager2TestSoundFile();
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getMootoolsBasedBehaviourScriptFilePath
 	 */
-	public String getMootoolsBasedBehaviourScriptFilePath();
+	public String getMootoolsBasedBehaviourScriptFilePath() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getMoodalboxScriptFilePath
+	 */
+	public String getMoodalboxScriptFilePath(boolean needFullScript) throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getMoodalboxStyleFilePath
+	 */
+	public String getMoodalboxStyleFilePath() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getMoodalboxStylePath
+	 */
+	public String getMoodalboxStylePath() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getMoodalboxScriptPath
+	 */
+	public String getMoodalboxScriptPath() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMoodalboxLibRootFolder
+	 */
+	public String getBundleURIToMoodalboxLibRootFolder() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMoodalboxLibRootFolder
+	 */
+	public String getBundleURIToMoodalboxLibRootFolder(String versionNumber) throws RemoteException;
 }
