@@ -101,6 +101,23 @@ var MOOdalBox = {
 
 	},
 	
+	register: function(el) {
+		// we use a regexp to check for links that 
+		// have a rel attribute starting with "moodalbox"
+		if (el.rel && el.href && el.rel.test('^moodalbox', 'i')) {
+			var found = false;
+			for (var i = 0; (i < this.anchors.length && !found); i++) {
+				if (el == this.anchors[i]) {
+					found = true;
+				}
+			}
+			if (!found) {
+				el.onclick = this.click.pass(el, this);
+				this.anchors.push(el);
+			}
+		}
+	},
+	
 	click: function(link) {
 		return this.open (link.href, link.title, link.rel);
 	},
