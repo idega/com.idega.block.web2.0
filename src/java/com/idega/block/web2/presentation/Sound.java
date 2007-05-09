@@ -55,8 +55,8 @@ public class Sound extends Block {
 				StringBuffer scriptString = new StringBuffer();
 				scriptString.append("<script type=\"text/javascript\" > \n")
 				.append("\tsoundManager.url = '").append(flashFile).append("'; \n")
-				//.append("\tsoundManager.debugMode = false; // disable debug output \n")
-				.append("\tsoundManager.consoleOnly = true; \n")
+				.append("\tsoundManager.debugMode = false; // disable debug output \n")
+				//.append("\tsoundManager.consoleOnly = true; \n")
 				.append("</script> \n");
 				this.getChildren().add(new Text(scriptString.toString()));
 				
