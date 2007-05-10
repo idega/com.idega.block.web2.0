@@ -118,8 +118,8 @@ public class Accordion extends Block {
 							.append("var canStartUsingSound = false; \n")
 							.append("window.onload = function() { \n")
 							//.append("function createAccordion").append(id).append("()").append("{ \n")
-							.append("\tvar stretchers = $$('div.acStretch'); \n")
-							.append("\tvar togglers = $$('div.acToggle'); \n")
+							.append("\tvar stretchers = $$('div.acStretch").append(this.accordionId).append("'); \n")
+							.append("\tvar togglers = $$('div.acToggle").append(this.accordionId).append("'); \n")
 							.append("\tiwAccordion")
 							.append(accordionId)
 							.append(" = new Fx.Accordion(togglers, stretchers, { alwaysHide:false, opacity:false, transition: Fx.Transitions.quadOut, \n");
@@ -174,12 +174,12 @@ public class Accordion extends Block {
 		Layer h = new Layer();
 		h.setId(panelID+"Header");
 		//for rapidweaver and typical mootools css
-		h.setStyleClass("acToggle");
+		h.setStyleClass("acToggle acToggle"+accordionId);
 		h.getChildren().add(header);
 		
 		Layer c = new Layer();
 		c.setId(panelID+"Content");
-		c.setStyleClass("acStretch");
+		c.setStyleClass("acStretch acStretch"+accordionId);
 		c.getChildren().add(content);
 		
 		l.add(h);
