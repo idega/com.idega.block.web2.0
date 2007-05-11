@@ -1,0 +1,95 @@
+
+.chat{
+    position:absolute;
+    width:400px;
+    height: 450px;
+    border-style: solid;
+    border-width: 2px;
+    border-color:black;
+}
+
+.login{
+    visibility: hidden;
+    background-color:white;
+    width:300px;
+    height: 150px;
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    z-index:3;
+	border-style: solid;
+    border-width: 5px;
+    border-color:black;
+}
+
+.chatMessage{
+    vertical-align: top;
+    border-style:solid;
+    border-width:1px;
+    background:white;
+    border-color:black;
+    width:auto;
+    height: 76px;
+    padding-left:60px;
+    font-size: 20px;
+}
+
+.signinCenter{
+    margin-top:50px;
+}
+
+.signinInput{
+    border-style: solid;
+    width:155px;
+    height: 25px;
+    font-size: 16px
+}
+
+.chatInput{
+    border-style: solid;
+    width:325px;
+    height: 25px;
+    font-size: 15px
+}
+
+.chatWindow {
+    position:relative;
+    padding: 3px;
+    height: 330px;
+    overflow:auto;
+    overflow-x: hidden;
+}
+
+.chatPane {
+    width:100%;
+    background-color:white;
+}
+
+ .error {
+    color:white;
+    background:red;
+ }
+ 
+ .success {
+    color:green;
+ }
+
+.birdIcon {
+	background: url(images/bird-thumb.jpg) no-repeat top left;
+}
+
+.pigIcon {
+	background: url(images/pig-thumb.jpg) no-repeat top left;
+}
+
+.puppyIcon {
+	background: url(images/puppy-thumb.jpg) no-repeat top left;
+}
+
+.serverIcon {
+	background: url(images/server-thumb.jpg) no-repeat top left;
+}
+
+.gregIcon {
+	background: url(images/greg-thumb.jpg) no-repeat top left;
+}

@@ -1,0 +1,9 @@
+
+<div id="${uuid}" class="listContainer">
+<form onsubmit="jmaki.attributes.get('${uuid}').submitData(); return false;">
+ <input id="${uuid}_entryField" type="text" size="20" value="Enter new Value">
+ <input type="button" onclick="jmaki.attributes.get('${uuid}').submitData(); return false;" value="Add to List">
+</from>
+
+<div id="${uuid}_list" class="listDiv"></div>
+</div>

@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>Reflection.js Testsuite</title>
+<script type="text/javascript" src="reflection.js"></script>
+<style type="text/css">
+a { color: white; font-style:italic; }
+body { background-color: black; color: white; font-family: Georgia; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<h1><img src="reflection.png" class="reflect" alt="reflection.js" style="float:left; padding-right: 15px;" /></h1>
+
+<p style="clear: left">This file demonstrates some of the things reflection.js does.</p>
+
+<h2>Coloured Backgrounds</h2>
+
+<p>The reflections should fade into the background colour.</p>
+
+<div style="float: left; background-color: red; padding: 10px;"><img src="example.jpg" class="reflect" alt="" /></div>
+<div style="float: left; background-color: green; padding: 10px;"><img src="example.jpg" class="reflect" alt="" /></div>
+<div style="float: left; background-color: blue; padding: 10px;"><img src="example.jpg" class="reflect" alt="" /></div>
+<div style="float: left; background-color: yellow; padding: 10px;"><img src="example.jpg" class="reflect" alt="" /></div>
+
+<p style="clear: left;"></p>
+
+<h2>Varying Heights</h2>
+
+<p>Using the class attribute, the height of the reflection can be varied. The first image uses the class "rheight20" which shows a reflection 20% the height of the image. The next one uses rheight40, then rheight60, and so on.</p>
+
+<div style="float: left; padding: 10px;"><img src="example.jpg" class="reflect rheight20" alt="" /></div>
+<div style="float: left; padding: 10px;"><img src="example.jpg" class="reflect rheight40" alt="" /></div>
+<div style="float: left; padding: 10px;"><img src="example.jpg" class="reflect rheight60" alt="" /></div>
+<div style="float: left; padding: 10px;"><img src="example.jpg" class="reflect rheight80" alt="" /></div>
+
+<p style="clear: left;"></p>
+
+<h2>Varying Opacities</h2>
+
+<p>This time each reflection has a varying opacity starting from 20% going up to 80%.</p>
+
+<div style="float: left; padding: 10px;"><img src="example.jpg" class="reflect ropacity20" alt="" /></div>
+<div style="float: left; padding: 10px;"><img src="example.jpg" class="reflect ropacity40" alt="" /></div>
+<div style="float: left; padding: 10px;"><img src="example.jpg" class="reflect ropacity60" alt="" /></div>
+<div style="float: left; padding: 10px;"><img src="example.jpg" class="reflect ropacity80" alt="" /></div>
+
+<p style="clear: left;"></p>
+
+<h2>Floated Image with Border</h2>
+
+<p>The image and the reflection should be aligned to the right of the page. The border should display around both the image and reflection.</p>
+
+<p><img src="example.jpg" class="reflect" alt="" style="float: right;  border: solid 5px red;" /></p>
+
+<p style="clear: right;"></p>
+
+<h2>Scripted Reflection</h2>
+
+<p>These reflections do not have the class="reflect" attribute. They uses the Reflection.add() function.</p>
+
+<p>The reflection should become brighter when the mouse is placed over the image.<br /><img src="example.jpg" alt="" onmouseover="Reflection.add(this, { opacity: 2/3 });" onmouseout="Reflection.add(this, { opacity: 1/3 });" class="reflect ropacity33" /></p>
+
+<p>Click the image to add a reflection.<br /><img src="example.jpg" id="sorbohax" alt="" onclick="Reflection.add(this, { height: 1/3, opacity: 2/3 });" /></p>
+
+<p><a href="javascript:Reflection.remove(document.getElementById('sorbohax'))">Remove Reflection</a></p>
+
+<p>Using Reflection.add(), you can vary the amount of reflection.</p>
+
+<img src="example.jpg" id="indeed" alt="" class="reflect ropacity10" />
+
+<script>
+var cool = 2;
+function varyReflect() {
+	if (cool == 10) {
+		cool = 1;
+	}
+	Reflection.add(document.getElementById('indeed'), { opacity: cool/10 });
+	
+	document.getElementById('indeeda').innerHTML = cool*10;
+	cool++;
+}
+
+</script>
+
+<p><a href="javascript:varyReflect();">Vary the reflection opacity</a> (<strong id="indeeda">10</strong>% opacity)</p>
+
+<h2>Scaled Images</h2>
+
+<p>This may look strange in Internet Explorer.</p>
+
+<p><img src="example.jpg" width="200" alt="" class="reflect" /></p>
+
+<p><img src="example.jpg" width="150" alt="" class="reflect" /></p>
+
+</body>
+</html>

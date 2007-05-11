@@ -1,0 +1,9 @@
+ <div id="${uuid}">
+  <form onsubmit="jmaki.attributes.get('${uuid}').searchPhotos(document.getElementById('${uuid}_target').value);return false;">
+	Tag:  <input type="text" id="${uuid}_target">
+	<input type="button" value="Search"
+	   onclick="jmaki.attributes.get('${uuid}').searchPhotos(document.getElementById('${uuid}_target').value);">
+  </form>
+ </div>
+ <table id="${uuid}_flickrResults"></table>
+ 

@@ -1,0 +1,46 @@
+<div style="width:400px;height:450px;position:relative">
+  <div id="${uuid}" class="chat">
+    <form id="${uuid}_chatForm" name="chatForm" onsubmit="return false;">
+      <table border="0" cellpadding="5" cellspacing="0">
+       <tr>
+        <td colspan="1">
+         <div id="${uuid}_center" height="400"></div>
+        </td>
+       </tr>
+       <tr>
+        <td align="right" colspan="4">
+        <div id="${uuid}_south"></div>
+       </td>
+       </tr>
+       <tr><td colspan="4"><td></tr>
+       <tr valign="bottom"><td colspan="4"><div style="text-align: right; font-size: 8px" id="${uuid}_signoff"></div><td></tr>   
+     </table>
+    </form>
+  </div>
+</div>
+
+  <div id="${uuid}_login" class="login">
+    <form onsubmit="return false;">
+    <div class="signinCenter">
+    <span>
+    Chat Id:
+     <input  type="text"
+           class="signinInput"  
+             id="${uuid}_userid"
+            name="userid"
+            autocomplete="off"
+         onkeyup="jmaki.attributes.get('${uuid}').validateUserId()">
+          <input onclick="jmaki.attributes.get('${uuid}').register()" id="${uuid}_login_btn" type="Button" value="Login" name="Login">
+    </span>
+    <span> Avatar:
+    <select id="${uuid}_avatar">
+      <option selected="true" value="birdIcon">Bird</option>
+      <option value="puppyIcon">Puppy</option>
+      <option value="pigIcon">Pig</option>
+      <option value="gregIcon">Greg</option>
+    </select>
+    </span>
+    </div>
+    </form>
+    <div style="height: 16px" id="${uuid}_statusMessage"></div>
+  </div>

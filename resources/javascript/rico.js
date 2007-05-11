@@ -1,3 +1,4 @@
+//var STATIC_ACCORDEON;
 /**
   *
   *  Copyright 2005 Sabre Airline Solutions
@@ -288,13 +289,13 @@ Rico.Accordion.Tab.prototype = {
    showCollapsed: function() {
       this.expanded = false;
       this.titleBar.className			  = this.styleClassName + " collapsed";
-      this.content.style.overflow = "hidden";
+      this.content.style.overflow = "auto";
    },
 
    showExpanded: function() {
       this.expanded = true;
       this.titleBar.className			  = this.styleClassName + " expanded";
-      this.content.style.overflow         = "auto";
+      this.content.style.overflow         = "visible";
    },
 
    titleBarClicked: function(e) {
@@ -1495,7 +1496,7 @@ Rico.Dropzone.prototype = {
       this.saveBackgroundColor = null;
    },
 
-   showHover: function() {
+   showHover: function(e) {
       var htmlElement = this.getHTMLElement();
       if ( htmlElement == null || this.showingHover )
          return;

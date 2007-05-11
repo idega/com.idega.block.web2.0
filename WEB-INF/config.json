@@ -1,0 +1,131 @@
+{"config": {
+    "version": "1.1",
+    "types": [
+        {"id": "jmaki",
+         "libs": ["/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/javascript/jmaki-common.js"]
+        },
+        {"id": "dojo",
+         "libs": ["/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/dojo/version.3.1/dojo.js"],
+         "preload": "djConfig = { parseWidgets: false, searchIds: [] };"
+        },
+        {"id": "scriptaculous",
+         "libs": [
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/scriptaculous/version1.6.2/prototype.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/scriptaculous/version1.6.2/scriptaculous.js"
+                 ]
+        },
+        {"id": "googlemap",
+         "libs": ["http://maps.google.com/maps?file=api&amp;v=2&amp;key="],
+         "apikey" : "google"
+        },
+        {"id": "googlesearch",
+         "libs": ["http://www.google.com/uds/api?file=uds.js&amp;v=0.1&amp;key="],
+         "apikey" : "google"
+        },
+        {"id": "yahoo.vslider",
+         "libs": [
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/yahoo/yahoo-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/dom/dom-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/event/event-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/animation/animation-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/dragdrop/dragdrop-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/slider/slider-min.js"
+                 ]
+        },
+        {"id": "yahoo.tree",
+         "libs": [
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/yahoo/yahoo-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/treeview/treeview-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/event/event-min.js"
+                 ],
+         "styles": [
+                   "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/treeview/assets/tree.css",
+                   ]
+        },
+        {"id": "yahoo.calendar",
+         "libs": [
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/yahoo/yahoo-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/dom/dom-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/event/event-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/calendar/calendar-min.js"
+                 ],
+         "styles": [
+                   "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/calendar/assets/calendar.css",
+                   ]
+        },
+        
+        {"id": "yahoo.carousel",
+         "libs": [
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/yahoo/yahoo-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/dom/dom-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/event/event-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/animation/animation-min.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/yahoo/version.11/container/container_core-min.js"
+                 ]
+        },    
+        {"id": "spry.plainAccordion",
+         "libs": [
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/spry/version1.2/SpryEffects.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/spry/version1.2/SpryAccordion.js"
+                 ]
+        },
+        {"id": "spry",
+         "libs": [
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/spry/version1.2/xpath.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/spry/version1.2/SpryData.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/spry/version1.2/SpryEffects.js",
+                  "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/libs/spry/version1.2/SpryAccordion.js"
+                 ]
+        },
+        {"id": "yahoomap",
+         "libs": ["http://api.maps.yahoo.com/ajaxymap?v=3.0&appid="],
+         "apikey" : "yahoo"
+        }
+       ],
+        "apikeys" : [
+                {"id": "google", "keys": [
+                    {"url": "http://localhost:8080/jmaki/",
+                     "key": "ABQIAAAAyEQwWkLnhtibmBGdNd7jrBQQAB-8rqlhkKK1uw58t3Ode1gxJxSJ46dZQcWl1eM5-s5a1kcxT-BCsg"
+                     },
+                    {"url" : "http://localhost:8080/google-test/",
+                     "key" : "ABQIAAAAyEQwWkLnhtibmBGdNd7jrBTJtZxus5o_x-qoFBBNX_VqSROTcRS3zNiG_GkXvl22CWxfO-TN-_ofnw"
+                     },
+                    {"url" : "http://www.javaserver.org/jmaki/",
+                     "key" : "ABQIAAAAijYE91bwmkSi9DePufn3kRSdtCpn09UVb9xrLkeFblSMUdq2zBQiN-c43FbsPzab_qAJwGANcOtGUg"
+                    },
+                    {"url" : "http://javaserver.org/jmaki/",
+                     "key" : "ABQIAAAAijYE91bwmkSi9DePufn3kRSdtCpn09UVb9xrLkeFblSMUdq2zBQiN-c43FbsPzab_qAJwGANcOtGUg"
+                    },
+                    {"url" : "http://localhost:8084/WebApplication9/",
+                     "key" : "ABQIAAAAyEQwWkLnhtibmBGdNd7jrBRnxsHGuCM8Y1VDNSbQgXi4Z6cV7RSdWCTmtLjDZwZUgNtKGQ22wNcTtg"
+                    },
+                    {"url" : "http://localhost:8084/WebApplication8/",
+                     "key" : "ABQIAAAAyEQwWkLnhtibmBGdNd7jrBR3gpzLCEKGoFsGPg7CpVAurXgcCBQFs5ZYU5PP1GvMEP6ecWOT4hpetA"
+                    },
+                    {"url" : "http://localhost:8084/WebApplication7/",
+                     "key" : "ABQIAAAAyEQwWkLnhtibmBGdNd7jrBTFayEXEY-HWLJJabG8tC_MsclDfxQXB3xaUCoa5Am1PXwro-PcEGJRtg"
+                    },
+                    {"url" : "http://localhost:8084/WebApplication6/",
+                     "key" : "ABQIAAAAyEQwWkLnhtibmBGdNd7jrBScZgUhfEL48566NGrZzPmNyEGosBSW9AGV3hAbBJ-ebICrKoDO40e35g"
+                    },
+                    {"url" : "http://localhost:8084/WebApplication5/",
+                     "key" : "ABQIAAAAyEQwWkLnhtibmBGdNd7jrBTCASBVZG9VCldONusfvjB8dbTsjRRP9QAwrYpehNQtBrPpNdtOwo4lqw"
+                    },
+                    {"url" : "http://localhost:8084/WebApplication4/",
+                     "key" : "ABQIAAAAyEQwWkLnhtibmBGdNd7jrBTHYoblKbb4kOc2cLIkdOLKOrmhwRTH2Md82B9WV5BDgTlwmdWSZZumt"
+                    },
+                    {"url" : "http://localhost:8084/WebApplication3/",
+                     "key" : "ABQIAAAAyEQwWkLnhtibmBGdNd7jrBQSL_wNM28G6Xr0DsakM43hpeuu8BTq3_beC5t2ZykDwW2aHBTGNxyUUA"
+                    },
+                    {"url" : "http://localhost:8084/WebApplication2/",
+                     "key" : "ABQIAAAAyEQwWkLnhtibmBGdNd7jrBQOq8FMQSOiyAXb1v-SnlEDUmJQ9RS9u73yfT9ybgNdBz3IT6loEscXPQ"
+                    },
+                    {"url" : "http://localhost:8084/WebApplication1/",
+                     "key" : "ABQIAAAAyEQwWkLnhtibmBGdNd7jrBS_AbjPT-xPDs6zEips3Nuedhd57xTavVhjREyBaZ1wladlHg46LAqblg"
+                    }
+                    ]
+               },
+               {"id": "yahoo", "keys": [{"url" : "*", "key" : "jmaki-key"}]}
+             ]
+    }
+}

@@ -1,0 +1,31 @@
+.plain {
+ color: black;
+ height:25;
+ font-size:18px;
+ font-weight: bold;
+ font-family: Arial;
+ background: white;
+}
+
+.over {
+ color: white;
+ height:25;
+ font-size:18px;
+ font-weight: bold;
+ font-family: Arial;
+ background: blue;
+ cursor: pointer;
+}
+
+
+.listDiv {
+	position: relative;
+	width: 400px;
+	height: 300px;
+	overflow: auto;
+}
+
+.listContainer {
+	width: 400px;
+	height: 350px;
+}

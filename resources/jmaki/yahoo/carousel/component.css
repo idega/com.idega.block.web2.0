@@ -1,0 +1,137 @@
+/**
+ * Standard Configuration. It is advised that this section NOT be modified as the
+ * carousel.js expects the behavior outlined below.
+ **/
+				
+.carousel-component ul.carousel-list { 
+	width:10000000px;
+	position:relative;
+	z-index:1; 
+}
+
+.carousel-component .carousel-list li { 
+	float:left;
+	list-style:none;
+	overflow:hidden;
+}
+
+.carousel-component .carousel-vertical li { 
+	float:none;
+	margin-bottom:0px;
+}
+.carousel-component ul.carousel-vertical { 
+	width:auto;
+	height:1000000px;
+}
+
+.carousel-component .carousel-clip-region { 
+	overflow:hidden;
+	margin:0px auto;
+	position:relative; 
+}
+
+.carousel-component { 
+	position:relative;
+	overflow:hidden;
+	visibility:hidden; /* component turns it on when first item is rendered */
+	background:#e2edfa;
+	padding:6px 0px 6px 0px;
+	-moz-border-radius:10px;
+	color:#618cbe;
+}
+
+.carousel-component ul.carousel-list { 
+	margin:0px;
+	padding:0px 0px 0px 0px;
+}
+
+.carousel-component .carousel-list li { 
+	text-align:center;
+	margin:0px 0px 0px 0px;
+	padding:0px;
+	font:10px verdana,arial,sans-serif;
+	color:gray;
+}
+
+.carousel-component .carousel-vertical li { 
+}
+
+.carousel-component ul.carousel-vertical { 
+}
+
+.carousel-component .carousel-list li { 
+	width:79px; /*75 + 1 + 1 + 1 + 1 */
+}
+
+.carousel-component .carousel-list li a { 
+	display:block;
+	border:1px solid #e2edfa;
+	outline:none;
+	-moz-outline:none; 
+}
+
+.carousel-component .carousel-list li a:hover { 
+	border: 1px solid #87bf4e; 
+}
+
+.carousel-component .carousel-list li.active a { 
+	border:1px solid #708fc7; 
+}
+
+.carousel-component .carousel-list li img { 
+	border:1px solid #999;
+	display:block; 
+}
+
+.carousel-component .carousel-list li strong { 
+	display:block; 
+}
+									
+.prev-arrow-enabled { 
+	position:absolute;
+    width: 27px;
+    height:22px;
+    left:5px; 
+	top:40px;
+    border-size: 1px;
+    backgroundr:red;
+    background: url(imgs/left-enabled.gif) 0 0 no-repeat;
+	z-index:3;
+	cursor:pointer;
+}
+
+.prev-arrow-disabled { 
+	position:absolute;
+    width: 27px;
+    height:22px;
+    left:5px; 
+	top:40px;
+    border-size: 1px;
+    backgroundr:red;
+    background: url(imgs/left-disabled.gif) 0 0 no-repeat;
+	z-index:3;
+	cursor:pointer;
+}
+
+.next-arrow-enabled { 
+	position:absolute;
+    width: 27px;
+    height:22px;
+    right:5px; 
+	top:40px;
+    border-size: 1px;
+    backgroundr:red;
+    background: url(imgs/right-enabled.gif) 0 0 no-repeat;
+	z-index:3;
+	cursor:pointer;
+}
+
+.next-arrow-disabled { 
+	position:absolute;
+    background: url(imgs/right-disabled.gif);
+	top:40px;
+	z-index:3;
+	cursor:pointer; 
+	right:5px; 
+}
+

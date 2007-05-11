@@ -1,0 +1,13 @@
+.dojoHtmlFisheyeListBar {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.outerbar {
+	background-color: #666;
+	text-align: center;
+	position: relative;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+}
