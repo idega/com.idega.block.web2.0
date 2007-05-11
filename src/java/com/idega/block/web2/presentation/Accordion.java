@@ -116,7 +116,8 @@ public class Accordion extends Block {
 							.append(accordionId)
 							.append(" = null; \n")
 							.append("var canStartUsingSound = false; \n")
-							.append("window.onload = function() { \n")
+//							.append("window.onload = function() { \n")
+							.append("function setAccordion"+accordionId+"() { \n")
 							//.append("function createAccordion").append(id).append("()").append("{ \n")
 							.append("\tvar stretchers = $$('div.acStretch").append(this.accordionId).append("'); \n")
 							.append("\tvar togglers = $$('div.acToggle").append(this.accordionId).append("'); \n")
@@ -134,8 +135,9 @@ public class Accordion extends Block {
 							scriptString.append("\t\t").append(getOnBackgroundScriptString());
 					}
 					
-					scriptString.append("\t\t} \n").append("\t}); \n").append(
-							"} \n");
+					scriptString.append("\t\t} \n").append("\t}); \n")
+					.append("} \n");
+					scriptString.append("registerEvent(window, 'load', setAccordion"+accordionId+");");
 					scriptString.append("</script> \n");
 					setScriptString(scriptString.toString());
 				}				
