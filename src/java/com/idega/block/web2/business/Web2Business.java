@@ -244,4 +244,14 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMoodalboxLibRootFolder
 	 */
 	public String getBundleURIToMoodalboxLibRootFolder(String versionNumber) throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getTranscornersScriptFilePath
+	 */
+	public String getTranscornersScriptFilePath();
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getReflectionForMootoolsScriptFilePath
+	 */
+	public String getReflectionForMootoolsScriptFilePath();
 }
