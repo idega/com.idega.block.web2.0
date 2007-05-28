@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.26 2007/05/13 14:53:05 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.27 2007/05/28 15:35:30 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -28,10 +28,10 @@ import com.idega.idegaweb.IWBundle;
  * Transcorners - Rounds corners of provided DOM element, based on Mootools: http://inviz.ru/moo/transcorners/
  * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
  * 
- * Last modified: $Date: 2007/05/13 14:53:05 $ by $Author: valdas $
+ * Last modified: $Date: 2007/05/28 15:35:30 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.26 $
+ * @version $Revision: 1.27 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -93,6 +93,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String TRANSCORNERS_ROOT_FOLDER_NAME_PREFIX = "transcorners";
 	public static final String REFLECTION_ROOT_FOLDER_NAME_PREFIX = "reflection";
 	public static final String REFLECTION_FOR_MOOTOOLS_ROOT_FOLDER_NAME_PREFIX = "for_mootools";
+	public static final String CODEPRESS_ROOT_FOLDER_NAME_PREFIX = "codepress";
+	
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -105,6 +107,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String CONTROL_MODAL_JS_FILE_NAME = "control.modal.js";
 	public static final String NIFTYCUBE_JS_FILE_NAME = "niftycube.js";
 	public static final String TRANSCORNERS_JS_FILE_NAME = "Transcorners.js";
+	public static final String CODEPRESS_JS_FILE_NAME = "codepress.js";
 	
 	public static final String SOUNDMANAGER2_JS_FILE_NAME = "soundmanager2.js";
 	public static final String SOUNDMANAGER2_FLASH_FILE = "soundmanager2.swf";
@@ -154,6 +157,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	private String transcornersScriptFilePath = null;
 	
 	private String reflectionForMootoolsScriptFilePath = null;
+	
+	private String codePressScriptFilePath = null;
 	
 	/**
 	 * 
@@ -598,5 +603,14 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 			reflectionForMootoolsScriptFilePath = script.toString();
 		}
 		return reflectionForMootoolsScriptFilePath;
+	}
+	
+	public String getCodePressScriptFilePath() {
+		if (codePressScriptFilePath == null) {
+			StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(CODEPRESS_ROOT_FOLDER_NAME_PREFIX);
+			script.append(SLASH).append(CODEPRESS_JS_FILE_NAME);
+			codePressScriptFilePath = script.toString();
+		}
+		return codePressScriptFilePath;
 	}
 }

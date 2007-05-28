@@ -1,8 +1,9 @@
 package com.idega.block.web2.business;
 
 
-import com.idega.business.IBOService;
 import java.rmi.RemoteException;
+
+import com.idega.business.IBOService;
 
 public interface Web2Business extends IBOService {
 	/**
@@ -254,4 +255,9 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getReflectionForMootoolsScriptFilePath
 	 */
 	public String getReflectionForMootoolsScriptFilePath();
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getCodePressScriptFilePath
+	 */
+	public String getCodePressScriptFilePath();
 }

@@ -136,3 +136,30 @@ CodePress.run = function() {
 
 if(window.attachEvent) window.attachEvent('onload',CodePress.run);
 else window.addEventListener('DOMContentLoaded',CodePress.run,false);
+
+
+/* 
+Added by Idega Software see http://sourceforge.net/forum/message.php?msg_id=4323351
+Call this method from your forms on submit to let the area submit normally.
+It works well to use registerEvent(window,'submit',CodePress.unWind); anywhere in the body (from iw_core.js)
+*/
+CodePress.unWind = function() { 
+	t = document.getElementsByTagName('textarea'); 
+	for(var i=0,n=t.length;i<n;i++) { 
+		if(t[i].className.match('codepress')) { 
+			id = t[i].id; 
+			id = id.replace(/_cp/, ""); 
+			t[i].id = id; 
+			id=id.replace(/-/, "_"); 
+			t[i].value = eval(id).getCode(); 
+			t[i].disabled = false; 
+		}  
+	} 
+} 
+
+try{
+	registerEvent(window,'submit',CodePress.unWind);
+}
+catch(error){
+	alert(error + '. Failed to use registerEvent method from iw_core.js, make sure you call CodePress.unWind on your submit');
+}
