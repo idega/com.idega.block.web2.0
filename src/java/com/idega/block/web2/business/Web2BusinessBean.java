@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.9.2.3 2007/05/11 17:44:42 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.9.2.4 2007/05/30 17:05:55 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -24,12 +24,14 @@ import com.idega.idegaweb.IWBundle;
  * Thickbox - A lightbox clone that works better in most browsers, based on JQuery. http://jquery.com/demo/thickbox/
  * Niftycube - A library to create rounded corners on anything, http://www.html.it/articoli/niftycube/index.html
  * SoundManager2 - A library that uses a flash object and JS to play sounds, http://www.schillmania.com/projects/soundmanager2/
- * MOOdalBox - an HTML Lightbox, based on Mootools, http://www.e-magine.ro/web-dev-and-design/36/moodalbox/
+ * MOOdalBox - An HTML Lightbox, based on Mootools, http://www.e-magine.ro/web-dev-and-design/36/moodalbox/
+ * Transcorners - Rounds corners of provided DOM element, based on Mootools: http://inviz.ru/moo/transcorners/
+ * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
  * 
- * Last modified: $Date: 2007/05/11 17:44:42 $ by $Author: eiki $
+ * Last modified: $Date: 2007/05/30 17:05:55 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.9.2.3 $
+ * @version $Revision: 1.9.2.4 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -74,6 +76,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String MOOTOOLS_COMPRESSED_SCRIPT_FILE = "mootools-all-compressed.js";
 	public static final String MOOTOOLS_STYLE_FILE = "mootools.css";
 	
+	public static final String REFLECTION_FOR_MOOTOOLS_LATEST_VERSION = Web2BusinessBean.REFLECTION_FOR_MOOTOOLS_1_1_VERSION;
+	public static final String REFLECTION_FOR_MOOTOOLS_1_1_VERSION = "1.1";
+	
 	public static final String PROTOTYPE_LATEST_VERSION = Web2BusinessBean.PROTOTYPE_1_5_0_VERSION;
 	public static final String PROTOTYPE_1_5_0_VERSION = "1.5.0";
 	public static final String PROTOTYPE_1_4_0_VERSION = "1.4.0";
@@ -85,11 +90,14 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String NIFTYCUBE_FOLDER_NAME_PREFIX = "niftycube";
 	public static final String MOOTOOLS_FOLDER_NAME_PREFIX = "mootools";
 	public static final String MOODALBOX_ROOT_FOLDER_NAME_PREFIX = "moodalbox";
+	public static final String TRANSCORNERS_ROOT_FOLDER_NAME_PREFIX = "transcorners";
+	public static final String REFLECTION_ROOT_FOLDER_NAME_PREFIX = "reflection";
+	public static final String REFLECTION_FOR_MOOTOOLS_ROOT_FOLDER_NAME_PREFIX = "for_mootools";
+	public static final String CODEPRESS_ROOT_FOLDER_NAME_PREFIX = "codepress";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
 	public static final String BEHAVIOUR_JS_FILE_NAME = "behaviour.js";
-	public static final String REFLECTION_FOLDER_NAME = "reflection";
 	public static final String REFLECTION_JS_FILE_NAME = "reflection.js";
 	public static final String RICO_JS_FILE_NAME = "rico.js";
 	public static final String DOJO_JS_FILE_NAME = "dojo.js";
@@ -97,6 +105,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String JQUERY_COMPRESSED_JS_FILE_NAME = "jquery-compressed.js";
 	public static final String CONTROL_MODAL_JS_FILE_NAME = "control.modal.js";
 	public static final String NIFTYCUBE_JS_FILE_NAME = "niftycube.js";
+	public static final String TRANSCORNERS_JS_FILE_NAME = "Transcorners.js";
+	public static final String CODEPRESS_JS_FILE_NAME = "codepress.js";
 	
 	public static final String SOUNDMANAGER2_JS_FILE_NAME = "soundmanager2.js";
 	public static final String SOUNDMANAGER2_FLASH_FILE = "soundmanager2.swf";
@@ -142,6 +152,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	private String moodalboxScriptPath = null;
 	private String moodalboxStyleFilePath = null;
 	private String moodalboxStylePath = null;
+	
+	private String transcornersScriptFilePath = null;
+	
+	private String reflectionForMootoolsScriptFilePath = null;
+	
+	private String codePressScriptFilePath = null;
 	
 	/**
 	 * 
@@ -201,7 +217,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public String getBundleURIToReflectionLib(){
 		if(this.reflectionScriptPath==null){
 			StringBuffer buf = new StringBuffer();
-			buf.append(REFLECTION_FOLDER_NAME).append(SLASH).append(REFLECTION_JS_FILE_NAME);
+			buf.append(REFLECTION_ROOT_FOLDER_NAME_PREFIX).append(SLASH).append(REFLECTION_JS_FILE_NAME);
 			
 			this.reflectionScriptPath = getBundleURIWithinScriptsFolder(buf.toString());
 		}
@@ -568,4 +584,32 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 	/** MOOdalBox ends **/
+	
+	public String getTranscornersScriptFilePath() {
+		if (transcornersScriptFilePath == null) {
+			StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(TRANSCORNERS_ROOT_FOLDER_NAME_PREFIX);
+			script.append(SLASH).append(TRANSCORNERS_JS_FILE_NAME);
+			transcornersScriptFilePath = script.toString();
+		}
+		return transcornersScriptFilePath;
+	}
+	
+	public String getReflectionForMootoolsScriptFilePath() {
+		if (reflectionForMootoolsScriptFilePath == null) {
+			StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(REFLECTION_ROOT_FOLDER_NAME_PREFIX);
+			script.append(SLASH).append(REFLECTION_FOR_MOOTOOLS_ROOT_FOLDER_NAME_PREFIX).append(SLASH);
+			script.append(REFLECTION_FOR_MOOTOOLS_LATEST_VERSION).append(REFLECTION_JS_FILE_NAME);
+			reflectionForMootoolsScriptFilePath = script.toString();
+		}
+		return reflectionForMootoolsScriptFilePath;
+	}
+	
+	public String getCodePressScriptFilePath() {
+		if (codePressScriptFilePath == null) {
+			StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(CODEPRESS_ROOT_FOLDER_NAME_PREFIX);
+			script.append(SLASH).append(CODEPRESS_JS_FILE_NAME);
+			codePressScriptFilePath = script.toString();
+		}
+		return codePressScriptFilePath;
+	}
 }
