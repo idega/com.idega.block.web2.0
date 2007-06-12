@@ -118,6 +118,10 @@ var MOOdalBox = {
 		}
 	},
 	
+	addEventToCloseAction: function(action) {
+		this.closelink.addEvent('click', action);
+	},
+	
 	click: function(link) {
 		return this.open (link.href, link.title, link.rel);
 	},
