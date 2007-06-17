@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.28 2007/06/17 12:05:23 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.29 2007/06/17 14:19:48 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -28,10 +28,10 @@ import com.idega.idegaweb.IWBundle;
  * Transcorners - Rounds corners of provided DOM element, based on Mootools: http://inviz.ru/moo/transcorners/
  * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
  * 
- * Last modified: $Date: 2007/06/17 12:05:23 $ by $Author: valdas $
+ * Last modified: $Date: 2007/06/17 14:19:48 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.28 $
+ * @version $Revision: 1.29 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -600,7 +600,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		if (reflectionForMootoolsScriptFilePath == null) {
 			StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(REFLECTION_ROOT_FOLDER_NAME_PREFIX);
 			script.append(SLASH).append(REFLECTION_FOR_MOOTOOLS_ROOT_FOLDER_NAME_PREFIX).append(SLASH);
-			script.append(REFLECTION_FOR_MOOTOOLS_LATEST_VERSION).append(REFLECTION_JS_FILE_NAME);
+			script.append(REFLECTION_FOR_MOOTOOLS_LATEST_VERSION).append(SLASH).append(REFLECTION_JS_FILE_NAME);
 			reflectionForMootoolsScriptFilePath = script.toString();
 		}
 		return reflectionForMootoolsScriptFilePath;
