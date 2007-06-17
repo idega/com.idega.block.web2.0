@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.27 2007/05/28 15:35:30 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.28 2007/06/17 12:05:23 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -28,10 +28,10 @@ import com.idega.idegaweb.IWBundle;
  * Transcorners - Rounds corners of provided DOM element, based on Mootools: http://inviz.ru/moo/transcorners/
  * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
  * 
- * Last modified: $Date: 2007/05/28 15:35:30 $ by $Author: eiki $
+ * Last modified: $Date: 2007/06/17 12:05:23 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.27 $
+ * @version $Revision: 1.28 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -76,8 +76,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String MOOTOOLS_COMPRESSED_SCRIPT_FILE = "mootools-all-compressed.js";
 	public static final String MOOTOOLS_STYLE_FILE = "mootools.css";
 	
-	public static final String REFLECTION_FOR_MOOTOOLS_LATEST_VERSION = Web2BusinessBean.REFLECTION_FOR_MOOTOOLS_1_1_VERSION;
+	public static final String REFLECTION_FOR_MOOTOOLS_LATEST_VERSION = Web2BusinessBean.REFLECTION_FOR_MOOTOOLS_1_2_VERSION;
 	public static final String REFLECTION_FOR_MOOTOOLS_1_1_VERSION = "1.1";
+	public static final String REFLECTION_FOR_MOOTOOLS_1_2_VERSION = "1.2";
 	
 	public static final String PROTOTYPE_LATEST_VERSION = Web2BusinessBean.PROTOTYPE_1_5_0_VERSION;
 	public static final String PROTOTYPE_1_5_0_VERSION = "1.5.0";
