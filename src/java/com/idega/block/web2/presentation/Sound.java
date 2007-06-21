@@ -6,8 +6,8 @@ import org.apache.myfaces.renderkit.html.util.AddResource;
 import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
 
 import com.idega.block.web2.business.Web2Business;
-import com.idega.business.IBOLookup;
 import com.idega.business.IBOLookupException;
+import com.idega.business.SpringBeanLookup;
 import com.idega.idegaweb.IWApplicationContext;
 import com.idega.idegaweb.IWMainApplication;
 import com.idega.presentation.Block;
@@ -67,8 +67,7 @@ public class Sound extends Block {
 	}
 
 	protected Web2Business getWeb2(IWApplicationContext iwac) throws IBOLookupException {
-		Web2Business business = (Web2Business) IBOLookup.getServiceInstance(iwac, Web2Business.class);
-		return business;
+		return (Web2Business) SpringBeanLookup.getInstance().getSpringBean(iwac, Web2Business.class);
 	}
 
 	/**

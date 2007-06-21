@@ -4,7 +4,9 @@ package com.idega.block.web2.business;
 import java.rmi.RemoteException;
 
 import com.idega.business.IBOService;
+import com.idega.business.SpringBeanName;
 
+@SpringBeanName("web2bean")
 public interface Web2Business extends IBOService {
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToBehaviourLib

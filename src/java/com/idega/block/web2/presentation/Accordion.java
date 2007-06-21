@@ -10,7 +10,7 @@ import org.apache.myfaces.renderkit.html.util.AddResource;
 import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
 
 import com.idega.block.web2.business.Web2Business;
-import com.idega.business.IBOLookup;
+import com.idega.business.SpringBeanLookup;
 import com.idega.presentation.Block;
 import com.idega.presentation.IWContext;
 import com.idega.presentation.Layer;
@@ -79,7 +79,7 @@ public class Accordion extends Block {
 		//Page parentPage = PresentationObjectUtil.getParentPage(this);
 		//if (parentPage != null) {
 			try {
-				Web2Business business = (Web2Business) IBOLookup.getServiceInstance(iwc, Web2Business.class);
+				Web2Business business = (Web2Business) SpringBeanLookup.getInstance().getSpringBean(iwc, Web2Business.class);
 				String styleURI = business.getBundleURIToMootoolsStyleFile();
 				AddResource resourceAdder = AddResourceFactory.getInstance(iwc.getRequest());
 				
