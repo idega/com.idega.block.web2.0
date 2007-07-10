@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.29 2007/06/17 14:19:48 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.30 2007/07/10 10:55:32 civilis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -28,10 +28,10 @@ import com.idega.idegaweb.IWBundle;
  * Transcorners - Rounds corners of provided DOM element, based on Mootools: http://inviz.ru/moo/transcorners/
  * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
  * 
- * Last modified: $Date: 2007/06/17 14:19:48 $ by $Author: valdas $
+ * Last modified: $Date: 2007/07/10 10:55:32 $ by $Author: civilis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.29 $
+ * @version $Revision: 1.30 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -95,6 +95,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String REFLECTION_ROOT_FOLDER_NAME_PREFIX = "reflection";
 	public static final String REFLECTION_FOR_MOOTOOLS_ROOT_FOLDER_NAME_PREFIX = "for_mootools";
 	public static final String CODEPRESS_ROOT_FOLDER_NAME_PREFIX = "codepress";
+	public static final String JQUERY_FOLDER_NAME_PREFIX = "jquery";
 	
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
@@ -104,7 +105,13 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String RICO_JS_FILE_NAME = "rico.js";
 	public static final String DOJO_JS_FILE_NAME = "dojo.js";
 	public static final String JMAKI_JS_FILE_NAME = "jmaki.js";
-	public static final String JQUERY_COMPRESSED_JS_FILE_NAME = "jquery-compressed.js";
+	
+	public static final String JQUERY_COMPRESSED_JS_FILE_NAME_OLD = "jquery-compressed.js";
+	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
+	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
+	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_1_3_1_VERSION;
+	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
+	
 	public static final String CONTROL_MODAL_JS_FILE_NAME = "control.modal.js";
 	public static final String NIFTYCUBE_JS_FILE_NAME = "niftycube.js";
 	public static final String TRANSCORNERS_JS_FILE_NAME = "Transcorners.js";
@@ -129,6 +136,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	protected String jMakiWidgetsURI;
 	protected String jMakiScriptPath;
 	protected String dojoScriptPath;
+	protected String jQueryCompressedScriptPathOld = null;
 	protected String jQueryCompressedScriptPath = null;
 	protected String controlModalScriptPath = null;
 	
@@ -322,6 +330,29 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	/**
 	 * 
+	 * @return The full URI with context to the latest version of the jquery-compressed.js
+	 */
+	public String getBundleURIToJQueryLib() {
+		
+		if(jQueryCompressedScriptPath == null)
+			jQueryCompressedScriptPath = getBundleURIToJQueryLib(JQUERY_LATEST_VERSION);
+		
+		return jQueryCompressedScriptPath;
+	}
+	
+	/**
+	 * @param jqueryLibraryVersion The version for the jquery library
+	 * @return The full URI with context to the specific version of the jquery-compressed.js
+	 */
+	public String getBundleURIToJQueryLib(String jqueryLibraryVersion){
+		StringBuffer buf = new StringBuffer();
+		buf.append(JQUERY_FOLDER_NAME_PREFIX).append(SLASH).append(jqueryLibraryVersion).append(SLASH).append(JQUERY_COMPRESSED_SCRIPT_FILE);
+//		buf.append(JQUERY_FOLDER_NAME_PREFIX).append(SLASH).append(jqueryLibraryVersion).append(SLASH).append(JQUERY_SCRIPT_FILE);
+		return getBundleURIWithinScriptsFolder(buf.toString());
+	}
+	
+	/**
+	 * 
 	 * @return The full URI with context to the mootools.css (same for all versions)
 	 */
 	public String getBundleURIToMootoolsStyleFile() {
@@ -509,11 +540,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		return thickboxStyleFilePath;
 	}
 	
-	public String getBundleURIToJQueryLib() {
-		if (jQueryCompressedScriptPath == null) {
-			jQueryCompressedScriptPath = getBundleURIWithinScriptsFolder(JQUERY_COMPRESSED_JS_FILE_NAME);
+	public String getBundleURIToJQueryLibOLD() {
+		if (jQueryCompressedScriptPathOld == null) {
+			jQueryCompressedScriptPathOld = getBundleURIWithinScriptsFolder(JQUERY_COMPRESSED_JS_FILE_NAME_OLD);
 		}
-		return jQueryCompressedScriptPath;
+		return jQueryCompressedScriptPathOld;
 	}
 	
 	public String getPrototypeScriptFilePath(String version) {

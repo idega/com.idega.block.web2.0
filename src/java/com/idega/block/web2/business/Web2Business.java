@@ -77,6 +77,16 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsLib
 	 */
 	public String getBundleURIToMootoolsLib(String mootoolsLibraryVersion) throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToJQueryLib
+	 */
+	public String getBundleURIToJQueryLib() throws RemoteException;
+
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToJQueryLib
+	 */
+	public String getBundleURIToJQueryLib(String jqueryLibraryVersion) throws RemoteException;
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsStyleFile
@@ -196,7 +206,7 @@ public interface Web2Business extends IBOService {
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToJQueryLib
 	 */
-	public String getBundleURIToJQueryLib() throws RemoteException;
+	public String getBundleURIToJQueryLibOLD() throws RemoteException;
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getPrototypeScriptFilePath
