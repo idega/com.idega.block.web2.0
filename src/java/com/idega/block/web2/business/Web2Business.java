@@ -272,4 +272,14 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getCodePressScriptFilePath
 	 */
 	public String getCodePressScriptFilePath();
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsLib
+	 */
+	public String getBundleURIToMootoolsLib(boolean needFullScript) throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsLib
+	 */
+	public String getBundleURIToMootoolsLib(String mootoolsLibraryVersion, boolean needFullScript) throws RemoteException;
 }

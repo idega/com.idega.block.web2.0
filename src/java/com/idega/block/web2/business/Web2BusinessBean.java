@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.30 2007/07/10 10:55:32 civilis Exp $
+ * $Id: Web2BusinessBean.java,v 1.31 2007/07/13 05:51:07 alexis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -28,10 +28,10 @@ import com.idega.idegaweb.IWBundle;
  * Transcorners - Rounds corners of provided DOM element, based on Mootools: http://inviz.ru/moo/transcorners/
  * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
  * 
- * Last modified: $Date: 2007/07/10 10:55:32 $ by $Author: civilis $
+ * Last modified: $Date: 2007/07/13 05:51:07 $ by $Author: alexis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.30 $
+ * @version $Revision: 1.31 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -644,5 +644,32 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 			codePressScriptFilePath = script.toString();
 		}
 		return codePressScriptFilePath;
+	}
+	
+	/**
+	 * @param needFullScript true if the full version of the script needs to be included
+	 * @return The full URI with context to the latest version of the mootools-all-compressed.js OR mootools-all.js depending on the parameter
+	 */
+	public String getBundleURIToMootoolsLib(boolean needFullScript){
+		if(this.mooToolsScriptPath==null){
+			this.mooToolsScriptPath = getBundleURIToMootoolsLib(MOOTOOLS_LATEST_VERSION, needFullScript);
+		}
+		
+		return this.mooToolsScriptPath;
+	}
+	
+	/**
+	 * @param needFullScript true if the full version of the script needs to be included
+	 * @param mootoolsLibraryVersion The version for the mootools library
+	 * @return The full URI with context to the specific version of the mootools-all-compressed.js
+	 */
+	public String getBundleURIToMootoolsLib(String mootoolsLibraryVersion, boolean needFullScript){
+		StringBuffer buf = new StringBuffer();
+		if(needFullScript) {
+			buf.append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(mootoolsLibraryVersion).append(SLASH).append(MOOTOOLS_SCRIPT_FILE);
+		} else {
+			buf.append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(mootoolsLibraryVersion).append(SLASH).append(MOOTOOLS_COMPRESSED_SCRIPT_FILE);
+		}
+		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 }
