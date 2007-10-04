@@ -88,9 +88,8 @@ public class Sound extends Block {
 	 * @return a scriptlet for playing a sound file
 	 */
 	public String getPlayScriptlet(String soundName, String soundFileURL, String options) {
-		StringBuffer scriptString = new StringBuffer();
+		StringBuffer scriptString = new StringBuffer("if (soundManager._didInit) {");
 		
-//		todo use create sound if the sound is NOT already loaded
 		scriptString.append("\nif(!soundManager.getSoundById('").append(soundName).append("', true)){  \n")
 		.append("soundManager.createSound({id:'").append(soundName).append("',url:'").append(soundFileURL).append("'}); \n").append("} \n");
 		
@@ -101,8 +100,7 @@ public class Sound extends Block {
 			scriptString.append("soundManager.play('").append(soundName).append("',{").append(options).append("}); \n");
 		}
 		
-		
-		
+		scriptString.append("}");
 		return scriptString.toString();
 	}
 	
