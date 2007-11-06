@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.32 2007/07/31 14:57:22 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.33 2007/11/06 13:06:43 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -28,10 +28,10 @@ import com.idega.idegaweb.IWBundle;
  * Transcorners - Rounds corners of provided DOM element, based on Mootools: http://inviz.ru/moo/transcorners/
  * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
  * 
- * Last modified: $Date: 2007/07/31 14:57:22 $ by $Author: valdas $
+ * Last modified: $Date: 2007/11/06 13:06:43 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.32 $
+ * @version $Revision: 1.33 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -85,6 +85,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String PROTOTYPE_1_5_0_VERSION = "1.5.0";
 	public static final String PROTOTYPE_1_4_0_VERSION = "1.4.0";
 	
+	public static final String YUI_LATEST_VERSION = Web2BusinessBean.YUI_2_3_0_VERSION;
+	public static final String YUI_2_3_0_VERSION = "2.3.0";
+	public static final String YUI_UTILITIES_SCRIPT_FILE = "utilities.js";
+	public static final String YUI_UTILITIES_COMRESSED_SCRIPT_FILE = "utilities_compressed.js";
+	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
 	public static final String PROTOTYPE_ROOT_FOLDER_NAME_PREFIX = "prototype";
 	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
@@ -97,6 +102,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String REFLECTION_FOR_MOOTOOLS_ROOT_FOLDER_NAME_PREFIX = "for_mootools";
 	public static final String CODEPRESS_ROOT_FOLDER_NAME_PREFIX = "codepress";
 	public static final String JQUERY_FOLDER_NAME_PREFIX = "jquery";
+	public static final String YUI_FOLDER_NAME_PREFIX = "yui";
 	
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
@@ -672,5 +678,24 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 			buf.append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(mootoolsLibraryVersion).append(SLASH).append(MOOTOOLS_COMPRESSED_SCRIPT_FILE);
 		}
 		return getBundleURIWithinScriptsFolder(buf.toString());
+	}
+	
+	public String getBundleURIToYUIScript(String version, boolean needFullScript) {
+		StringBuffer script = new StringBuffer(YUI_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH);
+		if (needFullScript) {
+			script.append(YUI_UTILITIES_COMRESSED_SCRIPT_FILE);
+		}
+		else {
+			script.append(YUI_UTILITIES_SCRIPT_FILE);
+		}
+		return getBundleURIWithinScriptsFolder(script.toString());
+	}
+	
+	public String getBundleURIToYUIScript(boolean needFullScript) {
+		return getBundleURIToYUIScript(YUI_LATEST_VERSION, needFullScript);
+	}
+	
+	public String getBundleURIToYUIScript() {
+		return getBundleURIToYUIScript(YUI_LATEST_VERSION, false);
 	}
 }

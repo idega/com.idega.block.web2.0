@@ -282,4 +282,10 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToMootoolsLib
 	 */
 	public String getBundleURIToMootoolsLib(String mootoolsLibraryVersion, boolean needFullScript) throws RemoteException;
+	
+	public String getBundleURIToYUIScript(String version, boolean needFullScript);
+	
+	public String getBundleURIToYUIScript(boolean needFullScript);
+	
+	public String getBundleURIToYUIScript();
 }
