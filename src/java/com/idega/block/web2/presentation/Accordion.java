@@ -15,6 +15,7 @@ import com.idega.business.SpringBeanLookup;
 import com.idega.presentation.Block;
 import com.idega.presentation.IWContext;
 import com.idega.presentation.Layer;
+import com.idega.presentation.Span;
 import com.idega.presentation.text.Text;
 
 
@@ -79,6 +80,7 @@ public class Accordion extends Block {
 		this.accordionId = id;
 	}
 	
+	@Override
 	public void main(IWContext iwc) {
 		Web2Business business = (Web2Business) SpringBeanLookup.getInstance().getSpringBean(iwc, Web2Business.class);
 		
@@ -104,7 +106,7 @@ public class Accordion extends Block {
 		}
 
 		//add sounds :)
-		if (useSound) {
+		/*if (useSound) {
 			Sound sound = new Sound();
 			this.add(sound);
 			StringBuffer soundPlay = new StringBuffer();
@@ -114,7 +116,7 @@ public class Accordion extends Block {
 				.append("\tcanStartUsingSound=true; \n");
 			
 			setOnActiveScriptString(soundPlay.toString());				
-		}
+		}*/
 
 		if (getScriptString() == null) {
 			StringBuffer scriptString = new StringBuffer();
@@ -179,7 +181,10 @@ public class Accordion extends Block {
 		h.setId(panelID+"Header");
 		//for rapidweaver and typical mootools css
 		h.setStyleClass("acToggle acToggle"+accordionId);
-		h.getChildren().add(header);
+		
+		Span span = new Span(header);
+		
+		h.getChildren().add(span);
 		
 		Layer c = new Layer();
 		c.setId(panelID+"Content");
@@ -193,14 +198,16 @@ public class Accordion extends Block {
 
 	}
 	
+	@Override
 	public void encodeBegin(FacesContext fc)throws IOException{
 		super.encodeBegin(fc);
 		
-		UIComponent panels = (UIComponent)this.getFacet(PANELS_FACET_NAME);
+		UIComponent panels = this.getFacet(PANELS_FACET_NAME);
 		this.renderChild(fc,panels);
 		
 	}
 	
+	@Override
 	public Object clone(){
 		Accordion obj = (Accordion) super.clone();
 		obj.panels = this.panels;
@@ -213,6 +220,7 @@ public class Accordion extends Block {
 	}
 	
 	
+	@Override
 	public Object saveState(FacesContext context) {
 		Object values[] = new Object[3];
 		values[0] = super.saveState(context);
@@ -221,12 +229,14 @@ public class Accordion extends Block {
 		return values;
 	}
 	
+	@Override
 	public void restoreState(FacesContext context, Object state) {
 		Object values[] = (Object[])state;
 		super.restoreState(context, values[0]);
 		this.accordionId = (String) values[1];
 	}
 
+	@Override
 	public String getFamily() {
 		return null;
 	}
