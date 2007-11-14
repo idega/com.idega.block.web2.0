@@ -148,7 +148,6 @@ public class Accordion extends Block {
 			scriptString.append("</script> \n");
 			setScriptString(scriptString.toString());
 		}
-		System.out.println(getScriptString());
 				
 		this.add(new Text(getScriptString()));
 		
