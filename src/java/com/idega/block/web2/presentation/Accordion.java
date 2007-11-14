@@ -1,7 +1,8 @@
 package com.idega.block.web2.presentation;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.rmi.RemoteException;
+import java.util.List;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -20,14 +21,18 @@ import com.idega.presentation.text.Text;
 public class Accordion extends Block {
 
 	protected static final String PANELS_FACET_NAME = "PANELS";
-	private Collection panels = null;
-	private String accordionId = "";
+	
+	private List<UIComponent> panels = null;
+	
 	private int panelCount = 0;
-	private boolean includeJavascript = true;
+	
+	private String accordionId = "";
 	private String onActiveScriptString = null;
 	private String onBackgroundScriptString = null;
 	private String scriptString = null;
+	
 	private boolean useSound = true;
+	private boolean includeJavascript = true;
 	
 	public String getOnActiveScriptString() {
 		return onActiveScriptString;
@@ -75,79 +80,77 @@ public class Accordion extends Block {
 	}
 	
 	public void main(IWContext iwc) {
-	
-		//Page parentPage = PresentationObjectUtil.getParentPage(this);
-		//if (parentPage != null) {
+		Web2Business business = (Web2Business) SpringBeanLookup.getInstance().getSpringBean(iwc, Web2Business.class);
+		
+		String styleURI = null;
+		try {
+			styleURI = business.getBundleURIToMootoolsStyleFile();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		AddResource resourceAdder = AddResourceFactory.getInstance(iwc.getRequest());
+		//	add style
+		resourceAdder.addStyleSheet(iwc, AddResource.HEADER_BEGIN, styleURI);
+
+		if (includeJavascript) {
+			String mootoolsURI = null;
 			try {
-				Web2Business business = (Web2Business) SpringBeanLookup.getInstance().getSpringBean(iwc, Web2Business.class);
-				String styleURI = business.getBundleURIToMootoolsStyleFile();
-				AddResource resourceAdder = AddResourceFactory.getInstance(iwc.getRequest());
-				
-//				add style
-				resourceAdder.addStyleSheet(iwc, AddResource.HEADER_BEGIN,styleURI);
-
-				
-				
-				if(includeJavascript == true) {
-					String mootoolsURI = business.getBundleURIToMootoolsLib();
-					//add a javascript to the header :)
-					resourceAdder.addJavaScriptAtPosition(iwc, AddResource.HEADER_BEGIN,mootoolsURI);
-//						parentPage.addScriptSource(mootoolsURI);
-//						parentPage.addStyleSheetURL(styleURI);	
-				}
-
-				//add sounds :)
-				if(useSound){
-					Sound sound = new Sound();
-					this.getChildren().add(sound);
-					StringBuffer soundPlay = new StringBuffer();
-					soundPlay.append("\tif(canStartUsingSound){  \n")
-					.append("\t").append(sound.getPlayScriptlet("clicksound", sound.getTestSoundURI(),"volume:10,pan:-50"))
-					.append("\t} \n")
-					.append("\tcanStartUsingSound=true; \n");
-					
-					setOnActiveScriptString(soundPlay.toString());				
-				}
-
-				if (getScriptString()==null) {
-					StringBuffer scriptString = new StringBuffer();
-					scriptString.append("<script type=\"text/javascript\" > \n")
-							.append("var iwAccordion")
-							.append(accordionId)
-							.append(" = null; \n")
-							.append("var canStartUsingSound = false; \n")
-//							.append("window.onload = function() { \n")
-							.append("function setAccordion"+accordionId+"() { \n")
-							//.append("function createAccordion").append(id).append("()").append("{ \n")
-							.append("\tvar stretchers = $$('div.acStretch").append(this.accordionId).append("'); \n")
-							.append("\tvar togglers = $$('div.acToggle").append(this.accordionId).append("'); \n")
-							.append("\tiwAccordion")
-							.append(accordionId)
-							.append(" = new Fx.Accordion(togglers, stretchers, { alwaysHide:false, opacity:false, transition: Fx.Transitions.quadOut, \n");
-					
-					scriptString.append("\t\tonActive: function(toggler, i){ \n");
-					if (getOnActiveScriptString() != null) {
-						scriptString.append("\t\t").append(getOnActiveScriptString());
-					}
-					
-					scriptString.append("\t\t}, \n").append("\t\tonBackground: function(toggler, i){ \n");
-						if (getOnBackgroundScriptString() != null) {
-							scriptString.append("\t\t").append(getOnBackgroundScriptString());
-					}
-					
-					scriptString.append("\t\t} \n").append("\t}); \n")
-					.append("} \n");
-					scriptString.append("registerEvent(window, 'load', setAccordion"+accordionId+");");
-					scriptString.append("</script> \n");
-					setScriptString(scriptString.toString());
-				}				
-				
-				
-				this.getChildren().add(new Text(getScriptString()));
-
-			} catch (Exception e) {
+				mootoolsURI = business.getBundleURIToMootoolsLib();
+			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
+			//	add a javascript to the header :)
+			resourceAdder.addJavaScriptAtPosition(iwc, AddResource.HEADER_BEGIN, mootoolsURI);
+		}
+
+		//add sounds :)
+		if (useSound) {
+			Sound sound = new Sound();
+			this.add(sound);
+			StringBuffer soundPlay = new StringBuffer();
+			soundPlay.append("\tif(canStartUsingSound){  \n")
+				.append("\t").append(sound.getPlayScriptlet("clicksound", sound.getTestSoundURI(),"volume:10,pan:-50"))
+				.append("\t} \n")
+				.append("\tcanStartUsingSound=true; \n");
+			
+			setOnActiveScriptString(soundPlay.toString());				
+		}
+
+		if (getScriptString() == null) {
+			StringBuffer scriptString = new StringBuffer();
+			scriptString.append("<script type=\"text/javascript\" > \n")
+						.append("var iwAccordion")
+						.append(accordionId)
+						.append(" = null; \n")
+						.append("var canStartUsingSound = false; \n")
+						.append("function setAccordion"+accordionId+"() { \n")
+						.append("\tvar stretchers = $$('div.acStretch").append(this.accordionId).append("'); \n")
+						.append("\tvar togglers = $$('div.acToggle").append(this.accordionId).append("'); \n")
+						.append("\tiwAccordion")
+						.append(accordionId)
+						.append(" = new Accordion(togglers, stretchers, {opacity: false, show: 0, transition: Fx.Transitions.quadOut, \n");
+					
+			scriptString.append("\t\tonActive: function(toggler, element){ \n");
+			
+			if (getOnActiveScriptString() != null) {
+				scriptString.append("\t\t").append(getOnActiveScriptString());
+			}
+					
+			scriptString.append("\t\t}, \n").append("\t\tonBackground: function(toggler, element){ \n");
+			if (getOnBackgroundScriptString() != null) {
+				scriptString.append("\t\t").append(getOnBackgroundScriptString());
+			}
+					
+			scriptString.append("\t\t} \n").append("\t}, $('").append(accordionId).append("')); \n")
+						.append("} \n");
+			
+			scriptString.append("registerEvent(window, 'load', setAccordion"+accordionId+");");
+			scriptString.append("</script> \n");
+			setScriptString(scriptString.toString());
+		}
+		System.out.println(getScriptString());
+				
+		this.add(new Text(getScriptString()));
 		
 	}
 	
@@ -157,8 +160,8 @@ public class Accordion extends Block {
 
 	public void addPanel(String panelID, UIComponent header, UIComponent content) {
 		//get outerlayer (facet)
-		Layer panels = (Layer)this.getFacet(PANELS_FACET_NAME);
-		if(panels==null){
+		Layer panels = (Layer) this.getFacet(PANELS_FACET_NAME);
+		if (panels==null) {
 			panels = new Layer();
 			if("".equals(accordionId)){
 				accordionId = "accordionContainer";
