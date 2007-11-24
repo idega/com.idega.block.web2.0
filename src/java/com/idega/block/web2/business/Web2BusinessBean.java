@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.33 2007/11/06 13:06:43 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.34 2007/11/24 18:22:10 civilis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -28,10 +28,10 @@ import com.idega.idegaweb.IWBundle;
  * Transcorners - Rounds corners of provided DOM element, based on Mootools: http://inviz.ru/moo/transcorners/
  * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
  * 
- * Last modified: $Date: 2007/11/06 13:06:43 $ by $Author: valdas $
+ * Last modified: $Date: 2007/11/24 18:22:10 $ by $Author: civilis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.33 $
+ * @version $Revision: 1.34 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -101,6 +101,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String REFLECTION_ROOT_FOLDER_NAME_PREFIX = "reflection";
 	public static final String REFLECTION_FOR_MOOTOOLS_ROOT_FOLDER_NAME_PREFIX = "for_mootools";
 	public static final String CODEPRESS_ROOT_FOLDER_NAME_PREFIX = "codepress";
+	public static final String JQGRID_ROOT_FOLDER_NAME_PREFIX = "jqgrid";
 	public static final String JQUERY_FOLDER_NAME_PREFIX = "jquery";
 	public static final String YUI_FOLDER_NAME_PREFIX = "yui";
 	
@@ -108,6 +109,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
 	public static final String BEHAVIOUR_JS_FILE_NAME = "behaviour.js";
+	public static final String JQGRID_JS_FILE_NAME = "jquery.jqGrid.js";
+	public static final String JQGRID_CSS_FILE_NAME = "grid.css";
 	public static final String REFLECTION_JS_FILE_NAME = "reflection.js";
 	public static final String RICO_JS_FILE_NAME = "rico.js";
 	public static final String DOJO_JS_FILE_NAME = "dojo.js";
@@ -136,6 +139,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	protected String rootScriptsFolderBundleURI;
 	protected String rootLibsFolderBundleURI;
 	protected String behaviourScriptPath;
+	protected String jqGridScriptPath;
+	protected String jqGridStylesPath;
 	protected String reflectionScriptPath;
 	protected String scriptaculousScriptPath;
 	protected String prototypeScriptPath;
@@ -188,7 +193,23 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		return this.behaviourScriptPath;
 	}
 	
-	
+	public String getBundleURIToJQGrid(){
+		
+		if (jqGridScriptPath == null) {
+			jqGridScriptPath = new StringBuffer(getBundleURIToScriptsFolder()).append(JQGRID_ROOT_FOLDER_NAME_PREFIX)
+			.append(SLASH).append(JQGRID_JS_FILE_NAME).toString();
+		}
+		return jqGridScriptPath;
+	}
+
+	public String getBundleURIToJQGridStyles(){
+		if (jqGridStylesPath == null) {
+			jqGridStylesPath = new StringBuffer(getBundleURIToScriptsFolder()).append(JQGRID_ROOT_FOLDER_NAME_PREFIX)
+			.append(SLASH).append("style/").append(JQGRID_CSS_FILE_NAME).toString();
+		}
+		return jqGridStylesPath;
+	}
+
 	/**
 	 * 
 	 * @return The full URI with context to the latest version of the SoundManager2 javascript sound api
