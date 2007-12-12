@@ -82,7 +82,7 @@ public class Accordion extends Block {
 	
 	@Override
 	public void main(IWContext iwc) {
-		Web2Business business = (Web2Business) SpringBeanLookup.getInstance().getSpringBean(iwc, Web2Business.class);
+		Web2Business business = SpringBeanLookup.getInstance().getSpringBean(iwc, Web2Business.class);
 		
 		String styleURI = null;
 		try {

@@ -67,7 +67,7 @@ public class Sound extends Block {
 	}
 
 	protected Web2Business getWeb2(IWApplicationContext iwac) throws IBOLookupException {
-		return (Web2Business) SpringBeanLookup.getInstance().getSpringBean(iwac, Web2Business.class);
+		return SpringBeanLookup.getInstance().getSpringBean(iwac, Web2Business.class);
 	}
 
 	/**
