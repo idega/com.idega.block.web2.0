@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.34 2007/11/24 18:22:10 civilis Exp $
+ * $Id: Web2BusinessBean.java,v 1.35 2007/12/19 17:15:04 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -11,6 +11,7 @@ package com.idega.block.web2.business;
 
 import com.idega.business.IBOServiceBean;
 import com.idega.idegaweb.IWBundle;
+import com.idega.util.CoreConstants;
 
 /**
  * A service bean with handy methods for getting paths to Web 2.0 script libraries and more.
@@ -27,17 +28,18 @@ import com.idega.idegaweb.IWBundle;
  * MOOdalBox - An HTML Lightbox, based on Mootools, http://www.e-magine.ro/web-dev-and-design/36/moodalbox/
  * Transcorners - Rounds corners of provided DOM element, based on Mootools: http://inviz.ru/moo/transcorners/
  * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
+ * Mootabs - Creates tabs using MooTools. http://www.silverscripting.com/mootabs
  * 
- * Last modified: $Date: 2007/11/24 18:22:10 $ by $Author: civilis $
+ * Last modified: $Date: 2007/12/19 17:15:04 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.34 $
+ * @version $Revision: 1.35 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	private static final long serialVersionUID = -3243625218823349983L;
 	
-	private static final String SLASH = "/";
+	private static final String SLASH = CoreConstants.SLASH;
 
 	public static final String SCRIPTACULOUS_LATEST_VERSION = Web2BusinessBean.SCRIPTACULOUS_VERSION_1_7_0;
 
@@ -90,6 +92,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String YUI_UTILITIES_SCRIPT_FILE = "utilities.js";
 	public static final String YUI_UTILITIES_COMRESSED_SCRIPT_FILE = "utilities_compressed.js";
 	
+	public static final String MOOTABS_LATEST_VERSION = Web2BusinessBean.MOOTABS_1_2_VERSION;
+	public static final String MOOTABS_1_2_VERSION = "1.2";
+	public static final String MOOTABS_SCRIPT_FILE = "mootabs.js";
+	public static final String MOOTABS_STYLE_FILE = "mootabs.css";
+	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
 	public static final String PROTOTYPE_ROOT_FOLDER_NAME_PREFIX = "prototype";
 	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
@@ -104,7 +111,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String JQGRID_ROOT_FOLDER_NAME_PREFIX = "jqgrid";
 	public static final String JQUERY_FOLDER_NAME_PREFIX = "jquery";
 	public static final String YUI_FOLDER_NAME_PREFIX = "yui";
-	
+	public static final String MOOTABS_FOLDER_NAME_PREFIX = "mootabs";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -718,5 +725,25 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	public String getBundleURIToYUIScript() {
 		return getBundleURIToYUIScript(YUI_LATEST_VERSION, false);
+	}
+	
+	private String getPathToMootabs(String version) {
+		return getBundleURIWithinScriptsFolder(new StringBuffer(MOOTABS_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH).toString());
+	}
+	
+	public String getBundleUriToMootabsScript(String version) {
+		return new StringBuffer(getPathToMootabs(version)).append(MOOTABS_SCRIPT_FILE).toString();
+	}
+	
+	public String getBundleUriToMootabsScript() {
+		return getBundleUriToMootabsScript(MOOTABS_LATEST_VERSION);
+	}
+	
+	public String getBundleUriToMootabsStyle(String version) {
+		return new StringBuffer(getPathToMootabs(version)).append(MOOTABS_STYLE_FILE).toString();
+	}
+	
+	public String getBundleUriToMootabsStyle() {
+		return getBundleUriToMootabsStyle(MOOTABS_LATEST_VERSION);
 	}
 }

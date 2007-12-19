@@ -288,4 +288,12 @@ public interface Web2Business extends IBOService {
 	public String getBundleURIToYUIScript(boolean needFullScript);
 	
 	public String getBundleURIToYUIScript();
+	
+	public String getBundleUriToMootabsScript(String version);
+	
+	public String getBundleUriToMootabsScript();
+	
+	public String getBundleUriToMootabsStyle(String version);
+	
+	public String getBundleUriToMootabsStyle();
 }
