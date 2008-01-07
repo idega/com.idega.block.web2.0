@@ -296,4 +296,12 @@ public interface Web2Business extends IBOService {
 	public String getBundleUriToMootabsStyle(String version);
 	
 	public String getBundleUriToMootabsStyle();
+	
+	public String getBundleUriToMooRainbowScript(String version);
+	
+	public String getBundleUriToMooRainbowScript();
+	
+	public String getBundleUriToMooRainbowStyle(String version);
+	
+	public String getBundleUriToMooRainbowStyle();
 }
