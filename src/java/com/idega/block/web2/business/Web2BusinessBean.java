@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.38 2008/02/07 12:48:24 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.39 2008/02/07 15:36:18 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -32,10 +32,10 @@ import com.idega.util.CoreConstants;
  * Mootabs - Creates tabs using MooTools. http://www.silverscripting.com/mootabs
  * mooRainbow - Javascript color picker that allows you to visually choose and use colors as a real and useful application. http://moorainbow.woolly-sheep.net/
  * 
- * Last modified: $Date: 2008/02/07 12:48:24 $ by $Author: eiki $
+ * Last modified: $Date: 2008/02/07 15:36:18 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.38 $
+ * @version $Revision: 1.39 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -681,7 +681,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	public String getSlimboxStyleFilePath() {
 		if (slimboxStyleFilePath == null) {
-			StringBuffer style = new StringBuffer(getMoodalboxStylePath()).append(SLIMBOX_STYLE_FILE);
+			StringBuffer style = new StringBuffer(getSlimboxStylePath()).append(SLIMBOX_STYLE_FILE);
 			slimboxStyleFilePath = style.toString();
 		}
 		return slimboxStyleFilePath;
