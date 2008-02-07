@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.37 2008/02/07 12:30:12 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.38 2008/02/07 12:48:24 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -22,7 +22,7 @@ import com.idega.util.CoreConstants;
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * Mootools - A great Web2 library with effects, plugins, extendable and lightweight, http://www.mootools.net
  * Lightbox - Displays a masked frame in a page, great for presenting images,iframes and more. Two implementations http://www.huddletogether.com/projects/lightbox2/ and http://particletree.com/features/lightbox-gone-wild/
- * Slimbox - A lightbox clone based on mootools
+ * Slimbox - A lightbox clone based on mootools,http://www.digitalia.be/software/slimbox , there is an extended version as well http://homepage.mac.com/yukikun/software/slimbox_ex/
  * Thickbox - A lightbox clone that works better in most browsers, based on JQuery. http://jquery.com/demo/thickbox/
  * Niftycube - A library to create rounded corners on anything, http://www.html.it/articoli/niftycube/index.html
  * SoundManager2 - A library that uses a flash object and JS to play sounds, http://www.schillmania.com/projects/soundmanager2/
@@ -32,10 +32,10 @@ import com.idega.util.CoreConstants;
  * Mootabs - Creates tabs using MooTools. http://www.silverscripting.com/mootabs
  * mooRainbow - Javascript color picker that allows you to visually choose and use colors as a real and useful application. http://moorainbow.woolly-sheep.net/
  * 
- * Last modified: $Date: 2008/02/07 12:30:12 $ by $Author: eiki $
+ * Last modified: $Date: 2008/02/07 12:48:24 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.37 $
+ * @version $Revision: 1.38 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
