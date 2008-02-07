@@ -304,4 +304,7 @@ public interface Web2Business extends IBOService {
 	public String getBundleUriToMooRainbowStyle(String version);
 	
 	public String getBundleUriToMooRainbowStyle();
+	
+	public String getSlimboxScriptFilePath();
+	public String getSlimboxStyleFilePath();
 }

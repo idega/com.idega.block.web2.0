@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.36 2008/01/07 15:17:05 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.37 2008/02/07 12:30:12 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -22,6 +22,7 @@ import com.idega.util.CoreConstants;
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * Mootools - A great Web2 library with effects, plugins, extendable and lightweight, http://www.mootools.net
  * Lightbox - Displays a masked frame in a page, great for presenting images,iframes and more. Two implementations http://www.huddletogether.com/projects/lightbox2/ and http://particletree.com/features/lightbox-gone-wild/
+ * Slimbox - A lightbox clone based on mootools
  * Thickbox - A lightbox clone that works better in most browsers, based on JQuery. http://jquery.com/demo/thickbox/
  * Niftycube - A library to create rounded corners on anything, http://www.html.it/articoli/niftycube/index.html
  * SoundManager2 - A library that uses a flash object and JS to play sounds, http://www.schillmania.com/projects/soundmanager2/
@@ -31,10 +32,10 @@ import com.idega.util.CoreConstants;
  * Mootabs - Creates tabs using MooTools. http://www.silverscripting.com/mootabs
  * mooRainbow - Javascript color picker that allows you to visually choose and use colors as a real and useful application. http://moorainbow.woolly-sheep.net/
  * 
- * Last modified: $Date: 2008/01/07 15:17:05 $ by $Author: valdas $
+ * Last modified: $Date: 2008/02/07 12:30:12 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.36 $
+ * @version $Revision: 1.37 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -65,6 +66,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String THICKBOX_2_1_1_VERSION = "2.1.1";
 	public static final String THICKBOX_SCRIPT_FILE = "thickbox.js";
 	public static final String THICKBOX_STYLE_FILE = "thickbox.css";
+	
+	public static final String SLIMBOX_LATEST_VERSION = Web2BusinessBean.SLIMBOX_1_4_1_VERSION;
+	public static final String SLIMBOX_1_4_1_VERSION = "1.4.1";
+	public static final String SLIMBOX_SCRIPT_FILE = "slimbox.js";
+	public static final String SLIMBOX_STYLE_FILE = "slimbox.css";
 	
 	public static final String MOODALBOX_LATEST_VERSION = Web2BusinessBean.MOODALBOX_1_2_1_VERSION;
 	public static final String MOODALBOX_1_2_1_VERSION = "1.2.1";
@@ -119,6 +125,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String YUI_FOLDER_NAME_PREFIX = "yui";
 	public static final String MOOTABS_FOLDER_NAME_PREFIX = "mootabs";
 	public static final String MOORAINBOW_FOLDER_NAME_PREFIX = "moorainbow";
+	public static final String SLIMBOX_ROOT_FOLDER_NAME_PREFIX = "slimbox";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -188,6 +195,10 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	private String moodalboxScriptPath = null;
 	private String moodalboxStyleFilePath = null;
 	private String moodalboxStylePath = null;
+	
+	private String slimboxScriptPath = null;
+	private String slimboxStylePath = null;
+	private String slimboxStyleFilePath = null;
 	
 	private String transcornersScriptFilePath = null;
 	
@@ -659,6 +670,49 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 	/** MOOdalBox ends **/
+	
+	/** Slimbox starts **/
+	public String getSlimboxScriptFilePath() {
+		StringBuffer script = new StringBuffer(getSlimboxScriptPath());
+		script.append(SLIMBOX_SCRIPT_FILE);
+		
+		return script.toString();
+	}
+	
+	public String getSlimboxStyleFilePath() {
+		if (slimboxStyleFilePath == null) {
+			StringBuffer style = new StringBuffer(getMoodalboxStylePath()).append(SLIMBOX_STYLE_FILE);
+			slimboxStyleFilePath = style.toString();
+		}
+		return slimboxStyleFilePath;
+	}
+	
+	public String getSlimboxStylePath() {
+		if (slimboxStylePath == null) {
+			StringBuffer style = new StringBuffer(getBundleURIToSlimboxLibRootFolder()).append("css").append(SLASH);
+			slimboxStylePath = style.toString();
+		}
+		return slimboxStylePath;
+	}
+	
+	public String getSlimboxScriptPath() {
+		if (slimboxScriptPath == null) {
+			StringBuffer script = new StringBuffer(getBundleURIToSlimboxLibRootFolder()).append("js").append(SLASH);
+			slimboxScriptPath = script.toString();
+		}
+		return slimboxScriptPath;
+	}
+	
+	public String getBundleURIToSlimboxLibRootFolder() {
+		return getBundleURIToSlimboxLibRootFolder(SLIMBOX_LATEST_VERSION);
+	}
+	
+	public String getBundleURIToSlimboxLibRootFolder(String versionNumber) {
+		StringBuffer buf = new StringBuffer();
+		buf.append(SLIMBOX_ROOT_FOLDER_NAME_PREFIX).append(SLASH).append(versionNumber).append(SLASH);
+		return getBundleURIWithinScriptsFolder(buf.toString());
+	}
+	/** Slimbox ends **/
 	
 	public String getTranscornersScriptFilePath() {
 		if (transcornersScriptFilePath == null) {
