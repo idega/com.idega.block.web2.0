@@ -1083,3 +1083,50 @@ jQuery.fn.jqGrid = function( p ) {
 	});
 };
 })(jQuery);
+
+if(JQGrid == null) var JQGrid = function() {};
+if(JQGridParams == null) var JQGridParams = function() {};
+
+JQGridParams.prototype = {
+
+	url: 'local',
+    retrieveMode: 'function',
+    populateFromFunction: function(params, callback) {},
+    datatype: "xml", 
+    height: 250, 
+    colNames: ['Id'],
+	colModel: [{name:'id', index:'id'}], 
+	rowNum: null, 
+	rowList: null, 
+	pager: null, 
+	sortname: 'id',
+	viewrecords: true, 
+	sortorder: "desc", 
+	multiselect: false, 
+	onSelectRow: function(rowId) {}
+};
+
+JQGrid.prototype.createGrid = function(tblSelector, params) {
+
+    this.grid = jQuery(tblSelector);
+    this.grid = this.grid.jqGrid({
+            url: params.url,
+            retrieveMode: params.retrieveMode,
+            populateFromFunction: params.populateFromFunction,
+            datatype: params.datatype, 
+            height: params.height, 
+            colNames: params.colNames,
+            colModel: params.colModel, 
+            rowNum: params.rowNum, 
+            rowList: params.rowList, 
+            pager: params.pager, 
+            sortname: params.sortname,
+            viewrecords: params.viewrecords, 
+            sortorder: params.sortorder, 
+            multiselect: params.multiselect, 
+            subGrid : params.subGrid,
+            onSelectRow: params.onSelectRow
+        });
+        
+        return this.grid;
+}

@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.39 2008/02/07 15:36:18 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.40 2008/02/14 15:48:25 civilis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -32,12 +32,12 @@ import com.idega.util.CoreConstants;
  * Mootabs - Creates tabs using MooTools. http://www.silverscripting.com/mootabs
  * mooRainbow - Javascript color picker that allows you to visually choose and use colors as a real and useful application. http://moorainbow.woolly-sheep.net/
  * 
- * Last modified: $Date: 2008/02/07 15:36:18 $ by $Author: eiki $
+ * Last modified: $Date: 2008/02/14 15:48:25 $ by $Author: civilis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.39 $
+ * @version $Revision: 1.40 $
  */
-public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
+public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	private static final long serialVersionUID = -3243625218823349983L;
 	
@@ -122,6 +122,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String CODEPRESS_ROOT_FOLDER_NAME_PREFIX = "codepress";
 	public static final String JQGRID_ROOT_FOLDER_NAME_PREFIX = "jqgrid";
 	public static final String JQUERY_FOLDER_NAME_PREFIX = "jquery";
+	public static final String JQUERY_UI_FOLDER_NAME_PREFIX = "jquery-ui";
 	public static final String YUI_FOLDER_NAME_PREFIX = "yui";
 	public static final String MOOTABS_FOLDER_NAME_PREFIX = "mootabs";
 	public static final String MOORAINBOW_FOLDER_NAME_PREFIX = "moorainbow";
@@ -137,11 +138,13 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String DOJO_JS_FILE_NAME = "dojo.js";
 	public static final String JMAKI_JS_FILE_NAME = "jmaki.js";
 	
-	public static final String JQUERY_COMPRESSED_JS_FILE_NAME_OLD = "jquery-compressed.js";
 	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
 	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
-	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_1_3_1_VERSION;
+	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_2_3_VERSION;
+	public static final String JQUERY_UI_LATEST_VERSION = Web2BusinessBean.JQUERY_UI_1_5b_VERSION;
 	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
+	public static final String JQUERY_1_2_3_VERSION = "1.2.3";
+	public static final String JQUERY_UI_1_5b_VERSION = "1.5b";
 	
 	public static final String CONTROL_MODAL_JS_FILE_NAME = "control.modal.js";
 	public static final String NIFTYCUBE_JS_FILE_NAME = "niftycube.js";
@@ -169,8 +172,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	protected String jMakiWidgetsURI;
 	protected String jMakiScriptPath;
 	protected String dojoScriptPath;
-	protected String jQueryCompressedScriptPathOld = null;
-	protected String jQueryCompressedScriptPath = null;
+	protected String jQueryCompressedScriptPath;
+	//re
+	protected String jQueryUICompressedScriptPath;
 	protected String controlModalScriptPath = null;
 	
 	private String lightboxScriptPath = null;
@@ -394,6 +398,15 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	}
 	
 	/**
+	 * 
+	 * @return The full URI with context to the latest version of the jquery-compressed.js
+	 */
+	public String getBundleURIToJQueryUILib(JQueryUIType type) {
+		
+		return getBundleURIToJQueryUILib(JQUERY_UI_LATEST_VERSION, type.getFileName());
+	}
+	
+	/**
 	 * @param jqueryLibraryVersion The version for the jquery library
 	 * @return The full URI with context to the specific version of the jquery-compressed.js
 	 */
@@ -401,6 +414,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		StringBuffer buf = new StringBuffer();
 		buf.append(JQUERY_FOLDER_NAME_PREFIX).append(SLASH).append(jqueryLibraryVersion).append(SLASH).append(JQUERY_COMPRESSED_SCRIPT_FILE);
 //		buf.append(JQUERY_FOLDER_NAME_PREFIX).append(SLASH).append(jqueryLibraryVersion).append(SLASH).append(JQUERY_SCRIPT_FILE);
+		return getBundleURIWithinScriptsFolder(buf.toString());
+	}
+	
+	public String getBundleURIToJQueryUILib(String jqueryUILibraryVersion, String fileName) {
+		StringBuffer buf = new StringBuffer();
+		buf.append(JQUERY_UI_FOLDER_NAME_PREFIX).append(SLASH).append(jqueryUILibraryVersion).append(SLASH).append(fileName);
 		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 	
@@ -591,13 +610,6 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 			thickboxStyleFilePath = style.toString();
 		}
 		return thickboxStyleFilePath;
-	}
-	
-	public String getBundleURIToJQueryLibOLD() {
-		if (jQueryCompressedScriptPathOld == null) {
-			jQueryCompressedScriptPathOld = getBundleURIWithinScriptsFolder(JQUERY_COMPRESSED_JS_FILE_NAME_OLD);
-		}
-		return jQueryCompressedScriptPathOld;
 	}
 	
 	public String getPrototypeScriptFilePath(String version) {

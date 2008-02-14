@@ -204,11 +204,6 @@ public interface Web2Business extends IBOService {
 	public String getThickboxStyleFilePath() throws RemoteException;
 
 	/**
-	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToJQueryLib
-	 */
-	public String getBundleURIToJQueryLibOLD() throws RemoteException;
-
-	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getPrototypeScriptFilePath
 	 */
 	public String getPrototypeScriptFilePath(String version) throws RemoteException;
@@ -307,4 +302,10 @@ public interface Web2Business extends IBOService {
 	
 	public String getSlimboxScriptFilePath();
 	public String getSlimboxStyleFilePath();
+	
+	public String getBundleURIToJQueryUILib(JQueryUIType type);
+	
+	public String getBundleURIToJQGrid();
+	
+	public String getBundleURIToJQGridStyles();
 }
