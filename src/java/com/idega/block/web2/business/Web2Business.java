@@ -137,6 +137,21 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToJMakiLib
 	 */
 	public String getBundleURIToJMakiLib() throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToInlineEditScript
+	 */
+	public String getBundleUriToInlineEditScript() throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToInlineEditScript
+	 */
+	public String getBundleUriToInlineEditScript(String version) throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getInlineEditScriptPath
+	 */
+	public String getInlineEditScriptPath() throws RemoteException;
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToLightboxLibRootFolder

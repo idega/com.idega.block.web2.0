@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.40 2008/02/14 15:48:25 civilis Exp $
+ * $Id: Web2BusinessBean.java,v 1.41 2008/03/03 13:06:55 alexis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -31,11 +31,12 @@ import com.idega.util.CoreConstants;
  * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
  * Mootabs - Creates tabs using MooTools. http://www.silverscripting.com/mootabs
  * mooRainbow - Javascript color picker that allows you to visually choose and use colors as a real and useful application. http://moorainbow.woolly-sheep.net/
+ * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
  * 
- * Last modified: $Date: 2008/02/14 15:48:25 $ by $Author: civilis $
+ * Last modified: $Date: 2008/03/03 13:06:55 $ by $Author: alexis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.40 $
+ * @version $Revision: 1.41 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
@@ -104,6 +105,10 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String MOOTABS_SCRIPT_FILE = "mootabs.js";
 	public static final String MOOTABS_STYLE_FILE = "mootabs.css";
 	
+	public static final String INLINE_EDIT_LATEST_VERSION = Web2BusinessBean.INLINE_EDIT_1_1_VERSION;
+	public static final String INLINE_EDIT_1_1_VERSION = "1.1";
+	public static final String INLINE_EDIT_SCRIPT_FILE = "inlineEdit.js";
+	
 	public static final String MOORAINBOW_LATEST_VERSION = Web2BusinessBean.MOORAINBOW_1_1_VERSION;
 	public static final String MOORAINBOW_1_1_VERSION = "1.1";
 	public static final String MOORAINBOW_SCRIPT_FILE = "mooRainbow.js";
@@ -127,6 +132,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String MOOTABS_FOLDER_NAME_PREFIX = "mootabs";
 	public static final String MOORAINBOW_FOLDER_NAME_PREFIX = "moorainbow";
 	public static final String SLIMBOX_ROOT_FOLDER_NAME_PREFIX = "slimbox";
+	public static final String INLINE_EDIT_FOLDER_NAME_PREFIX = "inlineEdit";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -209,6 +215,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	private String reflectionForMootoolsScriptFilePath = null;
 	
 	private String codePressScriptFilePath = null;
+	
+	private String inlideEditScriptFilePath = null;
 	
 	/**
 	 * 
@@ -537,6 +545,14 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		}
 		return lightboxImagesPath;
 	}
+	
+	public String getInlineEditScriptPath() {
+		if (inlideEditScriptFilePath == null) {
+			StringBuffer script = new StringBuffer(getBundleUriToInlineEditScript());
+			inlideEditScriptFilePath = script.toString();
+		}
+		return inlideEditScriptFilePath;
+	}
 
 	public String getLightboxScriptPath() {
 		if (lightboxScriptPath == null) {
@@ -804,12 +820,24 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return getBundleURIWithinScriptsFolder(new StringBuffer(MOOTABS_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH).toString());
 	}
 	
+	private String getPathToInlineEdit(String version) {
+		return getBundleURIWithinScriptsFolder(new StringBuffer(INLINE_EDIT_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH).toString());
+	}
+	
 	public String getBundleUriToMootabsScript(String version) {
 		return new StringBuffer(getPathToMootabs(version)).append(MOOTABS_SCRIPT_FILE).toString();
 	}
 	
+	public String getBundleUriToInlineEditScript(String version) {
+		return new StringBuffer(getPathToInlineEdit(version)).append(INLINE_EDIT_SCRIPT_FILE).toString();
+	}
+	
 	public String getBundleUriToMootabsScript() {
 		return getBundleUriToMootabsScript(MOOTABS_LATEST_VERSION);
+	}
+	
+	public String getBundleUriToInlineEditScript() {
+		return getBundleUriToInlineEditScript(INLINE_EDIT_LATEST_VERSION);
 	}
 	
 	public String getBundleUriToMootabsStyle(String version) {
