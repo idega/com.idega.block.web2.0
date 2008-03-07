@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.41 2008/03/03 13:06:55 alexis Exp $
+ * $Id: Web2BusinessBean.java,v 1.42 2008/03/07 10:50:38 alexis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -33,10 +33,10 @@ import com.idega.util.CoreConstants;
  * mooRainbow - Javascript color picker that allows you to visually choose and use colors as a real and useful application. http://moorainbow.woolly-sheep.net/
  * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
  * 
- * Last modified: $Date: 2008/03/03 13:06:55 $ by $Author: alexis $
+ * Last modified: $Date: 2008/03/07 10:50:38 $ by $Author: alexis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.41 $
+ * @version $Revision: 1.42 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
@@ -133,6 +133,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String MOORAINBOW_FOLDER_NAME_PREFIX = "moorainbow";
 	public static final String SLIMBOX_ROOT_FOLDER_NAME_PREFIX = "slimbox";
 	public static final String INLINE_EDIT_FOLDER_NAME_PREFIX = "inlineEdit";
+	public static final String SMOOTHBOX_FOLDER_NAME_PREFIX = "smoothbox";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -165,6 +166,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String WEB2_BUNDLE_IDENTIFIER = "com.idega.block.web2.0";
 
 	public static final String MOOTOOLS_BASED_BEHAVIOUR_FILE = "behaviour-mootools.js";
+	
+	public static final String SMOOTHBOX_SCRIPT_FILE = "smoothbox.js";
+	public static final String SMOOTHBOX_STYLE_FILE = "smoothbox.css";
 
 	protected String rootScriptsFolderBundleURI;
 	protected String rootLibsFolderBundleURI;
@@ -217,6 +221,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	private String codePressScriptFilePath = null;
 	
 	private String inlideEditScriptFilePath = null;
+	
+	private String smoothboxScriptFilePath = null;
+	private String smoothboxStyleFilePath = null;
 	
 	/**
 	 * 
@@ -553,6 +560,22 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		}
 		return inlideEditScriptFilePath;
 	}
+	
+	public String getSmoothboxScriptPath() {
+		if(smoothboxScriptFilePath == null) {
+			StringBuffer script = new StringBuffer(getBundleUriToSmoothboxScript());
+			smoothboxScriptFilePath = script.toString();
+		}
+		return smoothboxScriptFilePath;
+	}
+	
+	public String getSmoothboxStylesheetPath() {
+		if(smoothboxStyleFilePath == null) {
+			StringBuffer script = new StringBuffer(getBundleUriToSmoothboxStylesheet());
+			smoothboxStyleFilePath = script.toString();
+		}
+		return smoothboxStyleFilePath;
+	}
 
 	public String getLightboxScriptPath() {
 		if (lightboxScriptPath == null) {
@@ -826,6 +849,18 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public String getBundleUriToMootabsScript(String version) {
 		return new StringBuffer(getPathToMootabs(version)).append(MOOTABS_SCRIPT_FILE).toString();
+	}
+	
+	private String getPathToSmoothbox() {
+		return getBundleURIWithinScriptsFolder(new StringBuffer(SMOOTHBOX_FOLDER_NAME_PREFIX).append(SLASH).toString());
+	}
+	
+	public String getBundleUriToSmoothboxScript() {
+		return new StringBuffer(getPathToSmoothbox()).append(SMOOTHBOX_SCRIPT_FILE).toString();
+	}
+	
+	public String getBundleUriToSmoothboxStylesheet() {
+		return new StringBuffer(getPathToSmoothbox()).append(SMOOTHBOX_STYLE_FILE).toString();
 	}
 	
 	public String getBundleUriToInlineEditScript(String version) {

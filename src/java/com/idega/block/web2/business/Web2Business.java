@@ -144,6 +144,16 @@ public interface Web2Business extends IBOService {
 	public String getBundleUriToInlineEditScript() throws RemoteException;
 	
 	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToSmoothboxScript
+	 */
+	public String getBundleUriToSmoothboxScript() throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToSmoothboxStylesheet
+	 */
+	public String getBundleUriToSmoothboxStylesheet() throws RemoteException;
+	
+	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToInlineEditScript
 	 */
 	public String getBundleUriToInlineEditScript(String version) throws RemoteException;
