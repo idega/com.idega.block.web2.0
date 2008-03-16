@@ -660,7 +660,6 @@ jQuery.fn.jqGrid = function( p ) {
                         } else if(ts.p.retrieveMode === 'function') {
                         
                             if(ts.p.populateFromFunction != null) {
-                                console.log('calling poopulate from function');
                                 ts.p.populateFromFunction(
                                     {page: ts.p.page, rows: ts.p.rowNum, sidx: ts.p.sortname, sord:ts.p.sortorder},
                                     function(xml) { addXmlData(xml, ts.grid.bDiv);if(loadComplete) loadComplete();}
