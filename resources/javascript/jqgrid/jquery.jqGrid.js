@@ -153,8 +153,14 @@ jQuery.fn.jqGrid = function( p ) {
   		if(!t.p.multiselect) {
   			if( t.p.selrow ) jQuery("tbody tr#"+t.p.selrow,t.grid.bDiv).removeClass("selected");
   			t.p.selrow = jQuery(pt).attr("id");
+  			
+  			var disableSelection = false;
+  			
+  			if(jQuery(pt).attr("disableSelection") == 'true') {
+  			   disableSelection = true;
+  			}
   			if(jQuery(pt).attr("class") !== "subgrid") jQuery(pt).addClass("selected");
-  			if( t.p.onSelectRow ) { t.p.onSelectRow(t.p.selrow); }
+  			if( t.p.onSelectRow && !disableSelection) { t.p.onSelectRow(t.p.selrow); }
   		} else {  			
 			t.p.selrow = selection;
 			var ia = t.p.selarrrow.indexOf(t.p.selrow);
@@ -543,6 +549,7 @@ jQuery.fn.jqGrid = function( p ) {
 			if(xml) { jQuery("tbody tr:gt(0)", t).remove(); } else { return false; }
 			var row,gi=0,si=0,cbid,rowh=0,idn;
 			idn = ts.p.xmlReader.id;
+			
 			if(!ts.p.xmlReader.repeatitems) var f = reader("xml");
 			jQuery(ts.p.xmlReader.page,xml).each( function() { ts.p.page = this.textContent  || this.text ; });
 			jQuery(ts.p.xmlReader.total,xml).each( function() { ts.p.lastpage = this.textContent  || this.text ; }  );
@@ -557,8 +564,18 @@ jQuery.fn.jqGrid = function( p ) {
 					addSubGrid(t,row,gi);
 					si= 1;
 				}
+				
+				if(this.getAttribute('styleClass')) {
+				    jQuery(row).addClass(this.getAttribute('styleClass'));
+				}
+				
+				if(this.getAttribute('disabledSelection')) {
+				    jQuery(row).attr("disableSelection", true);
+				}
+				
 				if(ts.p.xmlReader.repeatitems===true){
 					jQuery(ts.p.xmlReader.cell,this).each( function (i) {
+					   
 						addCell(t,row,this.textContent || this.text || '&nbsp;',i+gi+si);
 					});
 					row.id = this.getAttribute(idn) || jQuery(idn,this).text() || jQuery(ts.p.xmlReader.cell+":eq("+ts.p.keyIndex+")",this).text() ||	j+1;
