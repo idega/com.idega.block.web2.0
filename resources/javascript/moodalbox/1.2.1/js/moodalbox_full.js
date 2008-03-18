@@ -33,6 +33,7 @@ var _DEF_CONTENTS_HEIGHT	= 500;		// Default height of the box (px) - used for re
 var _ANIMATE_CAPTION		= true;		// Enable/Disable caption animation
 var _EVAL_SCRIPTS			= false;	// Option to evaluate scripts in the response text
 var _EVAL_RESPONSE			= false;	// Option to evaluate the whole response text
+var _CLOSE_WINDOW_ON_OVERLAY_CLICK = false;
 
 // The MOOdalBox object in its beauty
 var MOOdalBox = {
@@ -51,7 +52,8 @@ var MOOdalBox = {
 			defContentsHeight: 	_DEF_CONTENTS_HEIGHT,
 			animateCaption: 	_ANIMATE_CAPTION,
 			evalScripts: 		_EVAL_SCRIPTS,
-			evalResponse: 		_EVAL_RESPONSE
+			evalResponse: 		_EVAL_RESPONSE,
+			closeWindowOnOverlayClick:	_CLOSE_WINDOW_ON_OVERLAY_CLICK
 		}, options || {});
 		
 		// scan anchors for those opening a MOOdalBox
@@ -86,7 +88,10 @@ var MOOdalBox = {
 		this.error = new Element('div').setProperty('id', 'mb_error').setHTML(_ERROR_MESSAGE);
 		
 		// attach the close event to the close button / the overlay
-		this.closelink.onclick = this.overlay.onclick = this.close.bind(this);
+		this.closelink.onclick = this.close.bind(this);
+		if (this.options.closeWindowOnOverlayClick) {
+			this.overlay.onclick = this.close.bind(this);
+		}
 		
 		// init the effects
 		var nextEffect = this.nextEffect.bind(this);
