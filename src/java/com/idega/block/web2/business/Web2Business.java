@@ -333,4 +333,9 @@ public interface Web2Business extends IBOService {
 	public String getBundleURIToJQGrid();
 	
 	public String getBundleURIToJQGridStyles();
+	
+	//	ContextMenu
+	public String getBundleUriToContextMenuScript(String version, boolean compressedFile);
+	public String getBundleUriToContextMenuScript(boolean compressedFile);
+	public String getBundleUriToContextMenuScript();
 }

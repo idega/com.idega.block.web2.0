@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.42 2008/03/07 10:50:38 alexis Exp $
+ * $Id: Web2BusinessBean.java,v 1.43 2008/03/27 13:14:37 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -32,11 +32,12 @@ import com.idega.util.CoreConstants;
  * Mootabs - Creates tabs using MooTools. http://www.silverscripting.com/mootabs
  * mooRainbow - Javascript color picker that allows you to visually choose and use colors as a real and useful application. http://moorainbow.woolly-sheep.net/
  * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
+ * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
  * 
- * Last modified: $Date: 2008/03/07 10:50:38 $ by $Author: alexis $
+ * Last modified: $Date: 2008/03/27 13:14:37 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.42 $
+ * @version $Revision: 1.43 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
@@ -114,6 +115,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String MOORAINBOW_SCRIPT_FILE = "mooRainbow.js";
 	public static final String MOORAINBOW_STYLE_FILE = "mooRainbow.css";
 	
+	public static final String CONTEXT_MENU_LATEST_VERSION = Web2BusinessBean.CONTEXT_MENU_R2_VERSION;
+	public static final String CONTEXT_MENU_R2_VERSION = "r2";
+	public static final String CONTEXT_MENU_SCRIPT_FILE = "contextmenu.js";
+	public static final String CONTEXT_MENU_COMPRESSED_SCRIPT_FILE = "contextmenu-compressed.js";
+	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
 	public static final String PROTOTYPE_ROOT_FOLDER_NAME_PREFIX = "prototype";
 	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
@@ -134,6 +140,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SLIMBOX_ROOT_FOLDER_NAME_PREFIX = "slimbox";
 	public static final String INLINE_EDIT_FOLDER_NAME_PREFIX = "inlineEdit";
 	public static final String SMOOTHBOX_FOLDER_NAME_PREFIX = "smoothbox";
+	public static final String CONTEXT_MENU_FOLDER_NAME_PREFIX = "context";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -901,5 +908,27 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public String getBundleUriToMooRainbowStyle() {
 		return getBundleUriToMooRainbowStyle(MOOTABS_LATEST_VERSION);
+	}
+	
+	private String getPathToContextMenu(String version) {
+		return getBundleURIWithinScriptsFolder(new StringBuffer(CONTEXT_MENU_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH).toString());
+	}
+	
+	public String getBundleUriToContextMenuScript(String version, boolean compressedFile) {
+		StringBuffer uri = new StringBuffer(getPathToContextMenu(version));
+		String file = CONTEXT_MENU_SCRIPT_FILE;
+		if (compressedFile) {
+			file = CONTEXT_MENU_COMPRESSED_SCRIPT_FILE;
+		}
+		uri.append(file);
+		return uri.toString();
+	}
+	
+	public String getBundleUriToContextMenuScript(boolean compressedFile) {
+		return getBundleUriToContextMenuScript(Web2BusinessBean.CONTEXT_MENU_LATEST_VERSION, compressedFile);
+	}
+	
+	public String getBundleUriToContextMenuScript() {
+		return getBundleUriToContextMenuScript(Web2BusinessBean.CONTEXT_MENU_LATEST_VERSION, true);
 	}
 }
