@@ -6,7 +6,7 @@
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
  *
- * $Date: 2008/02/14 15:48:25 $
+ * $Date: 2008/03/28 17:11:44 $
  * $Rev: 4663 $
  */
 
@@ -3406,3 +3406,5 @@ jQuery.fn.offset = function() {
 	return results;
 };
 })();
+
+jQuery.noConflict();
