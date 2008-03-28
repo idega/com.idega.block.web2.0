@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.43 2008/03/27 13:14:37 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.44 2008/03/28 17:15:34 civilis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -34,10 +34,10 @@ import com.idega.util.CoreConstants;
  * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
  * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
  * 
- * Last modified: $Date: 2008/03/27 13:14:37 $ by $Author: valdas $
+ * Last modified: $Date: 2008/03/28 17:15:34 $ by $Author: civilis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.43 $
+ * @version $Revision: 1.44 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
@@ -132,6 +132,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String REFLECTION_FOR_MOOTOOLS_ROOT_FOLDER_NAME_PREFIX = "for_mootools";
 	public static final String CODEPRESS_ROOT_FOLDER_NAME_PREFIX = "codepress";
 	public static final String JQGRID_ROOT_FOLDER_NAME_PREFIX = "jqgrid";
+	public static final String JQGRID_3_0_VERSION = "3.0";
+	public static final String JQGRID_LATEST_VERSION = Web2BusinessBean.JQGRID_3_0_VERSION;
 	public static final String JQUERY_FOLDER_NAME_PREFIX = "jquery";
 	public static final String JQUERY_UI_FOLDER_NAME_PREFIX = "jquery-ui";
 	public static final String YUI_FOLDER_NAME_PREFIX = "yui";
@@ -248,7 +250,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		
 		if (jqGridScriptPath == null) {
 			jqGridScriptPath = new StringBuffer(getBundleURIToScriptsFolder()).append(JQGRID_ROOT_FOLDER_NAME_PREFIX)
-			.append(SLASH).append(JQGRID_JS_FILE_NAME).toString();
+			.append(SLASH).append(JQGRID_LATEST_VERSION).append(SLASH).append(JQGRID_JS_FILE_NAME).toString();
 		}
 		return jqGridScriptPath;
 	}
@@ -256,7 +258,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public String getBundleURIToJQGridStyles(){
 		if (jqGridStylesPath == null) {
 			jqGridStylesPath = new StringBuffer(getBundleURIToScriptsFolder()).append(JQGRID_ROOT_FOLDER_NAME_PREFIX)
-			.append(SLASH).append("style/").append(JQGRID_CSS_FILE_NAME).toString();
+			.append(SLASH).append(JQGRID_LATEST_VERSION).append("/themes/basic/grid.css").toString();
 		}
 		return jqGridStylesPath;
 	}
