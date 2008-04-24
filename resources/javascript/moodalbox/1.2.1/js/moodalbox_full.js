@@ -34,27 +34,21 @@ var _ANIMATE_CAPTION		= true;		// Enable/Disable caption animation
 var _EVAL_SCRIPTS			= false;	// Option to evaluate scripts in the response text
 var _EVAL_RESPONSE			= false;	// Option to evaluate the whole response text
 var _CLOSE_WINDOW_ON_OVERLAY_CLICK = false;
+var _MOODALBOX_INITED		= false;
 
 // The MOOdalBox object in its beauty
 var MOOdalBox = {
 	
 	// init the MOOdalBox
 	init: function (options) {
+		if (_MOODALBOX_INITED) {
+			this.setOptions(options);
+			return false;
+		}
+		_MOODALBOX_INITED = true;
 		
 		// init default options
-		this.options = Object.extend({
-			resizeDuration: 	_RESIZE_DURATION,
-			initialWidth: 		_INITIAL_WIDTH,	
-			initialHeight: 		_INITIAL_HEIGHT,
-			contentsWidth: 		_CONTENTS_WIDTH,
-			contentsHeight: 	_CONTENTS_HEIGHT,
-			defContentsWidth: 	_DEF_CONTENTS_WIDTH,
-			defContentsHeight: 	_DEF_CONTENTS_HEIGHT,
-			animateCaption: 	_ANIMATE_CAPTION,
-			evalScripts: 		_EVAL_SCRIPTS,
-			evalResponse: 		_EVAL_RESPONSE,
-			closeWindowOnOverlayClick:	_CLOSE_WINDOW_ON_OVERLAY_CLICK
-		}, options || {});
+		this.setOptions(options);
 		
 		// scan anchors for those opening a MOOdalBox
 		this.anchors = [];
@@ -104,6 +98,22 @@ var MOOdalBox = {
 		
 		this.ajaxRequest = Class.empty;
 
+	},
+	
+	setOptions: function(options) {
+		this.options = Object.extend({
+			resizeDuration: 	_RESIZE_DURATION,
+			initialWidth: 		_INITIAL_WIDTH,	
+			initialHeight: 		_INITIAL_HEIGHT,
+			contentsWidth: 		_CONTENTS_WIDTH,
+			contentsHeight: 	_CONTENTS_HEIGHT,
+			defContentsWidth: 	_DEF_CONTENTS_WIDTH,
+			defContentsHeight: 	_DEF_CONTENTS_HEIGHT,
+			animateCaption: 	_ANIMATE_CAPTION,
+			evalScripts: 		_EVAL_SCRIPTS,
+			evalResponse: 		_EVAL_RESPONSE,
+			closeWindowOnOverlayClick:	_CLOSE_WINDOW_ON_OVERLAY_CLICK
+		}, options || {});
 	},
 	
 	register: function(el) {
@@ -250,7 +260,7 @@ var MOOdalBox = {
 	},
 	
 	close: function() {
-		if(this.step < 0) return;
+		if (this.step < 0) return;
 		this.step = -1;
 		for(var f in this.fx) this.fx[f].clearTimer();
 		this.center.style.display = this.bottom.style.display = 'none';
