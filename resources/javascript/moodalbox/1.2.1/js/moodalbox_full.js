@@ -43,6 +43,12 @@ var MOOdalBox = {
 	init: function (options) {
 		if (_MOODALBOX_INITED) {
 			this.setOptions(options);
+			
+			var moodalbox = this;
+			$A($$('a')).each(function(el) {
+				moodalbox.register(el);				
+			});
+			
 			return false;
 		}
 		_MOODALBOX_INITED = true;
