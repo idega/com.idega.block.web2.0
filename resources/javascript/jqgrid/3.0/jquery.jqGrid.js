@@ -66,7 +66,8 @@ JQGridParams.prototype = {
     viewrecords: true, 
     sortorder: "desc", 
     multiselect: false, 
-    onSelectRow: function(rowId) {}
+    onSelectRow: function(rowId) {},
+    rightsChanger: false
 };
 
 JQGrid.prototype.createGrid = function(tblSelector, params) {
@@ -89,7 +90,8 @@ JQGrid.prototype.createGrid = function(tblSelector, params) {
             multiselect: params.multiselect, 
             subGrid : params.subGrid,
             onSelectRow: params.onSelectRow,
-            subGridRowExpanded: params.subGridRowExpanded
+            subGridRowExpanded: params.subGridRowExpanded,
+            rightsChanger: params.rightsChanger
         });
         
         return this.grid;
