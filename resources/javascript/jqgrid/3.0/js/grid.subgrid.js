@@ -14,6 +14,7 @@ jQuery.fn.addSubGrid = function(t,row,pos) {
 		if (!ts.grid ) return;
 		var td, res,_id, pID;
 		td = document.createElement("td");
+		jQuery(td).addClass('subGridOpener');
 		jQuery(td,t).html("<img src='"+ts.p.imgpath+"plus.gif'/>")
 			.toggle( function(e) {
 				jQuery(this).html("<img src='"+ts.p.imgpath+"minus.gif'/>");
