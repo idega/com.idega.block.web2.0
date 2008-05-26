@@ -152,10 +152,10 @@ jQuery.fn.jqGrid = function( p ) {
 	jQuery.fn.setSelection = function(selection)	{
 		return this.each(function(){
 			var t = this, stat;
-			var pt = jQuery("tbody tr#"+selection,t.grid.bDiv);
+			var pt = jQuery("tr#"+selection,t.grid.bDiv);
 			if (!pt.html()) return;
 			if(!t.p.multiselect) {
-				if( t.p.selrow ) jQuery("tbody tr#"+t.p.selrow,t.grid.bDiv).removeClass("selected");
+				if( t.p.selrow ) jQuery("tr#"+t.p.selrow,t.grid.bDiv).removeClass("selected");
 				t.p.selrow = jQuery(pt).attr("id");
 				if(jQuery(pt).attr("class") !== "subgrid") jQuery(pt).addClass("selected");
 				if( t.p.onSelectRow ) { t.p.onSelectRow(t.p.selrow, true); }
