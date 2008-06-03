@@ -174,7 +174,6 @@ div.loading {
 	overflow:  auto;
 }
 .tablediv {
-	display: table;
 	background-color: White;
 	border-spacing: 1px; /*cellspacing:poor IE support for  this*/
 	border-collapse: separate;

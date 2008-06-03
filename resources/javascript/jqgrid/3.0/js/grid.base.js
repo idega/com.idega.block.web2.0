@@ -880,6 +880,7 @@ jQuery.fn.jqGrid = function( p ) {
 		grid.hTable.appendChild(thead);
 		grid.hDiv = document.createElement("div");
 		jQuery(grid.hDiv)
+			.addClass('gridHeadersTableContainer')
 		  	.css({ width: grid.width+"px", overflow: "hidden"})
 			.prepend('<div class="loading">'+ts.p.loadtext+'</div>')
 			.append(grid.hTable)
