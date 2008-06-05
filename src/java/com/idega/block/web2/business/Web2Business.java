@@ -81,7 +81,7 @@ public interface Web2Business extends IBOService {
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToJQueryLib
 	 */
-	public String getBundleURIToJQueryLib() throws RemoteException;
+	public String getBundleURIToJQueryLib();
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToJQueryLib
