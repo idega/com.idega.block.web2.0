@@ -24,7 +24,7 @@ JQGridInclude.prototype = {
 /*</added>*/
  
 // we make it simple as possible
-function jqGridInclude(jQGridInclude)
+function jqGridInclude(jQGridInclude, callback)
 {
     var pathtojsfiles = "/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/javascript/jqgrid/3.0/"; // need to be ajusted
     // if you do not want some module to be included
@@ -42,9 +42,9 @@ function jqGridInclude(jQGridInclude)
         if(modules[i].include == true) {
         
         	if (minver != true) 
-        	   LazyLoader.load(pathtojsfiles+modules[i].incfile, null);
+        	   LazyLoader.load(pathtojsfiles+modules[i].incfile, callback);
         	else 
-        	   LazyLoader.load(pathtojsfiles+modules[i].minfile, null);
+        	   LazyLoader.load(pathtojsfiles+modules[i].minfile, callback);
         }
     }
 }
