@@ -42,9 +42,9 @@ function jqGridInclude(jQGridInclude)
         if(modules[i].include == true) {
         
         	if (minver != true) 
-        	   IWCORE.includeScript(pathtojsfiles+modules[i].incfile);
+        	   LazyLoader.load(pathtojsfiles+modules[i].incfile, null);
         	else 
-        	   IWCORE.includeScript(pathtojsfiles+modules[i].minfile);
+        	   LazyLoader.load(pathtojsfiles+modules[i].minfile, null);
         }
     }
 }
