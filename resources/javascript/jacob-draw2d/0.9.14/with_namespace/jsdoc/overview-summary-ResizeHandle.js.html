@@ -1,0 +1,460 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+ Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="ResizeHandle.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>ResizeHandle.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		No overview generated for 'ResizeHandle.js'<BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+    <table border="1" cellpadding="3" cellspacing="0" width="100%">
+    <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+    <td colspan=2><font size="+2">
+    
+        <b>Class Summary</b>
+    
+    </font></td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="draw2d.ResizeHandle.html">draw2d.ResizeHandle</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    </table>
+    <hr/> 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">/* This notice must be untouched at all times.
+
+Open-jACOB Draw2D
+The latest version is available at
+http://www.openjacob.org
+
+Copyright (c) 2006 Andreas Herz. All rights reserved.
+Created 5. 11. 2006 by Andreas Herz (Web: http://www.freegroup.de )
+
+LICENSE: LGPL
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License (LGPL) as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA,
+or see http://www.gnu.org/copyleft/lesser.html
+*/</span>
+
+<span class="comment">/*
+    1             2               3
+      O-----------O-------------O
+      |                         |
+      |                         |
+    8 O                         O 4
+      |                         |
+      |                         |
+      O-----------O-------------O
+    7             6               5
+
+TYPE
+*/</span>
+
+<span class="comment">/**
+ * 
+ * <span class="attrib">@version</span> 0.9.14
+ * <span class="attrib">@author</span> Andreas Herz
+ * <span class="attrib">@constructor</span>
+ */</span>
+draw2d.ResizeHandle=<span class="reserved">function</span>(<span class="comment">/*:draw2d.Workflow*/</span> workflow,  <span class="comment">/*:int*/</span> type)
+{
+  draw2d.Rectangle.call(<span class="reserved">this</span>,5,5);
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.type = type;
+  var offset= <span class="reserved">this</span>.getWidth();
+  var offset2 = offset/2;
+  switch(<span class="reserved">this</span>.type)
+  {
+    case 1:
+      <span class="reserved">this</span>.setSnapToGridAnchor(new draw2d.Point(offset,offset));
+      break;
+    case 2:
+      <span class="reserved">this</span>.setSnapToGridAnchor(new draw2d.Point(offset2,offset));
+      break;
+    case 3:
+      <span class="reserved">this</span>.setSnapToGridAnchor(new draw2d.Point(0,offset));
+      break;
+    case 4:
+      <span class="reserved">this</span>.setSnapToGridAnchor(new draw2d.Point(0,offset2));
+      break;
+    case 5:
+      <span class="reserved">this</span>.setSnapToGridAnchor(new draw2d.Point(0,0));
+      break;
+    case 6:
+      <span class="reserved">this</span>.setSnapToGridAnchor(new draw2d.Point(offset2,0));
+      break;
+    case 7:
+      <span class="reserved">this</span>.setSnapToGridAnchor(new draw2d.Point(offset,0));
+      break;
+    case 8:
+      <span class="reserved">this</span>.setSnapToGridAnchor(new draw2d.Point(offset,offset2));
+      break;
+  }
+  <span class="reserved">this</span>.setBackgroundColor(new  draw2d.Color(0,255,0));
+  <span class="reserved">this</span>.setWorkflow(workflow);
+  <span class="reserved">this</span>.setZOrder(10000);
+}
+
+draw2d.ResizeHandle.<span class="reserved">prototype</span> = new draw2d.Rectangle;
+<span class="comment">/** <span class="attrib">@private</span> **/</span>
+draw2d.ResizeHandle.<span class="reserved">prototype</span>.type=<span class="literal">"ResizeHandle"</span>;
+
+
+draw2d.ResizeHandle.<span class="reserved">prototype</span>.getSnapToDirection=<span class="reserved">function</span>()
+{
+  switch(<span class="reserved">this</span>.type)
+  {
+    case 1:
+     <span class="reserved">return</span> draw2d.SnapToHelper.NORTH_WEST;
+    case 2:
+     <span class="reserved">return</span> draw2d.SnapToHelper.NORTH;
+    case 3:
+     <span class="reserved">return</span> draw2d.SnapToHelper.NORTH_EAST;
+    case 4:
+     <span class="reserved">return</span> draw2d.SnapToHelper.EAST;
+    case 5:
+     <span class="reserved">return</span> draw2d.SnapToHelper.SOUTH_EAST;
+    case 6:
+     <span class="reserved">return</span> draw2d.SnapToHelper.SOUTH;
+    case 7:
+     <span class="reserved">return</span> draw2d.SnapToHelper.SOUTH_WEST;
+    case 8:
+     <span class="reserved">return</span> draw2d.SnapToHelper.WEST;
+  }
+}
+
+<span class="comment">/**
+ * Will be called after a drag and drop action.&lt;br&gt;
+ * Sub classes can override this method to implement additional stuff. Don't forget to call
+ * the super implementation via &lt;code&gt;Figure.prototype.onDragend.call(this);&lt;/code&gt;
+ * <span class="attrib">@private</span>
+ **/</span>
+draw2d.ResizeHandle.<span class="reserved">prototype</span>.onDragend = <span class="reserved">function</span>()
+{
+  <span class="comment">// An non draggable resizeHandle doesn't create a move/resize command.</span>
+  <span class="comment">// This happens if the selected figure has set the "nonResizeable" flag.</span>
+  <span class="comment">//</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.commandMove==null)
+      <span class="reserved">return</span>;
+
+  var figure = <span class="reserved">this</span>.workflow.currentSelection;
+
+  <span class="reserved">this</span>.commandMove.setPosition(figure.getX(), figure.getY());
+  <span class="reserved">this</span>.commandResize.setDimension(figure.getWidth(), figure.getHeight());
+
+  <span class="reserved">this</span>.workflow.getCommandStack().execute(<span class="reserved">this</span>.commandResize);
+  <span class="reserved">this</span>.workflow.getCommandStack().execute(<span class="reserved">this</span>.commandMove);
+
+  <span class="reserved">this</span>.commandMove   = null;
+  <span class="reserved">this</span>.commandResize = null;
+
+  <span class="reserved">this</span>.workflow.hideSnapToHelperLines();
+}
+
+<span class="comment">/**
+ * Set the position of the object.&lt;br&gt;
+ * The ResizeHandle overrides the Figure.setPosition method. The base
+ * class updates the resize handles during the update of the Dimension/Position. This
+ * is not neccessary for the ResizeHandles. Performance issue.
+ * 
+ * <span class="attrib">@param</span> {int} xPos The new x coordinate of the figure
+ * <span class="attrib">@param</span> {int} yPos The new y coordinate of the figure 
+ **/</span>
+draw2d.ResizeHandle.<span class="reserved">prototype</span>.setPosition=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> xPos , <span class="comment">/*:int*/</span>yPos )
+{
+  <span class="reserved">this</span>.x = xPos;
+  <span class="reserved">this</span>.y = yPos;
+
+  <span class="reserved">this</span>.html.style.left = <span class="reserved">this</span>.x+<span class="literal">"px"</span>;
+  <span class="reserved">this</span>.html.style.top  = <span class="reserved">this</span>.y+<span class="literal">"px"</span>;
+}
+
+<span class="comment">/**
+ * Will be called if the drag and drop action beginns. You can return [false] if you
+ * want avoid the that the figure can be move.
+ * 
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+draw2d.ResizeHandle.<span class="reserved">prototype</span>.onDragstart = <span class="reserved">function</span>(<span class="comment">/*:int*/</span> x, <span class="comment">/*:int*/</span> y)
+{
+  <span class="comment">// This happens if the selected figure has set the "nonResizeable" flag</span>
+  <span class="comment">// In this case the ResizeHandle can't be dragged. =&gt; no resize</span>
+  <span class="comment">//</span>
+  <span class="reserved">if</span>(!<span class="reserved">this</span>.canDrag)
+    <span class="reserved">return</span> false;
+
+  var figure = <span class="reserved">this</span>.workflow.currentSelection;
+
+  <span class="reserved">this</span>.commandMove   = new draw2d.CommandMove(figure,figure.getX(), figure.getY());
+  <span class="reserved">this</span>.commandResize = new draw2d.CommandResize(figure, figure.getWidth(),figure.getHeight());
+
+  <span class="reserved">return</span> true;
+}
+
+
+<span class="comment">/**
+ *
+ **/</span>
+draw2d.ResizeHandle.<span class="reserved">prototype</span>.onDrag = <span class="reserved">function</span>()
+{
+  var oldX = <span class="reserved">this</span>.getX()
+  var oldY = <span class="reserved">this</span>.getY();
+  draw2d.Rectangle.<span class="reserved">prototype</span>.onDrag.call(<span class="reserved">this</span>);
+  var diffX = oldX-<span class="reserved">this</span>.getX();
+  var diffY = oldY-<span class="reserved">this</span>.getY();
+
+  var objPosX = <span class="reserved">this</span>.workflow.currentSelection.getX();
+  var objPosY = <span class="reserved">this</span>.workflow.currentSelection.getY();
+  var objWidth= <span class="reserved">this</span>.workflow.currentSelection.getWidth();
+  var objHeight= <span class="reserved">this</span>.workflow.currentSelection.getHeight();
+  switch(<span class="reserved">this</span>.type)
+  {
+    case 1:
+      <span class="reserved">this</span>.workflow.currentSelection.setPosition(objPosX-diffX, objPosY-diffY);
+      <span class="reserved">this</span>.workflow.currentSelection.setDimension(objWidth+diffX, objHeight+diffY);
+      break;
+    case 2:
+      <span class="reserved">this</span>.workflow.currentSelection.setPosition(objPosX, objPosY-diffY);
+      <span class="reserved">this</span>.workflow.currentSelection.setDimension(objWidth, objHeight+diffY);
+      break;
+    case 3:
+      <span class="reserved">this</span>.workflow.currentSelection.setPosition(objPosX, objPosY-diffY);
+      <span class="reserved">this</span>.workflow.currentSelection.setDimension(objWidth-diffX, objHeight+diffY);
+      break;
+    case 4:
+      <span class="reserved">this</span>.workflow.currentSelection.setPosition(objPosX, objPosY);
+      <span class="reserved">this</span>.workflow.currentSelection.setDimension(objWidth-diffX, objHeight);
+      break;
+    case 5:
+      <span class="reserved">this</span>.workflow.currentSelection.setPosition(objPosX, objPosY);
+      <span class="reserved">this</span>.workflow.currentSelection.setDimension(objWidth-diffX, objHeight-diffY);
+      break;
+    case 6:
+      <span class="reserved">this</span>.workflow.currentSelection.setPosition(objPosX, objPosY);
+      <span class="reserved">this</span>.workflow.currentSelection.setDimension(objWidth, objHeight-diffY);
+      break;
+    case 7:
+      <span class="reserved">this</span>.workflow.currentSelection.setPosition(objPosX-diffX, objPosY);
+      <span class="reserved">this</span>.workflow.currentSelection.setDimension(objWidth+diffX, objHeight-diffY);
+      break;
+    case 8:
+      <span class="reserved">this</span>.workflow.currentSelection.setPosition(objPosX-diffX, objPosY);
+      <span class="reserved">this</span>.workflow.currentSelection.setDimension(objWidth+diffX, objHeight);
+      break;
+  }
+  <span class="reserved">this</span>.workflow.moveResizeHandles(<span class="reserved">this</span>.workflow.getCurrentSelection());
+}
+
+draw2d.ResizeHandle.<span class="reserved">prototype</span>.setCanDrag=<span class="reserved">function</span>(<span class="comment">/*:boolean*/</span> flag)
+{
+  draw2d.Rectangle.<span class="reserved">prototype</span>.setCanDrag.call(<span class="reserved">this</span>,flag);
+  <span class="reserved">if</span>(!flag)
+  {
+    <span class="reserved">this</span>.html.style.cursor=<span class="literal">""</span>;
+    <span class="reserved">return</span>;
+  }
+
+  switch(<span class="reserved">this</span>.type)
+  {
+    case 1:
+      <span class="reserved">this</span>.html.style.cursor=<span class="literal">"nw-resize"</span>;
+      break;
+    case 2:
+      <span class="reserved">this</span>.html.style.cursor=<span class="literal">"s-resize"</span>;
+      break;
+    case 3:
+      <span class="reserved">this</span>.html.style.cursor=<span class="literal">"ne-resize"</span>;
+      break;
+    case 4:
+      <span class="reserved">this</span>.html.style.cursor=<span class="literal">"w-resize"</span>;
+      break;
+    case 5:
+      <span class="reserved">this</span>.html.style.cursor=<span class="literal">"se-resize"</span>;
+      break;
+    case 6:
+      <span class="reserved">this</span>.html.style.cursor=<span class="literal">"n-resize"</span>;
+      break;
+    case 7:
+      <span class="reserved">this</span>.html.style.cursor=<span class="literal">"sw-resize"</span>;
+      break;
+    case 8:
+      <span class="reserved">this</span>.html.style.cursor=<span class="literal">"e-resize"</span>;
+      break;
+  }
+}
+
+<span class="comment">/**
+ *
+ **/</span>
+draw2d.ResizeHandle.<span class="reserved">prototype</span>.onKeyDown=<span class="reserved">function</span>(<span class="comment">/*:int*/</span>keyCode, <span class="comment">/*:boolean*/</span>ctrl)
+{
+  <span class="comment">// don't call the parent function. The parent functions delete this object</span>
+  <span class="comment">// and a resize handle can't be deleted.</span>
+  <span class="reserved">this</span>.workflow.onKeyDown(keyCode,ctrl);
+}
+
+
+draw2d.ResizeHandle.<span class="reserved">prototype</span>.fireMoveEvent=<span class="reserved">function</span>()
+{
+  <span class="comment">// a resizeHandle doesnÄt ifre this event.</span>
+  <span class="comment">//Normale this set the document dirty. This is not neccessary for a ResizeHandle.</span>
+}</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Feb  7 23:45:47 2008</div>
+</body>
+</html>

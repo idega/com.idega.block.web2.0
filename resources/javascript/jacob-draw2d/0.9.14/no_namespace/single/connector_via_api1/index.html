@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/Strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>Workflow Editor</title>
+        <!-- common, all times required, imports -->
+        <SCRIPT src='../wz_jsgraphics.js'></SCRIPT>      <SCRIPT src='../mootools.js'></SCRIPT>      <SCRIPT src='../moocanvas.js'></SCRIPT>      <SCRIPT src='../draw2d.js'></SCRIPT>
+
+        <!-- example specific imports -->
+	<SCRIPT src="Start.js"></SCRIPT>
+	<SCRIPT src="End.js"></SCRIPT>
+</head>
+<body onselectstart="return false;" style="margin:0px;padding:0px;" onkeydown="">
+<div id="paintarea" style="position:absolute;left:0px;top:0px;width:3000px;height:3000px" >
+
+    <!-- The information help text -->
+    <div style="background-color:white;border:1px solid gray;width:350px;padding:10px;font-size:8pt;">
+    <center><b>Draw2D 0.9.14 - A simple diagram drawing demo<br>
+    by Andreas Herz (a.herz @ freegroup.de)
+    <br>
+    </b>
+    <br>
+    <div style="color:red;font-size:9pt">Focus of this example: How to create a connection via API call.</div>
+    </center>
+    <br>
+    <center>See more on <a href="http://www.draw2d.org">Open-jACOB Draw2D</a></center>
+    </div>
+
+</div>
+<script>
+  var workflow  = new Workflow("paintarea");
+
+  // Add the start node to the canvas
+  //
+  var startObj = new Start();
+  workflow.addFigure(startObj, 200,400);
+
+  startObj = new Start();
+  workflow.addFigure(startObj, 200,300);
+
+  // Add one end node to the canvas
+  //
+  var endObj1   = new End();
+  workflow.addFigure(endObj1, 400,250);
+
+  // Add another end node to the canvas
+  //
+  var endObj2   = new End();
+  workflow.addFigure(endObj2, 400,350);
+
+  // create a new connection
+  var c = new Connection();
+  // get the outputPort of the Start-Node and set them as source 
+  c.setSource(startObj.outputPort);
+  // get the inputPort of the End-Node and set them as target.
+  c.setTarget(endObj1.inputPort);
+  // add the connection to the workflow
+  workflow.addFigure(c);
+
+  // do it again......
+  c = new Connection();
+  c.setSource(startObj.outputPort);
+  c.setTarget(endObj2.inputPort);
+  workflow.addFigure(c);
+
+</script>
+</body>
+</html>

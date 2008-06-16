@@ -1,0 +1,2562 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+ Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="mootools.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>mootools.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		No overview generated for 'mootools.js'<BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">/*
+Script: Core.js
+	Mootools - My Object Oriented javascript.
+
+License:
+	MIT-style license.
+
+MooTools Copyright:
+	copyright (c) 2007 Valerio Proietti, &lt;http://mad4milk.net&gt;
+
+MooTools Credits:
+	- Class is slightly based on Base.js &lt;http://dean.edwards.name/weblog/2006/03/base/&gt; (c) 2006 Dean Edwards, License &lt;http://creativecommons.org/licenses/LGPL/2.1/&gt;
+	- Some functions are inspired by those found in prototype.js &lt;http://prototype.conio.net/&gt; (c) 2005 Sam Stephenson sam [at] conio [dot] net, MIT-style license
+	- Documentation by Aaron Newton (aaron.newton [at] cnet [dot] com) and Valerio Proietti.
+*/</span>
+
+var MooTools = {
+	version: <span class="literal">'1.11'</span>
+};
+
+<span class="comment">/* Section: Core Functions */</span>
+
+<span class="comment">/*
+Function: $defined
+	Returns true if the passed in value/object is defined, that means is not null or undefined.
+
+Arguments:
+	obj - object to inspect
+*/</span>
+
+<span class="reserved">function</span> $defined(obj){
+	<span class="reserved">return</span> (obj != undefined);
+};
+
+<span class="comment">/*
+Function: $type
+	Returns the type of object that matches the element passed in.
+
+Arguments:
+	obj - the object to inspect.
+
+Example:
+	&gt;var myString = 'hello';
+	&gt;$type(myString); //returns "string"
+
+Returns:
+	'element' - if obj is a DOM element node
+	'textnode' - if obj is a DOM text node
+	'whitespace' - if obj is a DOM whitespace node
+	'arguments' - if obj is an arguments object
+	'object' - if obj is an object
+	'string' - if obj is a string
+	'number' - if obj is a number
+	'boolean' - if obj is a boolean
+	'function' - if obj is a function
+	'regexp' - if obj is a regular expression
+	'class' - if obj is a Class. (created with new Class, or the extend of another class).
+	'collection' - if obj is a native htmlelements collection, such as childNodes, getElementsByTagName .. etc.
+	false - (boolean) if the object is not defined or none of the above.
+*/</span>
+
+<span class="reserved">function</span> $type(obj){
+	<span class="reserved">if</span> (!$defined(obj)) <span class="reserved">return</span> false;
+	<span class="reserved">if</span> (obj.htmlElement) <span class="reserved">return</span> <span class="literal">'element'</span>;
+	var type = typeof obj;
+	<span class="reserved">if</span> (type == <span class="literal">'object'</span> &amp;&amp; obj.nodeName){
+		switch(obj.nodeType){
+			case 1: <span class="reserved">return</span> <span class="literal">'element'</span>;
+			case 3: <span class="reserved">return</span> (/\S/).test(obj.nodeValue) ? <span class="literal">'textnode'</span> : <span class="literal">'whitespace'</span>;
+		}
+	}
+	<span class="reserved">if</span> (type == <span class="literal">'object'</span> || type == <span class="literal">'function'</span>){
+		switch(obj.constructor){
+			case Array: <span class="reserved">return</span> <span class="literal">'array'</span>;
+			case RegExp: <span class="reserved">return</span> <span class="literal">'regexp'</span>;
+			case Class: <span class="reserved">return</span> <span class="literal">'class'</span>;
+		}
+		<span class="reserved">if</span> (typeof obj.length == <span class="literal">'number'</span>){
+			<span class="reserved">if</span> (obj.item) <span class="reserved">return</span> <span class="literal">'collection'</span>;
+			<span class="reserved">if</span> (obj.callee) <span class="reserved">return</span> <span class="literal">'arguments'</span>;
+		}
+	}
+	<span class="reserved">return</span> type;
+};
+
+<span class="comment">/*
+Function: $merge
+	merges a number of objects recursively without referencing them or their sub-objects.
+
+Arguments:
+	any number of objects.
+
+Example:
+	&gt;var mergedObj = $merge(obj1, obj2, obj3);
+	&gt;//obj1, obj2, and obj3 are unaltered
+*/</span>
+
+<span class="reserved">function</span> $merge(){
+	var mix = {};
+	<span class="reserved">for</span> (var i = 0; i &lt; arguments.length; i++){
+		<span class="reserved">for</span> (var property in arguments[i]){
+			var ap = arguments[i][property];
+			var mp = mix[property];
+			<span class="reserved">if</span> (mp &amp;&amp; $type(ap) == <span class="literal">'object'</span> &amp;&amp; $type(mp) == <span class="literal">'object'</span>) mix[property] = $merge(mp, ap);
+			<span class="reserved">else</span> mix[property] = ap;
+		}
+	}
+	<span class="reserved">return</span> mix;
+};
+
+<span class="comment">/*
+Function: $extend
+	Copies all the properties from the second passed object to the first passed Object.
+	If you do myWhatever.extend = $extend the first parameter will become myWhatever, and your extend function will only need one parameter.
+
+Example:
+	(start code)
+	var firstOb = {
+		'name': 'John',
+		'lastName': 'Doe'
+	};
+	var secondOb = {
+		'age': '20',
+		'sex': 'male',
+		'lastName': 'Dorian'
+	};
+	$extend(firstOb, secondOb);
+	//firstOb will become:
+	{
+		'name': 'John',
+		'lastName': 'Dorian',
+		'age': '20',
+		'sex': 'male'
+	};
+	(end)
+
+Returns:
+	The first object, extended.
+*/</span>
+
+var $extend = <span class="reserved">function</span>(){
+	var args = arguments;
+	<span class="reserved">if</span> (!args[1]) args = [<span class="reserved">this</span>, args[0]];
+	<span class="reserved">for</span> (var property in args[1]) args[0][property] = args[1][property];
+	<span class="reserved">return</span> args[0];
+};
+
+<span class="comment">/*
+Function: $native
+	Will add a .extend method to the objects passed as a parameter, but the property passed in will be copied to the object's prototype only if non previously existent.
+	Its handy if you dont want the .extend method of an object to overwrite existing methods.
+	Used automatically in MooTools to implement Array/String/Function/Number methods to browser that dont support them whitout manual checking.
+
+Arguments:
+	a number of classes/native javascript objects
+
+*/</span>
+
+var $native = <span class="reserved">function</span>(){
+	<span class="reserved">for</span> (var i = 0, l = arguments.length; i &lt; l; i++){
+		arguments[i].extend = <span class="reserved">function</span>(props){
+			<span class="reserved">for</span> (var prop in props){
+				<span class="reserved">if</span> (!<span class="reserved">this</span>.<span class="reserved">prototype</span>[prop]) <span class="reserved">this</span>.<span class="reserved">prototype</span>[prop] = props[prop];
+				<span class="reserved">if</span> (!<span class="reserved">this</span>[prop]) <span class="reserved">this</span>[prop] = $native.generic(prop);
+			}
+		};
+	}
+};
+
+$native.generic = <span class="reserved">function</span>(prop){
+	<span class="reserved">return</span> <span class="reserved">function</span>(bind){
+		<span class="reserved">return</span> <span class="reserved">this</span>.<span class="reserved">prototype</span>[prop].apply(bind, Array.<span class="reserved">prototype</span>.slice.call(arguments, 1));
+	};
+};
+
+$native(Function, Array, String, Number);
+
+<span class="comment">/*
+Function: $chk
+	Returns true if the passed in value/object exists or is 0, otherwise returns false.
+	Useful to accept zeroes.
+
+Arguments:
+	obj - object to inspect
+*/</span>
+
+<span class="reserved">function</span> $chk(obj){
+	<span class="reserved">return</span> !!(obj || obj === 0);
+};
+
+<span class="comment">/*
+Function: $pick
+	Returns the first object if defined, otherwise returns the second.
+
+Arguments:
+	obj - object to test
+	picked - the default to return
+
+Example:
+	(start code)
+		function say(msg){
+			alert($pick(msg, 'no meessage supplied'));
+		}
+	(end)
+*/</span>
+
+<span class="reserved">function</span> $pick(obj, picked){
+	<span class="reserved">return</span> $defined(obj) ? obj : picked;
+};
+
+<span class="comment">/*
+Function: $random
+	Returns a random integer number between the two passed in values.
+
+Arguments:
+	min - integer, the minimum value (inclusive).
+	max - integer, the maximum value (inclusive).
+
+Returns:
+	a random integer between min and max.
+*/</span>
+
+<span class="reserved">function</span> $random(min, max){
+	<span class="reserved">return</span> Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+<span class="comment">/*
+Function: $time
+	Returns the current timestamp
+
+Returns:
+	a timestamp integer.
+*/</span>
+
+<span class="reserved">function</span> $time(){
+	<span class="reserved">return</span> new Date().getTime();
+};
+
+<span class="comment">/*
+Function: $clear
+	clears a timeout or an Interval.
+
+Returns:
+	null
+
+Arguments:
+	timer - the setInterval or setTimeout to clear.
+
+Example:
+	&gt;var myTimer = myFunction.delay(5000); //wait 5 seconds and execute my function.
+	&gt;myTimer = $clear(myTimer); //nevermind
+
+See also:
+	&lt;Function.delay&gt;, &lt;Function.periodical&gt;
+*/</span>
+
+<span class="reserved">function</span> $clear(timer){
+	clearTimeout(timer);
+	clearInterval(timer);
+	<span class="reserved">return</span> null;
+};
+
+<span class="comment">/*
+Class: Abstract
+	Abstract class, to be used as singleton. Will add .extend to any object
+
+Arguments:
+	an object
+
+Returns:
+	the object with an .extend property, equivalent to &lt;$extend&gt;.
+*/</span>
+
+var Abstract = <span class="reserved">function</span>(obj){
+	obj = obj || {};
+	obj.extend = $extend;
+	<span class="reserved">return</span> obj;
+};
+
+<span class="comment">//window, document</span>
+
+var Window = new Abstract(window);
+var Document = new Abstract(document);
+document.head = document.getElementsByTagName(<span class="literal">'head'</span>)[0];
+
+<span class="comment">/*
+Class: window
+	Some properties are attached to the window object by the browser detection.
+	
+Note:
+	browser detection is entirely object-based. We dont sniff.
+
+Properties:
+	window.ie - will be set to true if the current browser is internet explorer (any).
+	window.ie6 - will be set to true if the current browser is internet explorer 6.
+	window.ie7 - will be set to true if the current browser is internet explorer 7.
+	window.gecko - will be set to true if the current browser is Mozilla/Gecko.
+	window.webkit - will be set to true if the current browser is Safari/Konqueror.
+	window.webkit419 - will be set to true if the current browser is Safari2 / webkit till version 419.
+	window.webkit420 - will be set to true if the current browser is Safari3 (Webkit SVN Build) / webkit over version 419.
+	window.opera - is set to true by opera itself.
+*/</span>
+
+window.xpath = !!(document.evaluate);
+<span class="reserved">if</span> (window.ActiveXObject) window.ie = window[window.XMLHttpRequest ? <span class="literal">'ie7'</span> : <span class="literal">'ie6'</span>] = true;
+<span class="reserved">else</span> <span class="reserved">if</span> (document.childNodes &amp;&amp; !document.all &amp;&amp; !navigator.taintEnabled) window.webkit = window[window.xpath ? <span class="literal">'webkit420'</span> : <span class="literal">'webkit419'</span>] = true;
+<span class="reserved">else</span> <span class="reserved">if</span> (document.getBoxObjectFor != null) window.gecko = true;
+
+<span class="comment">/*compatibility*/</span>
+
+window.khtml = window.webkit;
+
+Object.extend = $extend;
+
+<span class="comment">/*end compatibility*/</span>
+
+<span class="comment">//htmlelement</span>
+
+<span class="reserved">if</span> (typeof HTMLElement == <span class="literal">'undefined'</span>){
+	var HTMLElement = <span class="reserved">function</span>(){};
+	<span class="reserved">if</span> (window.webkit) document.createElement(<span class="literal">"iframe"</span>); <span class="comment">//fixes safari</span>
+	HTMLElement.<span class="reserved">prototype</span> = (window.webkit) ? window[<span class="literal">"[[DOMElement.prototype]]"</span>] : {};
+}
+HTMLElement.<span class="reserved">prototype</span>.htmlElement = <span class="reserved">function</span>(){};
+
+<span class="comment">//enables background image cache for internet explorer 6</span>
+
+<span class="reserved">if</span> (window.ie6) try {document.execCommand(<span class="literal">"BackgroundImageCache"</span>, false, true);} catch(e){};
+
+<span class="comment">/*
+Script: Class.js
+	Contains the Class Function, aims to ease the creation of reusable Classes.
+
+License:
+	MIT-style license.
+*/</span>
+
+<span class="comment">/*
+Class: Class
+	The base class object of the &lt;http://mootools.net&gt; framework.
+	Creates a new class, its initialize method will fire upon class instantiation.
+	Initialize wont fire on instantiation when you pass *null*.
+
+Arguments:
+	properties - the collection of properties that apply to the class.
+
+Example:
+	(start code)
+	var Cat = new Class({
+		initialize: function(name){
+			this.name = name;
+		}
+	});
+	var myCat = new Cat('Micia');
+	alert(myCat.name); //alerts 'Micia'
+	(end)
+*/</span>
+
+var Class = <span class="reserved">function</span>(properties){
+	var klass = <span class="reserved">function</span>(){
+		<span class="reserved">return</span> (arguments[0] !== null &amp;&amp; <span class="reserved">this</span>.initialize &amp;&amp; $type(<span class="reserved">this</span>.initialize) == <span class="literal">'function'</span>) ? <span class="reserved">this</span>.initialize.apply(<span class="reserved">this</span>, arguments) : <span class="reserved">this</span>;
+	};
+	$extend(klass, <span class="reserved">this</span>);
+	klass.<span class="reserved">prototype</span> = properties;
+	klass.constructor = Class;
+	<span class="reserved">return</span> klass;
+};
+
+<span class="comment">/*
+Property: empty
+	Returns an empty function
+*/</span>
+
+Class.empty = <span class="reserved">function</span>(){};
+
+Class.<span class="reserved">prototype</span> = {
+
+	<span class="comment">/*
+	Property: extend
+		Returns the copy of the Class extended with the passed in properties.
+
+	Arguments:
+		properties - the properties to add to the base class in this new Class.
+
+	Example:
+		(start code)
+		var Animal = new Class({
+			initialize: function(age){
+				this.age = age;
+			}
+		});
+		var Cat = Animal.extend({
+			initialize: function(name, age){
+				this.parent(age); //will call the previous initialize;
+				this.name = name;
+			}
+		});
+		var myCat = new Cat('Micia', 20);
+		alert(myCat.name); //alerts 'Micia'
+		alert(myCat.age); //alerts 20
+		(end)
+	*/</span>
+
+	extend: <span class="reserved">function</span>(properties){
+		var proto = new <span class="reserved">this</span>(null);
+		<span class="reserved">for</span> (var property in properties){
+			var pp = proto[property];
+			proto[property] = Class.Merge(pp, properties[property]);
+		}
+		<span class="reserved">return</span> new Class(proto);
+	},
+
+	<span class="comment">/*
+	Property: implement
+		Implements the passed in properties to the base Class prototypes, altering the base class, unlike &lt;Class.extend&gt;.
+
+	Arguments:
+		properties - the properties to add to the base class.
+
+	Example:
+		(start code)
+		var Animal = new Class({
+			initialize: function(age){
+				this.age = age;
+			}
+		});
+		Animal.implement({
+			setName: function(name){
+				this.name = name
+			}
+		});
+		var myAnimal = new Animal(20);
+		myAnimal.setName('Micia');
+		alert(myAnimal.name); //alerts 'Micia'
+		(end)
+	*/</span>
+
+	implement: <span class="reserved">function</span>(){
+		<span class="reserved">for</span> (var i = 0, l = arguments.length; i &lt; l; i++) $extend(<span class="reserved">this</span>.<span class="reserved">prototype</span>, arguments[i]);
+	}
+
+};
+
+<span class="comment">//internal</span>
+
+Class.Merge = <span class="reserved">function</span>(previous, current){
+	<span class="reserved">if</span> (previous &amp;&amp; previous != current){
+		var type = $type(current);
+		<span class="reserved">if</span> (type != $type(previous)) <span class="reserved">return</span> current;
+		switch(type){
+			case <span class="literal">'function'</span>:
+				var merged = <span class="reserved">function</span>(){
+					<span class="reserved">this</span>.parent = arguments.callee.parent;
+					<span class="reserved">return</span> current.apply(<span class="reserved">this</span>, arguments);
+				};
+				merged.parent = previous;
+				<span class="reserved">return</span> merged;
+			case <span class="literal">'object'</span>: <span class="reserved">return</span> $merge(previous, current);
+		}
+	}
+	<span class="reserved">return</span> current;
+};
+
+<span class="comment">/*
+Script: Array.js
+	Contains Array prototypes, &lt;$A&gt;, &lt;$each&gt;
+
+License:
+	MIT-style license.
+*/</span>
+
+<span class="comment">/*
+Class: Array
+	A collection of The Array Object prototype methods.
+*/</span>
+
+<span class="comment">//custom methods</span>
+
+Array.extend({
+
+	<span class="comment">/*
+	Property: forEach
+		Iterates through an array; This method is only available for browsers without native *forEach* support.
+		For more info see &lt;http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Array:forEach&gt;
+
+		*forEach* executes the provided function (callback) once for each element present in the array. callback is invoked only for indexes of the array which have assigned values; it is not invoked for indexes which have been deleted or which have never been assigned values.
+
+	Arguments:
+		fn - function to execute with each item in the array; passed the item and the index of that item in the array
+		bind - the object to bind "this" to (see &lt;Function.bind&gt;)
+
+	Example:
+		&gt;['apple','banana','lemon'].each(function(item, index){
+		&gt;	alert(index + " = " + item); //alerts "0 = apple" etc.
+		&gt;}, bindObj); //optional second arg for binding, not used here
+	*/</span>
+
+	forEach: <span class="reserved">function</span>(fn, bind){
+		<span class="reserved">for</span> (var i = 0, j = <span class="reserved">this</span>.length; i &lt; j; i++) fn.call(bind, <span class="reserved">this</span>[i], i, <span class="reserved">this</span>);
+	},
+
+	<span class="comment">/*
+	Property: filter
+		This method is provided only for browsers without native *filter* support.
+		For more info see &lt;http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Objects:Array:filter&gt;
+
+		*filter* calls a provided callback function once for each element in an array, and constructs a new array of all the values for which callback returns a true value. callback is invoked only for indexes of the array which have assigned values; it is not invoked for indexes which have been deleted or which have never been assigned values. Array elements which do not pass the callback test are simply skipped, and are not included in the new array.
+
+	Arguments:
+		fn - function to execute with each item in the array; passed the item and the index of that item in the array
+		bind - the object to bind "this" to (see &lt;Function.bind&gt;)
+
+	Example:
+		&gt;var biggerThanTwenty = [10,3,25,100].filter(function(item, index){
+		&gt; return item &gt; 20;
+		&gt;});
+		&gt;//biggerThanTwenty = [25,100]
+	*/</span>
+
+	filter: <span class="reserved">function</span>(fn, bind){
+		var results = [];
+		<span class="reserved">for</span> (var i = 0, j = <span class="reserved">this</span>.length; i &lt; j; i++){
+			<span class="reserved">if</span> (fn.call(bind, <span class="reserved">this</span>[i], i, <span class="reserved">this</span>)) results.push(<span class="reserved">this</span>[i]);
+		}
+		<span class="reserved">return</span> results;
+	},
+
+	<span class="comment">/*
+	Property: map
+		This method is provided only for browsers without native *map* support.
+		For more info see &lt;http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Array:map&gt;
+
+		*map* calls a provided callback function once for each element in an array, in order, and constructs a new array from the results. callback is invoked only for indexes of the array which have assigned values; it is not invoked for indexes which have been deleted or which have never been assigned values.
+
+	Arguments:
+		fn - function to execute with each item in the array; passed the item and the index of that item in the array
+		bind - the object to bind "this" to (see &lt;Function.bind&gt;)
+
+	Example:
+		&gt;var timesTwo = [1,2,3].map(function(item, index){
+		&gt; return item*2;
+		&gt;});
+		&gt;//timesTwo = [2,4,6];
+	*/</span>
+
+	map: <span class="reserved">function</span>(fn, bind){
+		var results = [];
+		<span class="reserved">for</span> (var i = 0, j = <span class="reserved">this</span>.length; i &lt; j; i++) results[i] = fn.call(bind, <span class="reserved">this</span>[i], i, <span class="reserved">this</span>);
+		<span class="reserved">return</span> results;
+	},
+
+	<span class="comment">/*
+	Property: every
+		This method is provided only for browsers without native *every* support.
+		For more info see &lt;http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Array:every&gt;
+
+		*every* executes the provided callback function once for each element present in the array until it finds one where callback returns a false value. If such an element is found, the every method immediately returns false. Otherwise, if callback returned a true value for all elements, every will return true. callback is invoked only for indexes of the array which have assigned values; it is not invoked for indexes which have been deleted or which have never been assigned values.
+
+	Arguments:
+		fn - function to execute with each item in the array; passed the item and the index of that item in the array
+		bind - the object to bind "this" to (see &lt;Function.bind&gt;)
+
+	Example:
+		&gt;var areAllBigEnough = [10,4,25,100].every(function(item, index){
+		&gt; return item &gt; 20;
+		&gt;});
+		&gt;//areAllBigEnough = false
+	*/</span>
+
+	every: <span class="reserved">function</span>(fn, bind){
+		<span class="reserved">for</span> (var i = 0, j = <span class="reserved">this</span>.length; i &lt; j; i++){
+			<span class="reserved">if</span> (!fn.call(bind, <span class="reserved">this</span>[i], i, <span class="reserved">this</span>)) <span class="reserved">return</span> false;
+		}
+		<span class="reserved">return</span> true;
+	},
+
+	<span class="comment">/*
+	Property: some
+		This method is provided only for browsers without native *some* support.
+		For more info see &lt;http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Array:some&gt;
+
+		*some* executes the callback function once for each element present in the array until it finds one where callback returns a true value. If such an element is found, some immediately returns true. Otherwise, some returns false. callback is invoked only for indexes of the array which have assigned values; it is not invoked for indexes which have been deleted or which have never been assigned values.
+
+	Arguments:
+		fn - function to execute with each item in the array; passed the item and the index of that item in the array
+		bind - the object to bind "this" to (see &lt;Function.bind&gt;)
+
+	Example:
+		&gt;var isAnyBigEnough = [10,4,25,100].some(function(item, index){
+		&gt; return item &gt; 20;
+		&gt;});
+		&gt;//isAnyBigEnough = true
+	*/</span>
+
+	some: <span class="reserved">function</span>(fn, bind){
+		<span class="reserved">for</span> (var i = 0, j = <span class="reserved">this</span>.length; i &lt; j; i++){
+			<span class="reserved">if</span> (fn.call(bind, <span class="reserved">this</span>[i], i, <span class="reserved">this</span>)) <span class="reserved">return</span> true;
+		}
+		<span class="reserved">return</span> false;
+	},
+
+	<span class="comment">/*
+	Property: indexOf
+		This method is provided only for browsers without native *indexOf* support.
+		For more info see &lt;http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Array:indexOf&gt;
+
+		*indexOf* compares a search element to elements of the Array using strict equality (the same method used by the ===, or triple-equals, operator).
+
+	Arguments:
+		item - any type of object; element to locate in the array
+		from - integer; optional; the index of the array at which to begin the search (defaults to 0)
+
+	Example:
+		&gt;['apple','lemon','banana'].indexOf('lemon'); //returns 1
+		&gt;['apple','lemon'].indexOf('banana'); //returns -1
+	*/</span>
+
+	indexOf: <span class="reserved">function</span>(item, from){
+		var len = <span class="reserved">this</span>.length;
+		<span class="reserved">for</span> (var i = (from &lt; 0) ? Math.max(0, len + from) : from || 0; i &lt; len; i++){
+			<span class="reserved">if</span> (<span class="reserved">this</span>[i] === item) <span class="reserved">return</span> i;
+		}
+		<span class="reserved">return</span> -1;
+	},
+
+	<span class="comment">/*
+	Property: each
+		Same as &lt;Array.forEach&gt;.
+
+	Arguments:
+		fn - function to execute with each item in the array; passed the item and the index of that item in the array
+		bind - optional, the object that the "this" of the function will refer to.
+
+	Example:
+		&gt;var Animals = ['Cat', 'Dog', 'Coala'];
+		&gt;Animals.each(function(animal){
+		&gt;	document.write(animal)
+		&gt;});
+	*/</span>
+
+	<span class="comment">/*
+	Property: copy
+		returns a copy of the array.
+
+	Returns:
+		a new array which is a copy of the current one.
+
+	Arguments:
+		start - integer; optional; the index where to start the copy, default is 0. If negative, it is taken as the offset from the end of the array.
+		length - integer; optional; the number of elements to copy. By default, copies all elements from start to the end of the array.
+
+	Example:
+		&gt;var letters = ["a","b","c"];
+		&gt;var copy = letters.copy();		// ["a","b","c"] (new instance)
+	*/</span>
+
+	copy: <span class="reserved">function</span>(start, length){
+		start = start || 0;
+		<span class="reserved">if</span> (start &lt; 0) start = <span class="reserved">this</span>.length + start;
+		length = length || (<span class="reserved">this</span>.length - start);
+		var newArray = [];
+		<span class="reserved">for</span> (var i = 0; i &lt; length; i++) newArray[i] = <span class="reserved">this</span>[start++];
+		<span class="reserved">return</span> newArray;
+	},
+
+	<span class="comment">/*
+	Property: remove
+		Removes all occurrences of an item from the array.
+
+	Arguments:
+		item - the item to remove
+
+	Returns:
+		the Array with all occurrences of the item removed.
+
+	Example:
+		&gt;["1","2","3","2"].remove("2") // ["1","3"];
+	*/</span>
+
+	remove: <span class="reserved">function</span>(item){
+		var i = 0;
+		var len = <span class="reserved">this</span>.length;
+		<span class="reserved">while</span> (i &lt; len){
+			<span class="reserved">if</span> (<span class="reserved">this</span>[i] === item){
+				<span class="reserved">this</span>.splice(i, 1);
+				len--;
+			} <span class="reserved">else</span> {
+				i++;
+			}
+		}
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: contains
+		Tests an array for the presence of an item.
+
+	Arguments:
+		item - the item to search for in the array.
+		from - integer; optional; the index at which to begin the search, default is 0. If negative, it is taken as the offset from the end of the array.
+
+	Returns:
+		true - the item was found
+		false - it wasn't
+
+	Example:
+		&gt;["a","b","c"].contains("a"); // true
+		&gt;["a","b","c"].contains("d"); // false
+	*/</span>
+
+	contains: <span class="reserved">function</span>(item, from){
+		<span class="reserved">return</span> <span class="reserved">this</span>.indexOf(item, from) != -1;
+	},
+
+	<span class="comment">/*
+	Property: associate
+		Creates an object with key-value pairs based on the array of keywords passed in
+		and the current content of the array.
+
+	Arguments:
+		keys - the array of keywords.
+
+	Example:
+		(start code)
+		var Animals = ['Cat', 'Dog', 'Coala', 'Lizard'];
+		var Speech = ['Miao', 'Bau', 'Fruuu', 'Mute'];
+		var Speeches = Animals.associate(Speech);
+		//Speeches['Miao'] is now Cat.
+		//Speeches['Bau'] is now Dog.
+		//...
+		(end)
+	*/</span>
+
+	associate: <span class="reserved">function</span>(keys){
+		var obj = {}, length = Math.min(<span class="reserved">this</span>.length, keys.length);
+		<span class="reserved">for</span> (var i = 0; i &lt; length; i++) obj[keys[i]] = <span class="reserved">this</span>[i];
+		<span class="reserved">return</span> obj;
+	},
+
+	<span class="comment">/*
+	Property: extend
+		Extends an array with another one.
+
+	Arguments:
+		array - the array to extend ours with
+
+	Example:
+		&gt;var Animals = ['Cat', 'Dog', 'Coala'];
+		&gt;Animals.extend(['Lizard']);
+		&gt;//Animals is now: ['Cat', 'Dog', 'Coala', 'Lizard'];
+	*/</span>
+
+	extend: <span class="reserved">function</span>(array){
+		<span class="reserved">for</span> (var i = 0, j = array.length; i &lt; j; i++) <span class="reserved">this</span>.push(array[i]);
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: merge
+		merges an array in another array, without duplicates. (case- and type-sensitive)
+
+	Arguments:
+		array - the array to merge from.
+
+	Example:
+		&gt;['Cat','Dog'].merge(['Dog','Coala']); //returns ['Cat','Dog','Coala']
+	*/</span>
+
+	merge: <span class="reserved">function</span>(array){
+		<span class="reserved">for</span> (var i = 0, l = array.length; i &lt; l; i++) <span class="reserved">this</span>.include(array[i]);
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: include
+		includes the passed in element in the array, only if its not already present. (case- and type-sensitive)
+
+	Arguments:
+		item - item to add to the array (if not present)
+
+	Example:
+		&gt;['Cat','Dog'].include('Dog'); //returns ['Cat','Dog']
+		&gt;['Cat','Dog'].include('Coala'); //returns ['Cat','Dog','Coala']
+	*/</span>
+
+	include: <span class="reserved">function</span>(item){
+		<span class="reserved">if</span> (!<span class="reserved">this</span>.contains(item)) <span class="reserved">this</span>.push(item);
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: getRandom
+		returns a random item in the Array
+	*/</span>
+
+	getRandom: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>[$random(0, <span class="reserved">this</span>.length - 1)] || null;
+	},
+
+	<span class="comment">/*
+	Property: getLast
+		returns the last item in the Array
+	*/</span>
+
+	getLast: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>[<span class="reserved">this</span>.length - 1] || null;
+	}
+
+});
+
+<span class="comment">//copies</span>
+
+Array.<span class="reserved">prototype</span>.each = Array.<span class="reserved">prototype</span>.forEach;
+Array.each = Array.forEach;
+
+<span class="comment">/* Section: Utility Functions */</span>
+
+<span class="comment">/*
+Function: $A()
+	Same as &lt;Array.copy&gt;, but as function.
+	Useful to apply Array prototypes to iterable objects, as a collection of DOM elements or the arguments object.
+
+Example:
+	(start code)
+	function myFunction(){
+		$A(arguments).each(argument, function(){
+			alert(argument);
+		});
+	};
+	//the above will alert all the arguments passed to the function myFunction.
+	(end)
+*/</span>
+
+<span class="reserved">function</span> $A(array){
+	<span class="reserved">return</span> Array.copy(array);
+};
+
+<span class="comment">/*
+Function: $each
+	Use to iterate through iterables that are not regular arrays, such as builtin getElementsByTagName calls, arguments of a function, or an object.
+
+Arguments:
+	iterable - an iterable element or an objct.
+	function - function to apply to the iterable.
+	bind - optional, the 'this' of the function will refer to this object.
+
+Function argument:
+	The function argument will be passed the following arguments.
+
+	item - the current item in the iterator being procesed
+	index - integer; the index of the item, or key in case of an object.
+
+Examples:
+	(start code)
+	$each(['Sun','Mon','Tue'], function(day, index){
+		alert('name:' + day + ', index: ' + index);
+	});
+	//alerts "name: Sun, index: 0", "name: Mon, index: 1", etc.
+	//over an object
+	$each({first: "Sunday", second: "Monday", third: "Tuesday"}, function(value, key){
+		alert("the " + key + " day of the week is " + value);
+	});
+	//alerts "the first day of the week is Sunday",
+	//"the second day of the week is Monday", etc.
+	(end)
+*/</span>
+
+<span class="reserved">function</span> $each(iterable, fn, bind){
+	<span class="reserved">if</span> (iterable &amp;&amp; typeof iterable.length == <span class="literal">'number'</span> &amp;&amp; $type(iterable) != <span class="literal">'object'</span>){
+		Array.forEach(iterable, fn, bind);
+	} <span class="reserved">else</span> {
+		 <span class="reserved">for</span> (var name in iterable) fn.call(bind || iterable, iterable[name], name);
+	}
+};
+
+<span class="comment">/*compatibility*/</span>
+
+Array.<span class="reserved">prototype</span>.test = Array.<span class="reserved">prototype</span>.contains;
+
+<span class="comment">/*end compatibility*/</span>
+
+<span class="comment">/*
+Script: String.js
+	Contains String prototypes.
+
+License:
+	MIT-style license.
+*/</span>
+
+<span class="comment">/*
+Class: String
+	A collection of The String Object prototype methods.
+*/</span>
+
+String.extend({
+
+	<span class="comment">/*
+	Property: test
+		Tests a string with a regular expression.
+
+	Arguments:
+		regex - a string or regular expression object, the regular expression you want to match the string with
+		params - optional, if first parameter is a string, any parameters you want to pass to the regex ('g' has no effect)
+
+	Returns:
+		true if a match for the regular expression is found in the string, false if not.
+		See &lt;http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Objects:RegExp:test&gt;
+
+	Example:
+		&gt;"I like cookies".test("cookie"); // returns true
+		&gt;"I like cookies".test("COOKIE", "i") // ignore case, returns true
+		&gt;"I like cookies".test("cake"); // returns false
+	*/</span>
+
+	test: <span class="reserved">function</span>(regex, params){
+		<span class="reserved">return</span> (($type(regex) == <span class="literal">'string'</span>) ? new RegExp(regex, params) : regex).test(<span class="reserved">this</span>);
+	},
+
+	<span class="comment">/*
+	Property: toInt
+		parses a string to an integer.
+
+	Returns:
+		either an int or "NaN" if the string is not a number.
+
+	Example:
+		&gt;var value = "10px".toInt(); // value is 10
+	*/</span>
+
+	toInt: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> parseInt(<span class="reserved">this</span>, 10);
+	},
+
+	<span class="comment">/*
+	Property: toFloat
+		parses a string to an float.
+
+	Returns:
+		either a float or "NaN" if the string is not a number.
+
+	Example:
+		&gt;var value = "10.848".toFloat(); // value is 10.848
+	*/</span>
+
+	toFloat: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> parseFloat(<span class="reserved">this</span>);
+	},
+
+	<span class="comment">/*
+	Property: camelCase
+		Converts a hiphenated string to a camelcase string.
+
+	Example:
+		&gt;"I-like-cookies".camelCase(); //"ILikeCookies"
+
+	Returns:
+		the camel cased string
+	*/</span>
+
+	camelCase: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.replace(/-\D/g, <span class="reserved">function</span>(match){
+			<span class="reserved">return</span> match.charAt(1).toUpperCase();
+		});
+	},
+
+	<span class="comment">/*
+	Property: hyphenate
+		Converts a camelCased string to a hyphen-ated string.
+
+	Example:
+		&gt;"ILikeCookies".hyphenate(); //"I-like-cookies"
+	*/</span>
+
+	hyphenate: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.replace(/\w[A-Z]/g, <span class="reserved">function</span>(match){
+			<span class="reserved">return</span> (match.charAt(0) + <span class="literal">'-'</span> + match.charAt(1).toLowerCase());
+		});
+	},
+
+	<span class="comment">/*
+	Property: capitalize
+		Converts the first letter in each word of a string to Uppercase.
+
+	Example:
+		&gt;"i like cookies".capitalize(); //"I Like Cookies"
+
+	Returns:
+		the capitalized string
+	*/</span>
+
+	capitalize: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.replace(/\b[a-z]/g, <span class="reserved">function</span>(match){
+			<span class="reserved">return</span> match.toUpperCase();
+		});
+	},
+
+	<span class="comment">/*
+	Property: trim
+		Trims the leading and trailing spaces off a string.
+
+	Example:
+		&gt;"    i like cookies     ".trim() //"i like cookies"
+
+	Returns:
+		the trimmed string
+	*/</span>
+
+	trim: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.replace(/^\s+|\s+$/g, <span class="literal">''</span>);
+	},
+
+	<span class="comment">/*
+	Property: clean
+		trims (&lt;String.trim&gt;) a string AND removes all the double spaces in a string.
+
+	Returns:
+		the cleaned string
+
+	Example:
+		&gt;" i      like     cookies      \n\n".clean() //"i like cookies"
+	*/</span>
+
+	clean: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.replace(/\s{2,}/g, <span class="literal">' '</span>).trim();
+	},
+
+	<span class="comment">/*
+	Property: rgbToHex
+		Converts an RGB value to hexidecimal. The string must be in the format of "rgb(255,255,255)" or "rgba(255,255,255,1)";
+
+	Arguments:
+		array - boolean value, defaults to false. Use true if you want the array ['FF','33','00'] as output instead of "#FF3300"
+
+	Returns:
+		hex string or array. returns "transparent" if the output is set as string and the fourth value of rgba in input string is 0.
+
+	Example:
+		&gt;"rgb(17,34,51)".rgbToHex(); //"#112233"
+		&gt;"rgba(17,34,51,0)".rgbToHex(); //"transparent"
+		&gt;"rgb(17,34,51)".rgbToHex(true); //['11','22','33']
+	*/</span>
+
+	rgbToHex: <span class="reserved">function</span>(array){
+		var rgb = <span class="reserved">this</span>.match(/\d{1,3}/g);
+		<span class="reserved">return</span> (rgb) ? rgb.rgbToHex(array) : false;
+	},
+
+	<span class="comment">/*
+	Property: hexToRgb
+		Converts a hexidecimal color value to RGB. Input string must be the hex color value (with or without the hash). Also accepts triplets ('333');
+
+	Arguments:
+		array - boolean value, defaults to false. Use true if you want the array [255,255,255] as output instead of "rgb(255,255,255)";
+
+	Returns:
+		rgb string or array.
+
+	Example:
+		&gt;"#112233".hexToRgb(); //"rgb(17,34,51)"
+		&gt;"#112233".hexToRgb(true); //[17,34,51]
+	*/</span>
+
+	hexToRgb: <span class="reserved">function</span>(array){
+		var hex = <span class="reserved">this</span>.match(/^#?(\w{1,2})(\w{1,2})(\w{1,2})$/);
+		<span class="reserved">return</span> (hex) ? hex.slice(1).hexToRgb(array) : false;
+	},
+
+	<span class="comment">/*
+	Property: contains
+		checks if the passed in string is contained in the String. also accepts an optional second parameter, to check if the string is contained in a list of separated values.
+
+	Example:
+		&gt;'a b c'.contains('c', ' '); //true
+		&gt;'a bc'.contains('bc'); //true
+		&gt;'a bc'.contains('b', ' '); //false
+	*/</span>
+
+	contains: <span class="reserved">function</span>(string, s){
+		<span class="reserved">return</span> (s) ? (s + <span class="reserved">this</span> + s).indexOf(s + string + s) &gt; -1 : <span class="reserved">this</span>.indexOf(string) &gt; -1;
+	},
+
+	<span class="comment">/*
+	Property: escapeRegExp
+		Returns string with escaped regular expression characters
+
+	Example:
+		&gt;var search = 'animals.sheeps[1]'.escapeRegExp(); // search is now 'animals\.sheeps\[1\]'
+
+	Returns:
+		Escaped string
+	*/</span>
+
+	escapeRegExp: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.replace(/([.*+?^${}()|[\]\/\\])/g, <span class="literal">'\\$1'</span>);
+	}
+
+});
+
+Array.extend({
+
+	<span class="comment">/*
+	Property: rgbToHex
+		see &lt;String.rgbToHex&gt;, but as an array method.
+	*/</span>
+
+	rgbToHex: <span class="reserved">function</span>(array){
+		<span class="reserved">if</span> (<span class="reserved">this</span>.length &lt; 3) <span class="reserved">return</span> false;
+		<span class="reserved">if</span> (<span class="reserved">this</span>.length == 4 &amp;&amp; <span class="reserved">this</span>[3] == 0 &amp;&amp; !array) <span class="reserved">return</span> <span class="literal">'transparent'</span>;
+		var hex = [];
+		<span class="reserved">for</span> (var i = 0; i &lt; 3; i++){
+			var bit = (<span class="reserved">this</span>[i] - 0).toString(16);
+			hex.push((bit.length == 1) ? <span class="literal">'0'</span> + bit : bit);
+		}
+		<span class="reserved">return</span> array ? hex : <span class="literal">'#'</span> + hex.join(<span class="literal">''</span>);
+	},
+
+	<span class="comment">/*
+	Property: hexToRgb
+		same as &lt;String.hexToRgb&gt;, but as an array method.
+	*/</span>
+
+	hexToRgb: <span class="reserved">function</span>(array){
+		<span class="reserved">if</span> (<span class="reserved">this</span>.length != 3) <span class="reserved">return</span> false;
+		var rgb = [];
+		<span class="reserved">for</span> (var i = 0; i &lt; 3; i++){
+			rgb.push(parseInt((<span class="reserved">this</span>[i].length == 1) ? <span class="reserved">this</span>[i] + <span class="reserved">this</span>[i] : <span class="reserved">this</span>[i], 16));
+		}
+		<span class="reserved">return</span> array ? rgb : <span class="literal">'rgb('</span> + rgb.join(<span class="literal">','</span>) + <span class="literal">')'</span>;
+	}
+
+});
+
+<span class="comment">/* 
+Script: Function.js
+	Contains Function prototypes and utility functions .
+
+License:
+	MIT-style license.
+
+Credits:
+	- Some functions are inspired by those found in prototype.js &lt;http://prototype.conio.net/&gt; (c) 2005 Sam Stephenson sam [at] conio [dot] net, MIT-style license
+*/</span>
+
+<span class="comment">/*
+Class: Function
+	A collection of The Function Object prototype methods.
+*/</span>
+
+Function.extend({
+
+	<span class="comment">/*
+	Property: create
+		Main function to create closures.
+
+	Returns:
+		a function.
+
+	Arguments:
+		options - An Options object.
+
+	Options:
+		bind - The object that the "this" of the function will refer to. Default is the current function.
+		event - If set to true, the function will act as an event listener and receive an event as first argument.
+				If set to a class name, the function will receive a new instance of this class (with the event passed as argument's constructor) as first argument.
+				Default is false.
+		arguments - A single argument or array of arguments that will be passed to the function when called.
+		
+					If both the event and arguments options are set, the event is passed as first argument and the arguments array will follow.
+					
+					Default is no custom arguments, the function will receive the standard arguments when called.
+					
+		delay - Numeric value: if set, the returned function will delay the actual execution by this amount of milliseconds and return a timer handle when called.
+				Default is no delay.
+		periodical - Numeric value: if set, the returned function will periodically perform the actual execution with this specified interval and return a timer handle when called.
+				Default is no periodical execution.
+		attempt - If set to true, the returned function will try to execute and return either the results or false on error. Default is false.
+	*/</span>
+
+	create: <span class="reserved">function</span>(options){
+		var fn = <span class="reserved">this</span>;
+		options = $merge({
+			<span class="literal">'bind'</span>: fn,
+			<span class="literal">'event'</span>: false,
+			<span class="literal">'arguments'</span>: null,
+			<span class="literal">'delay'</span>: false,
+			<span class="literal">'periodical'</span>: false,
+			<span class="literal">'attempt'</span>: false
+		}, options);
+		<span class="reserved">if</span> ($chk(options.arguments) &amp;&amp; $type(options.arguments) != <span class="literal">'array'</span>) options.arguments = [options.arguments];
+		<span class="reserved">return</span> <span class="reserved">function</span>(event){
+			var args;
+			<span class="reserved">if</span> (options.event){
+				event = event || window.event;
+				args = [(options.event === true) ? event : new options.event(event)];
+				<span class="reserved">if</span> (options.arguments) args.extend(options.arguments);
+			}
+			<span class="reserved">else</span> args = options.arguments || arguments;
+			var returns = <span class="reserved">function</span>(){
+				<span class="reserved">return</span> fn.apply($pick(options.bind, fn), args);
+			};
+			<span class="reserved">if</span> (options.delay) <span class="reserved">return</span> setTimeout(returns, options.delay);
+			<span class="reserved">if</span> (options.periodical) <span class="reserved">return</span> setInterval(returns, options.periodical);
+			<span class="reserved">if</span> (options.attempt) try {<span class="reserved">return</span> returns();} catch(err){<span class="reserved">return</span> false;};
+			<span class="reserved">return</span> returns();
+		};
+	},
+
+	<span class="comment">/*
+	Property: pass
+		Shortcut to create closures with arguments and bind.
+
+	Returns:
+		a function.
+
+	Arguments:
+		args - the arguments passed. must be an array if arguments &gt; 1
+		bind - optional, the object that the "this" of the function will refer to.
+
+	Example:
+		&gt;myFunction.pass([arg1, arg2], myElement);
+	*/</span>
+
+	pass: <span class="reserved">function</span>(args, bind){
+		<span class="reserved">return</span> <span class="reserved">this</span>.create({<span class="literal">'arguments'</span>: args, <span class="literal">'bind'</span>: bind});
+	},
+
+	<span class="comment">/*
+	Property: attempt
+		Tries to execute the function, returns either the result of the function or false on error.
+
+	Arguments:
+		args - the arguments passed. must be an array if arguments &gt; 1
+		bind - optional, the object that the "this" of the function will refer to.
+
+	Example:
+		&gt;myFunction.attempt([arg1, arg2], myElement);
+	*/</span>
+
+	attempt: <span class="reserved">function</span>(args, bind){
+		<span class="reserved">return</span> <span class="reserved">this</span>.create({<span class="literal">'arguments'</span>: args, <span class="literal">'bind'</span>: bind, <span class="literal">'attempt'</span>: true})();
+	},
+
+	<span class="comment">/*
+	Property: bind
+		method to easily create closures with "this" altered.
+
+	Arguments:
+		bind - optional, the object that the "this" of the function will refer to.
+		args - optional, the arguments passed. must be an array if arguments &gt; 1
+
+	Returns:
+		a function.
+
+	Example:
+		&gt;function myFunction(){
+		&gt;	this.setStyle('color', 'red');
+		&gt;	// note that 'this' here refers to myFunction, not an element
+		&gt;	// we'll need to bind this function to the element we want to alter
+		&gt;};
+		&gt;var myBoundFunction = myFunction.bind(myElement);
+		&gt;myBoundFunction(); // this will make the element myElement red.
+	*/</span>
+
+	bind: <span class="reserved">function</span>(bind, args){
+		<span class="reserved">return</span> <span class="reserved">this</span>.create({<span class="literal">'bind'</span>: bind, <span class="literal">'arguments'</span>: args});
+	},
+
+	<span class="comment">/*
+	Property: bindAsEventListener
+		cross browser method to pass event firer
+
+	Arguments:
+		bind - optional, the object that the "this" of the function will refer to.
+		args - optional, the arguments passed. must be an array if arguments &gt; 1
+
+	Returns:
+		a function with the parameter bind as its "this" and as a pre-passed argument event or window.event, depending on the browser.
+
+	Example:
+		&gt;function myFunction(event){
+		&gt;	alert(event.clientx) //returns the coordinates of the mouse..
+		&gt;};
+		&gt;myElement.onclick = myFunction.bindAsEventListener(myElement);
+	*/</span>
+
+	bindAsEventListener: <span class="reserved">function</span>(bind, args){
+		<span class="reserved">return</span> <span class="reserved">this</span>.create({<span class="literal">'bind'</span>: bind, <span class="literal">'event'</span>: true, <span class="literal">'arguments'</span>: args});
+	},
+
+	<span class="comment">/*
+	Property: delay
+		Delays the execution of a function by a specified duration.
+
+	Arguments:
+		delay - the duration to wait in milliseconds.
+		bind - optional, the object that the "this" of the function will refer to.
+		args - optional, the arguments passed. must be an array if arguments &gt; 1
+
+	Example:
+		&gt;myFunction.delay(50, myElement) //wait 50 milliseconds, then call myFunction and bind myElement to it
+		&gt;(function(){alert('one second later...')}).delay(1000); //wait a second and alert
+	*/</span>
+
+	delay: <span class="reserved">function</span>(delay, bind, args){
+		<span class="reserved">return</span> <span class="reserved">this</span>.create({<span class="literal">'delay'</span>: delay, <span class="literal">'bind'</span>: bind, <span class="literal">'arguments'</span>: args})();
+	},
+
+	<span class="comment">/*
+	Property: periodical
+		Executes a function in the specified intervals of time
+
+	Arguments:
+		interval - the duration of the intervals between executions.
+		bind - optional, the object that the "this" of the function will refer to.
+		args - optional, the arguments passed. must be an array if arguments &gt; 1
+	*/</span>
+
+	periodical: <span class="reserved">function</span>(interval, bind, args){
+		<span class="reserved">return</span> <span class="reserved">this</span>.create({<span class="literal">'periodical'</span>: interval, <span class="literal">'bind'</span>: bind, <span class="literal">'arguments'</span>: args})();
+	}
+
+});
+
+<span class="comment">/*
+Script: Number.js
+	Contains the Number prototypes.
+
+License:
+	MIT-style license.
+*/</span>
+
+<span class="comment">/*
+Class: Number
+	A collection of The Number Object prototype methods.
+*/</span>
+
+Number.extend({
+
+	<span class="comment">/*
+	Property: toInt
+		Returns this number; useful because toInt must work on both Strings and Numbers.
+	*/</span>
+
+	toInt: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> parseInt(<span class="reserved">this</span>);
+	},
+
+	<span class="comment">/*
+	Property: toFloat
+		Returns this number as a float; useful because toFloat must work on both Strings and Numbers.
+	*/</span>
+
+	toFloat: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> parseFloat(<span class="reserved">this</span>);
+	},
+
+	<span class="comment">/*
+	Property: limit
+		Limits the number.
+
+	Arguments:
+		min - number, minimum value
+		max - number, maximum value
+
+	Returns:
+		the number in the given limits.
+
+	Example:
+		&gt;(12).limit(2, 6.5)  // returns 6.5
+		&gt;(-4).limit(2, 6.5)  // returns 2
+		&gt;(4.3).limit(2, 6.5) // returns 4.3
+	*/</span>
+
+	limit: <span class="reserved">function</span>(min, max){
+		<span class="reserved">return</span> Math.min(max, Math.max(min, <span class="reserved">this</span>));
+	},
+
+	<span class="comment">/*
+	Property: round
+		Returns the number rounded to specified precision.
+
+	Arguments:
+		precision - integer, number of digits after the decimal point. Can also be negative or zero (default).
+
+	Example:
+		&gt;12.45.round() // returns 12
+		&gt;12.45.round(1) // returns 12.5
+		&gt;12.45.round(-1) // returns 10
+
+	Returns:
+		The rounded number.
+	*/</span>
+
+	round: <span class="reserved">function</span>(precision){
+		precision = Math.pow(10, precision || 0);
+		<span class="reserved">return</span> Math.round(<span class="reserved">this</span> * precision) / precision;
+	},
+
+	<span class="comment">/*
+	Property: times
+		Executes a passed in function the specified number of times
+
+	Arguments:
+		function - the function to be executed on each iteration of the loop
+
+	Example:
+		&gt;(4).times(alert);
+	*/</span>
+
+	times: <span class="reserved">function</span>(fn){
+		<span class="reserved">for</span> (var i = 0; i &lt; <span class="reserved">this</span>; i++) fn(i);
+	}
+
+});
+
+<span class="comment">/*
+Script: Element.js
+	Contains useful Element prototypes, to be used with the dollar function &lt;$&gt;.
+
+License:
+	MIT-style license.
+
+Credits:
+	- Some functions are inspired by those found in prototype.js &lt;http://prototype.conio.net/&gt; (c) 2005 Sam Stephenson sam [at] conio [dot] net, MIT-style license
+*/</span>
+
+<span class="comment">/*
+Class: Element
+	Custom class to allow all of its methods to be used with any DOM element via the dollar function &lt;$&gt;.
+*/</span>
+
+var Element = new Class({
+
+	<span class="comment">/*
+	Property: initialize
+		Creates a new element of the type passed in.
+
+	Arguments:
+		el - string; the tag name for the element you wish to create. you can also pass in an element reference, in which case it will be extended.
+		props - object; the properties you want to add to your element.
+		Accepts the same keys as &lt;Element.setProperties&gt;, but also allows events and styles
+
+	Props:
+		the key styles will be used as setStyles, the key events will be used as addEvents. any other key is used as setProperty.
+
+	Example:
+		(start code)
+		new Element('a', {
+			'styles': {
+				'display': 'block',
+				'border': '1px solid black'
+			},
+			'events': {
+				'click': function(){
+					//aaa
+				},
+				'mousedown': function(){
+					//aaa
+				}
+			},
+			'class': 'myClassSuperClass',
+			'href': 'http://mad4milk.net'
+		});
+
+		(end)
+	*/</span>
+
+	initialize: <span class="reserved">function</span>(el, props){
+		<span class="reserved">if</span> ($type(el) == <span class="literal">'string'</span>){
+			<span class="reserved">if</span> (window.ie &amp;&amp; props &amp;&amp; (props.name || props.type)){
+				var name = (props.name) ? <span class="literal">' name="'</span> + props.name + <span class="literal">'"'</span> : <span class="literal">''</span>;
+				var type = (props.type) ? <span class="literal">' type="'</span> + props.type + <span class="literal">'"'</span> : <span class="literal">''</span>;
+				delete props.name;
+				delete props.type;
+				el = <span class="literal">'&lt;'</span> + el + name + type + <span class="literal">'&gt;'</span>;
+			}
+			el = document.createElement(el);
+		}
+		el = $(el);
+		<span class="reserved">return</span> (!props || !el) ? el : el.set(props);
+	}
+
+});
+
+<span class="comment">/*
+Class: Elements
+	- Every dom function such as &lt;$$&gt;, or in general every function that returns a collection of nodes in mootools, returns them as an Elements class.
+	- The purpose of the Elements class is to allow &lt;Element&gt; methods to work also on &lt;Elements&gt; array.
+	- Elements is also an Array, so it accepts all the &lt;Array&gt; methods.
+	- Every node of the Elements instance is already extended with &lt;$&gt;.
+
+Example:
+	&gt;$$('myselector').each(function(el){
+	&gt; //...
+	&gt;});
+
+	some iterations here, $$('myselector') is also an array.
+
+	&gt;$$('myselector').setStyle('color', 'red');
+	every element returned by $$('myselector') also accepts &lt;Element&gt; methods, in this example every element will be made red.
+*/</span>
+
+var Elements = new Class({
+
+	initialize: <span class="reserved">function</span>(elements){
+		<span class="reserved">return</span> (elements) ? $extend(elements, <span class="reserved">this</span>) : <span class="reserved">this</span>;
+	}
+
+});
+
+Elements.extend = <span class="reserved">function</span>(props){
+	<span class="reserved">for</span> (var prop in props){
+		<span class="reserved">this</span>.<span class="reserved">prototype</span>[prop] = props[prop];
+		<span class="reserved">this</span>[prop] = $native.generic(prop);
+	}
+};
+
+<span class="comment">/*
+Section: Utility Functions
+
+Function: $
+	returns the element passed in with all the Element prototypes applied.
+
+Arguments:
+	el - a reference to an actual element or a string representing the id of an element
+
+Example:
+	&gt;$('myElement') // gets a DOM element by id with all the Element prototypes applied.
+	&gt;var div = document.getElementById('myElement');
+	&gt;$(div) //returns an Element also with all the mootools extentions applied.
+
+	You'll use this when you aren't sure if a variable is an actual element or an id, as
+	well as just shorthand for document.getElementById().
+
+Returns:
+	a DOM element or false (if no id was found).
+
+Note:
+	you need to call $ on an element only once to get all the prototypes.
+	But its no harm to call it multiple times, as it will detect if it has been already extended.
+*/</span>
+
+<span class="reserved">function</span> $(el){
+	<span class="reserved">if</span> (!el) <span class="reserved">return</span> null;
+	<span class="reserved">if</span> (el.htmlElement) <span class="reserved">return</span> Garbage.collect(el);
+	<span class="reserved">if</span> ([window, document].contains(el)) <span class="reserved">return</span> el;
+	var type = $type(el);
+	<span class="reserved">if</span> (type == <span class="literal">'string'</span>){
+		el = document.getElementById(el);
+		type = (el) ? <span class="literal">'element'</span> : false;
+	}
+	<span class="reserved">if</span> (type != <span class="literal">'element'</span>) <span class="reserved">return</span> null;
+	<span class="reserved">if</span> (el.htmlElement) <span class="reserved">return</span> Garbage.collect(el);
+	<span class="reserved">if</span> ([<span class="literal">'object'</span>, <span class="literal">'embed'</span>].contains(el.tagName.toLowerCase())) <span class="reserved">return</span> el;
+	$extend(el, Element.<span class="reserved">prototype</span>);
+	el.htmlElement = <span class="reserved">function</span>(){};
+	<span class="reserved">return</span> Garbage.collect(el);
+};
+
+<span class="comment">/*
+Function: $$
+	Selects, and extends DOM elements. Elements arrays returned with $$ will also accept all the &lt;Element&gt; methods.
+	The return type of element methods run through $$ is always an array. If the return array is only made by elements,
+	$$ will be applied automatically.
+
+Arguments:
+	HTML Collections, arrays of elements, arrays of strings as element ids, elements, strings as selectors.
+	Any number of the above as arguments are accepted.
+
+Note:
+	if you load &lt;Element.Selectors.js&gt;, $$ will also accept CSS Selectors, otherwise the only selectors supported are tag names.
+
+Example:
+	&gt;$$('a') //an array of all anchor tags on the page
+	&gt;$$('a', 'b') //an array of all anchor and bold tags on the page
+	&gt;$$('#myElement') //array containing only the element with id = myElement. (only with &lt;Element.Selectors.js&gt;)
+	&gt;$$('#myElement a.myClass') //an array of all anchor tags with the class "myClass"
+	&gt;//within the DOM element with id "myElement" (only with &lt;Element.Selectors.js&gt;)
+	&gt;$$(myelement, myelement2, 'a', ['myid', myid2, 'myid3'], document.getElementsByTagName('div')) //an array containing:
+	&gt;// the element referenced as myelement if existing,
+	&gt;// the element referenced as myelement2 if existing,
+	&gt;// all the elements with a as tag in the page,
+	&gt;// the element with id = myid if existing
+	&gt;// the element with id = myid2 if existing
+	&gt;// the element with id = myid3 if existing
+	&gt;// all the elements with div as tag in the page
+
+Returns:
+	array - array of all the dom elements matched, extended with &lt;$&gt;.  Returns as &lt;Elements&gt;.
+*/</span>
+
+document.getElementsBySelector = document.getElementsByTagName;
+
+<span class="reserved">function</span> $$(){
+	var elements = [];
+	<span class="reserved">for</span> (var i = 0, j = arguments.length; i &lt; j; i++){
+		var selector = arguments[i];
+		switch($type(selector)){
+			case <span class="literal">'element'</span>: elements.push(selector);
+			case <span class="literal">'boolean'</span>: break;
+			case false: break;
+			case <span class="literal">'string'</span>: selector = document.getElementsBySelector(selector, true);
+			default: elements.extend(selector);
+		}
+	}
+	<span class="reserved">return</span> $$.unique(elements);
+};
+
+$$.unique = <span class="reserved">function</span>(array){
+	var elements = [];
+	<span class="reserved">for</span> (var i = 0, l = array.length; i &lt; l; i++){
+		<span class="reserved">if</span> (array[i].$included) continue;
+		var element = $(array[i]);
+		<span class="reserved">if</span> (element &amp;&amp; !element.$included){
+			element.$included = true;
+			elements.push(element);
+		}
+	}
+	<span class="reserved">for</span> (var n = 0, d = elements.length; n &lt; d; n++) elements[n].$included = null;
+	<span class="reserved">return</span> new Elements(elements);
+};
+
+Elements.Multi = <span class="reserved">function</span>(property){
+	<span class="reserved">return</span> <span class="reserved">function</span>(){
+		var args = arguments;
+		var items = [];
+		var elements = true;
+		<span class="reserved">for</span> (var i = 0, j = <span class="reserved">this</span>.length, returns; i &lt; j; i++){
+			returns = <span class="reserved">this</span>[i][property].apply(<span class="reserved">this</span>[i], args);
+			<span class="reserved">if</span> ($type(returns) != <span class="literal">'element'</span>) elements = false;
+			items.push(returns);
+		};
+		<span class="reserved">return</span> (elements) ? $$.unique(items) : items;
+	};
+};
+
+Element.extend = <span class="reserved">function</span>(properties){
+	<span class="reserved">for</span> (var property in properties){
+		HTMLElement.<span class="reserved">prototype</span>[property] = properties[property];
+		Element.<span class="reserved">prototype</span>[property] = properties[property];
+		Element[property] = $native.generic(property);
+		var elementsProperty = (Array.<span class="reserved">prototype</span>[property]) ? property + <span class="literal">'Elements'</span> : property;
+		Elements.<span class="reserved">prototype</span>[elementsProperty] = Elements.Multi(property);
+	}
+};
+
+<span class="comment">/*
+Class: Element
+	Custom class to allow all of its methods to be used with any DOM element via the dollar function &lt;$&gt;.
+*/</span>
+
+Element.extend({
+
+	<span class="comment">/*
+	Property: set
+		you can set events, styles and properties with this shortcut. same as calling new Element.
+	*/</span>
+
+	set: <span class="reserved">function</span>(props){
+		<span class="reserved">for</span> (var prop in props){
+			var val = props[prop];
+			switch(prop){
+				case <span class="literal">'styles'</span>: <span class="reserved">this</span>.setStyles(val); break;
+				case <span class="literal">'events'</span>: <span class="reserved">if</span> (<span class="reserved">this</span>.addEvents) <span class="reserved">this</span>.addEvents(val); break;
+				case <span class="literal">'properties'</span>: <span class="reserved">this</span>.setProperties(val); break;
+				default: <span class="reserved">this</span>.setProperty(prop, val);
+			}
+		}
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	inject: <span class="reserved">function</span>(el, where){
+		el = $(el);
+		switch(where){
+			case <span class="literal">'before'</span>: el.parentNode.insertBefore(<span class="reserved">this</span>, el); break;
+			case <span class="literal">'after'</span>:
+				var next = el.getNext();
+				<span class="reserved">if</span> (!next) el.parentNode.appendChild(<span class="reserved">this</span>);
+				<span class="reserved">else</span> el.parentNode.insertBefore(<span class="reserved">this</span>, next);
+				break;
+			case <span class="literal">'top'</span>:
+				var first = el.firstChild;
+				<span class="reserved">if</span> (first){
+					el.insertBefore(<span class="reserved">this</span>, first);
+					break;
+				}
+			default: el.appendChild(<span class="reserved">this</span>);
+		}
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: injectBefore
+		Inserts the Element before the passed element.
+
+	Arguments:
+		el - an element reference or the id of the element to be injected in.
+
+	Example:
+		&gt;html:
+		&gt;&lt;div id="myElement"&gt;&lt;/div&gt;
+		&gt;&lt;div id="mySecondElement"&gt;&lt;/div&gt;
+		&gt;js:
+		&gt;$('mySecondElement').injectBefore('myElement');
+		&gt;resulting html:
+		&gt;&lt;div id="mySecondElement"&gt;&lt;/div&gt;
+		&gt;&lt;div id="myElement"&gt;&lt;/div&gt;
+	*/</span>
+
+	injectBefore: <span class="reserved">function</span>(el){
+		<span class="reserved">return</span> <span class="reserved">this</span>.inject(el, <span class="literal">'before'</span>);
+	},
+
+	<span class="comment">/*
+	Property: injectAfter
+		Same as &lt;Element.injectBefore&gt;, but inserts the element after.
+	*/</span>
+
+	injectAfter: <span class="reserved">function</span>(el){
+		<span class="reserved">return</span> <span class="reserved">this</span>.inject(el, <span class="literal">'after'</span>);
+	},
+
+	<span class="comment">/*
+	Property: injectInside
+		Same as &lt;Element.injectBefore&gt;, but inserts the element inside.
+	*/</span>
+
+	injectInside: <span class="reserved">function</span>(el){
+		<span class="reserved">return</span> <span class="reserved">this</span>.inject(el, <span class="literal">'bottom'</span>);
+	},
+
+	<span class="comment">/*
+	Property: injectTop
+		Same as &lt;Element.injectInside&gt;, but inserts the element inside, at the top.
+	*/</span>
+
+	injectTop: <span class="reserved">function</span>(el){
+		<span class="reserved">return</span> <span class="reserved">this</span>.inject(el, <span class="literal">'top'</span>);
+	},
+
+	<span class="comment">/*
+	Property: adopt
+		Inserts the passed elements inside the Element.
+
+	Arguments:
+		accepts elements references, element ids as string, selectors ($$('stuff')) / array of elements, array of ids as strings and collections.
+	*/</span>
+
+	adopt: <span class="reserved">function</span>(){
+		var elements = [];
+		$each(arguments, <span class="reserved">function</span>(argument){
+			elements = elements.concat(argument);
+		});
+		$$(elements).inject(<span class="reserved">this</span>);
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: remove
+		Removes the Element from the DOM.
+
+	Example:
+		&gt;$('myElement').remove() //bye bye
+	*/</span>
+
+	remove: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.parentNode.removeChild(<span class="reserved">this</span>);
+	},
+
+	<span class="comment">/*
+	Property: clone
+		Clones the Element and returns the cloned one.
+
+	Arguments:
+		contents - boolean, when true the Element is cloned with childNodes, default true
+
+	Returns:
+		the cloned element
+
+	Example:
+		&gt;var clone = $('myElement').clone().injectAfter('myElement');
+		&gt;//clones the Element and append the clone after the Element.
+	*/</span>
+
+	clone: <span class="reserved">function</span>(contents){
+		var el = $(<span class="reserved">this</span>.cloneNode(contents !== false));
+		<span class="reserved">if</span> (!el.$events) <span class="reserved">return</span> el;
+		el.$events = {};
+		<span class="reserved">for</span> (var type in <span class="reserved">this</span>.$events) el.$events[type] = {
+			<span class="literal">'keys'</span>: $A(<span class="reserved">this</span>.$events[type].keys),
+			<span class="literal">'values'</span>: $A(<span class="reserved">this</span>.$events[type].values)
+		};
+		<span class="reserved">return</span> el.removeEvents();
+	},
+
+	<span class="comment">/*
+	Property: replaceWith
+		Replaces the Element with an element passed.
+
+	Arguments:
+		el - a string representing the element to be injected in (myElementId, or div), or an element reference.
+		If you pass div or another tag, the element will be created.
+
+	Returns:
+		the passed in element
+
+	Example:
+		&gt;$('myOldElement').replaceWith($('myNewElement')); //$('myOldElement') is gone, and $('myNewElement') is in its place.
+	*/</span>
+
+	replaceWith: <span class="reserved">function</span>(el){
+		el = $(el);
+		<span class="reserved">this</span>.parentNode.replaceChild(el, <span class="reserved">this</span>);
+		<span class="reserved">return</span> el;
+	},
+
+	<span class="comment">/*
+	Property: appendText
+		Appends text node to a DOM element.
+
+	Arguments:
+		text - the text to append.
+
+	Example:
+		&gt;&lt;div id="myElement"&gt;hey&lt;/div&gt;
+		&gt;$('myElement').appendText(' howdy'); //myElement innerHTML is now "hey howdy"
+	*/</span>
+
+	appendText: <span class="reserved">function</span>(text){
+		<span class="reserved">this</span>.appendChild(document.createTextNode(text));
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: hasClass
+		Tests the Element to see if it has the passed in className.
+
+	Returns:
+		true - the Element has the class
+		false - it doesn't
+
+	Arguments:
+		className - string; the class name to test.
+
+	Example:
+		&gt;&lt;div id="myElement" class="testClass"&gt;&lt;/div&gt;
+		&gt;$('myElement').hasClass('testClass'); //returns true
+	*/</span>
+
+	hasClass: <span class="reserved">function</span>(className){
+		<span class="reserved">return</span> <span class="reserved">this</span>.className.contains(className, <span class="literal">' '</span>);
+	},
+
+	<span class="comment">/*
+	Property: addClass
+		Adds the passed in class to the Element, if the element doesnt already have it.
+
+	Arguments:
+		className - string; the class name to add
+
+	Example:
+		&gt;&lt;div id="myElement" class="testClass"&gt;&lt;/div&gt;
+		&gt;$('myElement').addClass('newClass'); //&lt;div id="myElement" class="testClass newClass"&gt;&lt;/div&gt;
+	*/</span>
+
+	addClass: <span class="reserved">function</span>(className){
+		<span class="reserved">if</span> (!<span class="reserved">this</span>.hasClass(className)) <span class="reserved">this</span>.className = (<span class="reserved">this</span>.className + <span class="literal">' '</span> + className).clean();
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: removeClass
+		Works like &lt;Element.addClass&gt;, but removes the class from the element.
+	*/</span>
+
+	removeClass: <span class="reserved">function</span>(className){
+		<span class="reserved">this</span>.className = <span class="reserved">this</span>.className.replace(new RegExp(<span class="literal">'(^|\\s)'</span> + className + <span class="literal">'(?:\\s|$)'</span>), <span class="literal">'$1'</span>).clean();
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: toggleClass
+		Adds or removes the passed in class name to the element, depending on if it's present or not.
+
+	Arguments:
+		className - the class to add or remove
+
+	Example:
+		&gt;&lt;div id="myElement" class="myClass"&gt;&lt;/div&gt;
+		&gt;$('myElement').toggleClass('myClass');
+		&gt;&lt;div id="myElement" class=""&gt;&lt;/div&gt;
+		&gt;$('myElement').toggleClass('myClass');
+		&gt;&lt;div id="myElement" class="myClass"&gt;&lt;/div&gt;
+	*/</span>
+
+	toggleClass: <span class="reserved">function</span>(className){
+		<span class="reserved">return</span> <span class="reserved">this</span>.hasClass(className) ? <span class="reserved">this</span>.removeClass(className) : <span class="reserved">this</span>.addClass(className);
+	},
+
+	<span class="comment">/*
+	Property: setStyle
+		Sets a css property to the Element.
+
+		Arguments:
+			property - the property to set
+			value - the value to which to set it; for numeric values that require "px" you can pass an integer
+
+		Example:
+			&gt;$('myElement').setStyle('width', '300px'); //the width is now 300px
+			&gt;$('myElement').setStyle('width', 300); //the width is now 300px
+	*/</span>
+
+	setStyle: <span class="reserved">function</span>(property, value){
+		switch(property){
+			case <span class="literal">'opacity'</span>: <span class="reserved">return</span> <span class="reserved">this</span>.setOpacity(parseFloat(value));
+			case <span class="literal">'float'</span>: property = (window.ie) ? <span class="literal">'styleFloat'</span> : <span class="literal">'cssFloat'</span>;
+		}
+		property = property.camelCase();
+		switch($type(value)){
+			case <span class="literal">'number'</span>: <span class="reserved">if</span> (![<span class="literal">'zIndex'</span>, <span class="literal">'zoom'</span>].contains(property)) value += <span class="literal">'px'</span>; break;
+			case <span class="literal">'array'</span>: value = <span class="literal">'rgb('</span> + value.join(<span class="literal">','</span>) + <span class="literal">')'</span>;
+		}
+		<span class="reserved">this</span>.style[property] = value;
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: setStyles
+		Applies a collection of styles to the Element.
+
+	Arguments:
+		source - an object or string containing all the styles to apply. When its a string it overrides old style.
+
+	Examples:
+		&gt;$('myElement').setStyles({
+		&gt;	border: '1px solid #000',
+		&gt;	width: 300,
+		&gt;	height: 400
+		&gt;});
+
+		OR
+
+		&gt;$('myElement').setStyles('border: 1px solid #000; width: 300px; height: 400px;');
+	*/</span>
+
+	setStyles: <span class="reserved">function</span>(source){
+		switch($type(source)){
+			case <span class="literal">'object'</span>: Element.setMany(<span class="reserved">this</span>, <span class="literal">'setStyle'</span>, source); break;
+			case <span class="literal">'string'</span>: <span class="reserved">this</span>.style.cssText = source;
+		}
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: setOpacity
+		Sets the opacity of the Element, and sets also visibility == "hidden" if opacity == 0, and visibility = "visible" if opacity &gt; 0.
+
+	Arguments:
+		opacity - float; Accepts values from 0 to 1.
+
+	Example:
+		&gt;$('myElement').setOpacity(0.5) //make it 50% transparent
+	*/</span>
+
+	setOpacity: <span class="reserved">function</span>(opacity){
+		<span class="reserved">if</span> (opacity == 0){
+			<span class="reserved">if</span> (<span class="reserved">this</span>.style.visibility != <span class="literal">"hidden"</span>) <span class="reserved">this</span>.style.visibility = <span class="literal">"hidden"</span>;
+		} <span class="reserved">else</span> {
+			<span class="reserved">if</span> (<span class="reserved">this</span>.style.visibility != <span class="literal">"visible"</span>) <span class="reserved">this</span>.style.visibility = <span class="literal">"visible"</span>;
+		}
+		<span class="reserved">if</span> (!<span class="reserved">this</span>.currentStyle || !<span class="reserved">this</span>.currentStyle.hasLayout) <span class="reserved">this</span>.style.zoom = 1;
+		<span class="reserved">if</span> (window.ie) <span class="reserved">this</span>.style.filter = (opacity == 1) ? <span class="literal">''</span> : <span class="literal">"alpha(opacity="</span> + opacity * 100 + <span class="literal">")"</span>;
+		<span class="reserved">this</span>.style.opacity = <span class="reserved">this</span>.$tmp.opacity = opacity;
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: getStyle
+		Returns the style of the Element given the property passed in.
+
+	Arguments:
+		property - the css style property you want to retrieve
+
+	Example:
+		&gt;$('myElement').getStyle('width'); //returns "400px"
+		&gt;//but you can also use
+		&gt;$('myElement').getStyle('width').toInt(); //returns 400
+
+	Returns:
+		the style as a string
+	*/</span>
+
+	getStyle: <span class="reserved">function</span>(property){
+		property = property.camelCase();
+		var result = <span class="reserved">this</span>.style[property];
+		<span class="reserved">if</span> (!$chk(result)){
+			<span class="reserved">if</span> (property == <span class="literal">'opacity'</span>) <span class="reserved">return</span> <span class="reserved">this</span>.$tmp.opacity;
+			result = [];
+			<span class="reserved">for</span> (var style in Element.Styles){
+				<span class="reserved">if</span> (property == style){
+					Element.Styles[style].each(<span class="reserved">function</span>(s){
+						var style = <span class="reserved">this</span>.getStyle(s);
+						result.push(parseInt(style) ? style : <span class="literal">'0px'</span>);
+					}, <span class="reserved">this</span>);
+					<span class="reserved">if</span> (property == <span class="literal">'border'</span>){
+						var every = result.every(<span class="reserved">function</span>(bit){
+							<span class="reserved">return</span> (bit == result[0]);
+						});
+						<span class="reserved">return</span> (every) ? result[0] : false;
+					}
+					<span class="reserved">return</span> result.join(<span class="literal">' '</span>);
+				}
+			}
+			<span class="reserved">if</span> (property.contains(<span class="literal">'border'</span>)){
+				<span class="reserved">if</span> (Element.Styles.border.contains(property)){
+					<span class="reserved">return</span> [<span class="literal">'Width'</span>, <span class="literal">'Style'</span>, <span class="literal">'Color'</span>].map(<span class="reserved">function</span>(p){
+						<span class="reserved">return</span> <span class="reserved">this</span>.getStyle(property + p);
+					}, <span class="reserved">this</span>).join(<span class="literal">' '</span>);
+				} <span class="reserved">else</span> <span class="reserved">if</span> (Element.borderShort.contains(property)){
+					<span class="reserved">return</span> [<span class="literal">'Top'</span>, <span class="literal">'Right'</span>, <span class="literal">'Bottom'</span>, <span class="literal">'Left'</span>].map(<span class="reserved">function</span>(p){
+						<span class="reserved">return</span> <span class="reserved">this</span>.getStyle(<span class="literal">'border'</span> + p + property.replace(<span class="literal">'border'</span>, <span class="literal">''</span>));
+					}, <span class="reserved">this</span>).join(<span class="literal">' '</span>);
+				}
+			}
+			<span class="reserved">if</span> (document.defaultView) result = document.defaultView.getComputedStyle(<span class="reserved">this</span>, null).getPropertyValue(property.hyphenate());
+			<span class="reserved">else</span> <span class="reserved">if</span> (<span class="reserved">this</span>.currentStyle) result = <span class="reserved">this</span>.currentStyle[property];
+		}
+		<span class="reserved">if</span> (window.ie) result = Element.fixStyle(property, result, <span class="reserved">this</span>);
+		<span class="reserved">if</span> (result &amp;&amp; property.test(/color/i) &amp;&amp; result.contains(<span class="literal">'rgb'</span>)){
+			<span class="reserved">return</span> result.split(<span class="literal">'rgb'</span>).splice(1,4).map(<span class="reserved">function</span>(color){
+				<span class="reserved">return</span> color.rgbToHex();
+			}).join(<span class="literal">' '</span>);
+		}
+		<span class="reserved">return</span> result;
+	},
+
+	<span class="comment">/*
+	Property: getStyles
+		Returns an object of styles of the Element for each argument passed in.
+		Arguments:
+		properties - strings; any number of style properties
+	Example:
+		&gt;$('myElement').getStyles('width','height','padding');
+		&gt;//returns an object like:
+		&gt;{width: "10px", height: "10px", padding: "10px 0px 10px 0px"}
+	*/</span>
+
+	getStyles: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> Element.getMany(<span class="reserved">this</span>, <span class="literal">'getStyle'</span>, arguments);
+	},
+
+	walk: <span class="reserved">function</span>(brother, start){
+		brother += <span class="literal">'Sibling'</span>;
+		var el = (start) ? <span class="reserved">this</span>[start] : <span class="reserved">this</span>[brother];
+		<span class="reserved">while</span> (el &amp;&amp; $type(el) != <span class="literal">'element'</span>) el = el[brother];
+		<span class="reserved">return</span> $(el);
+	},
+
+	<span class="comment">/*
+	Property: getPrevious
+		Returns the previousSibling of the Element, excluding text nodes.
+
+	Example:
+		&gt;$('myElement').getPrevious(); //get the previous DOM element from myElement
+
+	Returns:
+		the sibling element or undefined if none found.
+	*/</span>
+
+	getPrevious: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.walk(<span class="literal">'previous'</span>);
+	},
+
+	<span class="comment">/*
+	Property: getNext
+		Works as Element.getPrevious, but tries to find the nextSibling.
+	*/</span>
+
+	getNext: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.walk(<span class="literal">'next'</span>);
+	},
+
+	<span class="comment">/*
+	Property: getFirst
+		Works as &lt;Element.getPrevious&gt;, but tries to find the firstChild.
+	*/</span>
+
+	getFirst: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.walk(<span class="literal">'next'</span>, <span class="literal">'firstChild'</span>);
+	},
+
+	<span class="comment">/*
+	Property: getLast
+		Works as &lt;Element.getPrevious&gt;, but tries to find the lastChild.
+	*/</span>
+
+	getLast: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.walk(<span class="literal">'previous'</span>, <span class="literal">'lastChild'</span>);
+	},
+
+	<span class="comment">/*
+	Property: getParent
+		returns the $(element.parentNode)
+	*/</span>
+
+	getParent: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> $(<span class="reserved">this</span>.parentNode);
+	},
+
+	<span class="comment">/*
+	Property: getChildren
+		returns all the $(element.childNodes), excluding text nodes. Returns as &lt;Elements&gt;.
+	*/</span>
+
+	getChildren: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> $$(<span class="reserved">this</span>.childNodes);
+	},
+
+	<span class="comment">/*
+	Property: hasChild
+		returns true if the passed in element is a child of the $(element).
+	*/</span>
+
+	hasChild: <span class="reserved">function</span>(el){
+		<span class="reserved">return</span> !!$A(<span class="reserved">this</span>.getElementsByTagName(<span class="literal">'*'</span>)).contains(el);
+	},
+
+	<span class="comment">/*
+	Property: getProperty
+		Gets the an attribute of the Element.
+
+	Arguments:
+		property - string; the attribute to retrieve
+
+	Example:
+		&gt;$('myImage').getProperty('src') // returns whatever.gif
+
+	Returns:
+		the value, or an empty string
+	*/</span>
+
+	getProperty: <span class="reserved">function</span>(property){
+		var index = Element.Properties[property];
+		<span class="reserved">if</span> (index) <span class="reserved">return</span> <span class="reserved">this</span>[index];
+		var flag = Element.PropertiesIFlag[property] || 0;
+		<span class="reserved">if</span> (!window.ie || flag) <span class="reserved">return</span> <span class="reserved">this</span>.getAttribute(property, flag);
+		var node = <span class="reserved">this</span>.attributes[property];
+		<span class="reserved">return</span> (node) ? node.nodeValue : null;
+	},
+
+	<span class="comment">/*
+	Property: removeProperty
+		Removes an attribute from the Element
+
+	Arguments:
+		property - string; the attribute to remove
+	*/</span>
+
+	removeProperty: <span class="reserved">function</span>(property){
+		var index = Element.Properties[property];
+		<span class="reserved">if</span> (index) <span class="reserved">this</span>[index] = <span class="literal">''</span>;
+		<span class="reserved">else</span> <span class="reserved">this</span>.removeAttribute(property);
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: getProperties
+		same as &lt;Element.getStyles&gt;, but for properties
+	*/</span>
+
+	getProperties: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> Element.getMany(<span class="reserved">this</span>, <span class="literal">'getProperty'</span>, arguments);
+	},
+
+	<span class="comment">/*
+	Property: setProperty
+		Sets an attribute for the Element.
+
+	Arguments:
+		property - string; the property to assign the value passed in
+		value - the value to assign to the property passed in
+
+	Example:
+		&gt;$('myImage').setProperty('src', 'whatever.gif'); //myImage now points to whatever.gif for its source
+	*/</span>
+
+	setProperty: <span class="reserved">function</span>(property, value){
+		var index = Element.Properties[property];
+		<span class="reserved">if</span> (index) <span class="reserved">this</span>[index] = value;
+		<span class="reserved">else</span> <span class="reserved">this</span>.setAttribute(property, value);
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: setProperties
+		Sets numerous attributes for the Element.
+
+	Arguments:
+		source - an object with key/value pairs.
+
+	Example:
+		(start code)
+		$('myElement').setProperties({
+			src: 'whatever.gif',
+			alt: 'whatever dude'
+		});
+		&lt;img src="whatever.gif" alt="whatever dude"&gt;
+		(end)
+	*/</span>
+
+	setProperties: <span class="reserved">function</span>(source){
+		<span class="reserved">return</span> Element.setMany(<span class="reserved">this</span>, <span class="literal">'setProperty'</span>, source);
+	},
+
+	<span class="comment">/*
+	Property: setHTML
+		Sets the innerHTML of the Element.
+
+	Arguments:
+		html - string; the new innerHTML for the element.
+
+	Example:
+		&gt;$('myElement').setHTML(newHTML) //the innerHTML of myElement is now = newHTML
+	*/</span>
+
+	setHTML: <span class="reserved">function</span>(){
+		<span class="reserved">this</span>.innerHTML = $A(arguments).join(<span class="literal">''</span>);
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: setText
+		Sets the inner text of the Element.
+
+	Arguments:
+		text - string; the new text content for the element.
+
+	Example:
+		&gt;$('myElement').setText('some text') //the text of myElement is now = 'some text'
+	*/</span>
+
+	setText: <span class="reserved">function</span>(text){
+		var tag = <span class="reserved">this</span>.getTag();
+		<span class="reserved">if</span> ([<span class="literal">'style'</span>, <span class="literal">'script'</span>].contains(tag)){
+			<span class="reserved">if</span> (window.ie){
+				<span class="reserved">if</span> (tag == <span class="literal">'style'</span>) <span class="reserved">this</span>.styleSheet.cssText = text;
+				<span class="reserved">else</span> <span class="reserved">if</span> (tag ==  <span class="literal">'script'</span>) <span class="reserved">this</span>.setProperty(<span class="literal">'text'</span>, text);
+				<span class="reserved">return</span> <span class="reserved">this</span>;
+			} <span class="reserved">else</span> {
+				<span class="reserved">this</span>.removeChild(<span class="reserved">this</span>.firstChild);
+				<span class="reserved">return</span> <span class="reserved">this</span>.appendText(text);
+			}
+		}
+		<span class="reserved">this</span>[$defined(<span class="reserved">this</span>.innerText) ? <span class="literal">'innerText'</span> : <span class="literal">'textContent'</span>] = text;
+		<span class="reserved">return</span> <span class="reserved">this</span>;
+	},
+
+	<span class="comment">/*
+	Property: getText
+		Gets the inner text of the Element.
+	*/</span>
+
+	getText: <span class="reserved">function</span>(){
+		var tag = <span class="reserved">this</span>.getTag();
+		<span class="reserved">if</span> ([<span class="literal">'style'</span>, <span class="literal">'script'</span>].contains(tag)){
+			<span class="reserved">if</span> (window.ie){
+				<span class="reserved">if</span> (tag == <span class="literal">'style'</span>) <span class="reserved">return</span> <span class="reserved">this</span>.styleSheet.cssText;
+				<span class="reserved">else</span> <span class="reserved">if</span> (tag ==  <span class="literal">'script'</span>) <span class="reserved">return</span> <span class="reserved">this</span>.getProperty(<span class="literal">'text'</span>);
+			} <span class="reserved">else</span> {
+				<span class="reserved">return</span> <span class="reserved">this</span>.innerHTML;
+			}
+		}
+		<span class="reserved">return</span> ($pick(<span class="reserved">this</span>.innerText, <span class="reserved">this</span>.textContent));
+	},
+
+	<span class="comment">/*
+	Property: getTag
+		Returns the tagName of the element in lower case.
+
+	Example:
+		&gt;$('myImage').getTag() // returns 'img'
+
+	Returns:
+		The tag name in lower case
+	*/</span>
+
+	getTag: <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.tagName.toLowerCase();
+	},
+
+	<span class="comment">/*
+	Property: empty
+		Empties an element of all its children.
+
+	Example:
+		&gt;$('myDiv').empty() // empties the Div and returns it
+
+	Returns:
+		The element.
+	*/</span>
+
+	empty: <span class="reserved">function</span>(){
+		Garbage.trash(<span class="reserved">this</span>.getElementsByTagName(<span class="literal">'*'</span>));
+		<span class="reserved">return</span> <span class="reserved">this</span>.setHTML(<span class="literal">''</span>);
+	}
+
+});
+
+Element.fixStyle = <span class="reserved">function</span>(property, result, element){
+	<span class="reserved">if</span> ($chk(parseInt(result))) <span class="reserved">return</span> result;
+	<span class="reserved">if</span> ([<span class="literal">'height'</span>, <span class="literal">'width'</span>].contains(property)){
+		var values = (property == <span class="literal">'width'</span>) ? [<span class="literal">'left'</span>, <span class="literal">'right'</span>] : [<span class="literal">'top'</span>, <span class="literal">'bottom'</span>];
+		var size = 0;
+		values.each(<span class="reserved">function</span>(value){
+			size += element.getStyle(<span class="literal">'border-'</span> + value + <span class="literal">'-width'</span>).toInt() + element.getStyle(<span class="literal">'padding-'</span> + value).toInt();
+		});
+		<span class="reserved">return</span> element[<span class="literal">'offset'</span> + property.capitalize()] - size + <span class="literal">'px'</span>;
+	} <span class="reserved">else</span> <span class="reserved">if</span> (property.test(/border(.+)Width|margin|padding/)){
+		<span class="reserved">return</span> <span class="literal">'0px'</span>;
+	}
+	<span class="reserved">return</span> result;
+};
+
+Element.Styles = {<span class="literal">'border'</span>: [], <span class="literal">'padding'</span>: [], <span class="literal">'margin'</span>: []};
+[<span class="literal">'Top'</span>, <span class="literal">'Right'</span>, <span class="literal">'Bottom'</span>, <span class="literal">'Left'</span>].each(<span class="reserved">function</span>(direction){
+	<span class="reserved">for</span> (var style in Element.Styles) Element.Styles[style].push(style + direction);
+});
+
+Element.borderShort = [<span class="literal">'borderWidth'</span>, <span class="literal">'borderStyle'</span>, <span class="literal">'borderColor'</span>];
+
+Element.getMany = <span class="reserved">function</span>(el, method, keys){
+	var result = {};
+	$each(keys, <span class="reserved">function</span>(key){
+		result[key] = el[method](key);
+	});
+	<span class="reserved">return</span> result;
+};
+
+Element.setMany = <span class="reserved">function</span>(el, method, pairs){
+	<span class="reserved">for</span> (var key in pairs) el[method](key, pairs[key]);
+	<span class="reserved">return</span> el;
+};
+
+Element.Properties = new Abstract({
+	<span class="literal">'class'</span>: <span class="literal">'className'</span>, <span class="literal">'for'</span>: <span class="literal">'htmlFor'</span>, <span class="literal">'colspan'</span>: <span class="literal">'colSpan'</span>, <span class="literal">'rowspan'</span>: <span class="literal">'rowSpan'</span>,
+	<span class="literal">'accesskey'</span>: <span class="literal">'accessKey'</span>, <span class="literal">'tabindex'</span>: <span class="literal">'tabIndex'</span>, <span class="literal">'maxlength'</span>: <span class="literal">'maxLength'</span>,
+	<span class="literal">'readonly'</span>: <span class="literal">'readOnly'</span>, <span class="literal">'frameborder'</span>: <span class="literal">'frameBorder'</span>, <span class="literal">'value'</span>: <span class="literal">'value'</span>,
+	<span class="literal">'disabled'</span>: <span class="literal">'disabled'</span>, <span class="literal">'checked'</span>: <span class="literal">'checked'</span>, <span class="literal">'multiple'</span>: <span class="literal">'multiple'</span>, <span class="literal">'selected'</span>: <span class="literal">'selected'</span>
+});
+Element.PropertiesIFlag = {
+	<span class="literal">'href'</span>: 2, <span class="literal">'src'</span>: 2
+};
+
+Element.Methods = {
+	Listeners: {
+		addListener: <span class="reserved">function</span>(type, fn){
+			<span class="reserved">if</span> (<span class="reserved">this</span>.addEventListener) <span class="reserved">this</span>.addEventListener(type, fn, false);
+			<span class="reserved">else</span> <span class="reserved">this</span>.attachEvent(<span class="literal">'on'</span> + type, fn);
+			<span class="reserved">return</span> <span class="reserved">this</span>;
+		},
+
+		removeListener: <span class="reserved">function</span>(type, fn){
+			<span class="reserved">if</span> (<span class="reserved">this</span>.removeEventListener) <span class="reserved">this</span>.removeEventListener(type, fn, false);
+			<span class="reserved">else</span> <span class="reserved">this</span>.detachEvent(<span class="literal">'on'</span> + type, fn);
+			<span class="reserved">return</span> <span class="reserved">this</span>;
+		}
+	}
+};
+
+window.extend(Element.Methods.Listeners);
+document.extend(Element.Methods.Listeners);
+Element.extend(Element.Methods.Listeners);
+
+var Garbage = {
+
+	elements: [],
+
+	collect: <span class="reserved">function</span>(el){
+		<span class="reserved">if</span> (!el.$tmp){
+			Garbage.elements.push(el);
+			el.$tmp = {<span class="literal">'opacity'</span>: 1};
+		}
+		<span class="reserved">return</span> el;
+	},
+
+	trash: <span class="reserved">function</span>(elements){
+		<span class="reserved">for</span> (var i = 0, j = elements.length, el; i &lt; j; i++){
+			<span class="reserved">if</span> (!(el = elements[i]) || !el.$tmp) continue;
+			<span class="reserved">if</span> (el.$events) el.fireEvent(<span class="literal">'trash'</span>).removeEvents();
+			<span class="reserved">for</span> (var p in el.$tmp) el.$tmp[p] = null;
+			<span class="reserved">for</span> (var d in Element.<span class="reserved">prototype</span>) el[d] = null;
+			Garbage.elements[Garbage.elements.indexOf(el)] = null;
+			el.htmlElement = el.$tmp = el = null;
+		}
+		Garbage.elements.remove(null);
+	},
+
+	empty: <span class="reserved">function</span>(){
+		Garbage.collect(window);
+		Garbage.collect(document);
+		Garbage.trash(Garbage.elements);
+	}
+
+};
+
+window.addListener(<span class="literal">'beforeunload'</span>, <span class="reserved">function</span>(){
+	window.addListener(<span class="literal">'unload'</span>, Garbage.empty);
+	<span class="reserved">if</span> (window.ie) window.addListener(<span class="literal">'unload'</span>, CollectGarbage);
+});</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Feb  7 23:45:38 2008</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+shape.uml=new Object();

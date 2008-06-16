@@ -1,0 +1,282 @@
+<html>
+<head>
+  <title>Complex Layout</title>
+    <link rel="stylesheet" type="text/css" href="./css/ext-all.css" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/Strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>Open-jACOB Draw2D :: ResizeImage</title>
+        <!-- common, all times required, imports -->
+        <!--REGEXP_START_REMOVE-->
+	<SCRIPT src="../wz_jsgraphics.js"></SCRIPT>
+	<SCRIPT src="../events.js"></SCRIPT>
+	<SCRIPT src="../debug.js"></SCRIPT>
+	<SCRIPT src="../dragdrop.js"></SCRIPT>
+	<SCRIPT src="../Graphics.js"></SCRIPT>
+	<SCRIPT src="../Color.js"></SCRIPT>
+	<SCRIPT src="../ArrayList.js"></SCRIPT>
+	<SCRIPT src="../PositionConstants.js"></SCRIPT>
+	<SCRIPT src="../Point.js"></SCRIPT>
+	<SCRIPT src="../Dimension.js"></SCRIPT>
+	<SCRIPT src="../Border.js"></SCRIPT>
+	<SCRIPT src="../LineBorder.js"></SCRIPT>
+	<SCRIPT src="../Figure.js"></SCRIPT>
+	<SCRIPT src="../Node.js"></SCRIPT>
+        <SCRIPT src="../VectorFigure.js"></SCRIPT>
+	<SCRIPT src="../Label.js"></SCRIPT>
+	<SCRIPT src="../Oval.js"></SCRIPT>
+	<SCRIPT src="../Circle.js"></SCRIPT>
+	<SCRIPT src="../Rectangle.js"></SCRIPT>
+	<SCRIPT src="../ImageFigure.js"></SCRIPT>
+	<SCRIPT src="../Port.js"></SCRIPT>
+	<SCRIPT src="../InputPort.js"></SCRIPT>
+	<SCRIPT src="../OutputPort.js"></SCRIPT>
+	<SCRIPT src="../Line.js"></SCRIPT>
+	<SCRIPT src="../ConnectionRouter.js"></SCRIPT>
+	<SCRIPT src="../NullConnectionRouter.js"></SCRIPT>
+	<SCRIPT src="../ManhattanConnectionRouter.js"></SCRIPT>
+	<SCRIPT src="../BezierConnectionRouter.js"></SCRIPT>
+	<SCRIPT src="../FanConnectionRouter.js"></SCRIPT>
+	<SCRIPT src="../Connection.js"></SCRIPT>
+	<SCRIPT src="../ConnectionAnchor.js"></SCRIPT>
+	<SCRIPT src="../ChopboxConnectionAnchor.js"></SCRIPT>
+	<SCRIPT src="../CompartmentFigure.js"></SCRIPT>
+	<SCRIPT src="../Document.js"></SCRIPT>
+	<SCRIPT src="../Annotation.js"></SCRIPT>
+	<SCRIPT src="../ResizeHandle.js"></SCRIPT>
+	<SCRIPT src="../LineStartResizeHandle.js"></SCRIPT>
+	<SCRIPT src="../LineEndResizeHandle.js"></SCRIPT>
+	<SCRIPT src="../Canvas.js"></SCRIPT>
+	<SCRIPT src="../Workflow.js"></SCRIPT>
+	<SCRIPT src="../Window.js"></SCRIPT>
+	<SCRIPT src="../Button.js"></SCRIPT>
+	<SCRIPT src="../ToggleButton.js"></SCRIPT>
+	<SCRIPT src="../SnapToHelper.js"></SCRIPT>
+	<SCRIPT src="../SnapToGeometry.js"></SCRIPT>
+	<SCRIPT src="../SnapToGeometryEntry.js"></SCRIPT>
+	<SCRIPT src="../SnapToGrid.js"></SCRIPT>
+	<SCRIPT src="../ToggleButton.js"></SCRIPT>
+	<SCRIPT src="../ToolGeneric.js"></SCRIPT>
+	<SCRIPT src="../ToolPalette.js"></SCRIPT>
+	<SCRIPT src="../Dialog.js"></SCRIPT>
+	<SCRIPT src="../InputDialog.js"></SCRIPT>
+	<SCRIPT src="../PropertyDialog.js"></SCRIPT>
+	<SCRIPT src="../AnnotationDialog.js"></SCRIPT>
+	<SCRIPT src="../PropertyWindow.js"></SCRIPT>
+	<SCRIPT src="../ColorDialog.js"></SCRIPT>
+	<SCRIPT src="../LineColorDialog.js"></SCRIPT>
+	<SCRIPT src="../BackgroundColorDialog.js"></SCRIPT>
+	<SCRIPT src="../AnnotationDialog.js"></SCRIPT>
+        <!-- undo/redo support (all times required too) -->
+	<SCRIPT src="../Command.js"></SCRIPT>
+	<SCRIPT src="../CommandStack.js"></SCRIPT>
+	<SCRIPT src="../CommandStackEvent.js"></SCRIPT>
+	<SCRIPT src="../CommandStackEventListener.js"></SCRIPT>
+	<SCRIPT src="../CommandAdd.js"></SCRIPT>
+	<SCRIPT src="../CommandDelete.js"></SCRIPT>
+	<SCRIPT src="../CommandMove.js"></SCRIPT>
+	<SCRIPT src="../CommandMoveLine.js"></SCRIPT>
+	<SCRIPT src="../CommandResize.js"></SCRIPT>
+	<SCRIPT src="../CommandSetText.js"></SCRIPT>
+	<SCRIPT src="../CommandSetColor.js"></SCRIPT>
+	<SCRIPT src="../CommandSetBackgroundColor.js"></SCRIPT>
+	<SCRIPT src="../CommandConnect.js"></SCRIPT>
+	<SCRIPT src="../CommandReconnect.js"></SCRIPT>
+	<SCRIPT src="../Menu.js"></SCRIPT>
+	<SCRIPT src="../MenuItem.js"></SCRIPT>
+        <!--REGEXP_END_REMOVE-->
+
+        <!-- demo specific imports -->
+	<SCRIPT src="ResizeImage.js"></SCRIPT>
+	<SCRIPT src="Start.js"></SCRIPT>
+	<SCRIPT src="End.js"></SCRIPT>
+	<SCRIPT src="ContextmenuConnection.js"></SCRIPT>
+	<SCRIPT src="MyInputPort.js"></SCRIPT>
+	<SCRIPT src="MyOutputPort.js"></SCRIPT>
+
+<!-- use this imports if you whant the ExtJs native implementation
+
+    <script type="text/javascript" src="./ext-base.js"></script> 
+-->
+
+<!-- use this imports if you prefere jquery
+
+    <script type="text/javascript" src="./adapter/jquery/jquery.js"></script> 
+    <script type="text/javascript" src="./adapter/jquery/jquery-plugins.js"></script>
+    <script type="text/javascript" src="./adapter/jquery/ext-jquery-adapter.js"></script>
+-->
+
+<!-- use this import if you prefere prototype
+
+    <script type="text/javascript" src="./adapter/prototype/prototype.js"></script>
+    <script type="text/javascript" src="./adapter/prototype/effects.js"></script> 
+    <script type="text/javascript" src="./adapter/prototype/scriptaculous.js"></script>
+    <script type="text/javascript" src="./adapter/prototype/ext-prototype-adapter.js"></script>
+-->
+
+<!-- use this imports if you whant use the Yahoo utility methods -->
+    <link rel="stylesheet" type="text/css" href="./css/xtheme-vista.css" />
+    <script type="text/javascript" src="./adapter/yui/yui-utilities.js"></script>
+    <script type="text/javascript" src="./adapter/yui/ext-yui-adapter.js"></script>
+
+
+    <script type="text/javascript" src="ext-all.js"></script>
+
+
+</head>
+<body>
+  <div id="toolbar"></div>
+  <div id="obj2">
+    empty at the moment....
+  </div>
+  <div id="obj1">
+      <center>
+      <br>
+      <br>
+      <img src="Start.png" id="dragMe" style="cursor:move"/>
+      <br>
+      <br>
+      <br>
+      <img src="End.png"   id="dragMe2" style="cursor:move"/>
+      </center>
+  </div>
+
+  <div id="center1" class="x-layout-active-content">
+      <div id="paintarea" style="position:relative;width:3000px;height:3000px;" >
+      </div>
+  </div>
+
+  <div id="debug">
+  </div>
+
+ <script>
+function debug(msg)
+{
+  var console = document.getElementById("debug");
+  console.innerHTML=console.innerHTML+"<br>"+msg;
+}
+  /**********************************************************************************
+   * 
+   * Do the Draw2D Stuff
+   *
+   **********************************************************************************/
+  var workflow  = new Workflow("paintarea");
+//  workflow.setEnableSmoothFigureHandling(true);
+
+  // Add the image node to the canvas
+  //
+  var startObj = new ResizeImage("Image.gif");
+  workflow.addFigure(startObj, 200,300);
+
+
+  // Add an simple annotation to the canvas
+  //
+  var annotation = new Annotation("NOTE: Drag&Drop the red port to the blue port to create a connection. Use the connection context menu to switch the router implementation.");
+  annotation.setDimension(300,70);
+  workflow.addFigure(annotation,20,50);
+
+  var annotation = new Annotation("NOTE: Drag&Drop the objects from the left hand tool palette to the canvas to insert a new object.");
+  annotation.setDimension(300,70);
+  workflow.addFigure(annotation,20,150);
+
+  var annotation = new Annotation("NOTE: Test the context menu of the blue connections!!!.");
+  annotation.setDimension(300,70);
+  workflow.addFigure(annotation,20,250);
+
+
+  // Add the start node to the canvas
+  //
+  var startObj = new Start();
+  workflow.addFigure(startObj, 450,300);
+
+  // Add the end node to the canvas
+  //
+  var endObj   = new End();
+  workflow.addFigure(endObj,600,350);
+
+debug("start");
+  /**********************************************************************************
+   * 
+   * Do the Ext (Yahoo UI) Stuff
+   *
+   **********************************************************************************/
+  var center = new Ext.ContentPanel('center1', {width:100, height:200});
+   Example = function(){
+            var layout;
+            return {
+               init : function(){
+                  layout = new Ext.BorderLayout(document.body, {
+                        west: {
+                           split:true,
+                           initialSize: 202,
+                           minSize: 175,
+                           maxSize: 400,
+                           titlebar: true,
+                           collapsible: true,
+                           autoScroll:true,
+                           animate: true
+                        },
+                        north: {
+                           initialSize: 30,
+                           split:false,
+                           titlebar: false,
+                           collapsible: false,
+                           animate: false
+                        },
+                        south: {
+                           initialSize: 130,
+                           split:false,
+                           titlebar: true,
+                           collapsible: true,
+                           autoScroll:true,
+                           animate: true
+                        },
+                        center: {
+                           titlebar: true,
+                           autoScroll:true,
+                           fitToFrame:true
+                  }
+                  });
+
+               layout.beginUpdate();
+                  layout.add('south', new Ext.ContentPanel('debug',    {title: 'Debug Console'}));
+                  layout.add('north', new Ext.ContentPanel('toolbar',    {title: 'South'}));
+                  layout.add('west',  new Ext.ContentPanel('obj2', {title: 'Object Type 2'}));
+                  layout.add('west',  new Ext.ContentPanel('obj1', {title: 'Object Type 1'}));
+                  layout.add('center',center);
+               layout.endUpdate();
+               workflow.scrollArea = document.getElementById("center1").parentNode;
+//               var dragsource=new Ext.dd.DragSource("dragMe", {ddGroup:'TreeDD',dragData:{name: "Start"}}); 
+//               var dragsource=new Ext.dd.DragSource("dragMe2", {ddGroup:'TreeDD',dragData:{name: "End"}}); 
+               var dragsource=new Ext.dd.DragSource("dragMe", {ddGroup:'TreeDD',dragData:{name: "Start"}}); 
+               var dragsource=new Ext.dd.DragSource("dragMe2", {ddGroup:'TreeDD',dragData:{name: "End"}}); 
+               var droptarget=new Ext.dd.DropTarget("center1",{ddGroup:'TreeDD'});
+                   droptarget.notifyDrop=function(dd, e, data)
+                   {
+                        if(data.name)
+                        {
+                           var xOffset    = workflow.getAbsoluteX();
+                           var yOffset    = workflow.getAbsoluteY();
+                           var scrollLeft = workflow.getScrollLeft();
+                           var scrollTop  = workflow.getScrollTop();
+
+                           workflow.addFigure(eval("new "+data.name+"()"),e.xy[0]-xOffset+scrollLeft,e.xy[1]-yOffset+scrollTop);
+                           return true;
+                        }
+                   }
+               }
+
+         };
+
+   }();
+   Ext.EventManager.onDocumentReady(Example.init, Example, true);
+
+   var simpleToolbar = new Ext.Toolbar('toolbar');
+   simpleToolbar.addButton({ text: 'Scroll Bottom', cls: 'x-btn-text-icon scroll-bottom'});
+   simpleToolbar.addButton({ text: 'Scroll Top', cls: 'x-btn-text-icon scroll-bottom'});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+/**
+This notice must be untouched at all times.
+This is the COMPRESSED version of Draw2D
+WebSite: http://www.draw2d.org
+Copyright: 2006 Andreas Herz. All rights reserved.
+Created: 5.11.2006 by Andreas Herz (Web: http://www.freegroup.de )
+LICENSE: LGPL
+**/
+
+draw2d.InputPort=function(_1ea6){draw2d.Port.call(this,_1ea6);};draw2d.InputPort.prototype=new draw2d.Port;draw2d.InputPort.prototype.type="InputPort";draw2d.InputPort.prototype.onDrop=function(port){if(port.getMaxFanOut&&port.getMaxFanOut()<=port.getFanOut()){return;}if(this.parentNode.id==port.parentNode.id){}else{if(port instanceof draw2d.OutputPort){var _1ea8=new draw2d.CommandConnect(this.parentNode.workflow,port,this);this.parentNode.workflow.getCommandStack().execute(_1ea8);}}};draw2d.InputPort.prototype.onDragEnter=function(port){if(port instanceof draw2d.OutputPort){draw2d.Port.prototype.onDragEnter.call(this,port);}else{if(port instanceof draw2d.LineStartResizeHandle){var line=this.workflow.currentSelection;if(line instanceof draw2d.Connection&&line.getSource() instanceof draw2d.InputPort){draw2d.Port.prototype.onDragEnter.call(this,line.getSource());}}else{if(port instanceof draw2d.LineEndResizeHandle){var line=this.workflow.currentSelection;if(line instanceof draw2d.Connection&&line.getTarget() instanceof draw2d.InputPort){draw2d.Port.prototype.onDragEnter.call(this,line.getTarget());}}}}};draw2d.InputPort.prototype.onDragLeave=function(port){if(port instanceof draw2d.OutputPort){draw2d.Port.prototype.onDragLeave.call(this,port);}else{if(port instanceof draw2d.LineStartResizeHandle){var line=this.workflow.currentSelection;if(line instanceof draw2d.Connection&&line.getSource() instanceof draw2d.InputPort){draw2d.Port.prototype.onDragLeave.call(this,line.getSource());}}else{if(port instanceof draw2d.LineEndResizeHandle){var line=this.workflow.currentSelection;if(line instanceof draw2d.Connection&&line.getTarget() instanceof draw2d.InputPort){draw2d.Port.prototype.onDragLeave.call(this,line.getTarget());}}}}};

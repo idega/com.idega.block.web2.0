@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/Strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>Open-jACOB Draw2D :: Triangle</title>
+        <!-- common, all times required, imports -->
+        <SCRIPT src='../wz_jsgraphics.js'></SCRIPT>      <SCRIPT src='../mootools.js'></SCRIPT>      <SCRIPT src='../moocanvas.js'></SCRIPT>      <SCRIPT src='../draw2d.js'></SCRIPT>
+
+        <!-- demo specific imports -->
+	<SCRIPT src="Triangle.js"></SCRIPT>
+	<SCRIPT src="SVGTriangle.js"></SCRIPT>
+</head>
+<body onselectstart="return false;" style="margin:0px;padding:0px;" onkeydown="">
+<div id="paintarea" style="position:absolute;left:0px;top:0px;width:3000px;height:3000px" >
+
+</div>
+<script>
+  var workflow  = new Workflow("paintarea");
+
+
+  // Add my triangle figures to the canvas.
+  //
+//  var obj = new Triangle(100,100);
+//  workflow.addFigure(obj, 200,150);
+
+
+//  obj = new Triangle(50,50);
+//  obj.setBackgroundColor(new Color(200,255,0));
+//  workflow.addFigure(obj, 230,350);
+
+
+  obj = new SVGTriangle(80,50);
+  workflow.addFigure(obj, 300,300);
+
+
+</script>
+</body>
+</html>

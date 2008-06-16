@@ -1,0 +1,10 @@
+/**
+This notice must be untouched at all times.
+This is the COMPRESSED version of Draw2D
+WebSite: http://www.draw2d.org
+Copyright: 2006 Andreas Herz. All rights reserved.
+Created: 5.11.2006 by Andreas Herz (Web: http://www.freegroup.de )
+LICENSE: LGPL
+**/
+
+draw2d.Annotation=function(msg){this.msg=msg;this.color=new draw2d.Color(0,0,0);this.bgColor=new draw2d.Color(241,241,121);this.fontSize=10;this.textNode=null;draw2d.Figure.call(this);};draw2d.Annotation.prototype=new draw2d.Figure;draw2d.Annotation.prototype.type="Annotation";draw2d.Annotation.prototype.createHTMLElement=function(){var item=draw2d.Figure.prototype.createHTMLElement.call(this);item.style.color=this.color.getHTMLStyle();item.style.backgroundColor=this.bgColor.getHTMLStyle();item.style.fontSize=this.fontSize+"pt";item.style.width="auto";item.style.height="auto";item.style.margin="0px";item.style.padding="0px";item.onselectstart=function(){return false;};item.unselectable="on";item.style.MozUserSelect="none";item.style.cursor="default";this.textNode=document.createTextNode(this.msg);item.appendChild(this.textNode);this.disableTextSelection(item);return item;};draw2d.Annotation.prototype.onDoubleClick=function(){var _274c=new draw2d.AnnotationDialog(this);this.workflow.showDialog(_274c);};draw2d.Annotation.prototype.setBackgroundColor=function(color){this.bgColor=color;if(this.bgColor!=null){this.html.style.backgroundColor=this.bgColor.getHTMLStyle();}else{this.html.style.backgroundColor="transparent";}};draw2d.Annotation.prototype.getBackgroundColor=function(){return this.bgColor;};draw2d.Annotation.prototype.setFontSize=function(size){this.fontSize=size;this.html.style.fontSize=this.fontSize+"pt";};draw2d.Annotation.prototype.getText=function(){return this.msg;};draw2d.Annotation.prototype.setText=function(text){this.msg=text;this.html.removeChild(this.textNode);this.textNode=document.createTextNode(this.msg);this.html.appendChild(this.textNode);};draw2d.Annotation.prototype.setStyledText=function(text){this.msg=text;this.html.removeChild(this.textNode);this.textNode=document.createElement("div");this.textNode.innerHTML=text;this.html.appendChild(this.textNode);};

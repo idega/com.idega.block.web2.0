@@ -1,0 +1,10 @@
+/**
+This notice must be untouched at all times.
+This is the COMPRESSED version of Draw2D
+WebSite: http://www.draw2d.org
+Copyright: 2006 Andreas Herz. All rights reserved.
+Created: 5.11.2006 by Andreas Herz (Web: http://www.freegroup.de )
+LICENSE: LGPL
+**/
+
+Server=function(_d,ip,_f){this.label=new Label(ip);this.label.setCanDrag(false);this.label.setSelectable(false);this.label.setBackgroundColor(new Color(255,255,255));this.label.setBorder(new LineBorder());this.req==null;this.pkey=_d;this.ip=ip;this.state=_f;if(this.state=="up"){ImageFigure.call(this,"Server_up.png");}else{ImageFigure.call(this,"Server_down.png");}this.setDimension(54,60);};Server.prototype=new ImageFigure;Server.prototype.type="Server";Server.prototype.dispose=function(){overviewWindow.removeServer(this);this.workflow.removeFigure(this.label);ImageFigure.prototype.dispose.call(this);};Server.prototype.isReachable=function(){return this.state=="up";};Server.prototype.createHTMLElement=function(){var _10=ImageFigure.prototype.createHTMLElement.call(this);_10.style.width=this.width+"px";_10.style.height=this.height+"px";_10.style.margin="0px";_10.style.padding="0px";_10.style.border="0px";return _10;};Server.prototype.setWorkflow=function(_11){ImageFigure.prototype.setWorkflow.call(this,_11);if(_11==null){return;}_11.addFigure(this.label,this.x-20,this.y-10);};Server.prototype.onDragend=function(){ImageFigure.prototype.onDragend.call(this);};Server.prototype.onDoubleClick=function(){var _12=prompt("Server IP:",this.ip);if(_12==null){return;}this.ip=_12;this.updateLabel();};Server.prototype.onDrag=function(){ImageFigure.prototype.onDrag.call(this);this.updateLabel();};Server.prototype.setPosition=function(_13,_14){ImageFigure.prototype.setPosition.call(this,_13,_14);this.updateLabel();};Server.prototype.updateLabel=function(){this.label.setText(this.ip);var _15=this.getX()+(this.getWidth()/2)-(this.label.getWidth()/2);this.label.setPosition(_15,this.y-this.label.getHeight()-3);};

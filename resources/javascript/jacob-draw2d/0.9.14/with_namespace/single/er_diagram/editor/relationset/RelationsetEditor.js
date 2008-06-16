@@ -1,0 +1,1 @@
+RelationsetEditor=function(id,_4a41){draw2d.Workflow.call(this,id);this.relationset=_4a41;var _4a42=this.relationset.getTableAliasModels();for(var i=0;i<_4a42.getSize();i++){var _4a44=new TableAliasFigure(_4a42.get(i));this.addFigure(_4a44);}};RelationsetEditor.prototype=new draw2d.Workflow;RelationsetEditor.prototype.type="RelationsetEditor";

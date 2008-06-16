@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/Strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>Open-jACOB Draw2D :: ToggleButton and ToolPalette Demo</title>
+        <!-- common, all times required, imports -->
+        <SCRIPT src='../wz_jsgraphics.js'></SCRIPT>          <SCRIPT src='../mootools.js'></SCRIPT>          <SCRIPT src='../moocanvas.js'></SCRIPT>                        <SCRIPT src='../draw2d.js'></SCRIPT>
+
+        <!-- demo specific imports -->
+	<SCRIPT src="MyPalette.js"></SCRIPT>
+	<SCRIPT src="ToolUseGrid10.js"></SCRIPT>
+	<SCRIPT src="ToolUseGrid20.js"></SCRIPT>
+</head>
+<body onselectstart="return false;" style="margin:0px;padding:0px;" onkeydown="">
+<div id="paintarea" style="position:absolute;left:0px;top:0px;width:3000px;height:3000px" >
+    <!-- The information help text -->
+    <div style="background-color:white;border:1px solid gray;width:350px;padding:10px;font-size:8pt;">
+    <center><b>Draw2D 0.9.14 - A simple diagram drawing demo<br>
+    by Andreas Herz (a.herz @ freegroup.de)
+    <br>
+    </b>
+    <br>
+    <div style="color:red;font-size:9pt"><u>Focus of this example:</u> Show the SnapToGrid Feature.</div>
+    </center>
+    <br>
+    <center>See more on <a href="http://www.draw2d.org">Open-jACOB Draw2D</a></center>
+    </div>
+
+</div>
+<script>
+  var workflow  = new draw2d.Workflow("paintarea");
+  workflow.setBackgroundImage(null,false);
+
+  // Add a hint annotation to the workflow area
+  //
+  var annotation = new draw2d.Annotation("NOTE: Press the button in the Toolbar to toggle the snapToGrid feature. Move the rectangle via Drag&Drag.");
+  annotation.setDimension(250,70);
+  workflow.addFigure(annotation,200,200);
+
+  var dialog = new draw2d.MyPalette();
+  workflow.showDialog(dialog,400,10);
+
+  // Add a Rectangle to the paint area
+  //
+  var rect = new draw2d.Rectangle();
+  rect.setDimension(190,20);
+  workflow.addFigure(rect,250,300);
+
+  // Add a Rectangle with lineWidth and fillColor/backgroundColor
+  //
+  var rect = new draw2d.Rectangle();
+  rect.setLineWidth(5);
+  rect.setBackgroundColor(new draw2d.Color(255,120,0));
+  rect.setDimension(190,20);
+  workflow.addFigure(rect,350,320);
+
+
+  window.onscroll=function(){workflow.onScroll();};
+</script>
+</body>
+</html>

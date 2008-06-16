@@ -1,0 +1,10 @@
+/**
+This notice must be untouched at all times.
+This is the COMPRESSED version of Draw2D
+WebSite: http://www.draw2d.org
+Copyright: 2006 Andreas Herz. All rights reserved.
+Created: 5.11.2006 by Andreas Herz (Web: http://www.freegroup.de )
+LICENSE: LGPL
+**/
+
+VectorFigure=function(){this.bgColor=null;this.lineColor=new Color(0,0,0);this.stroke=1;this.graphics=null;Node.call(this);};VectorFigure.prototype=new Node;VectorFigure.prototype.type="VectorFigure";VectorFigure.prototype.dispose=function(){Node.prototype.dispose.call(this);this.bgColor=null;this.lineColor=null;if(this.graphics!=null){this.graphics.clear();}this.graphics=null;};VectorFigure.prototype.createHTMLElement=function(){var item=Node.prototype.createHTMLElement.call(this);item.style.border="0px";item.style.backgroundColor="transparent";return item;};VectorFigure.prototype.setWorkflow=function(_11db){Node.prototype.setWorkflow.call(this,_11db);if(this.workflow==null){this.graphics.clear();this.graphics=null;}};VectorFigure.prototype.paint=function(){if(this.graphics==null){this.graphics=new jsGraphics(this.id);}else{this.graphics.clear();}Node.prototype.paint.call(this);for(var i=0;i<this.ports.getSize();i++){this.getHTMLElement().appendChild(this.ports.get(i).getHTMLElement());}};VectorFigure.prototype.setDimension=function(w,h){Node.prototype.setDimension.call(this,w,h);if(this.graphics!=null){this.paint();}};VectorFigure.prototype.setBackgroundColor=function(color){this.bgColor=color;if(this.graphics!=null){this.paint();}};VectorFigure.prototype.getBackgroundColor=function(){return this.bgColor;};VectorFigure.prototype.setLineWidth=function(w){this.stroke=w;if(this.graphics!=null){this.paint();}};VectorFigure.prototype.setColor=function(color){this.lineColor=color;if(this.graphics!=null){this.paint();}};VectorFigure.prototype.getColor=function(){return this.lineColor;};

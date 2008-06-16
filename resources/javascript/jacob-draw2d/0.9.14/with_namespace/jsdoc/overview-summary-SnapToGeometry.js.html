@@ -1,0 +1,375 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+ Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="SnapToGeometry.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>SnapToGeometry.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		No overview generated for 'SnapToGeometry.js'<BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+    <table border="1" cellpadding="3" cellspacing="0" width="100%">
+    <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+    <td colspan=2><font size="+2">
+    
+        <b>Class Summary</b>
+    
+    </font></td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="draw2d.SnapToGeometry.html">draw2d.SnapToGeometry</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    </table>
+    <hr/> 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">/* This notice must be untouched at all times.
+
+Open-jACOB Draw2D
+The latest version is available at
+http://www.openjacob.org
+
+Copyright (c) 2006 Andreas Herz. All rights reserved.
+Created 5. 11. 2006 by Andreas Herz (Web: http://www.freegroup.de )
+
+LICENSE: LGPL
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License (LGPL) as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA,
+or see http://www.gnu.org/copyleft/lesser.html
+*/</span>
+
+<span class="comment">/**
+ * 
+ * <span class="attrib">@version</span> 0.9.14
+ * <span class="attrib">@author</span> Andreas Herz
+ * <span class="attrib">@constructor</span>
+ */</span>
+draw2d.SnapToGeometry=<span class="reserved">function</span>(<span class="comment">/*:draw2d.Workflow*/</span> workflow)
+{
+   draw2d.SnapToHelper.call(<span class="reserved">this</span>,workflow);
+}
+draw2d.SnapToGeometry.<span class="reserved">prototype</span> = new draw2d.SnapToHelper;
+
+draw2d.SnapToGeometry.THRESHOLD = 5.0;
+
+<span class="comment">/**
+ * Applies a snapping correction to the given result. Snapping can occur in the four
+ * primary directions: NORTH, SOUTH, EAST, WEST, as defined.
+ *
+ * By default a Point is treated as an empty Rectangle. Only NORTH and WEST should be used
+ * in general.  But SOUTH and EAST may also be used.
+ */</span>
+draw2d.SnapToGeometry.<span class="reserved">prototype</span>.snapPoint=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> snapOrientation, <span class="comment">/*:draw2d.Point*/</span> inputPoint,  <span class="comment">/*:draw2d.Point*/</span> resultPoint)
+{
+   <span class="reserved">if</span>(<span class="reserved">this</span>.rows==null || <span class="reserved">this</span>.cols==null)
+     <span class="reserved">this</span>.populateRowsAndCols();
+
+   <span class="reserved">if</span> ((snapOrientation &amp; draw2d.SnapToHelper.EAST) != 0) 
+   {
+      var rightCorrection = <span class="reserved">this</span>.getCorrectionFor(<span class="reserved">this</span>.cols, inputPoint.getX() - 1, 1);
+      <span class="reserved">if</span> (rightCorrection != draw2d.SnapToGeometry.THRESHOLD) 
+      {
+         snapOrientation &amp;= ~draw2d.SnapToHelper.EAST;
+         resultPoint.x += rightCorrection;
+      }
+   }
+
+   <span class="reserved">if</span> ((snapOrientation &amp; draw2d.SnapToHelper.WEST) != 0) 
+   {
+      var leftCorrection = <span class="reserved">this</span>.getCorrectionFor(<span class="reserved">this</span>.cols, inputPoint.getX(), -1);
+      <span class="reserved">if</span> (leftCorrection != draw2d.SnapToGeometry.THRESHOLD) 
+      {
+         snapOrientation &amp;= ~draw2d.SnapToHelper.WEST;
+         resultPoint.x += leftCorrection;
+      }
+   }
+
+   <span class="reserved">if</span> ((snapOrientation &amp; draw2d.SnapToHelper.SOUTH) != 0) 
+   {
+      var bottomCorrection = <span class="reserved">this</span>.getCorrectionFor(<span class="reserved">this</span>.rows,  inputPoint.getY() - 1, 1);
+      <span class="reserved">if</span> (bottomCorrection != draw2d.SnapToGeometry.THRESHOLD) 
+      {
+         snapOrientation &amp;= ~draw2d.SnapToHelper.SOUTH;
+         resultPoint.y += bottomCorrection;
+      }
+   }
+
+   <span class="reserved">if</span> ((snapOrientation &amp; draw2d.SnapToHelper.NORTH) != 0) 
+   {
+      var topCorrection = <span class="reserved">this</span>.getCorrectionFor(<span class="reserved">this</span>.rows, inputPoint.getY(), -1);
+      <span class="reserved">if</span> (topCorrection != draw2d.SnapToGeometry.THRESHOLD) 
+      {
+         snapOrientation &amp;= ~draw2d.SnapToHelper.NORTH;
+         resultPoint.y += topCorrection;
+      }
+   }
+
+  <span class="reserved">return</span> snapOrientation;
+}
+
+<span class="comment">/**
+ * Applies a snap correction to a Rectangle based on a given Rectangle.  The provided
+ * baseRect will be used as a reference for snapping.  The types of snapping to be
+ * performed are indicated by the snapOrientation parameter. The correction is applied to
+ * the result field.
+ * &lt;P&gt;
+ * All coordinate information received and returned by this method should be in absolute 
+ * coordinates.
+ */</span>
+draw2d.SnapToGeometry.<span class="reserved">prototype</span>.snapRectangle=<span class="reserved">function</span>( <span class="comment">/*:draw2d.Dimension*/</span> inputBounds,  <span class="comment">/*:draw2d.Dimension*/</span> resultBounds)
+{
+    var topLeftResult     = inputBounds.getTopLeft();
+    var bottomRightResult = inputBounds.getBottomRight();
+
+    var snapDirectionsTopLeft = <span class="reserved">this</span>.snapPoint(draw2d.SnapToHelper.NORTH_WEST, inputBounds.getTopLeft(), topLeftResult);
+    resultBounds.x = topLeftResult.x;
+    resultBounds.y = topLeftResult.y
+
+    var snapDirectionsBottomRight = <span class="reserved">this</span>.snapPoint(draw2d.SnapToHelper.SOUTH_EAST, inputBounds.getBottomRight(), bottomRightResult);
+    <span class="comment">// the first test (topLeft) has not modified the point. so we can modify them with the bottomRight adjustment</span>
+    <span class="comment">//</span>
+    <span class="reserved">if</span>(snapDirectionsTopLeft &amp; draw2d.SnapToHelper.WEST)
+      resultBounds.x = bottomRightResult.x-inputBounds.getWidth();
+
+    <span class="comment">// the first test (topLeft) has not modified the point. so we can modify them with the bottomRight adjustment</span>
+    <span class="comment">//</span>
+    <span class="reserved">if</span>(snapDirectionsTopLeft &amp; draw2d.SnapToHelper.NORTH)
+       resultBounds.y = bottomRightResult.y-inputBounds.getHeight();
+
+
+    <span class="reserved">return</span> snapDirectionsTopLeft |snapDirectionsBottomRight;
+}
+
+
+<span class="comment">/**
+ * Updates the cached row and column Entries using the provided parts.
+ * <span class="attrib">@since</span> 3.0
+ * <span class="attrib">@param</span> parts a List of EditParts
+ */</span>
+draw2d.SnapToGeometry.<span class="reserved">prototype</span>.populateRowsAndCols=<span class="reserved">function</span>()
+{
+   <span class="reserved">this</span>.rows = new Array();
+   <span class="reserved">this</span>.cols = new Array();
+   var figures = <span class="reserved">this</span>.workflow.getDocument().getFigures();
+   var index =0;
+   <span class="reserved">for</span> (var i = 0; i &lt; figures.getSize();i++ )
+   {
+      var figure = figures.get(i);
+      <span class="reserved">if</span>(figure != <span class="reserved">this</span>.workflow.getCurrentSelection())
+      {
+         var bounds = figure.getBounds();
+         <span class="reserved">this</span>.cols[index * 3] = new draw2d.SnapToGeometryEntry(-1, bounds.getX());
+         <span class="reserved">this</span>.rows[index * 3] = new draw2d.SnapToGeometryEntry(-1, bounds.getY());
+         <span class="reserved">this</span>.cols[index * 3 + 1] = new draw2d.SnapToGeometryEntry(0, bounds.x + (bounds.getWidth() - 1) / 2);
+         <span class="reserved">this</span>.rows[index * 3 + 1] = new draw2d.SnapToGeometryEntry(0, bounds.y + (bounds.getHeight() - 1) / 2);
+         <span class="reserved">this</span>.cols[index * 3 + 2] = new draw2d.SnapToGeometryEntry(1, bounds.getRight() - 1);
+         <span class="reserved">this</span>.rows[index * 3 + 2] = new draw2d.SnapToGeometryEntry(1, bounds.getBottom() - 1);
+         index++;
+     }
+   }
+}
+
+draw2d.SnapToGeometry.<span class="reserved">prototype</span>.getCorrectionFor=<span class="reserved">function</span>(<span class="comment">/*:Array*/</span> entries, <span class="comment">/*:double*/</span> value, <span class="comment">/*:int*/</span> side) 
+{
+   var resultMag = draw2d.SnapToGeometry.THRESHOLD;
+   var result = draw2d.SnapToGeometry.THRESHOLD;
+
+   <span class="reserved">for</span> (var i = 0; i &lt; entries.length; i++) 
+   {
+      var entry = entries[i];
+      var magnitude;
+
+      <span class="reserved">if</span> (entry.type == -1 &amp;&amp; side != 0) 
+      {
+         magnitude = Math.abs(value - entry.location);
+         <span class="reserved">if</span> (magnitude &lt; resultMag)
+         {
+               resultMag = magnitude;
+               result = entry.location - value;
+         }
+      }
+      <span class="reserved">else</span> <span class="reserved">if</span> (entry.type == 0 &amp;&amp; side == 0) 
+      {
+         magnitude = Math.abs(value - entry.location);
+         <span class="reserved">if</span> (magnitude &lt; resultMag)
+         {
+            resultMag = magnitude;
+            result = entry.location - value;
+         }
+      }
+      <span class="reserved">else</span> <span class="reserved">if</span> (entry.type == 1 &amp;&amp; side != 0) 
+      {
+         magnitude = Math.abs(value - entry.location);
+         <span class="reserved">if</span> (magnitude &lt; resultMag)
+         {
+            resultMag = magnitude;
+            result = entry.location - value;
+         }
+      }
+   }
+   <span class="reserved">return</span> result;
+}
+
+draw2d.SnapToGeometry.<span class="reserved">prototype</span>.onSetDocumentDirty=<span class="reserved">function</span>()
+{
+  <span class="reserved">this</span>.rows=null;
+  <span class="reserved">this</span>.cols=null;
+}
+</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Feb  7 23:45:47 2008</div>
+</body>
+</html>

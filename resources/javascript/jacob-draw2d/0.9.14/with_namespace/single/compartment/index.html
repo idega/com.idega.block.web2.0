@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/Strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>CompartmentFigure Example for Open-jACOB Draw2D</title>
+        <!-- common, all times required, imports -->
+        <SCRIPT src='../wz_jsgraphics.js'></SCRIPT>          <SCRIPT src='../mootools.js'></SCRIPT>          <SCRIPT src='../moocanvas.js'></SCRIPT>                        <SCRIPT src='../draw2d.js'></SCRIPT>
+
+        <!-- example specific imports -->
+	<SCRIPT src="MyCompartmentFigure.js"></SCRIPT>
+</head>
+<body onselectstart="return false;" style="margin:0px;padding:0px;" onkeydown="">
+<div id="paintarea" style="position:absolute;left:0px;top:0px;width:3000px;height:3000px" >
+    <!-- The information help text -->
+    <div style="background-color:white;border:1px solid gray;width:350px;padding:10px;font-size:8pt;">
+    <center><b>Draw2D 0.9.14 - A simple diagram drawing demo<br>
+    by Andreas Herz (a.herz @ freegroup.de)
+    <br>
+    </b>
+    <br>
+    <div style="color:red;font-size:9pt">Focus of this example: Usage of the CompartmentFigure.</div>
+    </center>
+    <br>
+    <center>See more on <a href="http://www.draw2d.org">Open-jACOB Draw2D</a></center>
+    </div>
+
+</div>
+<script>
+  var workflow  = new draw2d.Workflow("paintarea");
+
+  // Add an simple annotation to the canvas
+  //
+  var annotation = new draw2d.Annotation("NOTE: Drop the small rectangle into the bigger one. After that it is a child of the bigger one rectangle. Drag&Drop the bigger one after that.");
+  annotation.setDimension(250,80);
+  workflow.addFigure(annotation,400,50);
+
+  // Add my compartment figure to the scene
+  //
+  var obj = new draw2d.MyCompartmentFigure();
+  obj.setDimension(50,50);
+  workflow.addFigure(obj, 200,300);
+
+  obj = new draw2d.MyCompartmentFigure();
+  obj.setDimension(50,50);
+  workflow.addFigure(obj, 400,300);
+
+  obj = new draw2d.MyCompartmentFigure();
+  obj.setDimension(150,150);
+  workflow.addFigure(obj, 500,200);
+
+  var rect = new draw2d.Rectangle(20,20);
+
+  workflow.addFigure(rect, 100,200);
+
+</script>
+</body>
+</html>

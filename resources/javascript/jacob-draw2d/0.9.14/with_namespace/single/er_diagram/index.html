@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/Strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>Connection Example for Open-jACOB Draw2D</title>
+        <!-- common, all times required, imports -->
+        <SCRIPT src='../wz_jsgraphics.js'></SCRIPT>          <SCRIPT src='../mootools.js'></SCRIPT>          <SCRIPT src='../moocanvas.js'></SCRIPT>                        <SCRIPT src='../draw2d.js'></SCRIPT>
+
+        <!-- workflow specific imports -->
+	<SCRIPT src="./editor/relationset/RelationsetEditor.js"></SCRIPT>
+	<SCRIPT src="./editor/relationset/figure/TableFigure.js"></SCRIPT>
+	<SCRIPT src="./editor/relationset/figure/TableAliasFigure.js"></SCRIPT>
+
+	<SCRIPT src="./model/TableModel.js"></SCRIPT>
+	<SCRIPT src="./model/TableAliasModel.js"></SCRIPT>
+	<SCRIPT src="./model/FieldModel.js"></SCRIPT>
+	<SCRIPT src="./model/RelationModel.js"></SCRIPT>
+	<SCRIPT src="./model/RelationsetModel.js"></SCRIPT>
+	<SCRIPT src="./model/FieldTypeModel.js"></SCRIPT>
+	<SCRIPT src="./model/FieldTypeModelBoolean.js"></SCRIPT>
+</head>
+<body onselectstart="return false;" style="margin:0px;padding:0px;" onkeydown="">
+<div id="paintarea" style="position:absolute;left:0px;top:0px;width:3000px;height:3000px" >
+</div>
+<script>
+  var table1 = new TableModel("person");
+
+  var field1 = new FieldModel("name","Name");
+  field1.setTypeModel(new FieldTypeModelBoolean(false));
+  table1.addFieldModel(field1);
+
+  var field2 = new FieldModel("isMember","Is Member");
+  field2.setTypeModel(new FieldTypeModelBoolean(false));
+  table1.addFieldModel(field2);
+
+
+  var table2 = new TableModel("company");
+
+  var field3 = new FieldModel("name","Name");
+  field3.setTypeModel(new FieldTypeModelBoolean(false));
+  table2.addFieldModel(field3);
+
+  var alias1 = new TableAliasModel("Employee",table1);
+  var alias2 = new TableAliasModel("Company",table2);
+
+  var relationset = new RelationsetModel();
+  var relation = new RelationModel(alias1, alias2);
+  relationset.addRelationModel(relation);
+
+  var workflow  = new RelationsetEditor("paintarea", relationset);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/Strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>IdegaWeb Workflow designer</title>
+        <!-- common, all times required, imports -->
+        <SCRIPT src='../wz_jsgraphics.js'></SCRIPT>          
+        <SCRIPT src='../../../../../mootools/1.11/mootools-all-compressed.js'></SCRIPT>          
+        <SCRIPT src='../moocanvas.js'></SCRIPT>                        
+        <SCRIPT src='../draw2d.js'></SCRIPT>
+
+        <!-- example specific imports -->
+		<SCRIPT src="ToolInputBox.js"></SCRIPT>
+	<SCRIPT src="ToolCheckBox.js"></SCRIPT>
+	<SCRIPT src="ToolGroup.js"></SCRIPT>
+	<SCRIPT src="ToolUndo.js"></SCRIPT>
+	<SCRIPT src="ToolRedo.js"></SCRIPT>
+	<SCRIPT src="ToolFormButton.js"></SCRIPT>
+	<SCRIPT src="ToolUseGeometry.js"></SCRIPT>
+	<SCRIPT src="ToolSave.js"></SCRIPT>
+	<SCRIPT src="GUIPalette.js"></SCRIPT>
+	<SCRIPT src="GroupFigure.js"></SCRIPT>
+	<SCRIPT src="CheckBoxFigure.js"></SCRIPT>
+	<SCRIPT src="InputBoxFigure.js"></SCRIPT>
+	<SCRIPT src="ButtonFigure.js"></SCRIPT>
+
+	<SCRIPT src="JPDLSerializer.js"></SCRIPT>
+	
+	<SCRIPT src="MyCommandListener.js"></SCRIPT>
+	
+	<SCRIPT src="Start.js"></SCRIPT>
+	<SCRIPT src="Task.js"></SCRIPT>	
+	<SCRIPT src="End.js"></SCRIPT>
+	<SCRIPT src="LabelConnection.js"></SCRIPT>
+	<SCRIPT src="BranchConnectionDecorator.js"></SCRIPT>
+	<SCRIPT src="CrossConnectionDecorator.js"></SCRIPT>
+	<SCRIPT src="PolygonConnectionDecorator.js"></SCRIPT>
+	
+	<SCRIPT src="FlowMenu.js"></SCRIPT>
+	<SCRIPT src="ButtonDelete.js"></SCRIPT>
+	<SCRIPT src="ButtonMoveBack.js"></SCRIPT>
+	<SCRIPT src="ButtonMoveFront.js"></SCRIPT>
+			
+	<SCRIPT src="VectorPropertyWindow.js"></SCRIPT>
+	
+
+	
+	
+	
+	<SCRIPT src="workflow-designer.js"></SCRIPT>
+	
+	<!-- solution is founded
+The next solution "drink water":
+
+first get doc figures:
+
+var figures = document.getFigures();
+for(..){
+var figure = figures[i];
+
+than get ports by names
+
+port = figure.portTop;
+
+connections are connected to ports:
+
+var conns=port.getConnections();
+
+now we can get target port from connection objet
+
+for(var g = 0;g < conn.length; g++){
+var target=conn[g].targetPort;
+
+serch ports of the other figures to find the figure which is related to (by port id).
+
+GENERATE better ids: http://draw2d.org/draw2d/uieforum?c=showthread&ThreadID=40
+How to get a figure by id: workflow.getFigure(id)
+Load from file: http://draw2d.org/draw2d/uieforum?c=showthread&ThreadID=31
+Save to file: http://www.openjacob.org/forum/viewtopic.php?t=98&highlight=getfigures
+-->
+
+</head>
+<body onselectstart="return false;" style="margin:0px;padding:0px;" onkeydown="">
+<div id="workflow" style="width:3000px;height:3000px" >
+
+    <!-- The information help text -->
+    <div style="background-color:white;border:1px solid gray;width:400px;padding:10px;font-size:12pt;">
+    <center><b>IdegaWeb Workflow Designer Test</b><br>
+    based on jacob.draw2d    </div>
+      <div id="log" style="background-color:white;font-size:8pt;position:absolute;top:50px;left:800px;width:300px;height:3000px;">Event-Log Console<br>=================</div>
+
+</div>
+</body>
+</html>

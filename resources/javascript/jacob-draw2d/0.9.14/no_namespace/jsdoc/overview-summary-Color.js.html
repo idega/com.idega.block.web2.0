@@ -1,0 +1,350 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+ Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="Color.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>Color.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		No overview generated for 'Color.js'<BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+    <table border="1" cellpadding="3" cellspacing="0" width="100%">
+    <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+    <td colspan=2><font size="+2">
+    
+        <b>Class Summary</b>
+    
+    </font></td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="Color.html">Color</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    </table>
+    <hr/> 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">/* This notice must be untouched at all times.
+
+Open-jACOB Draw2D
+The latest version is available at
+http://www.openjacob.org
+
+Copyright (c) 2006 Andreas Herz. All rights reserved.
+Created 5. 11. 2006 by Andreas Herz (Web: http://www.freegroup.de )
+
+LICENSE: LGPL
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License (LGPL) as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA,
+or see http://www.gnu.org/copyleft/lesser.html
+*/</span>
+
+<span class="comment">/**
+ * 
+ * <span class="attrib">@version</span> 0.9.14
+ * <span class="attrib">@author</span> Andreas Herz
+ * <span class="attrib">@constructor</span>
+ */</span>
+Color=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> red,<span class="comment">/*:int*/</span> green ,<span class="comment">/*:int*/</span> blue)
+{
+  <span class="reserved">if</span>(typeof green == <span class="literal">"undefined"</span>)
+  {
+    var rgb = <span class="reserved">this</span>.hex2rgb(red);
+    <span class="comment">/** <span class="attrib">@private</span> **/</span>
+    <span class="reserved">this</span>.red= rgb[0];
+    <span class="comment">/** <span class="attrib">@private</span> **/</span>
+    <span class="reserved">this</span>.green = rgb[1];
+    <span class="comment">/** <span class="attrib">@private</span> **/</span>
+    <span class="reserved">this</span>.blue = rgb[2];
+  }
+  <span class="reserved">else</span>
+  {
+    <span class="comment">/** <span class="attrib">@private</span> **/</span>
+    <span class="reserved">this</span>.red= red;
+    <span class="comment">/** <span class="attrib">@private</span> **/</span>
+    <span class="reserved">this</span>.green = green;
+    <span class="comment">/** <span class="attrib">@private</span> **/</span>
+    <span class="reserved">this</span>.blue = blue;
+  }
+}
+<span class="comment">/** <span class="attrib">@private</span> **/</span>
+Color.<span class="reserved">prototype</span>.type=<span class="literal">"Color"</span>;
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ **/</span>
+Color.<span class="reserved">prototype</span>.getHTMLStyle=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="literal">"rgb("</span>+<span class="reserved">this</span>.red+<span class="literal">","</span>+<span class="reserved">this</span>.green+<span class="literal">","</span>+<span class="reserved">this</span>.blue+<span class="literal">")"</span>;
+}
+
+<span class="comment">/**
+ * Return the [red] part of the color.
+ * <span class="attrib">@type</span> int
+ **/</span>
+Color.<span class="reserved">prototype</span>.getRed=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.red;
+}
+
+
+<span class="comment">/**
+ * Return the [green] part of the color.
+ * <span class="attrib">@type</span> int
+ **/</span>
+Color.<span class="reserved">prototype</span>.getGreen=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.green;
+}
+
+
+<span class="comment">/**
+ * Return the [blue] part of the color.
+ * <span class="attrib">@type</span> int
+ **/</span>
+Color.<span class="reserved">prototype</span>.getBlue=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.blue;
+}
+
+<span class="comment">/**
+ * Returns the ideal Text Color. Usefull for font color selection by a given background color.
+ *
+ * <span class="attrib">@returns</span> The &lt;i&gt;ideal&lt;/i&gt; inverse color.
+ * <span class="attrib">@type</span> Color
+ **/</span>
+Color.<span class="reserved">prototype</span>.getIdealTextColor=<span class="reserved">function</span>()
+{
+   var nThreshold = 105;
+   var bgDelta = (<span class="reserved">this</span>.red * 0.299) + (<span class="reserved">this</span>.green * 0.587) + (<span class="reserved">this</span>.blue * 0.114);
+   <span class="reserved">return</span> (255 - bgDelta &lt; nThreshold) ? new  Color(0,0,0) : new  Color(255,255,255);
+}
+
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ */</span>
+Color.<span class="reserved">prototype</span>.hex2rgb=<span class="reserved">function</span>(<span class="comment">/*:String */</span>hexcolor)
+{
+  hexcolor = hexcolor.replace(<span class="literal">"#"</span>,<span class="literal">""</span>);
+  <span class="reserved">return</span>(
+         {0:parseInt(hexcolor.substr(0,2),16),
+          1:parseInt(hexcolor.substr(2,2),16),
+          2:parseInt(hexcolor.substr(4,2),16)}
+         );
+}
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ **/</span>
+Color.<span class="reserved">prototype</span>.hex=<span class="reserved">function</span>()
+{ 
+  <span class="reserved">return</span>(<span class="reserved">this</span>.int2hex(<span class="reserved">this</span>.red)+<span class="reserved">this</span>.int2hex(<span class="reserved">this</span>.green)+<span class="reserved">this</span>.int2hex(<span class="reserved">this</span>.blue)); 
+}
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ */</span>
+Color.<span class="reserved">prototype</span>.int2hex=<span class="reserved">function</span>(v) 
+{
+  v=Math.round(Math.min(Math.max(0,v),255));
+  <span class="reserved">return</span>(<span class="literal">"0123456789ABCDEF"</span>.charAt((v-v%16)/16)+<span class="literal">"0123456789ABCDEF"</span>.charAt(v%16));
+}
+
+<span class="comment">/**
+ * Returns a darker color of the given one..
+ * 
+ * <span class="attrib">@param</span> {float} fraction  Darkness fraction.
+ * <span class="attrib">@return</span>        Darker color.
+ * <span class="attrib">@type</span> Color
+ */</span>
+Color.<span class="reserved">prototype</span>.darker=<span class="reserved">function</span>(<span class="comment">/*:float*/</span>fraction)
+{
+   var red   = parseInt(Math.round (<span class="reserved">this</span>.getRed()   * (1.0 - fraction)));
+   var green = parseInt(Math.round (<span class="reserved">this</span>.getGreen() * (1.0 - fraction)));
+   var blue  = parseInt(Math.round (<span class="reserved">this</span>.getBlue()  * (1.0 - fraction)));
+
+   <span class="reserved">if</span> (red   &lt; 0) red   = 0; <span class="reserved">else</span> <span class="reserved">if</span> (red   &gt; 255) red   = 255;
+   <span class="reserved">if</span> (green &lt; 0) green = 0; <span class="reserved">else</span> <span class="reserved">if</span> (green &gt; 255) green = 255;
+   <span class="reserved">if</span> (blue  &lt; 0) blue  = 0; <span class="reserved">else</span> <span class="reserved">if</span> (blue  &gt; 255) blue  = 255;
+
+   <span class="reserved">return</span> new Color(red, green, blue);
+}
+
+
+<span class="comment">/**
+ * Make a color lighter.
+ * 
+ * <span class="attrib">@param</span> {float} fraction  Darkness fraction.
+ * <span class="attrib">@type</span> Color
+ * <span class="attrib">@return</span>          Lighter color.
+ */</span>
+Color.<span class="reserved">prototype</span>.lighter=<span class="reserved">function</span>(<span class="comment">/*:float*/</span> fraction)
+{
+    var red   = parseInt(Math.round (<span class="reserved">this</span>.getRed()   * (1.0 + fraction)));
+    var green = parseInt(Math.round (<span class="reserved">this</span>.getGreen() * (1.0 + fraction)));
+    var blue  = parseInt(Math.round (<span class="reserved">this</span>.getBlue()  * (1.0 + fraction)));
+
+    <span class="reserved">if</span> (red   &lt; 0) red   = 0; <span class="reserved">else</span> <span class="reserved">if</span> (red   &gt; 255) red   = 255;
+    <span class="reserved">if</span> (green &lt; 0) green = 0; <span class="reserved">else</span> <span class="reserved">if</span> (green &gt; 255) green = 255;
+    <span class="reserved">if</span> (blue  &lt; 0) blue  = 0; <span class="reserved">else</span> <span class="reserved">if</span> (blue  &gt; 255) blue  = 255;
+
+    <span class="reserved">return</span> new Color(red, green, blue);
+}
+</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Feb  7 23:45:38 2008</div>
+</body>
+</html>

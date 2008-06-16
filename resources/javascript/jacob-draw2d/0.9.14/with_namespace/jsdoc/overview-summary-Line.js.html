@@ -1,0 +1,838 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+ Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="Line.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>Line.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		No overview generated for 'Line.js'<BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+    <table border="1" cellpadding="3" cellspacing="0" width="100%">
+    <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+    <td colspan=2><font size="+2">
+    
+        <b>Class Summary</b>
+    
+    </font></td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="draw2d.Line.html">draw2d.Line</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    </table>
+    <hr/> 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">/* This notice must be untouched at all times.
+
+Open-jACOB Draw2D
+The latest version is available at
+http://www.openjacob.org
+
+Copyright (c) 2006 Andreas Herz. All rights reserved.
+Created 5. 11. 2006 by Andreas Herz (Web: http://www.freegroup.de )
+
+LICENSE: LGPL
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License (LGPL) as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA,
+or see http://www.gnu.org/copyleft/lesser.html
+*/</span>
+
+<span class="comment">/**
+ * 
+ * <span class="attrib">@version</span> 0.9.14
+ * <span class="attrib">@author</span> Andreas Herz
+ * <span class="attrib">@constructor</span>
+ */</span>
+draw2d.Line=<span class="reserved">function</span>()
+{
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.lineColor = new  draw2d.Color(0,0,0);
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.stroke=1;
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.canvas=null;
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.workflow=null;
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.html=null;
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.graphics = null;
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.id = <span class="reserved">this</span>.generateUId();
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.startX = 30;
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.startY = 30;
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.endX   = 100;
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.endY   = 100;
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.alpha = 1.0;
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.isMoving = false;
+  
+  <span class="comment">// Buffer the z-order. Required if the line has not painted before</span>
+  <span class="reserved">this</span>.zOrder = draw2d.Line.ZOrderBaseIndex;
+
+
+  <span class="comment">// Hier werden Object registriert welche informiert werden wollen wenn sich dieses</span>
+  <span class="comment">// Object bewegt hat.</span>
+  <span class="comment">//</span>
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.moveListener = new draw2d.ArrayList();
+ 
+  <span class="reserved">this</span>.setSelectable(true);
+  <span class="reserved">this</span>.setDeleteable(true);
+}
+
+draw2d.Line.ZOrderBaseIndex = 200;
+
+<span class="comment">/**
+ * Set the common z-index of the window element. This method exists for
+ * compatibility reason to dojo or another UI javascript library. 
+ * It is now ossible to arange the draw2d elements behind/before other UI elements-
+ *
+ * <span class="attrib">@see</span> #setZOrder
+ * <span class="attrib">@static</span>
+ * <span class="attrib">@param</span> {int} index The z-order for all new line objects.
+ **/</span>
+draw2d.Line.setZOrderBaseIndex=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> index)
+{
+  draw2d.Line.ZOrderBaseIndex = index;
+}
+
+<span class="comment">/**
+ * Called by the framework. Don't call them manually.
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@deprecated</span>
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.dispose=<span class="reserved">function</span>()
+{
+<span class="comment">//  this.id = null; required for deregistration</span>
+<span class="comment">//  this.html=null;</span>
+  <span class="reserved">this</span>.canvas = null;
+  <span class="reserved">this</span>.workflow=null;
+  <span class="reserved">if</span>(<span class="reserved">this</span>.graphics != null)
+    <span class="reserved">this</span>.graphics.clear();
+  <span class="reserved">this</span>.graphics =null;
+}
+
+
+<span class="comment">/**
+ * <span class="attrib">@return</span> Returns the z-index of the element.
+ * <span class="attrib">@type</span> int
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getZOrder=<span class="reserved">function</span>()
+{
+    <span class="reserved">return</span> <span class="reserved">this</span>.zOrder;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@param</span> {int} index Set the new z-index of the element
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.setZOrder=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> index)
+{
+    <span class="reserved">if</span>(<span class="reserved">this</span>.html!=null)
+      <span class="reserved">this</span>.html.style.zIndex=index;
+    <span class="reserved">this</span>.zOrder = index;
+}
+
+
+<span class="comment">/**
+ * Called by the framework. Don't call them manually.
+ * <span class="attrib">@private</span>
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.createHTMLElement=<span class="reserved">function</span>()
+{
+    var item = document.createElement(<span class="literal">'div'</span>);
+    item.id = <span class="reserved">this</span>.id;
+    item.style.position=<span class="literal">"absolute"</span>;
+    item.style.left   = <span class="literal">"0px"</span>;
+    item.style.top    = <span class="literal">"0px"</span>;
+    item.style.height = <span class="literal">"0px"</span>;
+    item.style.width  = <span class="literal">"0px"</span>;
+    item.style.zIndex = <span class="reserved">this</span>.zOrder;
+
+    <span class="reserved">return</span> item;
+}
+
+
+<span class="comment">/**
+ * Called by the framework. Don't call them manually.
+ * <span class="attrib">@private</span>
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getHTMLElement=<span class="reserved">function</span>()
+{
+  <span class="reserved">if</span>(<span class="reserved">this</span>.html==null)
+  {
+    <span class="reserved">this</span>.html = <span class="reserved">this</span>.createHTMLElement();
+  }
+  <span class="reserved">return</span> <span class="reserved">this</span>.html;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@type</span> Workflow
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getWorkflow= <span class="reserved">function</span>()
+{
+   <span class="reserved">return</span> <span class="reserved">this</span>.workflow;
+}
+
+
+<span class="comment">/**
+ * You can't drag&amp;drop the resize handles if the line not resizeable.
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.isResizeable=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> true;
+}
+
+<span class="comment">/**
+ * Called by the framework. Don't call them manually.
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {draw2d.Canvas} canvas The new canvas object for this line (paint area)
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.setCanvas = <span class="reserved">function</span>(<span class="comment">/*:draw2d.Canvas*/</span> canvas )
+{
+  <span class="reserved">this</span>.canvas = canvas;
+  <span class="reserved">if</span>(<span class="reserved">this</span>.graphics!=null)
+    <span class="reserved">this</span>.graphics.clear();
+  <span class="reserved">this</span>.graphics = null;
+}
+
+<span class="comment">/**
+ * Called by the framework. Don't call them manually.
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {draw2d.Workflow} canvas The new workflow canvas for this line (paint area)
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.setWorkflow= <span class="reserved">function</span>(<span class="comment">/*:draw2d.Workflow*/</span> workflow)
+{
+  <span class="reserved">this</span>.workflow = workflow;
+  <span class="reserved">if</span>(<span class="reserved">this</span>.graphics!=null)
+    <span class="reserved">this</span>.graphics.clear();
+  <span class="reserved">this</span>.graphics = null;
+}
+
+<span class="comment">/**
+ * Called by the framework. Don't call them manually.
+ * <span class="attrib">@private</span>
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.paint=<span class="reserved">function</span>()
+{
+  <span class="reserved">if</span>(<span class="reserved">this</span>.graphics ==null)
+    <span class="reserved">this</span>.graphics = new jsGraphics(<span class="reserved">this</span>.id);
+  <span class="reserved">else</span>
+    <span class="reserved">this</span>.graphics.clear();
+
+  <span class="reserved">this</span>.graphics.setStroke(<span class="reserved">this</span>.stroke);
+  <span class="reserved">this</span>.graphics.setColor(<span class="reserved">this</span>.lineColor.getHTMLStyle());
+  <span class="reserved">this</span>.graphics.drawLine(<span class="reserved">this</span>.startX, <span class="reserved">this</span>.startY, <span class="reserved">this</span>.endX, <span class="reserved">this</span>.endY);
+  <span class="reserved">this</span>.graphics.paint();
+}
+<span class="comment">/**
+ * 
+ * <span class="attrib">@param</span> {draw2d.Figure} figure The figure to monitor any movements
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.attachMoveListener = <span class="reserved">function</span>(<span class="comment">/*:draw2d.Figure*/</span> figure)
+{
+  <span class="reserved">this</span>.moveListener.add(figure);
+}
+
+<span class="comment">/**
+ *
+ * <span class="attrib">@param</span> {draw2d.Figure} figure The figure to to remove the movement monitor
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.detachMoveListener = <span class="reserved">function</span>(<span class="comment">/*:draw2d.Figure*/</span> figure) 
+{
+  <span class="reserved">this</span>.moveListener.remove(figure);
+}
+
+<span class="comment">/**
+ *
+ * <span class="attrib">@private</span>
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.fireMoveEvent=<span class="reserved">function</span>()
+{
+  var size= <span class="reserved">this</span>.moveListener.getSize();
+  <span class="reserved">for</span>(var i=0;i&lt;size;i++)
+  {
+    <span class="reserved">this</span>.moveListener.get(i).onOtherFigureMoved(<span class="reserved">this</span>);
+  }
+}
+
+<span class="comment">/**
+ * This method will be called if an figure, which has been registered befor, has been moved.
+ *
+ * <span class="attrib">@param</span> {draw2d.Figure} figure The figure which has been moved
+ * <span class="attrib">@private</span>
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.onOtherFigureMoved=<span class="reserved">function</span>(<span class="comment">/*:draw2d.Figure*/</span> figure)
+{
+}
+
+<span class="comment">/**
+ * Set the line width. This enforce a repaint of the line.
+ * This method fires a &lt;i&gt;document dirty&lt;/i&gt; event.
+ *
+ * <span class="attrib">@param</span> {int} w The new line width of the figure.
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.setLineWidth=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> w)
+{
+  <span class="reserved">this</span>.stroke=w;
+  <span class="comment">// Falls das element jemals schon mal gezeichnet worden ist, dann</span>
+  <span class="comment">// muss jetzt ein repaint erfolgen</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.graphics!=null)
+    <span class="reserved">this</span>.paint();
+  <span class="reserved">this</span>.setDocumentDirty();
+}
+
+
+<span class="comment">/**
+ * Set the color of the line.
+ * This method fires a &lt;i&gt;document dirty&lt;/i&gt; event.
+ * <span class="attrib">@param</span> {draw2d.Color} color The new color of the line.
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.setColor= <span class="reserved">function</span>(<span class="comment">/*:draw2d.Color*/</span> color)
+{
+  <span class="reserved">this</span>.lineColor = color;
+  <span class="comment">// Falls das element jemals schon mal gezeichnet worden ist, dann</span>
+  <span class="comment">// muss jetzt ein repaint erfolgen</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.graphics!=null)
+    <span class="reserved">this</span>.paint();
+  <span class="reserved">this</span>.setDocumentDirty();
+}
+
+<span class="comment">/**
+ * Return the current paint color.
+ * <span class="attrib">@type</span> draw2d.Color The paint color of the line.
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getColor= <span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.lineColor;
+}
+
+<span class="comment">/**
+ * Set the alpha blending of this figure. 
+ *
+ * <span class="attrib">@param</span> {float} percent Value between 0-1.
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.setAlpha=<span class="reserved">function</span>(<span class="comment">/*:float 0-1*/</span> percent)
+{
+  <span class="reserved">if</span>(percent==<span class="reserved">this</span>.alpha)
+     <span class="reserved">return</span>;
+  try
+  {
+   <span class="reserved">this</span>.html.style.MozOpacity=percent ;
+  } 
+  catch(exc){}
+  try
+  {
+   <span class="comment">// standard. Like Apple Safari Browser</span>
+   <span class="reserved">this</span>.html.style.opacity=percent ;
+  } 
+  catch(exc){}
+  try
+  {
+   var opacityValue = Math.round(percent * 100);
+   <span class="comment">// remove the alpha filter complete if we don't want any.</span>
+   <span class="reserved">if</span>(opacityValue&gt;=99)
+      <span class="reserved">this</span>.html.style.filter = <span class="literal">""</span>;
+   <span class="reserved">else</span>
+      <span class="reserved">this</span>.html.style.filter = <span class="literal">"alpha(opacity="</span> + opacityValue + <span class="literal">")"</span>; 
+
+  } catch(exc){}
+  <span class="reserved">this</span>.alpha = percent;
+}
+
+<span class="comment">/**
+ * Set the start point of the line.
+ * This method fires a &lt;i&gt;document dirty&lt;/i&gt; event.
+ *
+ * <span class="attrib">@param</span> {int} x the x coordinate of the start point
+ * <span class="attrib">@param</span> {int} y the y coordinate of the start point
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.setStartPoint= <span class="reserved">function</span>(<span class="comment">/*:int*/</span> x, <span class="comment">/*:int*/</span> y)
+{
+<span class="comment">//  if(this.startX==x &amp;&amp; this.startY==y)</span>
+<span class="comment">//     return;</span>
+
+  <span class="reserved">this</span>.startX = x;
+  <span class="reserved">this</span>.startY = y;
+  <span class="comment">// Falls das element jemals schon mal gezeichnet worden ist, dann</span>
+  <span class="comment">// muss jetzt ein repaint erfolgen</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.graphics!=null)
+    <span class="reserved">this</span>.paint();
+  <span class="reserved">this</span>.setDocumentDirty();
+}
+
+<span class="comment">/**
+ * Set the end point of the line.
+ * This method fires a &lt;i&gt;document dirty&lt;/i&gt; event.
+ *
+ * <span class="attrib">@param</span> {int} x the x coordinate of the end point
+ * <span class="attrib">@param</span> {int} y the y coordinate of the end point
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.setEndPoint= <span class="reserved">function</span>(<span class="comment">/*:int*/</span>x, <span class="comment">/*:int*/</span> y)
+{
+<span class="comment">//  if(this.endX==x &amp;&amp; this.endY==y)</span>
+<span class="comment">//     return;</span>
+
+  <span class="reserved">this</span>.endX = x;
+  <span class="reserved">this</span>.endY = y;
+  <span class="comment">// Falls das element jemals schon mal gezeichnet worden ist, dann</span>
+  <span class="comment">// muss jetzt ein repaint erfolgen</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.graphics!=null)
+    <span class="reserved">this</span>.paint();
+  <span class="reserved">this</span>.setDocumentDirty();
+}
+
+<span class="comment">/**
+ * <span class="attrib">@type</span> int
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getStartX= <span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.startX;
+}
+
+<span class="comment">/**
+ *
+ * <span class="attrib">@type</span> int
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getStartY= <span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.startY;
+}
+
+<span class="comment">/**
+ *
+ * <span class="attrib">@type</span> draw2d.Point
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getStartPoint= <span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> new draw2d.Point(<span class="reserved">this</span>.startX,<span class="reserved">this</span>.startY);
+}
+
+
+<span class="comment">/**
+ *
+ * <span class="attrib">@type</span> int
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getEndX= <span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.endX;
+}
+
+<span class="comment">/**
+ *
+ * <span class="attrib">@type</span> int
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getEndY= <span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.endY;
+}
+
+<span class="comment">/**
+ *
+ * <span class="attrib">@type</span> draw2d.Point
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getEndPoint= <span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> new draw2d.Point(<span class="reserved">this</span>.endX,<span class="reserved">this</span>.endY);
+}
+
+
+<span class="comment">/**
+ * Return true if the user can select the line.
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.isSelectable=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.selectable;
+}
+
+
+<span class="comment">/**
+ * You can change the selectable behaviour of this object. Hands over [false] and
+ * the figure has no selection handles if you try to select them with the mouse.&lt;br&gt;
+ *
+ * <span class="attrib">@param</span> {boolean} flag The selectable flag.
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.setSelectable=<span class="reserved">function</span>(<span class="comment">/*:boolean*/</span> flag)
+{
+  <span class="reserved">this</span>.selectable=flag;
+}
+
+
+<span class="comment">/**
+ * Return false if you avoid that the user can delete your figure.
+ * Sub class can override this method.
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.isDeleteable=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.deleteable;
+}
+
+<span class="comment">/**
+ * Return false if you avoid that the user can delete your figure.
+ * Sub class can override this method.
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.setDeleteable=<span class="reserved">function</span>(<span class="comment">/*:boolean */</span>flag)
+{
+  <span class="reserved">this</span>.deleteable = flag;
+}
+
+
+<span class="comment">/**
+ * Returns the length of the line.
+ * 
+ * <span class="attrib">@type</span> int
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getLength=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> Math.sqrt((<span class="reserved">this</span>.startX-<span class="reserved">this</span>.endX)*(<span class="reserved">this</span>.startX-<span class="reserved">this</span>.endX)+(<span class="reserved">this</span>.startY-<span class="reserved">this</span>.endY)*(<span class="reserved">this</span>.startY-<span class="reserved">this</span>.endY));
+}
+
+<span class="comment">/**
+ * Returns the angle of the line in degree
+ *
+ * &lt;pre&gt;
+ *                                 270°
+ *                               |
+ *                               |
+ *                               |
+ *                               |
+ * 180° -------------------------+------------------------&gt; +X
+ *                               |                        0°
+ *                               |
+ *                               |
+ *                               |
+ *                               V +Y
+ *                              90°
+ * &lt;/pre&gt;
+ * <span class="attrib">@type</span> float
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getAngle=<span class="reserved">function</span>()
+{
+  var length = <span class="reserved">this</span>.getLength();
+  var angle = -(180/Math.PI) *Math.asin((<span class="reserved">this</span>.startY-<span class="reserved">this</span>.endY)/length);
+
+  <span class="reserved">if</span>(angle&lt;0)
+  {
+     <span class="reserved">if</span>(<span class="reserved">this</span>.endX&lt;<span class="reserved">this</span>.startX)
+       angle = Math.abs(angle) + 180;
+     <span class="reserved">else</span>
+       angle = 360- Math.abs(angle);
+  }
+  <span class="reserved">else</span>
+  {
+     <span class="reserved">if</span>(<span class="reserved">this</span>.endX&lt;<span class="reserved">this</span>.startX)
+       angle = 180-angle;
+  }
+  <span class="reserved">return</span> angle;
+}
+
+<span class="comment">/**
+ * Callback method for the context menu interaction.
+ * Don't override this method! Implement getContextMenu instead.
+ *
+ * <span class="attrib">@see</span> #getContextMenu
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@final</span>
+ * <span class="attrib">@param</span> {int} x The absolute x coordinate of the right mouse button click
+ * <span class="attrib">@param</span> {int} y The absolute y coordinate of the right mouse button click
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.onContextMenu=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> x, <span class="comment">/*:int*/</span>y)
+{
+    var menu = <span class="reserved">this</span>.getContextMenu();
+    <span class="reserved">if</span>(menu!=null)
+      <span class="reserved">this</span>.workflow.showMenu(menu,x,y);
+}
+
+<span class="comment">/**
+ * <span class="attrib">@returns</span> null or the Menu object for this figure.
+ * <span class="attrib">@type</span> draw2d.Menu
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.getContextMenu=<span class="reserved">function</span>()
+{
+   <span class="reserved">return</span> null;
+}
+
+
+<span class="comment">/**
+ * Callback method for the double click event of user interaction.
+ * Sub classes can override this method to implement their own behaviour.
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.onDoubleClick=<span class="reserved">function</span>()
+{
+}
+
+<span class="comment">/**
+ * This method will be called if the figure has changed any postion, color, dimension or something else.
+ *
+ * <span class="attrib">@private</span>
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.setDocumentDirty=<span class="reserved">function</span>()
+{
+  <span class="reserved">if</span>(<span class="reserved">this</span>.workflow!=null)
+    <span class="reserved">this</span>.workflow.setDocumentDirty();
+}
+
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.generateUId=<span class="reserved">function</span>() 
+{
+  var chars = <span class="literal">"0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz"</span>;
+  var string_length = 10;
+  var maxTry = 10;
+    nbTry = 0
+    <span class="reserved">while</span> (nbTry &lt; 1000) 
+    {
+        var id = <span class="literal">''</span>;
+        <span class="comment">// generate string</span>
+        <span class="reserved">for</span> (var i=0; i&lt;string_length; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+            id += chars.substring(rnum,rnum+1);
+        }
+        <span class="comment">// check if there</span>
+        elem = document.getElementById(id);
+        <span class="reserved">if</span> (!elem) {
+           <span class="reserved">return</span> id
+       }
+       nbTry += 1
+    }
+    <span class="reserved">return</span> null
+}
+
+<span class="comment">/**
+ * Checks if the hands over coordinate on the line.
+ *
+ * <span class="attrib">@param</span> {int} px the x coordinate of the test point
+ * <span class="attrib">@param</span> {int} py the y coordinate of the test point
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+draw2d.Line.<span class="reserved">prototype</span>.containsPoint= <span class="reserved">function</span>(<span class="comment">/*:int*/</span> px, <span class="comment">/*:int*/</span> py)
+{
+  <span class="reserved">return</span> draw2d.Line.hit(<span class="reserved">this</span>.startX,<span class="reserved">this</span>.startY, <span class="reserved">this</span>.endX, <span class="reserved">this</span>.endY, px,py);
+}
+
+<span class="comment">/**
+ * Static util function to determine is a point(px,py) on the line(x1,y1,x2,y2)
+ * A simple hit test.
+ *
+ * <span class="attrib">@static</span>
+ * <span class="attrib">@private</span>
+ **/</span>
+draw2d.Line.hit= <span class="reserved">function</span>(<span class="comment">/*:int*/</span> X1, <span class="comment">/*:int*/</span> Y1, <span class="comment">/*:int*/</span> X2, <span class="comment">/*:int*/</span> Y2, <span class="comment">/*:int*/</span> px, <span class="comment">/*:int*/</span> py)
+{
+  var LINECORONA = 5;
+  <span class="comment">// Adjust vectors relative to X1,Y1</span>
+  <span class="comment">// X2,Y2 becomes relative vector from X1,Y1 to end of segment</span>
+  X2 -= X1;
+  Y2 -= Y1;
+  <span class="comment">// px,py becomes relative vector from X1,Y1 to test point</span>
+  px -= X1;
+  py -= Y1;
+  var dotprod = px * X2 + py * Y2;
+  var projlenSq;
+  <span class="reserved">if</span> (dotprod &lt;= 0.0) {
+      <span class="comment">// px,py is on the side of X1,Y1 away from X2,Y2</span>
+      <span class="comment">// distance to segment is length of px,py vector</span>
+      <span class="comment">// "length of its (clipped) projection" is now 0.0</span>
+      projlenSq = 0.0;
+  } <span class="reserved">else</span> {
+      <span class="comment">// switch to backwards vectors relative to X2,Y2</span>
+      <span class="comment">// X2,Y2 are already the negative of X1,Y1=&gt;X2,Y2</span>
+      <span class="comment">// to get px,py to be the negative of px,py=&gt;X2,Y2</span>
+      <span class="comment">// the dot product of two negated vectors is the same</span>
+      <span class="comment">// as the dot product of the two normal vectors</span>
+      px = X2 - px;
+      py = Y2 - py;
+      dotprod = px * X2 + py * Y2;
+      <span class="reserved">if</span> (dotprod &lt;= 0.0) {
+          <span class="comment">// px,py is on the side of X2,Y2 away from X1,Y1</span>
+          <span class="comment">// distance to segment is length of (backwards) px,py vector</span>
+          <span class="comment">// "length of its (clipped) projection" is now 0.0</span>
+          projlenSq = 0.0;
+      } <span class="reserved">else</span> {
+          <span class="comment">// px,py is between X1,Y1 and X2,Y2</span>
+          <span class="comment">// dotprod is the length of the px,py vector</span>
+          <span class="comment">// projected on the X2,Y2=&gt;X1,Y1 vector times the</span>
+          <span class="comment">// length of the X2,Y2=&gt;X1,Y1 vector</span>
+          projlenSq = dotprod * dotprod / (X2 * X2 + Y2 * Y2);
+      }
+  }
+    <span class="comment">// Distance to line is now the length of the relative point</span>
+    <span class="comment">// vector minus the length of its projection onto the line</span>
+    <span class="comment">// (which is zero if the projection falls outside the range</span>
+    <span class="comment">//  of the line segment).</span>
+    var lenSq = px * px + py * py - projlenSq;
+    <span class="reserved">if</span> (lenSq &lt; 0) {
+        lenSq = 0;
+    }
+    <span class="reserved">return</span> Math.sqrt(lenSq)&lt;LINECORONA;
+}
+</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Feb  7 23:45:47 2008</div>
+</body>
+</html>

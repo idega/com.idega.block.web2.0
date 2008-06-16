@@ -1,0 +1,10 @@
+/**
+This notice must be untouched at all times.
+This is the COMPRESSED version of Draw2D
+WebSite: http://www.draw2d.org
+Copyright: 2006 Andreas Herz. All rights reserved.
+Created: 5.11.2006 by Andreas Herz (Web: http://www.freegroup.de )
+LICENSE: LGPL
+**/
+
+ToolPalette=function(title){Window.call(this,title);this.setDimension(75,400);this.activeTool=null;this.children=new Object();};ToolPalette.prototype=new Window;ToolPalette.prototype.type="ToolPalette";ToolPalette.prototype.dispose=function(){Window.prototype.dispose.call(this);};ToolPalette.prototype.createHTMLElement=function(){var item=Window.prototype.createHTMLElement.call(this);this.scrollarea=document.createElement("div");this.scrollarea.style.position="absolute";this.scrollarea.style.left="0px";if(this.hasTitleBar()){this.scrollarea.style.top="15px";}else{this.scrollarea.style.top="0px";}this.scrollarea.style.width=this.getWidth()+"px";this.scrollarea.style.height="15px";this.scrollarea.style.margin="0px";this.scrollarea.style.padding="0px";this.scrollarea.style.font="normal 10px verdana";this.scrollarea.style.borderBottom="2px solid gray";this.scrollarea.style.whiteSpace="nowrap";this.scrollarea.style.textAlign="center";this.scrollarea.style.overflowX="auto";this.scrollarea.style.overflowY="auto";this.scrollarea.style.overflow="auto";item.appendChild(this.scrollarea);return item;};ToolPalette.prototype.setDimension=function(w,h){Window.prototype.setDimension.call(this,w,h);if(this.scrollarea!=null){this.scrollarea.style.width=this.getWidth()+"px";if(this.hasTitleBar()){this.scrollarea.style.height=(this.getHeight()-15)+"px";}else{this.scrollarea.style.height=this.getHeight()+"px";}}};ToolPalette.prototype.addChild=function(item){this.children[item.id]=item;this.scrollarea.appendChild(item.getHTMLElement());};ToolPalette.prototype.getChild=function(id){return this.children[id];};ToolPalette.prototype.getActiveTool=function(){return this.activeTool;};ToolPalette.prototype.setActiveTool=function(tool){if(this.activeTool!=tool&&this.activeTool!=null){this.activeTool.setActive(false);}if(tool!=null){tool.setActive(true);}this.activeTool=tool;};

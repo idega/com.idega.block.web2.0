@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>Open-jACOB Draw2D Color Dialog</title>
+ <link href="plugin.css" rel="stylesheet" type="text/css" />
+
+        <SCRIPT src='../wz_jsgraphics.js'></SCRIPT>      <SCRIPT src='../mootools.js'></SCRIPT>      <SCRIPT src='../moocanvas.js'></SCRIPT>      <SCRIPT src='../draw2d.js'></SCRIPT>
+
+
+</head>
+<body>
+
+<div id="paintarea" style="position:absolute;left:0px;top:0px;width:3000px;height:3000px" >
+    <!-- The information help text -->
+    <div style="background-color:white;border:1px solid gray;width:350px;padding:10px;font-size:8pt;">
+    <center><b>Draw2D 0.9.14 - A simple diagram drawing demo<br>
+    by Andreas Herz (a.herz @ freegroup.de)
+    <br>
+    </b>
+    <br>
+    <div style="color:red;font-size:9pt">Focus of this example: Show a nice color dialog :-) </div>
+    </center>
+    <br>
+    <center>See more on <a href="http://www.draw2d.org">Open-jACOB Draw2D</a></center>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+  var workflow  = new Workflow("paintarea");
+
+  var color = new ColorDialog();
+  workflow.addFigure(color,100,100);
+
+</script>
+</body>
+</html>

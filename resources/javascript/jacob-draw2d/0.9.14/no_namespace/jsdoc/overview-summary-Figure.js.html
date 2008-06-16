@@ -1,0 +1,1132 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+ Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="Figure.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>Figure.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		No overview generated for 'Figure.js'<BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+    <table border="1" cellpadding="3" cellspacing="0" width="100%">
+    <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+    <td colspan=2><font size="+2">
+    
+        <b>Class Summary</b>
+    
+    </font></td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="Figure.html">Figure</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    </table>
+    <hr/> 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">/* This notice must be untouched at all times.
+
+Open-jACOB Draw2D
+The latest version is available at
+http://www.openjacob.org
+
+Copyright (c) 2006 Andreas Herz. All rights reserved.
+Created 5. 11. 2006 by Andreas Herz (Web: http://www.freegroup.de )
+
+LICENSE: LGPL
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License (LGPL) as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA,
+or see http://www.gnu.org/copyleft/lesser.html
+*/</span>
+
+<span class="comment">/**
+ * 
+ * <span class="attrib">@version</span> 0.8.7
+ * <span class="attrib">@author</span> Andreas Herz
+ * <span class="attrib">@constructor</span>
+ */</span>
+Figure=<span class="reserved">function</span>()
+{
+  <span class="reserved">this</span>.construct();
+}
+<span class="comment">/** <span class="attrib">@private</span> **/</span>
+Figure.<span class="reserved">prototype</span>.type=<span class="literal">"Figure"</span>;
+
+<span class="comment">/** <span class="attrib">@private</span> **/</span>
+Figure.ZOrderBaseIndex = 100;
+
+<span class="comment">/**
+ * Set the common z-index of the window element. This method exists for
+ * compatibility reason to dojo or another UI javascript library. 
+ * It is now possible to arange the draw2d elements behind/before other UI elements-
+ *
+ * <span class="attrib">@see</span> #setZOrder
+ * <span class="attrib">@static</span>
+ * <span class="attrib">@param</span> {int} index The z-order for all new figure objects.
+ **/</span>
+Figure.setZOrderBaseIndex=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> index)
+{
+  Figure.ZOrderBaseIndex = index;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.construct=<span class="reserved">function</span>()
+{
+  <span class="reserved">this</span>.lastDragStartTime =0;
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.x   = 0; <span class="comment">/*int*/</span>
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.y   = 0; <span class="comment">/*:int*/</span>
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.border=null;  <span class="comment">/*:Border*/</span>
+  <span class="reserved">this</span>.setDimension(10,10);
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.id   = <span class="reserved">this</span>.generateUId();  <span class="comment">/*:String*/</span>
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.html = <span class="reserved">this</span>.createHTMLElement(); <span class="comment">/*:HTMLElement*/</span>
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.canvas = null;    <span class="comment">/*:Canvas*/</span> 
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.workflow = null;  <span class="comment">/*:Workflow*/</span>
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.draggable = null; <span class="comment">/*:HTMLElement*/</span>
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.parent    = null; <span class="comment">/*:CompartmentFigure*/</span>
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.isMoving  = false; <span class="comment">/*:boolean*/</span>
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.canSnapToHelper = true; <span class="comment">/*:boolean*/</span>
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.snapToGridAnchor = new Point(0,0);
+  <span class="comment">/** <span class="attrib">@private</span> **/</span>
+  <span class="reserved">this</span>.timer = -1; <span class="comment">// Fadein/Fadeout timer id.</span>
+
+  <span class="comment">// It is important to set the flags below. Otherwise the flags will be &lt;null&gt;</span>
+  <span class="comment">//</span>
+  <span class="reserved">this</span>.setDeleteable(true);
+  <span class="reserved">this</span>.setCanDrag(true);
+  <span class="reserved">this</span>.setResizeable(true);
+  <span class="reserved">this</span>.setSelectable(true);
+
+  <span class="comment">// a figure can store additional, user defined properties</span>
+  <span class="comment">//</span>
+  <span class="reserved">this</span>.properties = new Object(); <span class="comment">/*:Map&lt;name,value&gt;*/</span>
+
+  <span class="comment">// Hier werden Object registriert welche informiert werden wollen wenn sich dieses</span>
+  <span class="comment">// Object bewegt hat.</span>
+  <span class="comment">//</span>
+  <span class="reserved">this</span>.moveListener = new ArrayList();
+}
+
+<span class="comment">/**
+ * Override this method to free your resource too.
+ *
+ * <span class="attrib">@private</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.dispose=<span class="reserved">function</span>()
+{
+  <span class="comment">//this.id   = null; don't dispose the id! This is important for deregistration</span>
+  <span class="comment">//this.html = null; don't dispose the html! This is important for deregistration</span>
+  <span class="reserved">this</span>.canvas = null;
+  <span class="reserved">this</span>.workflow = null;
+  <span class="reserved">this</span>.moveListener = null;
+  <span class="reserved">if</span>(<span class="reserved">this</span>.draggable!=null)
+  {
+    <span class="reserved">this</span>.draggable.removeEventListener(<span class="literal">"mouseenter"</span>, <span class="reserved">this</span>.tmpMouseEnter);
+    <span class="reserved">this</span>.draggable.removeEventListener(<span class="literal">"mouseleave"</span>, <span class="reserved">this</span>.tmpMouseLeave);
+    <span class="reserved">this</span>.draggable.removeEventListener(<span class="literal">"dragend"</span>, <span class="reserved">this</span>.tmpDragend);
+    <span class="reserved">this</span>.draggable.removeEventListener(<span class="literal">"dragstart"</span>,<span class="reserved">this</span>.tmpDragstart );
+    <span class="reserved">this</span>.draggable.removeEventListener(<span class="literal">"drag"</span>,<span class="reserved">this</span>.tmpDrag);
+    <span class="reserved">this</span>.draggable.removeEventListener(<span class="literal">"dblclick"</span>,<span class="reserved">this</span>.tmpDoubleClick );
+    <span class="reserved">this</span>.draggable.node = null;
+  }
+  <span class="reserved">this</span>.draggable = null;
+  <span class="reserved">if</span>(<span class="reserved">this</span>.border!=null)
+    <span class="reserved">this</span>.border.dispose();
+  <span class="reserved">this</span>.border = null;
+
+  <span class="comment">// remove this figure from the parent CompartmentFigure</span>
+  <span class="comment">//</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.parent!=null)
+    <span class="reserved">this</span>.parent.removeChild(<span class="reserved">this</span>);
+}
+
+
+
+
+<span class="comment">/**
+ * A figure can store user defined attributes. This method returns all properties stored in this figure.&lt;br&gt;
+ *
+ * <span class="attrib">@see</span> #setProperty
+ * <span class="attrib">@returns</span> All user defined properties of the figure
+ * <span class="attrib">@type</span> Map
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getProperties=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.properties;
+}
+
+<span class="comment">/**
+ * A figure can store user defined attributes. This method returns the requested property.&lt;br&gt;
+ *
+ * <span class="attrib">@see</span> #setProperty
+ * <span class="attrib">@returns</span> The user defined property of this figure.
+ * <span class="attrib">@type</span> String
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getProperty=<span class="reserved">function</span>(<span class="comment">/*:String*/</span> key)
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.properties[key];
+}
+
+
+<span class="comment">/**
+ * A figure can store any type of information. You can use this to attach any String or Object to this
+ * figure.
+ *
+ * <span class="attrib">@see</span> #getProperty
+ * <span class="attrib">@param</span> {String} key The key of the property.
+ * <span class="attrib">@param</span> {String} value The value of the property.
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setProperty=<span class="reserved">function</span>(<span class="comment">/*:String*/</span> key,<span class="comment">/*:String*/</span> value)
+{
+  <span class="reserved">this</span>.properties[key]=value;
+  <span class="reserved">this</span>.setDocumentDirty();
+}
+
+<span class="comment">/**
+ * Return the document unique id of this element. It is not an uuid or guid
+ * <span class="attrib">@type</span> String
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getId=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.id;
+}
+
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {Canvas} canvas
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setCanvas= <span class="reserved">function</span>(<span class="comment">/*:Canvas*/</span> canvas)
+{
+  <span class="reserved">this</span>.canvas = canvas;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@type</span> Workflow
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getWorkflow=<span class="reserved">function</span>()
+{
+   <span class="reserved">return</span> <span class="reserved">this</span>.workflow;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@param</span> {Workflow} workflow
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setWorkflow= <span class="reserved">function</span>(<span class="comment">/*:Workflow*/</span> workflow)
+{
+  <span class="comment">// The parent is a Workflow class - now we create the Drag-Objekt</span>
+  <span class="comment">//</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.draggable==null)
+  {
+    <span class="comment">// Firefox seems to need to have the tabindex="0" property set to some value </span>
+    <span class="comment">// so it knows this Div or Span is keyboard selectable. That allows the keyboard </span>
+    <span class="comment">// event to be triggered. It is not so dumb - you might want to trap Delete or </span>
+    <span class="comment">// Insert keys on a figure etc. </span>
+    <span class="reserved">this</span>.html.tabIndex=<span class="literal">"0"</span>;
+
+    var oThis = <span class="reserved">this</span>;
+
+    <span class="reserved">this</span>.keyDown=<span class="reserved">function</span>(event)
+    {
+      event.cancelBubble = true; <span class="comment">// Stop event propagation</span>
+      event.returnValue = true;  <span class="comment">// Execute the standard event for this event. Important for Input Fields/Dialogs</span>
+      oThis.onKeyDown(event.keyCode, event.ctrlKey);
+    }
+    <span class="reserved">if</span> (<span class="reserved">this</span>.html.addEventListener) 
+      <span class="reserved">this</span>.html.addEventListener(<span class="literal">"keydown"</span>, <span class="reserved">this</span>.keyDown, false);
+    <span class="reserved">else</span> <span class="reserved">if</span> (<span class="reserved">this</span>.html.attachEvent) 
+      <span class="reserved">this</span>.html.attachEvent(<span class="literal">"onkeydown"</span>, <span class="reserved">this</span>.keyDown);
+
+    <span class="reserved">this</span>.draggable = new Draggable(<span class="reserved">this</span>.html, Draggable.DRAG_X | Draggable.DRAG_Y);
+    <span class="reserved">this</span>.draggable.node = <span class="reserved">this</span>;
+    <span class="reserved">this</span>.tmpContextMenu = <span class="reserved">function</span> (oEvent){oThis.onContextMenu(oThis.x+oEvent.x, oEvent.y+oThis.y);};
+    <span class="reserved">this</span>.tmpMouseEnter  = <span class="reserved">function</span> (oEvent){oThis.onMouseEnter();};
+    <span class="reserved">this</span>.tmpMouseLeave  = <span class="reserved">function</span> (oEvent){oThis.onMouseLeave();};
+    <span class="reserved">this</span>.tmpDragend     = <span class="reserved">function</span> (oEvent){oThis.onDragend();};
+    <span class="reserved">this</span>.tmpDragstart   = <span class="reserved">function</span> (oEvent){
+       var w = oThis.workflow;
+       w.showMenu(null);
+       <span class="reserved">if</span>(oThis.workflow.toolPalette &amp;&amp; oThis.workflow.toolPalette.activeTool)
+       {
+          oEvent.returnValue = false;
+          oThis.workflow.onMouseDown(oThis.x+oEvent.x, oEvent.y+oThis.y);
+          oThis.workflow.onMouseUp(oThis.x+oEvent.x, oEvent.y+oThis.y);
+          <span class="reserved">return</span>;
+       }
+       oEvent.returnValue = oThis.onDragstart(oEvent.x,oEvent.y);
+    };
+    <span class="reserved">this</span>.tmpDrag        = <span class="reserved">function</span> (oEvent){oThis.onDrag();};
+    <span class="reserved">this</span>.tmpDoubleClick = <span class="reserved">function</span> (oEvent){oThis.onDoubleClick();};
+
+    <span class="reserved">this</span>.draggable.addEventListener(<span class="literal">"contextmenu"</span>, <span class="reserved">this</span>.tmpContextMenu);
+    <span class="reserved">this</span>.draggable.addEventListener(<span class="literal">"mouseenter"</span>, <span class="reserved">this</span>.tmpMouseEnter);
+    <span class="reserved">this</span>.draggable.addEventListener(<span class="literal">"mouseleave"</span>, <span class="reserved">this</span>.tmpMouseLeave);
+    <span class="reserved">this</span>.draggable.addEventListener(<span class="literal">"dragend"</span>, <span class="reserved">this</span>.tmpDragend);
+    <span class="reserved">this</span>.draggable.addEventListener(<span class="literal">"dragstart"</span>,<span class="reserved">this</span>.tmpDragstart );
+    <span class="reserved">this</span>.draggable.addEventListener(<span class="literal">"drag"</span>,<span class="reserved">this</span>.tmpDrag);
+    <span class="reserved">this</span>.draggable.addEventListener(<span class="literal">"dblclick"</span>,<span class="reserved">this</span>.tmpDoubleClick );
+  }
+  <span class="reserved">this</span>.workflow = workflow;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.createHTMLElement=<span class="reserved">function</span>()
+{
+    var item = document.createElement(<span class="literal">'div'</span>);
+    item.id        = <span class="reserved">this</span>.id;
+    item.style.position=<span class="literal">"absolute"</span>;
+    item.style.left   = <span class="reserved">this</span>.x+<span class="literal">"px"</span>;
+    item.style.top    = <span class="reserved">this</span>.y+<span class="literal">"px"</span>;
+    item.style.height = <span class="reserved">this</span>.width+<span class="literal">"px"</span>;
+    item.style.width  = <span class="reserved">this</span>.height+<span class="literal">"px"</span>;
+    item.style.margin = <span class="literal">"0px"</span>;
+    item.style.padding= <span class="literal">"0px"</span>;
+    item.style.outline= <span class="literal">"none"</span>;
+    item.style.zIndex = <span class="literal">""</span>+Figure.ZOrderBaseIndex;
+
+    <span class="reserved">return</span> item;
+}
+
+
+<span class="comment">/**
+ * Set the parent of this figure.
+ * Don't call them manually. Is CompartmentFigre.appendChild() instead.
+
+ * <span class="attrib">@param</span> {CompartmentFigure} parent The new parent of this figure
+ * <span class="attrib">@private</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setParent=<span class="reserved">function</span>(<span class="comment">/*:CompartmentFigure*/</span> parent)
+{
+  <span class="reserved">this</span>.parent = parent;
+}
+
+<span class="comment">/**
+ * Get the parent of this figure.
+ *
+ * <span class="attrib">@type</span> CompartmentFigure
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getParent=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.parent;
+}
+
+
+<span class="comment">/**
+ * <span class="attrib">@return</span> Returns the z-index of the element.
+ * <span class="attrib">@type</span> int
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getZOrder=<span class="reserved">function</span>()
+{
+    <span class="reserved">return</span> <span class="reserved">this</span>.html.style.zIndex;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@param</span> {int} index Set the new z-index of the element
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setZOrder=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> index)
+{
+    <span class="reserved">this</span>.html.style.zIndex=index;
+}
+
+
+<span class="comment">/**
+ * Return true if the origin of the Object is the window and not
+ * the document. This is usefull if you want implement a window or a
+ * dialog element. The element doesn't move if the user scroll the document.
+ *
+ * <span class="attrib">@returns</span> Returns [true] if the origin of the object the window.
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+Figure.<span class="reserved">prototype</span>.hasFixedPosition=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> false;
+}
+
+<span class="comment">/**
+ * This value is relevant for the interactive resize of the figure.
+ *
+ * <span class="attrib">@returns</span> Returns the min width of this object.
+ * <span class="attrib">@type</span> int
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getMinWidth=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> 5;
+}
+
+<span class="comment">/**
+ * This value is relevant for the interactive resize of the figure.
+ *
+ * <span class="attrib">@returns</span> Returns the min height of this object.
+ * <span class="attrib">@type</span> int
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getMinHeight=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> 5;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getHTMLElement=<span class="reserved">function</span>()
+{
+  <span class="reserved">if</span>(<span class="reserved">this</span>.html==null)
+    <span class="reserved">this</span>.html = <span class="reserved">this</span>.createHTMLElement();
+  <span class="reserved">return</span> <span class="reserved">this</span>.html;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@see</span> Circle for an implementation.
+ * <span class="attrib">@private</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.paint=<span class="reserved">function</span>()
+{
+  <span class="comment">// called after the element has been added to the document</span>
+}
+
+<span class="comment">/**
+ * <span class="attrib">@param</span> {Border} border Set the border for this figure
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setBorder=<span class="reserved">function</span>(<span class="comment">/*:Border*/</span> border)
+{
+  <span class="reserved">if</span>(<span class="reserved">this</span>.border!=null)
+    <span class="reserved">this</span>.border.figure=null;
+
+  <span class="reserved">this</span>.border=border;
+  <span class="reserved">this</span>.border.figure=<span class="reserved">this</span>;
+  <span class="reserved">this</span>.border.refresh();
+  <span class="reserved">this</span>.setDocumentDirty();
+}
+
+<span class="comment">/**
+ * Callback method for the context menu interaction.
+ * Don't override this method! Implement getContextMenu instead.
+ *
+ * <span class="attrib">@see</span> #getContextMenu
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@final</span>
+ * <span class="attrib">@param</span> {int} x The absolute x coordinate of the right mouse button click
+ * <span class="attrib">@param</span> {int} y The absolute y coordinate of the right mouse button click
+ **/</span>
+Figure.<span class="reserved">prototype</span>.onContextMenu=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> x, <span class="comment">/*:int*/</span>y)
+{
+    var menu = <span class="reserved">this</span>.getContextMenu();
+    <span class="reserved">if</span>(menu!=null)
+      <span class="reserved">this</span>.workflow.showMenu(menu,x,y);
+}
+
+<span class="comment">/**
+ * <span class="attrib">@returns</span> null or the Menu object for this figure.
+ * <span class="attrib">@type</span> Menu
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getContextMenu=<span class="reserved">function</span>()
+{
+   <span class="reserved">return</span> null;
+}
+
+<span class="comment">/**
+ * Callback method for the double click event of user interaction.
+ * Sub classes can override this method to implement their own behaviour.
+ **/</span>
+Figure.<span class="reserved">prototype</span>.onDoubleClick=<span class="reserved">function</span>()
+{
+}
+
+<span class="comment">/**
+ * Callback method for the mouse enter event. Usefull for mouse hover-effects.
+ * Sub classes can override this method to implement their own behaviour.
+ **/</span>
+Figure.<span class="reserved">prototype</span>.onMouseEnter=<span class="reserved">function</span>()
+{
+}
+
+
+<span class="comment">/**
+ * Callback method for the mouse leave event. Usefull for mouse hover-effects.
+ * 
+ **/</span>
+Figure.<span class="reserved">prototype</span>.onMouseLeave=<span class="reserved">function</span>()
+{
+}
+
+<span class="comment">/**
+ * Don't call them manually. This will be done by the framework.&lt;br&gt;
+ * Will be called if the object are moved via drag and drop.
+ * Sub classes can override this method to implement additional stuff. Don't forget to call
+ * the super implementation via &lt;code&gt;Figure.prototype.onDrag.call(this);&lt;/code&gt;
+ * <span class="attrib">@private</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.onDrag = <span class="reserved">function</span>()
+{
+  <span class="reserved">this</span>.x = <span class="reserved">this</span>.draggable.getLeft();
+  <span class="reserved">this</span>.y = <span class="reserved">this</span>.draggable.getTop();
+
+  <span class="comment">// enable the alpha blending o the first real move of the object</span>
+  <span class="comment">//</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.isMoving==false)
+  {
+   <span class="reserved">this</span>.isMoving = true;
+   <span class="reserved">this</span>.setAlpha(0.5);
+  }
+  <span class="reserved">this</span>.fireMoveEvent();
+}
+
+<span class="comment">/**
+ * Will be called after a drag and drop action.&lt;br&gt;
+ * Sub classes can override this method to implement additional stuff. Don't forget to call
+ * the super implementation via &lt;code&gt;Figure.prototype.onDragend.call(this);&lt;/code&gt;
+ * <span class="attrib">@private</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.onDragend = <span class="reserved">function</span>()
+{
+   <span class="reserved">if</span>(<span class="reserved">this</span>.getWorkflow().getEnableSmoothFigureHandling()==true)
+   {
+      var oFigure = <span class="reserved">this</span>;
+      var slowShow = <span class="reserved">function</span>()
+      {
+         <span class="reserved">if</span>(oFigure.alpha&lt;1.0)
+            oFigure.setAlpha(Math.min(1.0,oFigure.alpha+0.05));
+         <span class="reserved">else</span>
+         {
+            window.clearInterval(oFigure.timer);
+            oFigure.timer = -1;
+         }
+      };
+      <span class="reserved">if</span>(oFigure.timer&gt;0)
+         window.clearInterval(oFigure.timer);
+      oFigure.timer = window.setInterval(slowShow,20);
+  }
+  <span class="reserved">else</span>
+  {
+      <span class="reserved">this</span>.setAlpha(1.0);
+  }
+  <span class="comment">// Element ist zwar schon an seine Position, das Command muss aber trotzdem</span>
+  <span class="comment">// in dem CommandStack gelegt werden damit das Undo funktioniert.</span>
+  <span class="comment">//</span>
+  <span class="reserved">this</span>.command.setPosition(<span class="reserved">this</span>.x, <span class="reserved">this</span>.y);
+  <span class="reserved">this</span>.workflow.commandStack.execute(<span class="reserved">this</span>.command);
+  <span class="reserved">this</span>.command = null;
+  <span class="reserved">this</span>.isMoving = false;
+  <span class="reserved">this</span>.workflow.hideSnapToHelperLines();
+  <span class="reserved">this</span>.fireMoveEvent();
+}
+
+<span class="comment">/**
+ * Will be called if the drag and drop action beginns. You can return [false] if you
+ * want avoid the that the figure can be move.
+ * 
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+Figure.<span class="reserved">prototype</span>.onDragstart = <span class="reserved">function</span>(<span class="comment">/*:int*/</span> x, <span class="comment">/*:int*/</span> y)
+{
+  <span class="reserved">if</span>(!<span class="reserved">this</span>.canDrag)
+    <span class="reserved">return</span> false;
+
+  <span class="reserved">this</span>.command = new CommandMove(<span class="reserved">this</span>, <span class="reserved">this</span>.x,<span class="reserved">this</span>.y);
+  <span class="reserved">return</span> true;
+}
+
+<span class="comment">/**
+ * Switch on/off the drag drop behaviour of this object
+ *
+ * <span class="attrib">@param</span> {boolean} flag The new drag drop indicator
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setCanDrag=<span class="reserved">function</span>(<span class="comment">/*:boolean*/</span>flag)
+{
+  <span class="reserved">this</span>.canDrag= flag;
+  <span class="reserved">if</span>(flag)
+    <span class="reserved">this</span>.html.style.cursor=<span class="literal">"move"</span>;
+  <span class="reserved">else</span>
+    <span class="reserved">this</span>.html.style.cursor=null;
+}
+
+<span class="comment">/**
+ * Set the alpha blending of this figure. 
+ *
+ * <span class="attrib">@param</span> {float} percent Value between 0-1.
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setAlpha=<span class="reserved">function</span>(<span class="comment">/*:float 0-1*/</span> percent)
+{
+  <span class="reserved">if</span>(<span class="reserved">this</span>.alpha==percent)
+     <span class="reserved">return</span>;
+  try
+  {
+   <span class="comment">// FireFox</span>
+   <span class="reserved">this</span>.html.style.MozOpacity=percent ;
+  } 
+  catch(exc){}
+  try
+  {
+   <span class="comment">// standard. Like Apple Safari Browser</span>
+   <span class="reserved">this</span>.html.style.opacity=percent ;
+  } 
+  catch(exc){}
+  try
+  {
+   <span class="comment">// InternetExplorer</span>
+   var opacityValue = Math.round(percent * 100);
+   <span class="comment">// remove the alpha filter complete if we don't want any.</span>
+   <span class="reserved">if</span>(opacityValue&gt;=99)
+      <span class="reserved">this</span>.html.style.filter = <span class="literal">""</span>;
+   <span class="reserved">else</span>
+      <span class="reserved">this</span>.html.style.filter = <span class="literal">"alpha(opacity="</span> + opacityValue + <span class="literal">")"</span>; 
+
+  } catch(exc){}
+  <span class="reserved">this</span>.alpha = percent;
+}
+
+<span class="comment">/**
+ * Set the new width and height of the figure. 
+ *
+ * <span class="attrib">@see</span> #getMinWidth
+ * <span class="attrib">@see</span> #getMinHeight
+ * <span class="attrib">@param</span> {int} w The new width of the figure
+ * <span class="attrib">@param</span> {int} h The new height of the figure
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setDimension=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> w, <span class="comment">/*:int*/</span> h)
+{
+  <span class="reserved">this</span>.width = Math.max(<span class="reserved">this</span>.getMinWidth(),w);
+  <span class="reserved">this</span>.height= Math.max(<span class="reserved">this</span>.getMinHeight(),h);
+
+  <span class="comment">// Falls das Element noch nie gezeichnet wurde, dann braucht aus das HTML nicht </span>
+  <span class="comment">// aktualisiert werden</span>
+  <span class="comment">//</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.html==null)
+    <span class="reserved">return</span>;
+
+  <span class="reserved">this</span>.html.style.width  = <span class="reserved">this</span>.width+<span class="literal">"px"</span>;
+  <span class="reserved">this</span>.html.style.height = <span class="reserved">this</span>.height+<span class="literal">"px"</span>;
+
+  <span class="reserved">this</span>.fireMoveEvent();
+
+  <span class="comment">// Update the resize handles if the user change the dimension via an API call</span>
+  <span class="comment">//</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.workflow!=null &amp;&amp; <span class="reserved">this</span>.workflow.getCurrentSelection()==<span class="reserved">this</span>)
+     <span class="reserved">this</span>.workflow.showResizeHandles(<span class="reserved">this</span>);
+}
+
+<span class="comment">/**
+ * Set the position of the object.
+ *
+ * <span class="attrib">@param</span> {int} xPos The new x coordinate of the figure
+ * <span class="attrib">@param</span> {int} yPos The new y coordinate of the figure 
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setPosition=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> xPos , <span class="comment">/*:int*/</span> yPos )
+{
+<span class="comment">//  this.x = Math.max(0,xPos);</span>
+<span class="comment">//  this.y = Math.max(0,yPos);</span>
+  <span class="reserved">this</span>.x= xPos;
+  <span class="reserved">this</span>.y= yPos;
+  <span class="comment">// Falls das Element noch nie gezeichnet wurde, dann braucht aus das HTML nicht </span>
+  <span class="comment">// aktualisiert werden</span>
+  <span class="comment">//</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.html==null)
+    <span class="reserved">return</span>;
+
+  <span class="reserved">this</span>.html.style.left = <span class="reserved">this</span>.x+<span class="literal">"px"</span>;
+  <span class="reserved">this</span>.html.style.top  = <span class="reserved">this</span>.y+<span class="literal">"px"</span>;
+
+  <span class="reserved">this</span>.fireMoveEvent();
+
+  <span class="comment">// Update the resize handles if the user change the position of the element via an API call.</span>
+  <span class="comment">//</span>
+  <span class="reserved">if</span>(<span class="reserved">this</span>.workflow!=null &amp;&amp; <span class="reserved">this</span>.workflow.getCurrentSelection()==<span class="reserved">this</span>)
+     <span class="reserved">this</span>.workflow.showResizeHandles(<span class="reserved">this</span>);
+}
+
+<span class="comment">/**
+ * Returns the true if the figure can be resized.
+ *
+ * <span class="attrib">@see</span> #setResizeable
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+Figure.<span class="reserved">prototype</span>.isResizeable=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.resizeable;
+}
+
+<span class="comment">/**
+ * You can change the resizeable behaviour of this object. Hands over [false] and
+ * the figure has no resizehandles if you select them with the mouse.&lt;br&gt;
+ *
+ * <span class="attrib">@see</span> #getResizeable
+ * <span class="attrib">@param</span> {boolean} flag The resizeable flag.
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setResizeable=<span class="reserved">function</span>(<span class="comment">/*:boolean*/</span> flag)
+{
+  <span class="reserved">this</span>.resizeable=flag;
+}
+
+<span class="comment">/**
+ * 
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+Figure.<span class="reserved">prototype</span>.isSelectable=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.selectable;
+}
+
+
+<span class="comment">/**
+ * You can change the selectable behaviour of this object. Hands over [false] and
+ * the figure has no selection handles if you try to select them with the mouse.&lt;br&gt;
+ *
+ * <span class="attrib">@param</span> {boolean} flag The selectable flag.
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setSelectable=<span class="reserved">function</span>(<span class="comment">/*:boolean*/</span> flag)
+{
+  <span class="reserved">this</span>.selectable=flag;
+}
+
+<span class="comment">/**
+ * Return true if the object doesn't care about the aspect ratio.
+ * You can change the hight and width indipendent.
+ * <span class="attrib">@type</span> boolean
+ */</span>
+Figure.<span class="reserved">prototype</span>.isStrechable=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> true;
+}
+
+<span class="comment">/**
+ * Return false if you avoid that the user can delete your figure.
+ * Sub class can override this method.
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+Figure.<span class="reserved">prototype</span>.isDeleteable=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.deleteable;
+}
+
+<span class="comment">/**
+ * Return false if you avoid that the user can delete your figure.
+ * 
+ * <span class="attrib">@param</span> {boolean} flag Enable or disable flag for the delete operation
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setDeleteable=<span class="reserved">function</span>(<span class="comment">/*:boolean */</span>flag)
+{
+  <span class="reserved">this</span>.deleteable = flag;
+}
+
+
+<span class="comment">/**
+ * Set the flag if this object can snap to grid or geometry.
+ * A window of dialog should set this flag to false.
+ * <span class="attrib">@param</span> {boolean} flag The snap to grid/geometry enable flag.
+ *
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setCanSnapToHelper=<span class="reserved">function</span>(<span class="comment">/*:boolean */</span>flag)
+{
+  <span class="reserved">this</span>.canSnapToHelper = flag;
+}
+
+<span class="comment">/**
+ * Returns true if the figure cna snap to any helper like a grid, guide, geometrie
+ * or something else.
+ *
+ * <span class="attrib">@type</span> boolean
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getCanSnapToHelper=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.canSnapToHelper;
+}
+
+<span class="comment">/**
+ *
+ * <span class="attrib">@type</span> Point
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getSnapToGridAnchor=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.snapToGridAnchor;
+}
+
+<span class="comment">/**
+ *
+ * <span class="attrib">@type</span> Point
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setSnapToGridAnchor=<span class="reserved">function</span>(<span class="comment">/*:Point*/</span> point)
+{
+  <span class="reserved">this</span>.snapToGridAnchor = point;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@type</span> Dimension
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getBounds=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> new Dimension(<span class="reserved">this</span>.getX(),<span class="reserved">this</span>.getY(),<span class="reserved">this</span>.getWidth(),<span class="reserved">this</span>.getHeight());
+}
+
+
+<span class="comment">/**
+ * <span class="attrib">@type</span> int
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getWidth=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.width;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@type</span> int
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getHeight=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.height;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@returns</span> The y-offset to the parent figure.
+ * <span class="attrib">@type</span> int
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getY=<span class="reserved">function</span>()
+{
+    <span class="reserved">return</span> <span class="reserved">this</span>.y;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@returns</span> the x-offset to the parent figure
+ * <span class="attrib">@type</span> int
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getX=<span class="reserved">function</span>()
+{
+    <span class="reserved">return</span> <span class="reserved">this</span>.x;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@returns</span> The Y coordinate in relation the Canvas.
+ * <span class="attrib">@type</span> int
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getAbsoluteY=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.y;
+}
+
+<span class="comment">/**
+ * <span class="attrib">@returns</span> The X coordinate in relation to the canvas
+ * <span class="attrib">@type</span> int
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getAbsoluteX=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> <span class="reserved">this</span>.x;
+}
+
+<span class="comment">/**
+ * This method will be called from the framework if the objects is selected and the user press any key.
+ * Sub class can override this method to implement their own stuff.
+ * 
+ * <span class="attrib">@param</span> {int} keyCode The code of the pressed key
+ **/</span>
+Figure.<span class="reserved">prototype</span>.onKeyDown=<span class="reserved">function</span>(<span class="comment">/*:int*/</span> keyCode, <span class="comment">/*:boolean*/</span> ctrl)
+{
+  <span class="reserved">if</span>(keyCode==46 &amp;&amp; <span class="reserved">this</span>.isDeleteable()==true)
+  {
+    <span class="reserved">this</span>.workflow.commandStack.execute(new CommandDelete(<span class="reserved">this</span>));
+  }
+
+  <span class="comment">// redirect any CTRL key strokes to the parent workflow/canvas</span>
+  <span class="comment">//</span>
+  <span class="reserved">if</span>(ctrl)
+  {
+     <span class="reserved">this</span>.workflow.onKeyDown(keyCode,ctrl);
+  }
+}
+
+<span class="comment">/**
+ * Returns the position of the figure.
+ *
+ * <span class="attrib">@type</span> Point
+ * <span class="attrib">@deprecated</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.getPosition=<span class="reserved">function</span>()
+{
+  <span class="reserved">return</span> new Point(<span class="reserved">this</span>.x, <span class="reserved">this</span>.y);
+}
+
+
+Figure.<span class="reserved">prototype</span>.isOver = <span class="reserved">function</span> (<span class="comment">/*:int*/</span> iX ,<span class="comment">/*:int*/</span> iY)
+{
+    var x = <span class="reserved">this</span>.getAbsoluteX();
+    var y = <span class="reserved">this</span>.getAbsoluteY();
+    var iX2 = x + <span class="reserved">this</span>.width;
+    var iY2 = y + <span class="reserved">this</span>.height;
+    <span class="reserved">return</span> (iX &gt;= x &amp;&amp; iX &lt;= iX2 &amp;&amp; iY &gt;= y &amp;&amp; iY &lt;= iY2);
+}
+
+<span class="comment">/**
+ * <span class="attrib">@param</span> {Figure} figure The figure to monitor
+ *
+ **/</span>
+Figure.<span class="reserved">prototype</span>.attachMoveListener = <span class="reserved">function</span>(<span class="comment">/*:Figure*/</span> figure)
+{
+  <span class="reserved">if</span>(figure==null || <span class="reserved">this</span>.moveListener==null)
+    <span class="reserved">return</span>;
+
+  <span class="reserved">this</span>.moveListener.add(figure);
+}
+
+
+<span class="comment">/**
+ * <span class="attrib">@param</span> {Figure} figure The figure to remove the monitor
+ *
+ **/</span>
+Figure.<span class="reserved">prototype</span>.detachMoveListener = <span class="reserved">function</span>(<span class="comment">/*:Figure*/</span> figure) 
+{
+  <span class="reserved">if</span>(figure==null || <span class="reserved">this</span>.moveListener==null)
+    <span class="reserved">return</span>;
+
+  <span class="reserved">this</span>.moveListener.remove(figure);
+}
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.fireMoveEvent=<span class="reserved">function</span>()
+{
+  <span class="reserved">this</span>.setDocumentDirty();
+  var size= <span class="reserved">this</span>.moveListener.getSize();
+  <span class="reserved">for</span>(var i=0;i&lt;size;i++)
+  {
+    <span class="reserved">this</span>.moveListener.get(i).onOtherFigureMoved(<span class="reserved">this</span>);
+  }
+}
+
+
+<span class="comment">/**
+ * Falls man sich zuvor an einem Object mit attacheMoveListener(..) registriert hat,
+ * wird man hierüber dann informiert wenn sich das Objekt bewegt hat.
+ *
+ * <span class="attrib">@param</span> {Figure} figure The figure which has changed its position
+ * <span class="attrib">@private</span>
+ */</span>
+Figure.<span class="reserved">prototype</span>.onOtherFigureMoved=<span class="reserved">function</span>(<span class="comment">/*:Figure*/</span> figure)
+{
+}
+
+<span class="comment">/**
+ * This method will be called if the figure has changed any postion, color, dimension or something else.
+ *
+ * <span class="attrib">@private</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.setDocumentDirty=<span class="reserved">function</span>()
+{
+  <span class="reserved">if</span>(<span class="reserved">this</span>.workflow!=null)
+    <span class="reserved">this</span>.workflow.setDocumentDirty();
+}
+
+
+<span class="comment">/**
+ * <span class="attrib">@private</span>
+ * <span class="attrib">@returns</span> String
+ **/</span>
+Figure.<span class="reserved">prototype</span>.generateUId=<span class="reserved">function</span>() 
+{
+  var chars = <span class="literal">"0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz"</span>;
+  var string_length = 10;
+  var maxTry = 10;
+  nbTry = 0
+  <span class="reserved">while</span> (nbTry &lt; 1000) 
+  {
+      var id = <span class="literal">''</span>;
+      <span class="comment">// generate string</span>
+      <span class="reserved">for</span> (var i=0; i&lt;string_length; i++) 
+      {
+          var rnum = Math.floor(Math.random() * chars.length);
+          id += chars.substring(rnum,rnum+1);
+      }
+      <span class="comment">// check if there</span>
+      elem = document.getElementById(id);
+      <span class="reserved">if</span> (!elem)
+          <span class="reserved">return</span> id
+      nbTry += 1
+  }
+  <span class="reserved">return</span> null
+}
+
+
+<span class="comment">/**
+ * Utility function to disable text selection on the handsover element
+ *
+ * <span class="attrib">@private</span>
+ **/</span>
+Figure.<span class="reserved">prototype</span>.disableTextSelection=<span class="reserved">function</span>(<span class="comment">/*:HTMLElement*/</span> e)
+{
+   <span class="comment">// disable text selection</span>
+   <span class="comment">//</span>
+   <span class="reserved">if</span> (typeof e.onselectstart!=<span class="literal">"undefined"</span>) <span class="comment">//IE route</span>
+      e.onselectstart=<span class="reserved">function</span>(){<span class="reserved">return</span> false}
+   <span class="reserved">else</span> <span class="reserved">if</span> (typeof e.style.MozUserSelect!=<span class="literal">"undefined"</span>) <span class="comment">//Firefox route</span>
+      e.style.MozUserSelect=<span class="literal">"none"</span>
+}
+
+</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Feb  7 23:45:38 2008</div>
+</body>
+</html>
