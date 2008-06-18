@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.44 2008/03/28 17:15:34 civilis Exp $
+ * $Id: Web2BusinessBean.java,v 1.45 2008/06/18 09:35:19 gimmi Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -9,8 +9,13 @@
  */
 package com.idega.block.web2.business;
 
+import org.apache.myfaces.renderkit.html.util.AddResource;
+import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
+
 import com.idega.business.IBOServiceBean;
 import com.idega.idegaweb.IWBundle;
+import com.idega.presentation.IWContext;
+import com.idega.util.PresentationUtil;
 import com.idega.util.CoreConstants;
 
 /**
@@ -34,10 +39,10 @@ import com.idega.util.CoreConstants;
  * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
  * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
  * 
- * Last modified: $Date: 2008/03/28 17:15:34 $ by $Author: civilis $
+ * Last modified: $Date: 2008/06/18 09:35:19 $ by $Author: gimmi $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.44 $
+ * @version $Revision: 1.45 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
@@ -932,5 +937,22 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public String getBundleUriToContextMenuScript() {
 		return getBundleUriToContextMenuScript(Web2BusinessBean.CONTEXT_MENU_LATEST_VERSION, true);
+	}
+	
+	public void addTablesorterScriptFilesToPage(IWContext iwc, String className, String theme) {
+		if (theme == null || theme.equals("")) {
+			theme = "blue";
+		}
+		PresentationUtil.addStyleSheetToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/"+theme+"/style.css");
+		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.1.2.3.packed.js");
+		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.metadata.js");
+		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.tablesorter.min.js");
+
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("$(document).ready(function() { $('.").append(className).append("').tablesorter(); });");
+
+		AddResource adder = AddResourceFactory.getInstance(iwc);
+		adder.addInlineScriptAtPosition(iwc, AddResource.HEADER_BEGIN, buffer.toString());
+
 	}
 }
