@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.9.2.4 2007/05/30 17:05:55 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.9.2.5 2008/06/18 09:07:07 gimmi Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -9,8 +9,13 @@
  */
 package com.idega.block.web2.business;
 
+import org.apache.myfaces.renderkit.html.util.AddResource;
+import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
+
 import com.idega.business.IBOServiceBean;
 import com.idega.idegaweb.IWBundle;
+import com.idega.presentation.IWContext;
+import com.idega.util.PresentationUtil;
 
 /**
  * A service bean with handy methods for getting paths to Web 2.0 script libraries and more.
@@ -28,10 +33,10 @@ import com.idega.idegaweb.IWBundle;
  * Transcorners - Rounds corners of provided DOM element, based on Mootools: http://inviz.ru/moo/transcorners/
  * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
  * 
- * Last modified: $Date: 2007/05/30 17:05:55 $ by $Author: eiki $
+ * Last modified: $Date: 2008/06/18 09:07:07 $ by $Author: gimmi $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.9.2.4 $
+ * @version $Revision: 1.9.2.5 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -611,5 +616,22 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 			codePressScriptFilePath = script.toString();
 		}
 		return codePressScriptFilePath;
+	}
+	
+	public void addTablesorterScriptFilesToPage(IWContext iwc, String className, String theme) {
+		if (theme == null || theme.equals("")) {
+			theme = "blue";
+		}
+		PresentationUtil.addStyleSheetToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/"+theme+"/style.css");
+		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.1.2.3.packed.js");
+		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.metadata.js");
+		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.tablesorter.min.js");
+
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("$(document).ready(function() { $('.").append(className).append("').tablesorter(); });");
+
+		AddResource adder = AddResourceFactory.getInstance(iwc);
+		adder.addInlineScriptAtPosition(iwc, AddResource.HEADER_BEGIN, buffer.toString());
+
 	}
 }

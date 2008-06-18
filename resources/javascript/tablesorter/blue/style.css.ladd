@@ -1,0 +1,67 @@
+/* tables */
+table.tablesorter {
+	font-family:arial;
+	background-color: #CDCDCD;
+	margin: 10px 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+
+table.tablesorter thead tr th, table.tablesorter tfoot tr td {
+	font-size: 10px;
+	background-color: #fff;
+	padding: 5px 4px;
+	color: #333 !important;
+	white-space: nowrap;
+}
+
+table.tablesorter tfoot tr td {
+	padding: 2px 4px !important;
+	font-size: 11px !important;
+	background-color: #fff;
+	font-weight: bold;
+}
+
+table.tablesorter tbody tr td, table.tablesorter tbody tr td a {
+	font-size: 11px !important;
+}
+
+table.tablesorter tfoot tr td input {
+	margin: 0 !important;
+	border: 1px #666 solid;
+	font-size: 10px;
+}
+
+table.tablesorter thead tr .header {
+	background-image: url(/idegaweb/bundles/is.idega.travel.bundle/resources/js/tablesorter/blue/bg.gif);
+	background-repeat: no-repeat;
+	background-position: 3px 6px;
+	cursor: pointer;
+	padding-left: 12px;
+}
+
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px !important;
+	background-color: #FFF;
+	vertical-align: top;
+}
+
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(/idegaweb/bundles/is.idega.travel.bundle/resources/js/tablesorter/blue/asc.gif);
+	background-position: 3px 8px;
+}
+
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(/idegaweb/bundles/is.idega.travel.bundle/resources/js/tablesorter/blue/desc.gif);
+	background-position: 3px 8px;
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+	background-color: #8dbdd8;
+}

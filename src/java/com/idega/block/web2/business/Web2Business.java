@@ -2,6 +2,8 @@ package com.idega.block.web2.business;
 
 
 import com.idega.business.IBOService;
+import com.idega.presentation.IWContext;
+
 import java.rmi.RemoteException;
 
 public interface Web2Business extends IBOService {
@@ -259,4 +261,6 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getCodePressScriptFilePath
 	 */
 	public String getCodePressScriptFilePath();
+
+	public void addTablesorterScriptFilesToPage(IWContext iwc, String className, String theme);
 }
