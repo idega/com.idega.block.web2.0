@@ -10,7 +10,7 @@
 #datepicker_div {
 	display: none;
 	border: 1px solid #777;
-	z-index: 9999; /*must have*/
+	z-index: 10000; /*must have*/
 }
 .datepicker_inline {
 	float: left;
