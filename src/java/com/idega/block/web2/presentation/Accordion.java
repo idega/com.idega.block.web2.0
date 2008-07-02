@@ -11,12 +11,12 @@ import org.apache.myfaces.renderkit.html.util.AddResource;
 import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
 
 import com.idega.block.web2.business.Web2Business;
-import com.idega.business.SpringBeanLookup;
 import com.idega.presentation.Block;
 import com.idega.presentation.IWContext;
 import com.idega.presentation.Layer;
 import com.idega.presentation.Span;
 import com.idega.presentation.text.Text;
+import com.idega.util.expression.ELUtil;
 
 
 public class Accordion extends Block {
@@ -82,7 +82,7 @@ public class Accordion extends Block {
 	
 	@Override
 	public void main(IWContext iwc) {
-		Web2Business business = SpringBeanLookup.getInstance().getSpringBean(iwc, Web2Business.class);
+		Web2Business business = ELUtil.getInstance().getBean(Web2Business.class);
 		
 		String styleURI = null;
 		try {

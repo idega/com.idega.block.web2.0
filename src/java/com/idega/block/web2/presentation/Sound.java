@@ -6,15 +6,12 @@ import org.apache.myfaces.renderkit.html.util.AddResource;
 import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
 
 import com.idega.block.web2.business.Web2Business;
-import com.idega.business.IBOLookupException;
-import com.idega.business.SpringBeanLookup;
-import com.idega.idegaweb.IWApplicationContext;
-import com.idega.idegaweb.IWMainApplication;
 import com.idega.presentation.Block;
 import com.idega.presentation.IWContext;
 import com.idega.presentation.Page;
 import com.idega.presentation.PresentationObjectUtil;
 import com.idega.presentation.text.Text;
+import com.idega.util.expression.ELUtil;
 
 /**
  * Adds sound support using SoundManager2 and a hidden flash object. You must wait until onload has finished to use it window.<br>
@@ -41,7 +38,7 @@ public class Sound extends Block {
 		if (parentPage != null) {
 			try {
 
-				Web2Business business = getWeb2(iwc);
+				Web2Business business = ELUtil.getInstance().getBean(Web2Business.class);
 
 				String soundURI = business.getBundleURIToSoundManager2Lib();
 				String flashFile = business.getBundleURIToSoundManager2FlashFile();
@@ -64,10 +61,6 @@ public class Sound extends Block {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	protected Web2Business getWeb2(IWApplicationContext iwac) throws IBOLookupException {
-		return SpringBeanLookup.getInstance().getSpringBean(iwac, Web2Business.class);
 	}
 
 	/**
@@ -118,12 +111,7 @@ public class Sound extends Block {
 	}
 	
 	public String getTestSoundURI() {
-		try {
-			return getWeb2(IWMainApplication.getDefaultIWApplicationContext()).getBundleURIToSoundManager2TestSoundFile();
-		} catch (IBOLookupException e) {
-			e.printStackTrace();
-		}
-		return "LOOKUP FAILED SEE LOGS";
+		return ELUtil.getInstance().getBean(Web2Business.class).getBundleURIToSoundManager2TestSoundFile();
 	}
 	
 	public Object clone(){
