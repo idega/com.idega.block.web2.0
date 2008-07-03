@@ -1417,6 +1417,8 @@ function extendRemove(target, props) {
                     Object - settings for attaching new datepicker functionality
    @return  jQuery object */
 $.fn.datepicker = function(options){
+	addDatePickerBody();
+	
 	var otherArgs = Array.prototype.slice.call(arguments, 1);
 	if (typeof options == 'string' && (options == 'isDisabled' || options == 'getDate')) {
 		return $.datepicker['_' + options + 'Datepicker'].apply($.datepicker, [this[0]].concat(otherArgs));
@@ -1427,12 +1429,19 @@ $.fn.datepicker = function(options){
 			$.datepicker._attachDatepicker(this, options);
 	});
 };
-	
+
 /* Initialise the date picker. */
 $(document).ready(function() {
-	$(document.body).append($.datepicker._datepickerDiv)
-		.mousedown($.datepicker._checkExternalClick);
+	addDatePickerBody();
 });
+
+function addDatePickerBody() {
+	var datePickerBody = $('#datepicker_div');
+	if (datePickerBody == null || datePickerBody.length == 0) {
+		$(document.body).append($.datepicker._datepickerDiv)
+			.mousedown($.datepicker._checkExternalClick);
+	}
+}
 
 $.datepicker = new Datepicker(); // singleton instance
 
