@@ -537,7 +537,8 @@ jQuery.fn.jqGrid = function( p ) {
                         
                             if(ts.p.populateFromFunction != null) {
                                 ts.p.populateFromFunction(
-                                    {page: ts.p.page, rows: ts.p.rowNum, sidx: ts.p.sortname, sord:ts.p.sortorder, rightsChanger:ts.p.rightsChanger, identifier:ts.p.identifier},
+                                    {page: ts.p.page, rows: ts.p.rowNum, sidx: ts.p.sortname, sord:ts.p.sortorder, rightsChanger:ts.p.rightsChanger,
+                                    	identifier:ts.p.identifier, downloadDocument:ts.p.downloadDocument},
                                     function(xml) {
                                     	if (xml != null) {
                                     		addXmlData(xml, ts.grid.bDiv);

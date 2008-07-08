@@ -71,6 +71,7 @@ JQGridParams.prototype = {
     multiselect: false, 
     onSelectRow: function(rowId) {},
     rightsChanger: false,
+    downloadDocument: true,
     identifier: null
 };
 
@@ -96,6 +97,7 @@ JQGrid.prototype.createGrid = function(tblSelector, params) {
             onSelectRow: params.onSelectRow,
             subGridRowExpanded: params.subGridRowExpanded,
             rightsChanger: params.rightsChanger,
+            downloadDocument: params.downloadDocument,
             identifier: params.identifier
         });
         
