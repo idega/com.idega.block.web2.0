@@ -37,16 +37,19 @@ function jqGridInclude(jQGridInclude, callback)
         { include: jQGridInclude.INLINEEDIT, incfile:'js/grid.inlinedit.js',minfile: 'min/grid.inlinedit-min.js' }, // jqGrid inline editing
         { include: jQGridInclude.SUBGRID, incfile:'js/grid.subgrid.js',minfile: 'min/grid.subgrid-min.js'} //jqGrid subgrid
     ];
-    for(var i=0;i<modules.length; i++)
-    {
-        if(modules[i].include == true) {
-        
-        	if (minver != true) 
-        	   LazyLoader.load(pathtojsfiles+modules[i].incfile, callback);
-        	else 
-        	   LazyLoader.load(pathtojsfiles+modules[i].minfile, callback);
+    
+    var resourcesToLoad = new Array();
+    for (var i = 0; i < modules.length; i++) {
+        if (modules[i].include == true) {
+        	if (minver != true) {
+        		resourcesToLoad.push(pathtojsfiles+modules[i].incfile);
+        	}
+        	else {
+        		resourcesToLoad.push(pathtojsfiles+modules[i].minfile);
+        	}
         }
     }
+    LazyLoader.loadMultiple(resourcesToLoad, callback);
 }
 
 /*<added>*/
