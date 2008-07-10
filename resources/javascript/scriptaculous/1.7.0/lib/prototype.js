@@ -1601,10 +1601,27 @@ Element.addMethods = function(methods) {
   if (typeof HTMLElement != 'undefined') {
     copy(Element.Methods, HTMLElement.prototype);
     copy(Element.Methods.Simulated, HTMLElement.prototype, true);
-    copy(Form.Methods, HTMLFormElement.prototype);
-    [HTMLInputElement, HTMLTextAreaElement, HTMLSelectElement].each(function(klass) {
+    
+    /* Changed @ 2008 07 10 by Valdas */
+    if (typeof HTMLFormElement != 'undefined') {
+    	copy(Form.Methods, HTMLFormElement.prototype);
+    }
+    
+    var formElements = new Array();
+    if (typeof HTMLInputElement != 'undefined') {
+    	formElements.push(HTMLInputElement);
+    }
+    if (typeof HTMLTextAreaElement != 'undefined') {
+    	formElements.push(HTMLTextAreaElement);
+    }
+    if (typeof HTMLSelectElement != 'undefined') {
+    	formElements.push(HTMLSelectElement);
+    }
+    formElements.each(function(klass) {
       copy(Form.Element.Methods, klass.prototype);
     });
+    /* Changed ends */
+    
     _nativeExtensions = true;
   }
 }

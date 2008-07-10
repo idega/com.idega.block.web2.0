@@ -30,6 +30,9 @@ var Scriptaculous = {
     //document.write('<script type="text/javascript" src="'+libraryName+'"></script>');
     LazyLoader.load(libraryName, null);
   },
+  requireMultiple: function(libraries) {
+    LazyLoader.loadMultiple(libraries, null);
+  },
   load: function() {
     if((typeof Prototype=='undefined') || 
        (typeof Element == 'undefined') || 
@@ -38,14 +41,16 @@ var Scriptaculous = {
                   Prototype.Version.split(".")[1]) < 1.5)
        throw("script.aculo.us requires the Prototype JavaScript framework >= 1.5.0");
     
+    var libraries = new Array();
     $A(document.getElementsByTagName("script")).findAll( function(s) {
       return (s.src && s.src.match(/scriptaculous\.js(\?.*)?$/))
     }).each( function(s) {
       var path = s.src.replace(/scriptaculous\.js(\?.*)?$/,'');
       var includes = s.src.match(/\?.*load=([a-z,]*)/);
       (includes ? includes[1] : 'builder,effects,dragdrop,controls,slider').split(',').each(
-       function(include) { Scriptaculous.require(path+include+'.js') });
+       function(include) { libraries.push(path+include+'.js') });
     });
+    Scriptaculous.requireMultiple(libraries);
   }
 }
 
