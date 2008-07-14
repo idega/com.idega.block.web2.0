@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.45 2008/06/18 09:35:19 gimmi Exp $
+ * $Id: Web2BusinessBean.java,v 1.46 2008/07/14 12:49:56 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -17,6 +17,7 @@ import com.idega.idegaweb.IWBundle;
 import com.idega.presentation.IWContext;
 import com.idega.util.PresentationUtil;
 import com.idega.util.CoreConstants;
+import com.idega.util.StringUtil;
 
 /**
  * A service bean with handy methods for getting paths to Web 2.0 script libraries and more.
@@ -39,10 +40,10 @@ import com.idega.util.CoreConstants;
  * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
  * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
  * 
- * Last modified: $Date: 2008/06/18 09:35:19 $ by $Author: gimmi $
+ * Last modified: $Date: 2008/07/14 12:49:56 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.45 $
+ * @version $Revision: 1.46 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
@@ -125,6 +126,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String CONTEXT_MENU_SCRIPT_FILE = "contextmenu.js";
 	public static final String CONTEXT_MENU_COMPRESSED_SCRIPT_FILE = "contextmenu-compressed.js";
 	
+	public static final String HUMAN_MESAGES_LATEST_VERSION = Web2BusinessBean.HUMAN_MESAGES_1_0_VERSION;
+	public static final String HUMAN_MESAGES_1_0_VERSION = "1.0";
+	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
 	public static final String PROTOTYPE_ROOT_FOLDER_NAME_PREFIX = "prototype";
 	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
@@ -148,6 +152,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String INLINE_EDIT_FOLDER_NAME_PREFIX = "inlineEdit";
 	public static final String SMOOTHBOX_FOLDER_NAME_PREFIX = "smoothbox";
 	public static final String CONTEXT_MENU_FOLDER_NAME_PREFIX = "context";
+	public static final String HUMAN_MESSAGES_FOLDER_NAME_PREFIX = "humanmsg";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -940,7 +945,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	}
 	
 	public void addTablesorterScriptFilesToPage(IWContext iwc, String className, String theme) {
-		if (theme == null || theme.equals("")) {
+		if (StringUtil.isEmpty(theme)) {
 			theme = "blue";
 		}
 		PresentationUtil.addStyleSheetToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/"+theme+"/style.css");
@@ -954,5 +959,17 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		AddResource adder = AddResourceFactory.getInstance(iwc);
 		adder.addInlineScriptAtPosition(iwc, AddResource.HEADER_BEGIN, buffer.toString());
 
+	}
+
+	private String getBundleUriToHumanizedMessages(String version) {
+		return getBundleURIWithinScriptsFolder(new StringBuilder(HUMAN_MESSAGES_FOLDER_NAME_PREFIX).append(SLASH).append(HUMAN_MESAGES_LATEST_VERSION).append(SLASH).toString());
+	}
+	
+	public String getBundleUriToHumanizedMessagesScript() {
+		return new StringBuilder(getBundleUriToHumanizedMessages(HUMAN_MESAGES_LATEST_VERSION)).append("js").append(SLASH).append("humanmsg.js").toString();
+	}
+
+	public String getBundleUriToHumanizedMessagesStyleSheet() {
+		return new StringBuilder(getBundleUriToHumanizedMessages(HUMAN_MESAGES_LATEST_VERSION)).append("css").append(SLASH).append("humanmsg.css").toString();
 	}
 }
