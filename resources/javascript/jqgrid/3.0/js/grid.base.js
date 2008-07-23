@@ -409,6 +409,7 @@ jQuery.fn.jqGrid = function( p ) {
 			jQuery(ts.p.xmlReader.page,xml).each( function() { ts.p.page = this.textContent  || this.text ; });
 			jQuery(ts.p.xmlReader.total,xml).each( function() { ts.p.lastpage = this.textContent  || this.text ; }  );
 			jQuery(ts.p.xmlReader.records,xml).each( function() { ts.p.records = this.textContent  || this.text ; }  );
+			jQuery(t).attr('records', ts.p.records);
 			jQuery(ts.p.xmlReader.root+">"+ts.p.xmlReader.row,xml).each( function( j ) {
 				row = document.createElement("tr");
 				row.id = getId(this,j+1);
@@ -948,6 +949,7 @@ jQuery.fn.jqGrid = function( p ) {
 			});
 		grid.bDiv = document.createElement("div");
 		jQuery(grid.bDiv)
+			.addClass('gridBodyTableContainer')
 		  	.scroll(function (e) {grid.scrollGrid()})
 			.css({ height: ts.p.height+(isNaN(ts.p.height)?"":"px"), padding: "0px", margin: "0px", overflow: "auto",width: (grid.width)+1+"px"} ).css("overflow-x","hidden")
 			.append(this);
