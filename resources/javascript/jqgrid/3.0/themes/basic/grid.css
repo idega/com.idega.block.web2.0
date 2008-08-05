@@ -39,8 +39,8 @@
 /* Grid */
 table.scroll {
 	table-layout: fixed;
-	border-right: 1px solid #D4D0C8;
 }
+
 table.scroll tbody tr {
 	background-color: #ffffff; 
 }
@@ -53,12 +53,12 @@ table.scroll tr.over td{
 	background-color: #E1DCF4;
 }
 	
-	table.scroll tr.selected td {
+table.scroll tr.selected td {
 	background: #3d84cc;
 	color: White;
 }
 
-	table.scroll tbody td  {
+table.scroll tbody td  {
 	padding: 2px;
 	text-align: left;
 	border-bottom: 1px solid #D4D0C8;
@@ -68,8 +68,12 @@ table.scroll tr.over td{
 	white-space: nowrap;
 	height : auto;
 }
+
+table.scroll tbody td.casesGridBodyCell_0 {
+	border-left: 0;
+}
 	
-	table.scroll thead th  {
+table.scroll thead th  {
 	padding: 2px;
 	border-bottom: 1px solid #CBC7B8; 
 	border-left: 1px solid #D4D0C8; 
@@ -81,12 +85,17 @@ table.scroll tr.over td{
 	height : 17px;
 }
 	
-	table.scroll th div {
+table.scroll thead th.casesGridHeaderCell_0 {
+	border-left: 0 !important;
+}
+	
+table.scroll th div {
 	overflow: hidden;
 	white-space: nowrap;
 	height : 17px;
 }
-	table.scroll th span {
+
+table.scroll th span {
 	cursor: e-resize;
 /*	border-right: 1px solid #D6D2C2;  */
 	width: 10px;
@@ -96,6 +105,51 @@ table.scroll tr.over td{
 	height: 17px;
 	overflow: hidden;
 	white-space: nowrap;
+}
+
+.caseFormsPart th, .caseFormsPart td {
+	width: 30% !important;
+}
+
+.caseFormsPart th.casesGridHeaderCell_0, 
+.caseFormsPart td.casesGridBodyCell_0 {
+	width: 2% !important;
+}
+
+.caseFormsPart th.casesGridHeaderCell_1, 
+.caseFormsPart td.casesGridBodyCell_1 {
+	border-left: 0;
+}
+
+.caseFormsPart th.casesGridHeaderCell_4, .caseFormsPart th.casesGridHeaderCell_5, 
+.caseFormsPart td.casesGridBodyCell_4, .caseFormsPart td.casesGridBodyCell_5 {
+	width: 3% !important;
+	text-align: center !important;
+}
+
+.caseFormsPart th.casesGridHeaderCell_5, 
+.caseFormsPart td.casesGridBodyCell_5 {
+	border-left: 0;
+}
+
+.caseEmailsPart th, .caseEmailsPart td {
+	width: 30% !important;
+}
+
+.caseEmailsPart th.casesGridHeaderCell_0, 
+.caseEmailsPart td.casesGridBodyCell_0 {
+	width: 2% !important;
+}
+
+.caseEmailsPart th.casesGridHeaderCell_1, 
+.caseEmailsPart td.casesGridBodyCell_1 {
+	border-left: 0;
+}
+
+.caseEmailsPart th.casesGridHeaderCell_4, 
+.caseEmailsPart td.casesGridBodyCell_4 {
+	width: 3% !important;
+	text-align: center !important;
 }
 
 /* End Grid */
@@ -108,7 +162,6 @@ div.scroll {
 	text-align: center;
 	background-image: url(images/grid-blue-ft.gif);
 	display : none;
-
 }
 div.scroll span {
 	vertical-align : top; 	
