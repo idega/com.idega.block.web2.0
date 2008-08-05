@@ -65,8 +65,9 @@ table.scroll tbody td  {
 	border-left: 1px solid #D4D0C8; 
 	text-overflow: ellipsis;
 	overflow: hidden;
-	white-space: nowrap;
+	white-space: auto;
 	height : auto;
+	position: relative;
 }
 
 table.scroll tbody td.casesGridBodyCell_0 {
@@ -113,7 +114,7 @@ table.scroll th span {
 
 .caseFormsPart th.casesGridHeaderCell_0, 
 .caseFormsPart td.casesGridBodyCell_0 {
-	width: 2% !important;
+	width: 3% !important;
 }
 
 .caseFormsPart th.casesGridHeaderCell_1, 
@@ -132,13 +133,26 @@ table.scroll th span {
 	border-left: 0;
 }
 
+.caseGrids tr.subgrid table td {
+	width: 30% !important;
+}
+
+.caseGrids tr.subgrid table td.casesGridBodyCell_3 {
+	width: 3% !important;
+	text-align: center !important;
+}
+
+.caseGrids tr.subgrid table td.casesGridBodyCell_1 {
+	border-left: 1px #D6D2C2 solid !important;
+}
+
 .caseEmailsPart th, .caseEmailsPart td {
 	width: 30% !important;
 }
 
 .caseEmailsPart th.casesGridHeaderCell_0, 
 .caseEmailsPart td.casesGridBodyCell_0 {
-	width: 2% !important;
+	width: 3% !important;
 }
 
 .caseEmailsPart th.casesGridHeaderCell_1, 
@@ -150,6 +164,18 @@ table.scroll th span {
 .caseEmailsPart td.casesGridBodyCell_4 {
 	width: 3% !important;
 	text-align: center !important;
+}
+
+tr.subgrid td.casesGridBodyCell_0 img {
+	margin-top: -3px;
+}
+
+tr.subgrid .gridBodyTableContainer{
+	margin: -2px -2px -3px -2px !important;
+}
+
+tr.subgrid .gridBodyTableContainer td.casesGridBodyCell_0 {
+	border-left: 1px #D6D2C2 solid !important;
 }
 
 /* End Grid */
