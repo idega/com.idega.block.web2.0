@@ -1603,18 +1603,18 @@ Element.addMethods = function(methods) {
     copy(Element.Methods.Simulated, HTMLElement.prototype, true);
     
     /* Changed @ 2008 07 10 by Valdas */
-    if (typeof HTMLFormElement != 'undefined') {
+    if (typeof HTMLFormElement == 'undefined') {
     	copy(Form.Methods, HTMLFormElement.prototype);
     }
     
     var formElements = new Array();
-    if (typeof HTMLInputElement != 'undefined') {
+    if (typeof HTMLInputElement == 'undefined') {
     	formElements.push(HTMLInputElement);
     }
-    if (typeof HTMLTextAreaElement != 'undefined') {
+    if (typeof HTMLTextAreaElement == 'undefined') {
     	formElements.push(HTMLTextAreaElement);
     }
-    if (typeof HTMLSelectElement != 'undefined') {
+    if (typeof HTMLSelectElement == 'undefined') {
     	formElements.push(HTMLSelectElement);
     }
     formElements.each(function(klass) {
