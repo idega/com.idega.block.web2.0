@@ -1602,19 +1602,22 @@ Element.addMethods = function(methods) {
     copy(Element.Methods, HTMLElement.prototype);
     copy(Element.Methods.Simulated, HTMLElement.prototype, true);
     
-    /* Changed @ 2008 07 10 by Valdas */
+    /* Changed @ 2008 08 20 by Valdas */
     if (typeof HTMLFormElement == 'undefined') {
+    	return false;
+    }
+    else {
     	copy(Form.Methods, HTMLFormElement.prototype);
     }
     
     var formElements = new Array();
-    if (typeof HTMLInputElement == 'undefined') {
+    if (typeof HTMLInputElement != 'undefined') {
     	formElements.push(HTMLInputElement);
     }
-    if (typeof HTMLTextAreaElement == 'undefined') {
+    if (typeof HTMLTextAreaElement != 'undefined') {
     	formElements.push(HTMLTextAreaElement);
     }
-    if (typeof HTMLSelectElement == 'undefined') {
+    if (typeof HTMLSelectElement != 'undefined') {
     	formElements.push(HTMLSelectElement);
     }
     formElements.each(function(klass) {
