@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.48 2008/09/02 12:39:56 civilis Exp $
+ * $Id: Web2BusinessBean.java,v 1.49 2008/09/04 14:01:34 alexis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -42,10 +42,10 @@ import com.idega.util.StringUtil;
  * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
  * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
  * 
- * Last modified: $Date: 2008/09/02 12:39:56 $ by $Author: civilis $
+ * Last modified: $Date: 2008/09/04 14:01:34 $ by $Author: alexis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.48 $
+ * @version $Revision: 1.49 $
  */
 @Scope("singleton")
 @Service("web2bean")
@@ -155,7 +155,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SLIMBOX_ROOT_FOLDER_NAME_PREFIX = "slimbox";
 	public static final String INLINE_EDIT_FOLDER_NAME_PREFIX = "inlineEdit";
 	public static final String SMOOTHBOX_FOLDER_NAME_PREFIX = "smoothbox";
-	public static final String CONTEXT_MENU_FOLDER_NAME_PREFIX = "context";
+	public static final String CONTEXT_MENU_FOLDER_NAME_PREFIX = "contextmenu";
 	public static final String HUMAN_MESSAGES_FOLDER_NAME_PREFIX = "humanmsg";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
