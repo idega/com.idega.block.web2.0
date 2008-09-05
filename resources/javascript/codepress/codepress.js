@@ -14,7 +14,7 @@ CodePress = function(obj) {
 	self.textarea = obj;
 	self.textarea.disabled = true;
 	self.textarea.style.overflow = 'hidden';
-	self.style.height = self.textarea.clientHeight +'px';
+	self.style.height = windowinfo.getWindowHeight() > 100 ? (windowinfo.getWindowHeight() - 100) + 'px' : windowinfo.getWindowHeight() + 'px';
 	self.style.width = self.textarea.clientWidth +'px';
 	self.textarea.style.overflow = 'auto';
 	self.style.border = '1px solid gray';
@@ -22,6 +22,7 @@ CodePress = function(obj) {
 	self.style.visibility = 'hidden';
 	self.style.position = 'absolute';
 	self.options = self.textarea.className;
+	self.className = 'codePressViewWindow';
 	
 	self.initialize = function() {
 		self.editor = self.contentWindow.CodePress;
@@ -161,5 +162,22 @@ try{
 	registerEvent(window,'submit',CodePress.unWind);
 }
 catch(error){
-	alert(error + '. Failed to use registerEvent method from iw_core.js, make sure you call CodePress.unWind on your submit');
+	//alert(error + '. Failed to use registerEvent method from iw_core.js, make sure you call CodePress.unWind on your submit');
+}
+
+try {
+	registerEvent(window, 'resize', resizeCodePressSourceViewerFrame);
+} catch(e) {}
+
+function resizeCodePressSourceViewerFrame() {
+	var allFrames = getElementsByClassName(document.body, 'iframe', 'codePressViewWindow');
+	if (allFrames == null || allFrames.length == 0) {
+		return false;
+	}
+	var availableWidth = windowinfo.getWindowWidth();
+	var availableHeight = windowinfo.getWindowHeight() > 100 ? windowinfo.getWindowHeight() - 100: windowinfo.getWindowHeight();
+	for (var i = 0; i < allFrames.length; i++) {
+		allFrames[i].style.height = availableHeight + 'px';
+		allFrames[i].style.width = availableWidth + 'px';
+	}
 }
