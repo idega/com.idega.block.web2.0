@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.9.2.5 2008/06/18 09:07:07 gimmi Exp $
+ * $Id: Web2BusinessBean.java,v 1.9.2.6 2008/09/11 06:31:34 alexis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -32,11 +32,14 @@ import com.idega.util.PresentationUtil;
  * MOOdalBox - An HTML Lightbox, based on Mootools, http://www.e-magine.ro/web-dev-and-design/36/moodalbox/
  * Transcorners - Rounds corners of provided DOM element, based on Mootools: http://inviz.ru/moo/transcorners/
  * Reflection - This is an improved version of the reflection.js script rewritten for mootools, http://www.digitalia.be/software/reflectionjs-for-mootools
+ * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
+ * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
+ * mooRainbow - Javascript color picker that allows you to visually choose and use colors as a real and useful application. http://moorainbow.woolly-sheep.net/
  * 
- * Last modified: $Date: 2008/06/18 09:07:07 $ by $Author: gimmi $
+ * Last modified: $Date: 2008/09/11 06:31:34 $ by $Author: alexis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.9.2.5 $
+ * @version $Revision: 1.9.2.6 $
  */
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
@@ -74,12 +77,18 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String MOODALBOX_STYLE_FILE = "moodalbox.css";
 	public static final String MOODALBOX_FULL_SCRIPT_FILE = "moodalbox_full.js";
 	
-	public static final String MOOTOOLS_LATEST_VERSION = Web2BusinessBean.MOOTOOLS_1_1_0_VERSION;
+	public static final String MOOTOOLS_LATEST_VERSION = Web2BusinessBean.MOOTOOLS_1_11_VERSION;
 	public static final String MOOTOOLS_1_0_0_VERSION = "1.0.0";
 	public static final String MOOTOOLS_1_1_0_VERSION = "1.1.0";
+	public static final String MOOTOOLS_1_11_VERSION = "1.11";
 	public static final String MOOTOOLS_SCRIPT_FILE = "mootools-all.js";
 	public static final String MOOTOOLS_COMPRESSED_SCRIPT_FILE = "mootools-all-compressed.js";
 	public static final String MOOTOOLS_STYLE_FILE = "mootools.css";
+	
+	public static final String CONTEXT_MENU_LATEST_VERSION = Web2BusinessBean.CONTEXT_MENU_R2_VERSION;
+	public static final String CONTEXT_MENU_R2_VERSION = "r2";
+	public static final String CONTEXT_MENU_SCRIPT_FILE = "contextmenu.js";
+	public static final String CONTEXT_MENU_COMPRESSED_SCRIPT_FILE = "contextmenu-compressed.js";
 	
 	public static final String REFLECTION_FOR_MOOTOOLS_LATEST_VERSION = Web2BusinessBean.REFLECTION_FOR_MOOTOOLS_1_1_VERSION;
 	public static final String REFLECTION_FOR_MOOTOOLS_1_1_VERSION = "1.1";
@@ -87,6 +96,23 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String PROTOTYPE_LATEST_VERSION = Web2BusinessBean.PROTOTYPE_1_5_0_VERSION;
 	public static final String PROTOTYPE_1_5_0_VERSION = "1.5.0";
 	public static final String PROTOTYPE_1_4_0_VERSION = "1.4.0";
+	
+	public static final String MOORAINBOW_LATEST_VERSION = Web2BusinessBean.MOORAINBOW_1_1_VERSION;
+	public static final String MOORAINBOW_1_1_VERSION = "1.1";
+	public static final String MOORAINBOW_SCRIPT_FILE = "mooRainbow.js";
+	public static final String MOORAINBOW_STYLE_FILE = "mooRainbow.css";
+	
+	public static final String INLINE_EDIT_LATEST_VERSION = Web2BusinessBean.INLINE_EDIT_1_1_VERSION;
+	public static final String INLINE_EDIT_1_1_VERSION = "1.1";
+	public static final String INLINE_EDIT_SCRIPT_FILE = "inlineEdit.js";
+	
+	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
+	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
+	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_2_3_VERSION;
+	public static final String JQUERY_UI_LATEST_VERSION = Web2BusinessBean.JQUERY_UI_1_5b_VERSION;
+	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
+	public static final String JQUERY_1_2_3_VERSION = "1.2.3";
+	public static final String JQUERY_UI_1_5b_VERSION = "1.5b";
 	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
 	public static final String PROTOTYPE_ROOT_FOLDER_NAME_PREFIX = "prototype";
@@ -96,9 +122,13 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public static final String MOOTOOLS_FOLDER_NAME_PREFIX = "mootools";
 	public static final String MOODALBOX_ROOT_FOLDER_NAME_PREFIX = "moodalbox";
 	public static final String TRANSCORNERS_ROOT_FOLDER_NAME_PREFIX = "transcorners";
+	public static final String INLINE_EDIT_FOLDER_NAME_PREFIX = "inlineEdit";
 	public static final String REFLECTION_ROOT_FOLDER_NAME_PREFIX = "reflection";
 	public static final String REFLECTION_FOR_MOOTOOLS_ROOT_FOLDER_NAME_PREFIX = "for_mootools";
 	public static final String CODEPRESS_ROOT_FOLDER_NAME_PREFIX = "codepress";
+	public static final String MOORAINBOW_FOLDER_NAME_PREFIX = "moorainbow";
+	public static final String CONTEXT_MENU_FOLDER_NAME_PREFIX = "contextmenu";
+	public static final String JQUERY_FOLDER_NAME_PREFIX = "jquery";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -153,6 +183,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	private String soundManager2FlashFilePath = null;
 
 	private String soundManager2TestFilePath = null;
+	
+	private String inlideEditScriptFilePath = null;
 	
 	private String moodalboxScriptPath = null;
 	private String moodalboxStyleFilePath = null;
@@ -241,6 +273,26 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		return this.prototypeScriptPath;
 	}
 	
+	public String getInlineEditScriptPath() {
+		if (inlideEditScriptFilePath == null) {
+			StringBuffer script = new StringBuffer(getBundleUriToInlineEditScript());
+			inlideEditScriptFilePath = script.toString();
+		}
+		return inlideEditScriptFilePath;
+	}
+	
+	private String getPathToInlineEdit(String version) {
+		return getBundleURIWithinScriptsFolder(new StringBuffer(INLINE_EDIT_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH).toString());
+	}
+	
+	public String getBundleUriToInlineEditScript(String version) {
+		return new StringBuffer(getPathToInlineEdit(version)).append(INLINE_EDIT_SCRIPT_FILE).toString();
+	}
+	
+	public String getBundleUriToInlineEditScript() {
+		return getBundleUriToInlineEditScript(INLINE_EDIT_LATEST_VERSION);
+	}
+	
 	/**
 	 * @param scriptaculousLibraryVersion The version for the scriptaculous library
 	 * @return The full URI with context to the prototype.js library of a specific version of the Scriptaculous library 
@@ -256,6 +308,28 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 			this.dojoScriptPath =  getBundleURIWithinLibsFolder("dojo/" + DOJO_LATEST_VERSION + SLASH + DOJO_JS_FILE_NAME);
 		}
 		return this.dojoScriptPath;
+	}
+	
+	private String getPathToContextMenu(String version) {
+		return getBundleURIWithinScriptsFolder(new StringBuffer(CONTEXT_MENU_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH).toString());
+	}
+	
+	public String getBundleUriToContextMenuScript(String version, boolean compressedFile) {
+		StringBuffer uri = new StringBuffer(getPathToContextMenu(version));
+		String file = CONTEXT_MENU_SCRIPT_FILE;
+		if (compressedFile) {
+			file = CONTEXT_MENU_COMPRESSED_SCRIPT_FILE;
+		}
+		uri.append(file);
+		return uri.toString();
+	}
+	
+	public String getBundleUriToContextMenuScript(boolean compressedFile) {
+		return getBundleUriToContextMenuScript(Web2BusinessBean.CONTEXT_MENU_LATEST_VERSION, compressedFile);
+	}
+	
+	public String getBundleUriToContextMenuScript() {
+		return getBundleUriToContextMenuScript(Web2BusinessBean.CONTEXT_MENU_LATEST_VERSION, true);
 	}
 	
 	/**
@@ -278,6 +352,26 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		StringBuffer buf = new StringBuffer(getBundleURIToScriptaculousLibRootFolder(scriptaculousLibraryVersion));
 		buf.append("src/").append(SCRIPTACULOUS_JS_FILE_NAME);
 		return buf.toString();
+	}
+	
+	private String getPathToMooRainbow(String version) {
+		return getBundleURIWithinScriptsFolder(new StringBuffer(MOORAINBOW_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH).toString());
+	}
+	
+	public String getBundleUriToMooRainbowScript(String version) {
+		return new StringBuffer(getPathToMooRainbow(version)).append(MOORAINBOW_SCRIPT_FILE).toString();
+	}
+	
+	public String getBundleUriToMooRainbowScript() {
+		return getBundleUriToMooRainbowScript(MOORAINBOW_LATEST_VERSION);
+	}
+	
+	public String getBundleUriToMooRainbowStyle(String version) {
+		return new StringBuffer(getPathToMooRainbow(version)).append(MOORAINBOW_STYLE_FILE).toString();
+	}
+	
+	public String getBundleUriToMooRainbowStyle() {
+		return getBundleUriToMooRainbowStyle(MOORAINBOW_LATEST_VERSION);
 	}
 	
 	/**
@@ -513,10 +607,17 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	}
 	
 	public String getBundleURIToJQueryLib() {
-		if (jQueryCompressedScriptPath == null) {
-			jQueryCompressedScriptPath = getBundleURIWithinScriptsFolder(JQUERY_COMPRESSED_JS_FILE_NAME);
-		}
+		
+		if(jQueryCompressedScriptPath == null)
+			jQueryCompressedScriptPath = getBundleURIToJQueryLib(JQUERY_LATEST_VERSION);
+		
 		return jQueryCompressedScriptPath;
+	}
+	
+	public String getBundleURIToJQueryLib(String jqueryLibraryVersion){
+		StringBuffer buf = new StringBuffer();
+		buf.append(JQUERY_FOLDER_NAME_PREFIX).append(SLASH).append(jqueryLibraryVersion).append(SLASH).append(JQUERY_COMPRESSED_SCRIPT_FILE);
+		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 	
 	public String getPrototypeScriptFilePath(String version) {

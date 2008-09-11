@@ -4,6 +4,15 @@
     <author email="tryggvi@idega.com">Tryggvi Larusson</author>
   </properties>
   <body>
+  	<release version="3.1.8" date="2008-09-11">
+      <action dev="alexis" type="update">
+      	Added contextMenu
+      	Added jQuery
+      	Added moorainbow
+      	Added inlineEdit
+      </action>        
+    </release>
+    
     <release version="3.1.7" date="2008-06-18">
       <action dev="gimmi" type="update">
       	Added tablesorter

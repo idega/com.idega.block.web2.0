@@ -16,6 +16,61 @@ public interface Web2Business extends IBOService {
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToSoundManager2Lib
 	 */
 	public String getBundleURIToSoundManager2Lib() throws RemoteException;
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getInlineEditScriptPath
+	 */
+	public String getInlineEditScriptPath();
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToInlineEditScript
+	 */
+	public String getBundleUriToInlineEditScript(String version);
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToJQueryLib
+	 */
+	public String getBundleURIToJQueryLib(String jqueryLibraryVersion);
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToInlineEditScript
+	 */
+	public String getBundleUriToInlineEditScript();
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToContextMenuScript
+	 */
+	public String getBundleUriToContextMenuScript(String version, boolean compressedFile);
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToContextMenuScript
+	 */
+	public String getBundleUriToContextMenuScript(boolean compressedFile);
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToContextMenuScript
+	 */
+	public String getBundleUriToContextMenuScript();
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToMooRainbowScript
+	 */
+	public String getBundleUriToMooRainbowScript(String version);
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToMooRainbowScript
+	 */
+	public String getBundleUriToMooRainbowScript();
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToMooRainbowStyle
+	 */
+	public String getBundleUriToMooRainbowStyle(String version);
+	
+	/**
+	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleUriToMooRainbowStyle
+	 */
+	public String getBundleUriToMooRainbowStyle();
 
 	/**
 	 * @see com.idega.block.web2.business.Web2BusinessBean#getBundleURIToSoundManager2FlashFile
