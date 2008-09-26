@@ -8,11 +8,11 @@
  */
 
 // on page load call TB_init
-$(document).ready(TB_init);
+jQuery(document).ready(TB_init);
 
 // add thickbox to href elements that have a class of .thickbox
 function TB_init(){
-	$("a.thickbox").click(function(event){
+	jQuery("a.thickbox").click(function(event){
 		// stop default behaviour
 		event.preventDefault();
 		// remove click border
@@ -33,21 +33,21 @@ function TB_init(){
 function TB_show(caption, url, rel) {
 
 	// create iframe, overlay and box if non-existent
-	if ( !$("#TB_HideSelect").length ) {
-		$("body").append("<iframe id='TB_HideSelect'></iframe><div id='TB_overlay'></div><div id='TB_window'></div>");
-		$("#TB_overlay").click(TB_remove);
+	if ( !jQuery("#TB_HideSelect").length ) {
+		jQuery("body").append("<iframe id='TB_HideSelect'></iframe><div id='TB_overlay'></div><div id='TB_window'></div>");
+		jQuery("#TB_overlay").click(TB_remove);
 	}
 	// TODO replace or check if event is already assigned
-	$(window).scroll(TB_position);
+	jQuery(window).scroll(TB_position);
 	
 	// TODO replace
 	TB_overlaySize();
 	
 	// TODO create loader only once, hide and show on demand
 	//TODO IDEGA put webappcontext before path
-	$("body").append("<div id='TB_load'><img src='/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/javascript/thickbox/2.1.1/images/loadingAnimation.gif' /></div>");
+	jQuery("body").append("<div id='TB_load'><img src='/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/javascript/thickbox/2.1.1/images/loadingAnimation.gif' /></div>");
 	
-	//$("body").append("<div id='TB_load'><img src='../images/loadingAnimation.gif' /></div>");
+	//jQuery("body").append("<div id='TB_load'><img src='../images/loadingAnimation.gif' /></div>");
 	TB_load_position();
 	
 	// check if a query string is involved
@@ -75,7 +75,7 @@ function TB_show(caption, url, rel) {
 			}
 		
 			// find the anchors that point to the group
-			var imageGroup = $("a[@rel="+rel+"]").get();
+			var imageGroup = jQuery("a[@rel="+rel+"]").get();
 			var foundSelf = false;
 			
 			// loop through the anchors, looking for ourself, saving information about previous and next image
@@ -133,14 +133,14 @@ function TB_show(caption, url, rel) {
 			TB_HEIGHT = imageHeight + 60;
 			
 			// TODO empty window content instead
-			$("#TB_window").append("<a href='' id='TB_ImageOff' title='Close'><img id='TB_Image' src='"+url+"' width='"+imageWidth+"' height='"+imageHeight+"' alt='"+caption+"'/></a>" + "<div id='TB_caption'>"+caption+"<div id='TB_secondLine'>" + imageCount + prev.html + next.html + "</div></div><div id='TB_closeWindow'><a href='#' id='TB_closeWindowButton' title='Close'>close</a></div>");
+			jQuery("#TB_window").append("<a href='' id='TB_ImageOff' title='Close'><img id='TB_Image' src='"+url+"' width='"+imageWidth+"' height='"+imageHeight+"' alt='"+caption+"'/></a>" + "<div id='TB_caption'>"+caption+"<div id='TB_secondLine'>" + imageCount + prev.html + next.html + "</div></div><div id='TB_closeWindow'><a href='#' id='TB_closeWindowButton' title='Close'>close</a></div>");
 			
-			$("#TB_closeWindowButton").click(TB_remove);
+			jQuery("#TB_closeWindowButton").click(TB_remove);
 			
 			function buildClickHandler(image) {
 				return function() {
-					$("#TB_window").remove();
-					$("body").append("<div id='TB_window'></div>");
+					jQuery("#TB_window").remove();
+					jQuery("body").append("<div id='TB_window'></div>");
 					TB_show(image.caption, image.url, rel);
 					return false;
 				};
@@ -148,11 +148,11 @@ function TB_show(caption, url, rel) {
 			var goPrev = buildClickHandler(prev);
 			var goNext = buildClickHandler(next);
 			if ( prev.html ) {
-				$("#TB_prev").click(goPrev);
+				jQuery("#TB_prev").click(goPrev);
 			}
 			
 			if ( next.html ) {		
-				$("#TB_next").click(goNext);
+				jQuery("#TB_next").click(goNext);
 			}
 			
 			// TODO use jQuery, maybe with event fix plugin, or just get the necessary parts of it
@@ -183,12 +183,12 @@ function TB_show(caption, url, rel) {
 			
 			// TODO don't remove loader etc., just hide and show later
 			TB_position();
-			$("#TB_load").remove();
-			$("#TB_ImageOff").click(TB_remove);
+			jQuery("#TB_load").remove();
+			jQuery("#TB_ImageOff").click(TB_remove);
 			
 			// for safari using css instead of show
 			// TODO is that necessary? can't test safari
-			$("#TB_window").css({display:"block"});
+			jQuery("#TB_window").css({display:"block"});
 		}
 		imgPreloader.src = url;
 		
@@ -205,36 +205,36 @@ function TB_show(caption, url, rel) {
 		
 		if(url.indexOf('TB_iframe') != -1){				
 			urlNoQuery = url.split('TB_');		
-			$("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div><div id='TB_closeAjaxWindow'><a href='#' id='TB_closeWindowButton' title='Close'>close</a></div></div><iframe frameborder='0' hspace='0' src='"+urlNoQuery[0]+"' id='TB_iframeContent' name='TB_iframeContent' style='width:"+(ajaxContentW + 29)+"px;height:"+(ajaxContentH + 17)+"px;' onload='TB_showIframe()'> </iframe>");
+			jQuery("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div><div id='TB_closeAjaxWindow'><a href='#' id='TB_closeWindowButton' title='Close'>close</a></div></div><iframe frameborder='0' hspace='0' src='"+urlNoQuery[0]+"' id='TB_iframeContent' name='TB_iframeContent' style='width:"+(ajaxContentW + 29)+"px;height:"+(ajaxContentH + 17)+"px;' onload='TB_showIframe()'> </iframe>");
 		} else {
-			$("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div><div id='TB_closeAjaxWindow'><a href='#' id='TB_closeWindowButton'>close</a></div></div><div id='TB_ajaxContent' style='width:"+ajaxContentW+"px;height:"+ajaxContentH+"px;'></div>");
+			jQuery("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div><div id='TB_closeAjaxWindow'><a href='#' id='TB_closeWindowButton'>close</a></div></div><div id='TB_ajaxContent' style='width:"+ajaxContentW+"px;height:"+ajaxContentH+"px;'></div>");
 		}
 				
-		$("#TB_closeWindowButton").click(TB_remove);
+		jQuery("#TB_closeWindowButton").click(TB_remove);
 		
 			if(url.indexOf('TB_inline') != -1){	
-				$("#TB_ajaxContent").html($('#' + params['inlineId']).html());
+				jQuery("#TB_ajaxContent").html(jQuery('#' + params['inlineId']).html());
 				TB_position();
-				$("#TB_load").remove();
-				$("#TB_window").css({display:"block"}); 
+				jQuery("#TB_load").remove();
+				jQuery("#TB_window").css({display:"block"}); 
 			}else if(url.indexOf('TB_iframe') != -1){
 				TB_position();
 				if(frames['TB_iframeContent'] == undefined){//be nice to safari
-					$("#TB_load").remove();
-					$("#TB_window").css({display:"block"});
-					$(document).keyup( function(e){ var key = e.keyCode; if(key == 27){TB_remove()} });
+					jQuery("#TB_load").remove();
+					jQuery("#TB_window").css({display:"block"});
+					jQuery(document).keyup( function(e){ var key = e.keyCode; if(key == 27){TB_remove()} });
 				}
 			}else{
-				$("#TB_ajaxContent").load(url, function(){
+				jQuery("#TB_ajaxContent").load(url, function(){
 					TB_position();
-					$("#TB_load").remove();
-					$("#TB_window").css({display:"block"}); 
+					jQuery("#TB_load").remove();
+					jQuery("#TB_window").css({display:"block"}); 
 				});
 			}
 		
 	}
 	
-	$(window).resize(TB_position);
+	jQuery(window).resize(TB_position);
 	
 	document.onkeyup = function(e){ 	
 		if (e == null) { // ie
@@ -252,16 +252,16 @@ function TB_show(caption, url, rel) {
 //helper functions below
 
 function TB_showIframe(){
-	$("#TB_load").remove();
-	$("#TB_window").css({display:"block"});
+	jQuery("#TB_load").remove();
+	jQuery("#TB_window").css({display:"block"});
 }
 
 function TB_remove() {
- 	$("#TB_imageOff").unbind("click");
-	$("#TB_overlay").unbind("click");
-	$("#TB_closeWindowButton").unbind("click");
-	$("#TB_window").fadeOut("fast",function(){$('#TB_window,#TB_overlay,#TB_HideSelect').remove();});
-	$("#TB_load").remove();
+ 	jQuery("#TB_imageOff").unbind("click");
+	jQuery("#TB_overlay").unbind("click");
+	jQuery("#TB_closeWindowButton").unbind("click");
+	jQuery("#TB_window").fadeOut("fast",function(){jQuery('#TB_window,#TB_overlay,#TB_HideSelect').remove();});
+	jQuery("#TB_load").remove();
 	return false;
 }
 
@@ -269,7 +269,7 @@ function TB_position() {
 	var pagesize = TB_getPageSize();	
 	var arrayPageScroll = TB_getPageScrollTop();
 	var style = {width: TB_WIDTH, left: (arrayPageScroll[0] + (pagesize[0] - TB_WIDTH)/2), top: (arrayPageScroll[1] + (pagesize[1]-TB_HEIGHT)/2)};
-	$("#TB_window").css(style);
+	jQuery("#TB_window").css(style);
 }
 
 function TB_overlaySize(){
@@ -288,14 +288,14 @@ function TB_overlaySize(){
 		yScroll = document.body.offsetHeight;
 		xScroll = document.body.offsetWidth;
   	}
-	$("#TB_overlay").css({"height": yScroll, "width": xScroll});
-	$("#TB_HideSelect").css({"height": yScroll,"width": xScroll});
+	jQuery("#TB_overlay").css({"height": yScroll, "width": xScroll});
+	jQuery("#TB_HideSelect").css({"height": yScroll,"width": xScroll});
 }
 
 function TB_load_position() {
 	var pagesize = TB_getPageSize();
 	var arrayPageScroll = TB_getPageScrollTop();
-	$("#TB_load")
+	jQuery("#TB_load")
 		.css({left: (arrayPageScroll[0] + (pagesize[0] - 100)/2), top: (arrayPageScroll[1] + ((pagesize[1]-100)/2)) })
 		.css({display:"block"});
 }

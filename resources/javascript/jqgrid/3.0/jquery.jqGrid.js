@@ -72,6 +72,7 @@ JQGridParams.prototype = {
     onSelectRow: function(rowId) {},
     rightsChanger: false,
     downloadDocument: true,
+    allowPDFSigning: true,
     identifier: null
 };
 
@@ -98,6 +99,7 @@ JQGrid.prototype.createGrid = function(tblSelector, params) {
             subGridRowExpanded: params.subGridRowExpanded,
             rightsChanger: params.rightsChanger,
             downloadDocument: params.downloadDocument,
+            allowPDFSigning: params.allowPDFSigning,
             identifier: params.identifier
         });
         
