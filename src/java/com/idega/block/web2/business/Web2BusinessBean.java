@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.49 2008/09/04 14:01:34 alexis Exp $
+ * $Id: Web2BusinessBean.java,v 1.50 2008/09/29 13:16:26 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -42,10 +42,10 @@ import com.idega.util.StringUtil;
  * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
  * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
  * 
- * Last modified: $Date: 2008/09/04 14:01:34 $ by $Author: alexis $
+ * Last modified: $Date: 2008/09/29 13:16:26 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.49 $
+ * @version $Revision: 1.50 $
  */
 @Scope("singleton")
 @Service("web2bean")
@@ -74,7 +74,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String LIGTHBOX_SCRIPT_FILE = "lightbox.js";
 	public static final String LIGTHBOX_STYLE_FILE = "lightbox.css";
 	
-	public static final String THICKBOX_LATEST_VERSION = Web2BusinessBean.THICKBOX_2_1_1_VERSION;
+	public static final String THICKBOX_LATEST_VERSION = Web2BusinessBean.THICKBOX_3_1_VERSION;
+	public static final String THICKBOX_3_1_VERSION = "3.1";
 	public static final String THICKBOX_2_1_1_VERSION = "2.1.1";
 	public static final String THICKBOX_SCRIPT_FILE = "thickbox.js";
 	public static final String THICKBOX_STYLE_FILE = "thickbox.css";
@@ -157,6 +158,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SMOOTHBOX_FOLDER_NAME_PREFIX = "smoothbox";
 	public static final String CONTEXT_MENU_FOLDER_NAME_PREFIX = "contextmenu";
 	public static final String HUMAN_MESSAGES_FOLDER_NAME_PREFIX = "humanmsg";
+	public static final String GREY_BOX_FOLDER_NAME_PREFIX = "greybox";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -975,5 +977,15 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 
 	public String getBundleUriToHumanizedMessagesStyleSheet() {
 		return new StringBuilder(getBundleUriToHumanizedMessages(HUMAN_MESAGES_LATEST_VERSION)).append("css").append(SLASH).append("humanmsg.css").toString();
+	}
+
+	public String getBundleUtiToGreyBoxScript() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder(GREY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append("js").append(SLASH).append("greybox.js")
+				.toString();
+	}
+
+	public String getBundleUtiToGreyBoxStyleSheet() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder(GREY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append("css").append(SLASH).append("greybox.css")
+				.toString();
 	}
 }
