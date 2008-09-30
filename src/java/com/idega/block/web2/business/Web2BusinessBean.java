@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.50 2008/09/29 13:16:26 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.51 2008/09/30 08:18:28 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -42,13 +42,13 @@ import com.idega.util.StringUtil;
  * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
  * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
  * 
- * Last modified: $Date: 2008/09/29 13:16:26 $ by $Author: valdas $
+ * Last modified: $Date: 2008/09/30 08:18:28 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.50 $
+ * @version $Revision: 1.51 $
  */
 @Scope("singleton")
-@Service("web2bean")
+@Service(Web2Business.SPRING_BEAN_IDENTIFIER)
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	private static final long serialVersionUID = -3243625218823349983L;
