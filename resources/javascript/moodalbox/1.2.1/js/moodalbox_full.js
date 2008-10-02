@@ -278,4 +278,4 @@ var MOOdalBox = {
 };
 
 // startup
-Window.onDomReady(MOOdalBox.init.bind(MOOdalBox));
+//Window.onDomReady(MOOdalBox.init.bind(MOOdalBox));
