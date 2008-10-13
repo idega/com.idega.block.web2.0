@@ -13,14 +13,20 @@ function GB_show(caption, url, options) {
 	GB_HEIGHT = options != null ? options.height || 400 : 400;
   	GB_WIDTH = options != null ? options.width || 400 : 400;
   	var useAnimation = options != null ? options.animation || false : false;
+  	var onClose = options != null ? options.onClose || null : null;
   
   if(!GB_DONE) {
   	var closeTitle = options.localizations ? options.localizations.closeTitle : 'Close window';
     jQuery(document.body)
       .append("<div id='GB_overlay'></div><div id='GB_window'><div id='GB_caption'></div>"
         + "<a id='GB_closerLink' class='greyBoxCloseImg' title='" + closeTitle + "' href='javascript:void(0)'></a></div>");
-    jQuery("#GB_overlay").click(GB_hide);
-    jQuery("#GB_closerLink").click(GB_hide);
+    
+    var closeFunction = function() {
+    	GB_hide(onClose);
+    }
+    
+    jQuery("#GB_overlay").click(closeFunction);
+    jQuery("#GB_closerLink").click(closeFunction);
     jQuery(window).resize(GB_position);
     GB_DONE = true;
   }
@@ -38,9 +44,13 @@ function GB_show(caption, url, options) {
     jQuery("#GB_window").show();
 }
 
-function GB_hide() {
+function GB_hide(callback) {
 	GB_DONE = false;
   	jQuery("#GB_overlay,#GB_window").remove();
+  	
+  	if (callback) {
+  		callback();
+  	}
 }
 
 function GB_position() {
