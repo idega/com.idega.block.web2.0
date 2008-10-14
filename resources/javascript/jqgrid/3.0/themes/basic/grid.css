@@ -115,21 +115,78 @@ table.scroll th span {
 div.noContentInCasesListGridBody {
 	margin-left: 0 !important;
 	padding-left: 5px !important;
-	border-top: 1px #A8A8A8 solid !important;
 	border-left: 1px #A8A8A8 solid !important;
+	border-bottom: 1px #A8A8A8 solid !important;
+	border-right: 1px #A8A8A8 solid !important;
+}
+
+.caseGrids {
+	border: 0 !important;
+	background-color: transparent !important;
+}
+
+.caseGrids th, .caseGrids td {
+	border-color: #a8a8a8 !important;
+	padding: 2px 4px !important;
+}
+
+.caseGrids th {
+	background-color: #fff !important;
+	font-weight: bold !important;
+}
+
+.caseGrids table, .caseGrids table tr, .caseGrids table tr td {
+border-collapse: collapse !important;
+}
+
+html>body .caseGrids table, html>body .caseGrids table tr, html>body .caseGrids table tr td {
+border-collapse: separate !important;
+}
+
+.caseGrids div.header {
+	border: 1px #a8a8a8 solid;
+	border-bottom: 0;
+	font-size: 13px;
+	padding: 2px 8px !important;
+	padding-left: 24px !important;
+}
+
+.caseTasksPart, .caseFormsPart, .caseEmailsPart {
+	margin-bottom: 12px;
+}
+
+.caseTasksPart div.header {
+	background: url(images/icons/cog.gif) 4px no-repeat;
+}
+
+.caseFormsPart div.header {
+	background: url(images/icons/folder_page.gif) 4px no-repeat;
+}
+
+.caseEmailsPart div.header {
+	background: url(images/icons/email_open.gif) 4px no-repeat;
+}
+
+.caseContactsPart div.header {
+	background: url(images/icons/group.gif) 4px no-repeat;
 }
 
 .caseTasksPart th, .caseTasksPart td {
-	width: 33% !important;
+	width: 50% !important;
+}
+
+.caseTasksPart th.casesGridHeaderCell_1, 
+.caseTasksPart td.casesGridBodyCell_1 {
+	border-right: 1px #a8a8a8 solid;
 }
 
 .caseFormsPart th, .caseFormsPart td {
-	width: 30% !important;
+	width: 29% !important;
 }
 
 .caseFormsPart th.casesGridHeaderCell_0, 
 .caseFormsPart td.casesGridBodyCell_0 {
-	width: 3% !important;
+	width: 4% !important;
 }
 
 .caseFormsPart th.casesGridHeaderCell_1, 
@@ -140,9 +197,19 @@ div.noContentInCasesListGridBody {
 .caseFormsPart th.casesGridHeaderCell_4, .caseFormsPart td.casesGridBodyCell_4, 
 .caseFormsPart th.casesGridHeaderCell_5, .caseFormsPart td.casesGridBodyCell_5,
 .caseFormsPart th.casesGridHeaderCell_6, .caseFormsPart td.casesGridBodyCell_6 {
-	width: 3% !important;
+	width: 4% !important;
 	border-left: 0;
 	text-align: center !important;
+	padding: 2px 0 !important;
+}
+
+.caseFormsPart th.casesGridHeaderCell_5, 
+.caseFormsPart td.casesGridBodyCell_5 {
+	border-right: 1px #a8a8a8 solid;
+}
+
+.caseFormsPart th.casesGridHeaderCell_6 {
+	display: none;
 }
 
 .caseGrids tr.subgrid table td {
@@ -179,13 +246,20 @@ div.noContentInCasesListGridBody {
 }
 
 .caseContactsPart th, .caseContactsPart td {
-	width: 30% !important;
+	width: 32% !important;
 }
 
 .caseContactsPart th.casesGridHeaderCell_3, 
 .caseContactsPart td.casesGridBodyCell_3 {
-	width: 3% !important;
+	width: 4% !important;
 	text-align: center !important;
+	border-right: 1px #a8a8a8 solid;
+	padding: 2px 0 !important;
+}
+
+.caseContactsPart th.casesGridHeaderCell_4, 
+.caseContactsPart td.casesGridBodyCell_4 {
+	display: none;
 }
 
 tr.subgrid td.casesGridBodyCell_0 img {
@@ -462,4 +536,19 @@ img.jqResize {
 	color: #FF0000;
 	vertical-align: top;
 	background-color: #f7f7f7; 
+}
+
+.watchUnwatchCase {
+	font-size: 11px;
+	float: left;
+	clear: none;
+}
+
+.takeCaseSelect {
+	border: 1px #a8a8a8 solid;
+	font-size: 10px;
+	float: left;
+	margin-top: 3px;
+	margin-left: 8px !important;
+	clear: none;
 }
