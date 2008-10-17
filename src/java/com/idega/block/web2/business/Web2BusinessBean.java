@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.51 2008/09/30 08:18:28 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.52 2008/10/17 09:56:37 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -9,6 +9,9 @@
  */
 package com.idega.block.web2.business;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.myfaces.renderkit.html.util.AddResource;
 import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
 import org.springframework.context.annotation.Scope;
@@ -17,8 +20,8 @@ import org.springframework.stereotype.Service;
 import com.idega.business.IBOServiceBean;
 import com.idega.idegaweb.IWBundle;
 import com.idega.presentation.IWContext;
-import com.idega.util.PresentationUtil;
 import com.idega.util.CoreConstants;
+import com.idega.util.PresentationUtil;
 import com.idega.util.StringUtil;
 
 /**
@@ -42,10 +45,10 @@ import com.idega.util.StringUtil;
  * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
  * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
  * 
- * Last modified: $Date: 2008/09/30 08:18:28 $ by $Author: valdas $
+ * Last modified: $Date: 2008/10/17 09:56:37 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.51 $
+ * @version $Revision: 1.52 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -134,6 +137,10 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String HUMAN_MESAGES_LATEST_VERSION = Web2BusinessBean.HUMAN_MESAGES_1_0_VERSION;
 	public static final String HUMAN_MESAGES_1_0_VERSION = "1.0";
 	
+	public static final String JS_TREE_LATEST_VERSION = Web2BusinessBean.JS_TREE_0_8_1_VERSION;
+	public static final String JS_TREE_0_8_1_VERSION = "0.8.1";
+	public static final String JS_TREE_FILE = "tree_component";
+	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
 	public static final String PROTOTYPE_ROOT_FOLDER_NAME_PREFIX = "prototype";
 	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
@@ -159,6 +166,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String CONTEXT_MENU_FOLDER_NAME_PREFIX = "contextmenu";
 	public static final String HUMAN_MESSAGES_FOLDER_NAME_PREFIX = "humanmsg";
 	public static final String GREY_BOX_FOLDER_NAME_PREFIX = "greybox";
+	public static final String JQUERY_PLUGINS_FOLDER_NAME_PREFIX = "jquery-plugins";
+	public static final String JS_TREE_FOLDER_NAME_PREFIX = "jsTree";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -172,10 +181,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
 	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
-	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_2_3_VERSION;
+	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_2_6_VERSION;
 	public static final String JQUERY_UI_LATEST_VERSION = Web2BusinessBean.JQUERY_UI_1_5b_VERSION;
 	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
 	public static final String JQUERY_1_2_3_VERSION = "1.2.3";
+	public static final String JQUERY_1_2_6_VERSION = "1.2.6";
 	public static final String JQUERY_UI_1_5b_VERSION = "1.5b";
 	
 	public static final String CONTROL_MODAL_JS_FILE_NAME = "control.modal.js";
@@ -444,6 +454,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public String getBundleURIToJQueryUILib(JQueryUIType type) {
 		
 		return getBundleURIToJQueryUILib(JQUERY_UI_LATEST_VERSION, type.getFileName());
+	}
+	
+	public String getBundleURIToJQueryPlugin(JQueryPlugin plugin) {
+		StringBuilder uri = new StringBuilder(JQUERY_PLUGINS_FOLDER_NAME_PREFIX).append(SLASH).append(JQUERY_FOLDER_NAME_PREFIX).append(plugin.getFileName());
+		return getBundleURIWithinScriptsFolder(uri.toString());
 	}
 	
 	/**
@@ -987,5 +1002,48 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public String getBundleUtiToGreyBoxStyleSheet() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder(GREY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append("css").append(SLASH).append("greybox.css")
 				.toString();
+	}
+
+	public String getBundleURIToJSTreeStyleFile() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder(JS_TREE_FOLDER_NAME_PREFIX)).append(SLASH).append(JS_TREE_LATEST_VERSION).append(SLASH)
+			.append("css").append(SLASH).append(JS_TREE_FILE).append(".css").toString();
+	}
+
+	public List<String> getBundleURIsToJSTreeScriptFiles() {
+		return getBundleURIsToJSTreeScriptFiles(false, false, false, false);
+	}
+	
+	public List<String> getBundleURIsToJSTreeScriptFiles(boolean addStylesManager, boolean usesXmlDataTypes, boolean usesMetadataRules, boolean usesCookies) {
+		List<String> files = new ArrayList<String>();
+		
+		if (addStylesManager) {
+			files.add(new StringBuilder(getBundleURIWithinScriptsFolder(JS_TREE_FOLDER_NAME_PREFIX)).append(SLASH).append(JS_TREE_LATEST_VERSION).append(SLASH)
+						.append("js").append(SLASH).append("css.js").toString());
+		}
+		
+		files.add(getBundleURIToJQueryLib());
+		
+		files.add(getBundleURIToJQueryPlugin(JQueryPlugin.LISTEN));
+		
+		files.add(new StringBuilder(getBundleURIWithinScriptsFolder(JS_TREE_FOLDER_NAME_PREFIX)).append(SLASH).append(JS_TREE_LATEST_VERSION).append(SLASH)
+						.append("js").append(SLASH).append(JS_TREE_FILE).append(".js").toString());
+		
+		if (usesXmlDataTypes) {
+			files.add(new StringBuilder(getBundleURIWithinScriptsFolder(JS_TREE_FOLDER_NAME_PREFIX)).append(SLASH).append(JS_TREE_LATEST_VERSION).append(SLASH)
+						.append("js").append(SLASH).append("sarissa.js").toString());
+			files.add(new StringBuilder(getBundleURIWithinScriptsFolder(JS_TREE_FOLDER_NAME_PREFIX)).append(SLASH).append(JS_TREE_LATEST_VERSION).append(SLASH)
+						.append("js").append(SLASH).append("sarissa_ieemu_xpath.js").toString());
+			files.add(getBundleURIToJQueryPlugin(JQueryPlugin.XSLT));
+		}
+		
+		if (usesMetadataRules) {
+			files.add(getBundleURIToJQueryPlugin(JQueryPlugin.METADATA));
+		}
+		
+		if (usesCookies) {
+			files.add(getBundleURIToJQueryPlugin(JQueryPlugin.COOKIE));
+		}
+		
+		return files;
 	}
 }
