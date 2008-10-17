@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.52 2008/10/17 09:56:37 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.53 2008/10/17 09:58:33 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -44,11 +44,12 @@ import com.idega.util.StringUtil;
  * mooRainbow - Javascript color picker that allows you to visually choose and use colors as a real and useful application. http://moorainbow.woolly-sheep.net/
  * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
  * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
+ * jsTree - dymanic tree, based on jQuery. http://vakata.com/en/jstree
  * 
- * Last modified: $Date: 2008/10/17 09:56:37 $ by $Author: valdas $
+ * Last modified: $Date: 2008/10/17 09:58:33 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.52 $
+ * @version $Revision: 1.53 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
