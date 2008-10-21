@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.54 2008/10/21 13:53:46 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.55 2008/10/21 14:17:06 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -47,10 +47,10 @@ import com.idega.util.StringUtil;
  * jsTree - dymanic tree, based on jQuery. http://vakata.com/en/jstree
  * sexylightbox - another lightbox. http://www.coders.me/web-html-js-css/javascript/sexy-lightbox-2
  * 
- * Last modified: $Date: 2008/10/21 13:53:46 $ by $Author: valdas $
+ * Last modified: $Date: 2008/10/21 14:17:06 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.54 $
+ * @version $Revision: 1.55 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -1062,7 +1062,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public List<String> getBundleURIsToSexyLightBoxScriptFiles(boolean useCompressedScript) {
 		List<String> files = new ArrayList<String>();
 		
-		files.add(getBundleURIToMootoolsLib(MOOTOOLS_1_2_1_VERSION, useCompressedScript));
+		files.add(getBundleURIToMootoolsLib(MOOTOOLS_1_2_1_VERSION, !useCompressedScript));
 		
 		String scriptFile = useCompressedScript ? new StringBuilder(SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX).append(".packed").toString() :
 												SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX;
