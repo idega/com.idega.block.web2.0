@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.53 2008/10/17 09:58:33 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.54 2008/10/21 13:53:46 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -45,11 +45,12 @@ import com.idega.util.StringUtil;
  * InlineEdit - MooTools based plugin for creating inline edit type widgets dynamically out of any tag element that can hold text, http://dev.justinmaier.com/inlineEdit2/
  * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
  * jsTree - dymanic tree, based on jQuery. http://vakata.com/en/jstree
+ * sexylightbox - another lightbox. http://www.coders.me/web-html-js-css/javascript/sexy-lightbox-2
  * 
- * Last modified: $Date: 2008/10/17 09:58:33 $ by $Author: valdas $
+ * Last modified: $Date: 2008/10/21 13:53:46 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.53 $
+ * @version $Revision: 1.54 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -99,6 +100,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String MOOTOOLS_1_0_0_VERSION = "1.0.0";
 	public static final String MOOTOOLS_1_1_0_VERSION = "1.1.0";
 	public static final String MOOTOOLS_1_11_VERSION = "1.11";
+	public static final String MOOTOOLS_1_2_1_VERSION = "1.2.1";
 	public static final String MOOTOOLS_SCRIPT_FILE = "mootools-all.js";
 	public static final String MOOTOOLS_COMPRESSED_SCRIPT_FILE = "mootools-all-compressed.js";
 	public static final String MOOTOOLS_STYLE_FILE = "mootools.css";
@@ -142,6 +144,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String JS_TREE_0_8_1_VERSION = "0.8.1";
 	public static final String JS_TREE_FILE = "tree_component";
 	
+	public static final String SEXY_LIGHT_BOX_LATEST_VERSION = Web2BusinessBean.SEXY_LIGHT_BOX_2_0_1_VERSION;
+	public static final String SEXY_LIGHT_BOX_2_0_1_VERSION = "2.0.1";
+	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
 	public static final String PROTOTYPE_ROOT_FOLDER_NAME_PREFIX = "prototype";
 	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
@@ -169,6 +174,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String GREY_BOX_FOLDER_NAME_PREFIX = "greybox";
 	public static final String JQUERY_PLUGINS_FOLDER_NAME_PREFIX = "jquery-plugins";
 	public static final String JS_TREE_FOLDER_NAME_PREFIX = "jsTree";
+	public static final String SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX = "sexylightbox";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -528,6 +534,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return buf.toString();
 	}
 	
+	@Override
 	public String getBundleIdentifier(){
 		return WEB2_BUNDLE_IDENTIFIER;
 	}
@@ -1046,5 +1053,28 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		}
 		
 		return files;
+	}
+
+	public List<String> getBundleURIsToSexyLightBoxScriptFiles() {
+		return getBundleURIsToSexyLightBoxScriptFiles(true);
+	}
+
+	public List<String> getBundleURIsToSexyLightBoxScriptFiles(boolean useCompressedScript) {
+		List<String> files = new ArrayList<String>();
+		
+		files.add(getBundleURIToMootoolsLib(MOOTOOLS_1_2_1_VERSION, useCompressedScript));
+		
+		String scriptFile = useCompressedScript ? new StringBuilder(SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX).append(".packed").toString() :
+												SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX;
+		files.add(new StringBuilder(getBundleURIWithinScriptsFolder(SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(SEXY_LIGHT_BOX_LATEST_VERSION)
+					.append(SLASH).append(scriptFile).append(".js").toString());
+		
+		return files;
+	}
+
+	public String getBundleURIToSexyLightBoxStyleFile() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder(SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(SEXY_LIGHT_BOX_LATEST_VERSION)
+					.append(SLASH).append(SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX).append(".css")
+				.toString();
 	}
 }

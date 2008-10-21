@@ -1,0 +1,95 @@
+div.SexyLightBox_cb {
+  margin:0.5em 0;
+  margin:auto;
+  font-family:Verdana;
+}
+div.SexyLightBox_cb div.bt {
+  background:transparent no-repeat scroll 100% 0;
+  height:28px;
+  margin:0 0 0 18px;
+}
+div.SexyLightBox_cb div.bt img {
+  float:right;
+  border:0px;
+  margin:6px 10px;
+}
+
+div.SexyLightBox_cb div.bt div {
+  background:transparent no-repeat scroll 0 0;
+  font-size:0;
+  height:28px;
+  left:-18px;
+  line-height:0;
+  position:relative;
+  width:18px;
+}
+
+div.SexyLightBox_cb div.bt a,div.SexyLightBox_cb div.bt a:hover{
+  margin:0px;
+  padding:0px;
+}
+
+div.SexyLightBox_cb div.bb {
+  background:transparent no-repeat scroll 0 43%;
+  height:20px;
+  margin:0 18px 0 0;
+}
+
+div.SexyLightBox_cb div.bb div.innerbb {
+  background:transparent no-repeat scroll 100% 43%;
+  font-size:0;
+  height:20px;
+  right:-18px;
+  line-height:0;
+  position:relative;
+  width:100%;
+  float:right;
+}
+
+div.SexyLightBox_cb div.bbnav, div.SexyLightBox_cb div.bbnav div.innerbb{
+  height:52px;
+}
+
+div.SexyLightBox_cb div.bbnav {
+  background-position:0 100%;
+}
+div.SexyLightBox_cb div.bbnav div.innerbb{
+  background-position:100% 100%;
+}
+
+div.SexyLightBox_cb div.i1 {
+  border-left: 7px solid #000;
+  border-right: 7px solid #000;
+}
+
+div.SexyLightBox_cb div.bb div.nav{
+  font-size: 11px;
+  color: #fff;
+  height:30px;
+  border-left:0px;
+  border-right:0px;
+  padding:10px 0px;
+  margin:0;
+  line-height:11px;
+  float:left;
+  width:100%;
+}
+
+div.SexyLightBox_cb div.nav img{
+  border:0px;
+}
+
+div.SexyLightBox_cb div.nav strong{
+  display: block;
+}
+
+div.SexyLightBox_cb div.bb div.nav img.btLeft{
+  float: left;
+  margin: 0 10px 0 0;
+}
+div.SexyLightBox_cb div.bb div.nav img.btRight{
+  float: right;
+  margin: 0 0 0 10px;
+  position:relative;
+  right:17px;
+}
