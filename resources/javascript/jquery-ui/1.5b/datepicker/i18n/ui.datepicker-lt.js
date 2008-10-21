@@ -19,7 +19,7 @@ jQuery(function($){
 		dayNamesShort: ['sek','pir','ant','tre','ket','pen','šeš'],
 		dayNamesMin: ['Se','Pr','An','Tr','Ke','Pe','Še'],
 		dayStatus: 'DD', dateStatus: 'D, M d',
-		dateFormat: 'yy.m.d', firstDay: 1, 
+		dateFormat: 'y.m.d', firstDay: 1, 
 		initStatus: '', isRTL: false};
 	$.datepicker.setDefaults($.datepicker.regional['lt']);
 });
