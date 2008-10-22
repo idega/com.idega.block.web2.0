@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.55 2008/10/21 14:17:06 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.56 2008/10/22 12:00:23 civilis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -47,10 +47,10 @@ import com.idega.util.StringUtil;
  * jsTree - dymanic tree, based on jQuery. http://vakata.com/en/jstree
  * sexylightbox - another lightbox. http://www.coders.me/web-html-js-css/javascript/sexy-lightbox-2
  * 
- * Last modified: $Date: 2008/10/21 14:17:06 $ by $Author: valdas $
+ * Last modified: $Date: 2008/10/22 12:00:23 $ by $Author: civilis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.55 $
+ * @version $Revision: 1.56 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -188,7 +188,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
 	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
-	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_2_6_VERSION;
+	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_2_3_VERSION;//.JQUERY_1_2_6_VERSION;
 	public static final String JQUERY_UI_LATEST_VERSION = Web2BusinessBean.JQUERY_UI_1_5b_VERSION;
 	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
 	public static final String JQUERY_1_2_3_VERSION = "1.2.3";
