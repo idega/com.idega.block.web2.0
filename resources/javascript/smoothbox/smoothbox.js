@@ -50,7 +50,7 @@ function TB_show(caption, url, rel) {
 		$('TB_overlay').setOpacity(0);
 		TB_overlaySize();
 		new Element('div').setProperty('id', 'TB_load').injectInside(document.body);
-		$('TB_load').innerHTML = "<img src='/idegaweb/bundles/com.idega.formbuilder.bundle/resources/javascript/loading.gif' />";
+		$('TB_load').innerHTML = "<img src='/idegaweb/bundles/com.idega.block.web2.bundle/resources/javascript/smoothbox/loading.gif' />";
 		TB_load_position();
 		new Fx.Style('TB_overlay', 'opacity',{duration: 400, transition: Fx.Transitions.sineInOut}).start(0,0.6);
 	}
@@ -58,7 +58,7 @@ function TB_show(caption, url, rel) {
 	if ( !$("TB_load") )
 	{		
 		new Element('div').setProperty('id', 'TB_load').injectInside(document.body);
-		$('TB_load').innerHTML = "<img src='/idegaweb/bundles/com.idega.formbuilder.bundle/resources/javascript/loading.gif' />";
+		$('TB_load').innerHTML = "<img src='/idegaweb/bundles/com.idega.block.web2.bundle/resources/javascript/smoothbox/loading.gif' />";
 		TB_load_position();
 	}
 	
