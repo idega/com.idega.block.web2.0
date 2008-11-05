@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.56 2008/10/22 12:00:23 civilis Exp $
+ * $Id: Web2BusinessBean.java,v 1.57 2008/11/05 09:19:22 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -21,6 +21,7 @@ import com.idega.business.IBOServiceBean;
 import com.idega.idegaweb.IWBundle;
 import com.idega.presentation.IWContext;
 import com.idega.util.CoreConstants;
+import com.idega.util.CoreUtil;
 import com.idega.util.PresentationUtil;
 import com.idega.util.StringUtil;
 
@@ -47,10 +48,10 @@ import com.idega.util.StringUtil;
  * jsTree - dymanic tree, based on jQuery. http://vakata.com/en/jstree
  * sexylightbox - another lightbox. http://www.coders.me/web-html-js-css/javascript/sexy-lightbox-2
  * 
- * Last modified: $Date: 2008/10/22 12:00:23 $ by $Author: civilis $
+ * Last modified: $Date: 2008/11/05 09:19:22 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.56 $
+ * @version $Revision: 1.57 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -103,6 +104,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String MOOTOOLS_1_2_1_VERSION = "1.2.1";
 	public static final String MOOTOOLS_SCRIPT_FILE = "mootools-all.js";
 	public static final String MOOTOOLS_COMPRESSED_SCRIPT_FILE = "mootools-all-compressed.js";
+	public static final String MOOTOOLS_MORE_SCRIPT_FILE = "mootools-more.js";
+	public static final String MOOTOOLS_MORE_COMPRESSED_SCRIPT_FILE = "mootools-more-compressed.js";
 	public static final String MOOTOOLS_STYLE_FILE = "mootools.css";
 	
 	public static final String REFLECTION_FOR_MOOTOOLS_LATEST_VERSION = Web2BusinessBean.REFLECTION_FOR_MOOTOOLS_1_2_VERSION;
@@ -1062,7 +1065,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public List<String> getBundleURIsToSexyLightBoxScriptFiles(boolean useCompressedScript) {
 		List<String> files = new ArrayList<String>();
 		
-		files.add(getBundleURIToMootoolsLib(MOOTOOLS_1_2_1_VERSION, !useCompressedScript));
+		files.addAll(getBundleURIsToMooToolsLib(MOOTOOLS_1_2_1_VERSION, useCompressedScript, true, false));
 		
 		String scriptFile = useCompressedScript ? new StringBuilder(SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX).append(".packed").toString() :
 												SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX;
@@ -1077,4 +1080,68 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 					.append(SLASH).append(SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX).append(".css")
 				.toString();
 	}
+	
+	public String getSexyLightBoxInitAction(IWContext iwc, String variableName) {
+		String imagesDir = new StringBuilder(getBundleURIWithinScriptsFolder(SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(SEXY_LIGHT_BOX_LATEST_VERSION)
+							.append(SLASH).append("sexyimages").toString();
+		
+		String globalVariable = CoreConstants.EMPTY;
+		String variable = CoreConstants.EMPTY;
+		if (!StringUtil.isEmpty(variableName)) {
+			variable = new StringBuilder(variableName).append(" = ").toString();
+			globalVariable = new StringBuilder("var ").append(variable).append("null;").toString();
+		}
+		StringBuilder initAction = new StringBuilder(variable).append("new SexyLightBox({imagesdir: '").append(imagesDir).append("'});");
+		if (!CoreUtil.isSingleComponentRenderingProcess(iwc)) {
+			initAction = new StringBuilder("window.addEvent('domready', function() { ").append(initAction.toString()).append(" });");
+		}
+		initAction = new StringBuilder(globalVariable).append(initAction.toString());
+		return initAction.toString();
+	}
+	
+	public void insertSexyLightBoxIntoPage(IWContext iwc) {
+		PresentationUtil.addJavaScriptSourcesLinesToHeader(iwc, getBundleURIsToSexyLightBoxScriptFiles());
+		PresentationUtil.addStyleSheetToHeader(iwc, getBundleURIToSexyLightBoxStyleFile());
+		PresentationUtil.addJavaScriptActionToBody(iwc, getSexyLightBoxInitAction(iwc, getSexyLightBoxVariableName()));
+	}
+	
+	public String getSexyLightBoxVariableName() {
+		return "Sexy";
+	}
+
+	public List<String> getBundleURIsToMooToolsLib(String version, boolean needCompressedFiles, boolean needMooToolsMore, boolean addBridgingScript) {
+		List<String> files = new ArrayList<String>();
+		
+		files.add(getBundleURIWithinScriptsFolder(new StringBuilder(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH)
+				.append(needCompressedFiles ? MOOTOOLS_COMPRESSED_SCRIPT_FILE : MOOTOOLS_SCRIPT_FILE).toString()));
+		if (needMooToolsMore) {
+			files.add(getBundleURIWithinScriptsFolder(new StringBuilder(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH)
+						.append(needCompressedFiles ? MOOTOOLS_MORE_COMPRESSED_SCRIPT_FILE : MOOTOOLS_MORE_SCRIPT_FILE).toString()));
+		}
+		if (addBridgingScript) {
+			files.add(getBundleURIWithinScriptsFolder(new StringBuilder(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(MOOTOOLS_1_2_1_VERSION).append(SLASH)
+					.append("mootools-compat-core.js").toString()));
+			if (needMooToolsMore) {
+				files.add(getBundleURIWithinScriptsFolder(new StringBuilder(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(MOOTOOLS_1_2_1_VERSION).append(SLASH)
+						.append("mootools-compat-more.js").toString()));
+			}
+			files.add(getBundleURIWithinScriptsFolder(new StringBuilder(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(MOOTOOLS_1_2_1_VERSION).append(SLASH)
+					.append("mootools-compat-custom.js").toString()));
+		}
+		
+		return files;
+	}
+	
+	public List<String> getBundleURIsToMooToolsLib(boolean needCompressedFiles, boolean needMooToolsMore, boolean addBridgingScript) {
+		return getBundleURIsToMooToolsLib(MOOTOOLS_LATEST_VERSION, needCompressedFiles, needMooToolsMore, addBridgingScript);
+	}
+	
+	public List<String> getBundleURIsToMooToolsLib() {
+		return getBundleURIsToMooToolsLib(MOOTOOLS_LATEST_VERSION, true, true, true);
+	}
+
+	public String getBrowserPlusScriptFile() {
+		return "http://bp.yahooapis.com/2.1.6/browserplus-min.js";
+	}
+
 }
