@@ -17,13 +17,14 @@ USAGE:
 	$.extend({
 		progressBar: new function() {
 
+			var baseResourcesPath = '/idegaweb/bundles/com.idega.block.web2.0/resources/javascript/jquery-plugins';
 			this.defaults = {
 				increment	: 2,
 				speed		: 15,
 				showText	: true,											// show text with percentage in next to the progressbar? - default : true
 				width		: 120,											// Width of the progressbar - don't forget to adjust your image too!!!
-				boxImage	: 'images/progressbar.gif',						// boxImage : image around the progress bar
-				barImage	: 'images/progressbg_green.gif',				// Image to use in the progressbar. Can be an array of images too.
+				boxImage	: baseResourcesPath + '/images/progressbar.gif',			// boxImage : image around the progress bar
+				barImage	: baseResourcesPath + '/images/progressbg_green.gif',	// Image to use in the progressbar. Can be an array of images too.
 				height		: 12											// Height of the progressbar - don't forget to adjust your image too!!!
 			};
 			
