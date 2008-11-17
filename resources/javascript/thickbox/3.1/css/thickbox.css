@@ -35,7 +35,7 @@
 }
 
 .TB_overlayMacFFBGHack {background: url(macFFBgHack.png) repeat;}
-.TB_overlayBG {
+.TB_overlayBG, .TB_overlayMacFFBGHack {
 	background-color:#000;
 	filter:alpha(opacity=75);
 	-moz-opacity: 0.75;
