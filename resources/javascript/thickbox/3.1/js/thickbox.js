@@ -10,11 +10,15 @@ var tb_pathToImage = "/idegaweb/bundles/com.idega.block.web2.0/resources/javascr
 /*!!!!!!!!!!!!!!!!! edit below this line at your own risk !!!!!!!!!!!!!!!!!!!!!!!*/
 
 //on page load call tb_init
-jQuery(document).ready(function(){   
+jQuery(document).ready(function() {
+	tb_fullInit();
+});
+
+function tb_fullInit() {
 	tb_init('a.thickbox, area.thickbox, input.thickbox');//pass where to apply thickbox
 	imgLoader = new Image();// preload image
 	imgLoader.src = tb_pathToImage;
-});
+}
 
 //add thickbox to href & area elements that have a class of .thickbox
 function tb_init(domChunk){
