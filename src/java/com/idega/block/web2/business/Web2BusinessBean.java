@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.58 2008/12/09 11:13:11 laddi Exp $
+ * $Id: Web2BusinessBean.java,v 1.59 2008/12/09 19:10:57 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -48,10 +48,10 @@ import com.idega.util.StringUtil;
  * jsTree - dymanic tree, based on jQuery. http://vakata.com/en/jstree
  * sexylightbox - another lightbox. http://www.coders.me/web-html-js-css/javascript/sexy-lightbox-2
  * 
- * Last modified: $Date: 2008/12/09 11:13:11 $ by $Author: laddi $
+ * Last modified: $Date: 2008/12/09 19:10:57 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.58 $
+ * @version $Revision: 1.59 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -997,7 +997,40 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		PresentationUtil.addStyleSheetToHeader(iwc, getBundle().getResourcesVirtualPath() + "/WebApp/Design/Render.css");
 		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundle().getResourcesVirtualPath() + "/WebApp/Action/Logic.js");
 	}
+	
+	public void addMultiBoxToPage(IWContext iwc, String multiBoxStyleClassToActivate, String options, String multiBoxVarName,  boolean addMootools, boolean addOverlay){
 
+		if(multiBoxVarName == null || "".equals(multiBoxVarName)){
+			multiBoxVarName = "myMultiBox";
+		}
+		
+		
+		StringBuffer scriptLine = new StringBuffer();
+		scriptLine.append("var ").append(multiBoxVarName).append(" = {}; window.addEvent('domready', function(){ ").append(multiBoxVarName).append(" = ");
+		if(options!=null){
+			scriptLine.append("new MultiBox('").append(multiBoxVarName).append("', ").append(options).append(")});");
+		}
+		else{
+			scriptLine.append("new MultiBox('").append(multiBoxVarName).append("')});");
+		}
+		
+		List<String> scriptsUris = new ArrayList<String>();
+		if(addMootools){
+			scriptsUris.add(this.getBundleURIToMootoolsLib());
+		}
+		if(addOverlay){
+			scriptsUris.add(this.getBundleURIWithinScriptsFolder("multibox/overlay.js"));
+		}
+		
+		scriptsUris.add(this.getBundleURIWithinScriptsFolder("multibox/multibox.js"));
+		
+		PresentationUtil.addJavaScriptSourcesLinesToHeader(iwc, scriptsUris);			//	JavaScript
+		PresentationUtil.addStyleSheetToHeader(iwc, this.getBundleURIWithinScriptsFolder("multibox/multibox.css"));	//	
+		PresentationUtil.addJavaScriptActionToBody(iwc, scriptLine.toString());
+		
+		
+	}
+	
 	private String getBundleUriToHumanizedMessages(String version) {
 		return getBundleURIWithinScriptsFolder(new StringBuilder(HUMAN_MESSAGES_FOLDER_NAME_PREFIX).append(SLASH).append(HUMAN_MESAGES_LATEST_VERSION).append(SLASH).toString());
 	}
