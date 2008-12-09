@@ -4,8 +4,6 @@
  * Copyright (c) 2007 cody lindley
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
 */
-		  
-var tb_pathToImage = "/idegaweb/bundles/com.idega.block.web2.0/resources/javascript/thickbox/3.1/images/loadingAnimation.gif";
 
 /*!!!!!!!!!!!!!!!!! edit below this line at your own risk !!!!!!!!!!!!!!!!!!!!!!!*/
 
@@ -16,8 +14,6 @@ jQuery(document).ready(function() {
 
 function tb_fullInit() {
 	tb_init('a.thickbox, area.thickbox, input.thickbox');//pass where to apply thickbox
-	imgLoader = new Image();// preload image
-	imgLoader.src = tb_pathToImage;
 }
 
 //add thickbox to href & area elements that have a class of .thickbox
@@ -56,7 +52,7 @@ function tb_show(caption, url, imageGroup, onCloseCallback) {//function called w
 		}
 		
 		if(caption===null){caption="";}
-		jQuery("body").append("<div id='TB_load'><img src='"+imgLoader.src+"' /></div>");//add loader to the page
+		jQuery("body").append("<div id='TB_load'><div id='TB_load_image' /></div>");//add loader to the page
 		jQuery('#TB_load').show();//show loader
 		
 		var baseURL;

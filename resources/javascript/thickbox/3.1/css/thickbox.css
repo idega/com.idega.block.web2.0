@@ -130,6 +130,12 @@ margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = d
 	margin: -6px 0 0 -104px; /* -height/2 0 0 -width/2 */
 }
 
+#TB_load_image {
+	width: 208px;
+	height: 13px;
+	background-image: url("../images/loadingAnimation.gif");
+}
+
 * html #TB_load { /* ie6 hack */
 position: absolute;
 margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px');
