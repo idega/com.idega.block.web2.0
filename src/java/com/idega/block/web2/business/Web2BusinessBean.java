@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.57 2008/11/05 09:19:22 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.58 2008/12/09 11:13:11 laddi Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -48,10 +48,10 @@ import com.idega.util.StringUtil;
  * jsTree - dymanic tree, based on jQuery. http://vakata.com/en/jstree
  * sexylightbox - another lightbox. http://www.coders.me/web-html-js-css/javascript/sexy-lightbox-2
  * 
- * Last modified: $Date: 2008/11/05 09:19:22 $ by $Author: valdas $
+ * Last modified: $Date: 2008/12/09 11:13:11 $ by $Author: laddi $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.57 $
+ * @version $Revision: 1.58 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -991,6 +991,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		AddResource adder = AddResourceFactory.getInstance(iwc);
 		adder.addInlineScriptAtPosition(iwc, AddResource.HEADER_BEGIN, buffer.toString());
 
+	}
+	
+	public void addWebAppFilesToPage(IWContext iwc) {
+		PresentationUtil.addStyleSheetToHeader(iwc, getBundle().getResourcesVirtualPath() + "/WebApp/Design/Render.css");
+		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundle().getResourcesVirtualPath() + "/WebApp/Action/Logic.js");
 	}
 
 	private String getBundleUriToHumanizedMessages(String version) {
