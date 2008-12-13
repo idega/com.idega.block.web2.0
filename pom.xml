@@ -39,11 +39,13 @@
       <groupId>com.idega.block.platform</groupId>
       <artifactId>com.idega.core</artifactId>
     </dependency>
+    <!--  
 	<dependency>
       <groupId>jmaki</groupId>
       <artifactId>ajax-wrapper-comp</artifactId>
       <version>0.4b1</version>
     </dependency>
+    -->
   </dependencies>
   <properties />
 </project>
