@@ -175,8 +175,7 @@ border-collapse: separate !important;
 	width: 50% !important;
 }
 
-.caseTasksPart th.casesGridHeaderCell_1, 
-.caseTasksPart td.casesGridBodyCell_1 {
+.caseTasksPart table {
 	border-right: 1px #a8a8a8 solid;
 }
 
@@ -203,8 +202,7 @@ border-collapse: separate !important;
 	padding: 2px 0 !important;
 }
 
-.caseFormsPart th.casesGridHeaderCell_5, 
-.caseFormsPart td.casesGridBodyCell_5 {
+.caseFormsPart table {
 	border-right: 1px #a8a8a8 solid;
 }
 
@@ -223,6 +221,10 @@ border-collapse: separate !important;
 
 .caseGrids tr.subgrid table td.casesGridBodyCell_1 {
 	border-left: 1px #D6D2C2 solid !important;
+}
+
+.caseEmailsPart table {
+	border-right: 1px #a8a8a8 solid;
 }
 
 .caseEmailsPart th, .caseEmailsPart td {
@@ -249,11 +251,14 @@ border-collapse: separate !important;
 	width: 32% !important;
 }
 
+.caseContactsPart table {
+	border-right: 1px #a8a8a8 solid;
+}
+
 .caseContactsPart th.casesGridHeaderCell_3, 
 .caseContactsPart td.casesGridBodyCell_3 {
 	width: 4% !important;
 	text-align: center !important;
-	border-right: 1px #a8a8a8 solid;
 	padding: 2px 0 !important;
 }
 
