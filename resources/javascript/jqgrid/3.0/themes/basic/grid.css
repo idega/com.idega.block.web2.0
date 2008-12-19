@@ -110,6 +110,7 @@ table.scroll th span {
 	height: 17px;
 	overflow: hidden;
 	white-space: nowrap;
+display: none;
 }
 
 div.noContentInCasesListGridBody {
@@ -136,11 +137,13 @@ div.noContentInCasesListGridBody {
 }
 
 .caseGrids table, .caseGrids table tr, .caseGrids table tr td {
-border-collapse: collapse !important;
+	border-collapse: seperate;
+	*border-collapse: collapse;
+	_border-collapse: collapse;
 }
 
-html>body .caseGrids table, html>body .caseGrids table tr, html>body .caseGrids table tr td {
-border-collapse: separate !important;
+.caseGrids table tr, .caseGrids table tr td {
+	empty-cells: show;
 }
 
 .caseGrids div.header {
