@@ -3904,7 +3904,10 @@ Fx.CSS = {
 		var from = fromTo[0], to = fromTo[1];
 		if (!$chk(to)){
 			to = from;
-			from = el.getStyle(property);
+			if (el == null) {
+				return;
+			}
+			from = $(el).getStyle(property);
 		}
 		var css = this.select(property, to);
 		return {'from': css.parse(from), 'to': css.parse(to), 'css': css};
