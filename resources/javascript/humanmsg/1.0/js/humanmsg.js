@@ -24,7 +24,7 @@ var humanMsg = {
 			humanMsg.msgOpacity = parseFloat(msgOpacity);
 
 		// Inject the message structure
-		var htmlCode = '<div id="'+humanMsg.msgID+'" class="humanMsg"><div class="round"></div><p></p><div class="round"></div></div>';
+		var htmlCode = '<div id="'+humanMsg.msgID+'" class="humanMsg"><div class="round"></div><p id="'+humanMsg.msgID+'_content"></p><div class="round"></div></div>';
 		if (showLog) {
 			htmlCode += '<div id="'+humanMsg.logID+'"><p>'+logName+'</p><ul></ul></div>';
 		}
@@ -39,29 +39,40 @@ var humanMsg = {
 		if (msg == '')
 			return;
 
+		clearTimeout(humanMsg.t1);
 		clearTimeout(humanMsg.t2);
 
 		// Inject message
-		jQuery('#'+humanMsg.msgID+' p').html(msg)
+		jQuery('#'+humanMsg.msgID+'_content').text(msg);
 	
 		// Show message
-		jQuery('#'+humanMsg.msgID+'').show().animate({ opacity: humanMsg.msgOpacity}, 200, function() {
-			jQuery('#'+humanMsg.logID)
-				.show().children('ul').prepend('<li>'+msg+'</li>')	// Prepend message to log
-				.children('li:first').slideDown(200)				// Slide it down
-		
-			if ( jQuery('#'+humanMsg.logID+' ul').css('display') == 'none') {
-				jQuery('#'+humanMsg.logID+' p').animate({ bottom: 40 }, 200, 'linear', function() {
-					jQuery(this).animate({ bottom: 0 }, 300, 'easeOutBounce', function() { jQuery(this).css({ bottom: 0 }) })
-				})
+		jQuery('#'+humanMsg.msgID).css('opacity', 0);
+		jQuery('#'+humanMsg.msgID).css('display', 'block');
+		jQuery('#'+humanMsg.msgID).animate(
+			{opacity: humanMsg.msgOpacity},
+			200,
+			function() {
+				/*jQuery('#'+humanMsg.logID).css('display', 'none');
+				jQuery('#'+humanMsg.logID)
+					.show().children('ul').prepend('<li>'+msg+'</li>')	// Prepend message to log
+					.children('li:first').slideDown(200)				// Slide it down
+				
+				if (jQuery('#'+humanMsg.logID+' ul').css('display') == 'none') {
+					jQuery('#'+humanMsg.logID+' p').animate({ bottom: 40 }, 200, 'linear', function() {
+						jQuery(this).animate({ bottom: 0 }, 300, 'easeOutBounce', function() { jQuery(this).css({ bottom: 0 }) })
+					})
+				}*/
 			}
-			
-		})
+		);
 
 		// Watch for mouse & keyboard in .5s
-		humanMsg.t1 = setTimeout("humanMsg.bindEvents()", 700)
+		humanMsg.t1 = setTimeout(function() {
+			humanMsg.bindEvents();
+		}, 500);
 		// Remove message after 5s
-		humanMsg.t2 = setTimeout("humanMsg.removeMsg()", 5000)
+		humanMsg.t2 = setTimeout(function() {
+			humanMsg.removeMsg();
+		}, 5000);
 	},
 
 	bindEvents: function() {
@@ -80,8 +91,11 @@ var humanMsg = {
 			.unbind('keypress', humanMsg.removeMsg)
 
 		// If message is fully transparent, fade it out
-		if (jQuery('#'+humanMsg.msgID).css('opacity') == humanMsg.msgOpacity)
-			jQuery('#'+humanMsg.msgID).animate({ opacity: 0 }, 500, function() { jQuery(this).hide() })
+		if (jQuery('#'+humanMsg.msgID).css('opacity') == humanMsg.msgOpacity) {
+			jQuery('#'+humanMsg.msgID).fadeTo('slow', 0, function() {
+				jQuery(this).css('display', 'none');
+			});
+		}
 	}
 };
 
