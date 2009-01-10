@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.60 2008/12/22 06:44:42 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.61 2009/01/10 12:18:56 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -47,11 +47,12 @@ import com.idega.util.StringUtil;
  * ContextMenu - a lightweight jQuery plugin that lets you selectively override the browser's right-click menu with a custom one of your own. http://www.trendskitchens.co.nz/jquery/contextmenu/
  * jsTree - dymanic tree, based on jQuery. http://vakata.com/en/jstree
  * sexylightbox - another lightbox. http://www.coders.me/web-html-js-css/javascript/sexy-lightbox-2
+ * fancybox - lightbox, Mac style. http://fancy.klade.lv
  * 
- * Last modified: $Date: 2008/12/22 06:44:42 $ by $Author: valdas $
+ * Last modified: $Date: 2009/01/10 12:18:56 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.60 $
+ * @version $Revision: 1.61 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -150,6 +151,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SEXY_LIGHT_BOX_LATEST_VERSION = Web2BusinessBean.SEXY_LIGHT_BOX_2_0_1_VERSION;
 	public static final String SEXY_LIGHT_BOX_2_0_1_VERSION = "2.0.1";
 	
+	public static final String FANCY_BOX_LATEST_VERSION = Web2BusinessBean.FANCY_BOX_1_0_VERSION;
+	public static final String FANCY_BOX_1_0_VERSION = "1.0";
+		
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
 	public static final String PROTOTYPE_ROOT_FOLDER_NAME_PREFIX = "prototype";
 	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
@@ -178,6 +182,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String JQUERY_PLUGINS_FOLDER_NAME_PREFIX = "jquery-plugins";
 	public static final String JS_TREE_FOLDER_NAME_PREFIX = "jsTree";
 	public static final String SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX = "sexylightbox";
+	public static final String FANCY_BOX_FOLDER_NAME_PREFIX = "fancybox";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -1180,6 +1185,21 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 
 	public String getBrowserPlusScriptFile() {
 		return "http://bp.yahooapis.com/2.1.6/browserplus-min.js";
+	}
+
+	public String getBundleURIToFancyBoxStyleFile() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(FANCY_BOX_LATEST_VERSION).append(SLASH)
+			.append(FANCY_BOX_FOLDER_NAME_PREFIX).append(".css").toString();
+	}
+
+	public List<String> getBundleURIsToFancyBoxScriptFiles() {
+		List<String> scripts = new ArrayList<String>();
+		scripts.add(new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(FANCY_BOX_LATEST_VERSION).append(SLASH)
+					.append(FANCY_BOX_FOLDER_NAME_PREFIX).append(".js").toString());
+		scripts.add(new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(FANCY_BOX_LATEST_VERSION).append(SLASH)
+					.append(FANCY_BOX_FOLDER_NAME_PREFIX).append("PngFix.js").toString());
+		scripts.add(getBundleURIToJQueryPlugin(JQueryPlugin.METADATA));
+		return scripts;
 	}
 
 }
