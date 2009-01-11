@@ -6,7 +6,7 @@
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
  * Requires: jQuery v1.2.1 or later
 */
-(function(jQuery) {
+;(function($) {
 	var opts = {}, 
 		imgPreloader = new Image, imgTypes = ['png', 'jpg', 'jpeg', 'gif'], 
 		loadingTimer, loadingFrame = 1;
@@ -386,4 +386,5 @@
 		itemLoadCallback:	null,
 		onCloseCallback:	null
 	};
+
 })(jQuery);

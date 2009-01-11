@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.61 2009/01/10 12:18:56 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.62 2009/01/11 13:12:48 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -49,10 +49,10 @@ import com.idega.util.StringUtil;
  * sexylightbox - another lightbox. http://www.coders.me/web-html-js-css/javascript/sexy-lightbox-2
  * fancybox - lightbox, Mac style. http://fancy.klade.lv
  * 
- * Last modified: $Date: 2009/01/10 12:18:56 $ by $Author: valdas $
+ * Last modified: $Date: 2009/01/11 13:12:48 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.61 $
+ * @version $Revision: 1.62 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -1198,7 +1198,6 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 					.append(FANCY_BOX_FOLDER_NAME_PREFIX).append(".js").toString());
 		scripts.add(new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(FANCY_BOX_LATEST_VERSION).append(SLASH)
 					.append(FANCY_BOX_FOLDER_NAME_PREFIX).append("PngFix.js").toString());
-		scripts.add(getBundleURIToJQueryPlugin(JQueryPlugin.METADATA));
 		return scripts;
 	}
 
