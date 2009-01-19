@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.62 2009/01/11 13:12:48 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.63 2009/01/19 16:40:18 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -48,11 +48,12 @@ import com.idega.util.StringUtil;
  * jsTree - dymanic tree, based on jQuery. http://vakata.com/en/jstree
  * sexylightbox - another lightbox. http://www.coders.me/web-html-js-css/javascript/sexy-lightbox-2
  * fancybox - lightbox, Mac style. http://fancy.klade.lv
+ * CodeMirror - In-browser code editing made slightly less painful. http://marijn.haverbeke.nl/codemirror/
  * 
- * Last modified: $Date: 2009/01/11 13:12:48 $ by $Author: valdas $
+ * Last modified: $Date: 2009/01/19 16:40:18 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.62 $
+ * @version $Revision: 1.63 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -153,7 +154,10 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public static final String FANCY_BOX_LATEST_VERSION = Web2BusinessBean.FANCY_BOX_1_0_VERSION;
 	public static final String FANCY_BOX_1_0_VERSION = "1.0";
-		
+	
+	public static final String CODE_MIRROR_LATEST_VERSION = Web2BusinessBean.CODE_MIRROR_0_6_VERSION;
+	public static final String CODE_MIRROR_0_6_VERSION = "0.6";
+	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
 	public static final String PROTOTYPE_ROOT_FOLDER_NAME_PREFIX = "prototype";
 	public static final String LIGHTBOX_ROOT_FOLDER_NAME_PREFIX = "lightbox";
@@ -183,6 +187,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String JS_TREE_FOLDER_NAME_PREFIX = "jsTree";
 	public static final String SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX = "sexylightbox";
 	public static final String FANCY_BOX_FOLDER_NAME_PREFIX = "fancybox";
+	public static final String CODE_MIRROR_FOLDER_NAME_PREFIX = "codemirror";
 	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -1201,4 +1206,22 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return scripts;
 	}
 
+	
+	public String getBundleURIToCodeMirrorFolder() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder(CODE_MIRROR_FOLDER_NAME_PREFIX)).append(SLASH).append(CODE_MIRROR_LATEST_VERSION).append(SLASH)
+		.append("js/").toString();
+	}
+	
+	public String getBundleURIToCodeMirrorScriptFile() {
+		return getBundleURIToCodeMirrorScriptFile(CODE_MIRROR_FOLDER_NAME_PREFIX + ".js");
+	}
+	
+	public String getBundleURIToCodeMirrorScriptFile(String scriptFile) {
+		return new StringBuilder(getBundleURIToCodeMirrorFolder()).append(scriptFile).toString();
+	}
+	
+	public String getBundleURIToCodeMirrorStyleFile(String styleFile) {
+		return new StringBuilder(getBundleURIWithinScriptsFolder(CODE_MIRROR_FOLDER_NAME_PREFIX)).append(SLASH).append(CODE_MIRROR_LATEST_VERSION).append(SLASH)
+		.append("css/").append(styleFile).toString();
+	}
 }
