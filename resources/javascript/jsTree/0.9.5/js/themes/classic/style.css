@@ -1,0 +1,48 @@
+.jsTree .tree-classic li.open {
+	background:url("minus.gif") 2px 5px no-repeat;
+}
+.jsTree .tree-classic li.closed {
+	background:url("plus.gif") 2px 5px no-repeat;
+}
+.jsTree .tree-classic #dragged li.open {
+	background:url("plus.gif") 2px 5px no-repeat;
+}
+
+.jsTree .tree-classic li.open a {
+	background-image:url("folderopen.gif");
+}
+.jsTree .tree-classic li.closed a {
+	background-image:url("folder.gif");
+}
+.jsTree .tree-classic li.leaf a {
+	background-image:url("folder.gif");
+}
+
+.jsTree .tree-classic li a {
+	-moz-border-radius:0;
+}
+
+.jsTree .tree-classic li a:hover {
+	background-color:white;
+	border-color:white;
+}
+.jsTree .tree-classic li a.clicked,
+.jsTree .tree-classic li span.clicked {
+	background-color:navy;
+	border-color:navy;
+	color:white;
+}
+
+.rtl .tree-classic li.open {
+	background-position:right 5px;
+	margin-right:-3px;
+	padding-right:19px;
+}
+.rtl .tree-classic li.closed {
+	background-position:right 5px;
+	margin-right:-3px;
+	padding-right:19px;
+}
+.rtl .tree-classic #dragged li.open {
+	background-position: right 5px;
+}
