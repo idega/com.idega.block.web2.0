@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.63 2009/01/19 16:40:18 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.64 2009/01/21 10:27:44 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -50,10 +50,10 @@ import com.idega.util.StringUtil;
  * fancybox - lightbox, Mac style. http://fancy.klade.lv
  * CodeMirror - In-browser code editing made slightly less painful. http://marijn.haverbeke.nl/codemirror/
  * 
- * Last modified: $Date: 2009/01/19 16:40:18 $ by $Author: valdas $
+ * Last modified: $Date: 2009/01/21 10:27:44 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.63 $
+ * @version $Revision: 1.64 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -145,8 +145,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String HUMAN_MESAGES_LATEST_VERSION = Web2BusinessBean.HUMAN_MESAGES_1_0_VERSION;
 	public static final String HUMAN_MESAGES_1_0_VERSION = "1.0";
 	
-	public static final String JS_TREE_LATEST_VERSION = Web2BusinessBean.JS_TREE_0_8_1_VERSION;
+	public static final String JS_TREE_LATEST_VERSION = Web2BusinessBean.JS_TREE_0_9_5_VERSION;
 	public static final String JS_TREE_0_8_1_VERSION = "0.8.1";
+	public static final String JS_TREE_0_9_5_VERSION = "0.9.5";
 	public static final String JS_TREE_FILE = "tree_component";
 	
 	public static final String SEXY_LIGHT_BOX_LATEST_VERSION = Web2BusinessBean.SEXY_LIGHT_BOX_2_0_1_VERSION;
@@ -201,11 +202,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
 	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
-	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_2_6_VERSION;
+	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_3_VERSION;
 	public static final String JQUERY_UI_LATEST_VERSION = Web2BusinessBean.JQUERY_UI_1_5b_VERSION;
 	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
 	public static final String JQUERY_1_2_3_VERSION = "1.2.3";
 	public static final String JQUERY_1_2_6_VERSION = "1.2.6";
+	public static final String JQUERY_1_3_VERSION = "1.3";
 	public static final String JQUERY_UI_1_5b_VERSION = "1.5b";
 	
 	public static final String CONTROL_MODAL_JS_FILE_NAME = "control.modal.js";
@@ -1069,20 +1071,16 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	}
 
 	public List<String> getBundleURIsToJSTreeScriptFiles() {
-		return getBundleURIsToJSTreeScriptFiles(false, false, false, false);
+		return getBundleURIsToJSTreeScriptFiles(false, false, false);
 	}
 	
-	public List<String> getBundleURIsToJSTreeScriptFiles(boolean addStylesManager, boolean usesXmlDataTypes, boolean usesMetadataRules, boolean usesCookies) {
+	public List<String> getBundleURIsToJSTreeScriptFiles(boolean usesXmlDataTypes, boolean usesMetadataRules, boolean usesCookies) {
 		List<String> files = new ArrayList<String>();
 		
-		if (addStylesManager) {
-			files.add(new StringBuilder(getBundleURIWithinScriptsFolder(JS_TREE_FOLDER_NAME_PREFIX)).append(SLASH).append(JS_TREE_LATEST_VERSION).append(SLASH)
-						.append("js").append(SLASH).append("css.js").toString());
-		}
-		
 		files.add(getBundleURIToJQueryLib());
-		
 		files.add(getBundleURIToJQueryPlugin(JQueryPlugin.LISTEN));
+		files.add(new StringBuilder(getBundleURIWithinScriptsFolder(JS_TREE_FOLDER_NAME_PREFIX)).append(SLASH).append(JS_TREE_LATEST_VERSION).append(SLASH)
+						.append("js").append(SLASH).append("css.js").toString());
 		
 		files.add(new StringBuilder(getBundleURIWithinScriptsFolder(JS_TREE_FOLDER_NAME_PREFIX)).append(SLASH).append(JS_TREE_LATEST_VERSION).append(SLASH)
 						.append("js").append(SLASH).append(JS_TREE_FILE).append(".js").toString());
