@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.65 2009/01/21 13:27:19 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.66 2009/01/22 14:50:10 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -50,10 +50,10 @@ import com.idega.util.StringUtil;
  * fancybox - lightbox, Mac style. http://fancy.klade.lv
  * CodeMirror - In-browser code editing made slightly less painful. http://marijn.haverbeke.nl/codemirror/
  * 
- * Last modified: $Date: 2009/01/21 13:27:19 $ by $Author: valdas $
+ * Last modified: $Date: 2009/01/22 14:50:10 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.65 $
+ * @version $Revision: 1.66 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -202,7 +202,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
 	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
-	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_2_6_VERSION;	//JQUERY_1_3_VERSION;
+	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_3_VERSION;
 	public static final String JQUERY_UI_LATEST_VERSION = Web2BusinessBean.JQUERY_UI_1_5b_VERSION;
 	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
 	public static final String JQUERY_1_2_3_VERSION = "1.2.3";
