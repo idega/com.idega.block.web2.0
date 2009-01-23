@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 @Scope("singleton")
-@Service("idegaWebResourcePluginsResolver")
+@Service("iwResourcePluginsResolver")
 public class WebResourcePluginsResolver implements Map<String, String> {
 
 	@Autowired
