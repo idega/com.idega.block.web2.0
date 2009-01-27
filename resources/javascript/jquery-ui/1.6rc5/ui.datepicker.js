@@ -11,7 +11,7 @@
  *	ui.core.js
  */
 
-(function($) { // hide the namespace
+;(function($) { // hide the namespace
 
 $.extend($.ui, { datepicker: { version: "@VERSION" } });
 
