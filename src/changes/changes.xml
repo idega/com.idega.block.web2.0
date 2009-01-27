@@ -1,0 +1,67 @@
+    <document>
+  <properties>
+    <title>Web 2.0 changes</title>
+    <author email='tryggvi@idega.com'>Tryggvi Larusson</author>
+  </properties>
+  <body>
+  	<release date='2009-01-27' description='First 4.1.x Release' version='4.1.0'>
+          <action type='add' dev='tryggvil'>First 4.1.x Release</action>
+        </release>
+        <release date='2008-09-11' version='3.1.8'>
+      <action type='update' dev='alexis'>
+      	Added contextMenu
+      	Added jQuery
+      	Added moorainbow
+      	Added inlineEdit
+      </action>        
+    </release>
+    
+    <release date='2008-06-18' version='3.1.7'>
+      <action type='update' dev='gimmi'>
+      	Added tablesorter
+      </action>        
+    </release>
+    <release date='2007-05-29' version='3.1.6'>
+      <action type='update' dev='eiki'>
+      	Merged from platform 4, CodePress, Transcorners and Behaviour for mootools javascripts.
+      </action>        
+    </release>
+   	<release date='2007-05-11' version='3.1.5'>
+      <action type='update' dev='eiki'>
+      	Merged with most of platform 4 stuff except for accordion
+      </action>        
+    </release>
+   	<release date='2005-11-11' version='3.1.4'>
+      <action type='add' dev='laddi'>
+      	Added style classes for different states of accordion object and removed ugly default styles set in .js file.
+      </action>        
+    </release>
+   	<release date='2005-11-09' version='3.1.3'>
+      <action type='add' dev='gimmi'>
+      	the panels in the Accordion Object are now stored in a facet
+      </action>        
+    </release>   	
+   	<release date='2005-11-06' version='3.1.2'>
+      <action type='add' dev='gimmi'>
+      	Accordion object.
+      </action>        
+    </release>   	
+    <release date='2005-06-30' version='3.1.1'>
+      <action type='fix' dev='eiki'>
+      	Bugfix from HEAD. The version number for scriptaculous was wrong.
+      </action>        
+    </release>
+      <release date='2005-06-16' version='3.1.0'>
+      <action type='update' dev='tryggvil'>
+      	Declaration of version for including in ePlatform release 3.1
+      </action>
+      <action type='update' dev='tryggvil'>
+      	Web 2.0 module created which includes several javascript libraries such as
+      	Scriptaculous, Behaviour, Reflection and Prototype Lite.
+      </action>            
+    </release>
+
+
+  </body>
+</document>
+
