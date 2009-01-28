@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.67 2009/01/26 08:14:59 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.68 2009/01/28 16:42:47 eiki Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -50,10 +50,10 @@ import com.idega.util.StringUtil;
  * fancybox - lightbox, Mac style. http://fancy.klade.lv
  * CodeMirror - In-browser code editing made slightly less painful. http://marijn.haverbeke.nl/codemirror/
  * 
- * Last modified: $Date: 2009/01/26 08:14:59 $ by $Author: valdas $
+ * Last modified: $Date: 2009/01/28 16:42:47 $ by $Author: eiki $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.67 $
+ * @version $Revision: 1.68 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -1009,39 +1009,6 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public void addWebAppFilesToPage(IWContext iwc) {
 		PresentationUtil.addStyleSheetToHeader(iwc, getBundle().getResourcesVirtualPath() + "/WebApp/Design/Render.css");
 		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundle().getResourcesVirtualPath() + "/WebApp/Action/Logic.js");
-	}
-	
-	public void addMultiBoxToPage(IWContext iwc, String multiBoxStyleClassToActivate, String options, String multiBoxVarName,  boolean addMootools, boolean addOverlay){
-
-		if(multiBoxVarName == null || "".equals(multiBoxVarName)){
-			multiBoxVarName = "myMultiBox";
-		}
-		
-		
-		StringBuffer scriptLine = new StringBuffer();
-		scriptLine.append("var ").append(multiBoxVarName).append(" = {}; window.addEvent('domready', function(){ ").append(multiBoxVarName).append(" = ");
-		if(options!=null){
-			scriptLine.append("new MultiBox('").append(multiBoxVarName).append("', ").append(options).append(")});");
-		}
-		else{
-			scriptLine.append("new MultiBox('").append(multiBoxVarName).append("')});");
-		}
-		
-		List<String> scriptsUris = new ArrayList<String>();
-		if(addMootools){
-			scriptsUris.add(this.getBundleURIToMootoolsLib());
-		}
-		if(addOverlay){
-			scriptsUris.add(this.getBundleURIWithinScriptsFolder("multibox/overlay.js"));
-		}
-		
-		scriptsUris.add(this.getBundleURIWithinScriptsFolder("multibox/multibox.js"));
-		
-		PresentationUtil.addJavaScriptSourcesLinesToHeader(iwc, scriptsUris);			//	JavaScript
-		PresentationUtil.addStyleSheetToHeader(iwc, this.getBundleURIWithinScriptsFolder("multibox/multibox.css"));	//	
-		PresentationUtil.addJavaScriptActionToBody(iwc, scriptLine.toString());
-		
-		
 	}
 	
 	private String getBundleUriToHumanizedMessages(String version) {
