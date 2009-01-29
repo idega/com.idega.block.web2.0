@@ -50,7 +50,7 @@ function Datepicker() {
 		dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], // For formatting
 		dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], // For formatting
 		dayNamesMin: ['Su','Mo','Tu','We','Th','Fr','Sa'], // Column headings for days starting at Sunday
-		dateFormat: 'mm/dd/yy', // See format options on parseDate
+		dateFormat: 'm/d/y', // See format options on parseDate
 		firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
 		isRTL: false // True if right-to-left language, false if left-to-right
 	};
@@ -98,7 +98,9 @@ function Datepicker() {
 		altField: '', // Selector for an alternate field to store selected dates into
 		altFormat: '', // The date format to use for the alternate field
 		constrainInput: true, // The input is constrained by the current date format
-		showButtonPanel: false // True to show button panel, false to not show it
+		showButtonPanel: false, // True to show button panel, false to not show it
+		rangeSelect: false, // Allows for selecting a date range on one date picker
+		rangeSeparator: ' - ' // Text between two dates in a range
 	};
 	$.extend(this._defaults, this.regional['']);
 	this.dpDiv = $('<div id="' + this._mainDivId + '" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-helper-hidden-accessible"></div>');
@@ -647,6 +649,13 @@ $.extend(Datepicker.prototype, {
 		var inst = this._curInst;
 		if (!inst || (input && inst != $.data(input, PROP_NAME)))
 			return;
+			
+		var rangeSelect = inst.settings['rangeSelect'];
+		if (rangeSelect && inst.stayOpen) {
+			this._selectDate('#' + inst.id, this._formatDate(inst,
+				inst.currentDay, inst.currentMonth, inst.currentYear));
+		}
+		
 		if (inst.stayOpen)
 			this._selectDate('#' + inst.id, this._formatDate(inst,
 				inst.currentDay, inst.currentMonth, inst.currentYear));
@@ -760,6 +769,16 @@ $.extend(Datepicker.prototype, {
 			return;
 		}
 		var inst = this._getInst(target[0]);
+		
+		var rangeSelect = inst.settings['rangeSelect'];
+		if (rangeSelect) {
+			if (!inst.stayOpen) {
+				$('.ui-datepicker td').removeClass('ui-datepicker-current-day');
+				$(td).addClass('ui-datepicker-current-day');
+			}
+			inst.stayOpen = !inst.stayOpen;
+		}
+		
 		inst.selectedDay = inst.currentDay = $('a', td).html();
 		inst.selectedMonth = inst.currentMonth = month;
 		inst.selectedYear = inst.currentYear = year;
@@ -772,6 +791,17 @@ $.extend(Datepicker.prototype, {
 			inst.rangeStart = this._daylightSavingAdjust(
 				new Date(inst.currentYear, inst.currentMonth, inst.currentDay));
 			this._updateDatepicker(inst);
+		} else if (rangeSelect) {
+			inst.endDay = inst.currentDay;
+			inst.endMonth = inst.currentMonth;
+			inst.endYear = inst.currentYear;
+			inst.selectedDay = inst.currentDay = inst.rangeStart.getDate();
+			inst.selectedMonth = inst.currentMonth = inst.rangeStart.getMonth();
+			inst.selectedYear = inst.currentYear = inst.rangeStart.getFullYear();
+			inst.rangeStart = null;
+			if (inst.inline) {
+				this._updateDatepicker(inst);
+			}
 		}
 	},
 
@@ -789,12 +819,27 @@ $.extend(Datepicker.prototype, {
 		var target = $(id);
 		var inst = this._getInst(target[0]);
 		dateStr = (dateStr != null ? dateStr : this._formatDate(inst));
+		
+		if (inst.rangeStart) {
+			dateStr = this._formatDate(inst, inst.rangeStart.getDate(), inst.rangeStart.getMonth(), inst.rangeStart.getFullYear()) + inst.settings['rangeSeparator'] + dateStr;
+		}
+		
 		if (inst.input)
 			inst.input.val(dateStr);
 		this._updateAlternate(inst);
 		var onSelect = this._get(inst, 'onSelect');
-		if (onSelect)
-			onSelect.apply((inst.input ? inst.input[0] : null), [dateStr, inst]);  // trigger custom callback
+		if (onSelect) {
+			var canExecuteOnSelect = true;
+			
+			var rangeSelect = inst.settings['rangeSelect'];
+			if (rangeSelect && inst.rangeStart == null) {
+				canExecuteOnSelect = false;
+			}
+			
+			if (canExecuteOnSelect) {
+				onSelect.apply((inst.input ? inst.input[0] : null), [dateStr, inst]);  // trigger custom callback
+			}
+		}
 		else if (inst.input)
 			inst.input.trigger('change'); // fire the change event
 		if (inst.inline)
@@ -1137,7 +1182,7 @@ $.extend(Datepicker.prototype, {
 	/* Parse existing date and initialise date picker. */
 	_setDateFromField: function(inst) {
 		var dateFormat = this._get(inst, 'dateFormat');
-		var dates = inst.input ? inst.input.val() : null;
+		var dates = inst.input ? inst.input.val().split(inst.settings['rangeSeparator']) : null;		
 		inst.endDay = inst.endMonth = inst.endYear = null;
 		var date = defaultDate = this._getDefaultDate(inst);
 		var settings = this._getFormatConfig(inst);
