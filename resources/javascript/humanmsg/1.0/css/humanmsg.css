@@ -9,18 +9,18 @@ html, body {
 }
 
 .humanMsg {
-	font: normal 20px/50px Helvetica, Arial, Sans-Serif;
-	letter-spacing: -1px;
+	font: normal 20px/30px Helvetica, Arial, Sans-Serif !important;
+	letter-spacing: -1px !important;
 	position: fixed;
 	top: 130px;
 	left: 25%;
 	width: 50%;
-	color: white;
+	color: white !important;
 	background-color: black;
 	text-align: center; 
 	display: none;
 	opacity: 0;
-	z-index: 999999;
+	z-index: 100000;
 }
 
 .humanMsg .round {
@@ -32,6 +32,8 @@ html, body {
 .humanMsg p {
 	padding: .3em;
 	display: inline; 
+	font: normal 20px/30px Helvetica, Arial, Sans-Serif !important;
+	color: white !important;
 	}
 
 .humanMsg a {
