@@ -30,8 +30,7 @@ html, body {
 	}
 
 .humanMsg p {
-	padding: .3em;
-	display: inline; 
+	display: block; 
 	font: normal 20px/30px Helvetica, Arial, Sans-Serif !important;
 	color: white !important;
 	}
