@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.68 2009/01/28 16:42:47 eiki Exp $
+ * $Id: Web2BusinessBean.java,v 1.69 2009/02/02 17:29:17 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -50,10 +50,10 @@ import com.idega.util.StringUtil;
  * fancybox - lightbox, Mac style. http://fancy.klade.lv
  * CodeMirror - In-browser code editing made slightly less painful. http://marijn.haverbeke.nl/codemirror/
  * 
- * Last modified: $Date: 2009/01/28 16:42:47 $ by $Author: eiki $
+ * Last modified: $Date: 2009/02/02 17:29:17 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.68 $
+ * @version $Revision: 1.69 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -1189,5 +1189,24 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public String getBundleURIToCodeMirrorStyleFile(String styleFile) {
 		return new StringBuilder(getBundleURIWithinScriptsFolder(CODE_MIRROR_FOLDER_NAME_PREFIX)).append(SLASH).append(CODE_MIRROR_LATEST_VERSION).append(SLASH)
 		.append("css/").append(styleFile).toString();
+	}
+
+	public String getBundleUriToLinkLinksWithFilesScriptFile() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("linkslinker")).append(SLASH).append("1.0").append(SLASH).append("linkslinker.js").toString();
+	}
+	
+	public String getActionToLinkLinksWithFiles(String containerId, boolean executeOnLoad, boolean addStyleForNonFileLinks) {
+		String action = new StringBuilder("LinksLinker.linkLinks(").append(addStyleForNonFileLinks).append(", ")
+			.append(StringUtil.isEmpty(containerId) ? "null" : new StringBuilder("'").append(containerId).append("'").toString()).append(");").toString();
+		
+		if (executeOnLoad) {
+			action = new StringBuilder("jQuery(document).ready(function() {").append(action).append("});").toString();
+		}
+		
+		return action;
+	}
+
+	public String getBundleUriToLinkLinksWithFilesStyleFile() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("linkslinker")).append(SLASH).append("1.0").append(SLASH).append("linkslinker.css").toString();
 	}
 }

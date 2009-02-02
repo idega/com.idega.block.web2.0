@@ -1,0 +1,72 @@
+@CHARSET "UTF-8";
+		.PDF
+        {
+		    background-image:url(images/pdf.png);
+		    background-repeat:no-repeat;
+		    background-position:top left;
+		    padding-left:18px;
+		    padding-bottom:3px;
+        }
+        
+        .DOC
+        {
+		    background-image:url(images/doc.png);
+		    background-repeat:no-repeat;
+		    background-position:top left;
+		    padding-left:18px;
+		    padding-bottom:3px;
+        }
+        
+        .TXT
+        {
+		    background-image:url(images/txt.png);
+		    background-repeat:no-repeat;
+		    background-position:top left;
+		    padding-left:18px;
+		    padding-bottom:3px;
+        }
+        
+        .XLS
+        {
+		    background-image:url(images/xls.png);
+		    background-repeat:no-repeat;
+		    background-position:top left;
+		    padding-left:18px;
+		    padding-bottom:3px;
+        }
+        
+        .PPT
+        {
+		    background-image:url(images/ppt.png);
+		    background-repeat:no-repeat;
+		    background-position:top left;
+		    padding-left:18px;
+		    padding-bottom:3px;
+        }
+        
+        .Image
+        {
+		    background-image:url(images/picture.png);
+		    background-repeat:no-repeat;
+		    background-position:top left;
+		    padding-left:18px;
+		    padding-bottom:3px;
+        }
+        
+        .ExternalLink
+        {
+		    background-image:url(images/world_link.png);
+		    background-repeat:no-repeat;
+		    background-position:top left;
+		    padding-left:18px;
+		    padding-bottom:3px;
+        }
+        
+        .Mail
+        {
+		    background-image:url(images/email_link.png);
+		    background-repeat:no-repeat;
+		    background-position:top left;
+		    padding-left:18px;
+		    padding-bottom:3px;  
+        }
