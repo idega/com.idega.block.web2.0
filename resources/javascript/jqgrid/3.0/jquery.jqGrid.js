@@ -73,7 +73,8 @@ JQGridParams.prototype = {
     rightsChanger: false,
     downloadDocument: true,
     allowPDFSigning: true,
-    identifier: null
+    identifier: null,
+    callbackAfterInserted: null
 };
 
 JQGrid.prototype.createGrid = function(tblSelector, params) {
@@ -100,7 +101,8 @@ JQGrid.prototype.createGrid = function(tblSelector, params) {
             rightsChanger: params.rightsChanger,
             downloadDocument: params.downloadDocument,
             allowPDFSigning: params.allowPDFSigning,
-            identifier: params.identifier
+            identifier: params.identifier,
+            callbackAfterInserted: params.callbackAfterInserted
         });
         
         return this.grid;

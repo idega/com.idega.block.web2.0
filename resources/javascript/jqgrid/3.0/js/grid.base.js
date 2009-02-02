@@ -544,6 +544,11 @@ jQuery.fn.jqGrid = function( p ) {
                                     	if (xml != null) {
                                     		addXmlData(xml, ts.grid.bDiv);
                                     	}
+                                    	
+                                    	if (ts.p.callbackAfterInserted) {
+                                    		ts.p.callbackAfterInserted();
+                                    	}
+                                    	
                                     	if (loadComplete) loadComplete();
                                     }
                                 );
