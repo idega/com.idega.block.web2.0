@@ -6,7 +6,8 @@ LinksLinker.linkers = [
 	{linker: ['txt'], css: 'TXT'},
 	{linker: ['xls'], css: 'XLS'},
 	{linker: ['ppt'], css: 'PPT'},
-	{linker: ['jpg', 'jpeg', 'png', 'gif'], css: 'Image'}
+	{linker: ['jpg', 'jpeg', 'png', 'gif'], css: 'Image'},
+	{linker: [], css: 'UnkownFileLinker'}	//	Keep it last always!
 ];
 
 LinksLinker.linkLinks = function(addStyleForNonFileLinks, containerId) {
@@ -28,6 +29,11 @@ LinksLinker.linkLinks = function(addStyleForNonFileLinks, containerId) {
 			for (var i = 0; (i < LinksLinker.linkers.length && !addedLinker); i++) {
 				addedLinker = LinksLinker.linkTag(tag, LinksLinker.linkers[i]);
 			}
+			
+			if (!addedLinker && containerId != null) {
+				tag.addClass(LinksLinker.linkers[LinksLinker.linkers.length - 1].css);
+				tag.addClass('linkedWithLinker');
+			}
 		}
 	});
 	
@@ -36,7 +42,7 @@ LinksLinker.linkLinks = function(addStyleForNonFileLinks, containerId) {
 LinksLinker.linkTag = function(tag, link) {
 	var checker = null;
 	for (var i = 0; i < link.linker.length; i++) {
-		checker = link.linker[i];
+		checker = '.' + link.linker[i];
 		if (tag.attr('rel').toLowerCase().indexOf(checker) != -1 || tag.attr('href').toLowerCase().indexOf(checker) != -1) {
 			tag.addClass(link.css);
 			tag.addClass('linkedWithLinker');

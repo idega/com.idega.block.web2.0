@@ -53,6 +53,14 @@
 		    padding-bottom:3px;
         }
         
+        .UnkownFileLinker {
+        	background-image:url(images/unknown.png);
+		    background-repeat:no-repeat;
+		    background-position:top left;
+		    padding-left:18px;
+		    padding-bottom:3px;
+        }
+        
         .ExternalLink
         {
 		    background-image:url(images/world_link.png);
