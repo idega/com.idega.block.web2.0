@@ -4,7 +4,7 @@ body{margin:0;color:#000;background-color:black}
 img{border:0}
 a[rel=action],a[rel=back]{display:none}
 #WebApp{position:relative;overflow:hidden;width:100%;background:#c5ccd4 url(Img/bg.gif);min-height:100%}
-#iGroup{position:relative;overflow:hidden;}
+#iGroup{position:relative;overflow:hidden}
 .iLayer{float:left;display:none;overflow:hidden}
 .iItem{display:none}
 .__lay{background-color:#fff}
@@ -141,5 +141,3 @@ li.iRadio a label{display:none}
 *[dir=rtl] .iMenu .iShop li:last-child img.iFull{-webkit-border-bottom-right-radius:9px}
 #iPL{display:none;background: url(Img/select.gif),url(Img/chevron-select.png),url(Img/loader.gif),url(Img/loader-select.gif),url(Img/check-sel.png)}
 *[dir=rtl] #iPL{background: url(Img/select.gif),url(Img/rtl-chevron-select.png),url(Img/rtl-loader.gif),url(Img/rtl-loader-select.gif),url(Img/rtl-check-sel.png)}
-em.red{color:#f00;}
-em.green{color:#0f0;}
