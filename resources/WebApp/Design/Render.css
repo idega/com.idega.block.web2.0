@@ -50,7 +50,7 @@ li.iRadio span{margin-right:23px}
 .iMenu li:last-child,.iMenu li:last-child a,.iPanel li:last-child,.iPanel li:last-child a{-webkit-border-bottom-right-radius:8px;-webkit-border-bottom-left-radius:8px}
 .iLoader,#iLoader{display:none;color:#2f343c;font-size:15px;font-weight:bold;text-shadow:#fff 0 1px 0;line-height:20px;text-align:center}
 .iLoader:before,#iLoader:before{content:url(Img/loader-page.gif);vertical-align:middle;margin-right:5px}
-#iLoader{padding-top:138px;display:block}
+.iLoader,#iLoader{padding-top:138px;display:block}
 .iBlock{margin:9px 9px 20px}
 .iBlock p,.iBlock div p{margin:8px;font-size:14px;line-height:18px;font-weight:normal}
 .iBlock p{padding:8px;margin:10px 0 0}
