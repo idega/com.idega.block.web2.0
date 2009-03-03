@@ -54,8 +54,8 @@ dojo.widget.defineWidget(
                 this.checked = !this.checked;
                 this.inputNode.checked = this.checked;
 
-                DWREngine.setOrdered(true);
-                DWREngine.setErrorHandler(handleExceptions);
+                dwr.engine.setOrdered(true);
+                dwr.engine.setErrorHandler(handleExceptions);
                 var sessionKey = document.getElementById("chibaSessionKey").value;
                 Flux.setXFormsValue(updateUI,  this.widgetId.substring(0,this.widgetId.length - 6), this.checked,sessionKey);
             }else{
