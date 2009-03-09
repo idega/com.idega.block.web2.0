@@ -17,7 +17,7 @@ USAGE:
 	$.extend({
 		progressBar: new function() {
 
-			var baseResourcesPath = '/idegaweb/bundles/com.idega.block.web2.0/resources/javascript/jquery-plugins';
+			var baseResourcesPath = '/idegaweb/bundles/com.idega.block.web2.0.bundle/resources/javascript/jquery-plugins';
 			this.defaults = {
 				increment	: 2,
 				speed		: 15,
