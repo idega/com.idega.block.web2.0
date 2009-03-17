@@ -1,0 +1,31 @@
+ *[dir=rtl] .iList ul li a.iSide{left:0;right:auto}
+*[dir=rtl] .iList ul li a.iSide{left:0;right:auto}
+*[dir=rtl] .iMenu li img{float:right;margin:-4px 0 -5px 11px}
+*[dir=rtl] .iMenu li span,*[dir=rtl] .iPanel li span,*[dir=rtl] .iPanel b.iToggle,*[dir=rtl] .iPanel b.iToggleOn,*[dir=rtl] .iPanel label + input[type]{float:left}
+*[dir=rtl] .iMore.__lod a:before{content:url(Img/rtl-loader.gif)}
+*[dir=rtl] ul.iArrow li.__lod:not(.iMore) a{background-image:url(Img/rtl-loader.gif)}
+*[dir=rtl] ul.iArrow li.__sel.__lod a{background-image:url(Img/rtl-loader-select.gif)}
+*[dir=rtl] .iMenu ul.iArrow a{padding:inherit;padding-left:31px}
+*[dir=rtl] li.iRadio span{margin-left:23px;margin-right:0}
+*[dir=rtl] ul.iArrow li em,*[dir=rtl] ul.iArrow li small{margin-left:23px;margin-right:0}
+*[dir=rtl] ul.iArrow li a[rev~=media]{background-image:url(Img/rtl-bullet-media.png) !important}
+*[dir=rtl] ul.iArrow li:not(.iMore) a,*[dir=rtl] li.iRadio a{background-image:url(Img/rtl-chevron.png);background-position:left center}
+*[dir=rtl] li.iRadio.__sel a,*[dir=rtl] ul.iArrow li.__sel a{background-image:url(Img/rtl-chevron-select.png)}
+*[dir=rtl] #waBackButton:active{-webkit-border-image: url(Img/rtl-button-back-touch.png) 0 10 0 15}
+*[dir=rtl] #waBackButton{border-width:0 15px 0 10px;-webkit-border-image: url(Img/rtl-button-back.png) 0 15 0 10;-webkit-border-radius:4px;-webkit-border-top-right-radius:22px;-webkit-border-bottom-right-radius:22px}
+*[dir=rtl] #waHomeButton,*[dir=rtl] #waRightButton,*[dir=rtl] .iRightButton{left:4px;right:auto}
+*[dir=rtl] #waBackButton,*[dir=rtl] #waLeftButton,*[dir=rtl] .iLeftButton{right:4px;left:auto}
+*[dir=rtl] .iList li img{float:right;margin:-3px 0 0 10px}
+*[dir=rtl] .iCheck li.__act.__sel a{background:url(Img/rtl-check-sel.png) left center no-repeat}
+*[dir=rtl] .iCheck li.__act a{background:url(Img/rtl-check.png) left center no-repeat}
+*[dir=rtl] .iCheck li.__act.__dis a{background-image:url(Img/rtl-check-dis.png)}
+*[dir=rtl] .iLayer{float:right}
+*[dir=rtl] .iLoader:before,*[dir=rtl] #iLoader:before{vertical-align:middle;margin-left:5px;margin-right:0}
+*[dir=rtl] .iShop li img.iFull{margin:-11px -8px -12px 6px}
+*[dir=rtl] .iList .iShop li img.iFull{margin:-10px -10px 0 6px}
+*[dir=rtl] .iList .iShop li:not(.iMore) a{padding-left:31px;padding-right:inherit}
+*[dir=rtl] .iMenu .iShop li img.iFull{margin:-11px -8px -12px 6px}
+*[dir=rtl] .iMenu .iShop li img.iFull{-webkit-border-radius:0}
+*[dir=rtl] .iMenu .iShop li:first-child img.iFull{-webkit-border-top-right-radius:9px}
+*[dir=rtl] .iMenu .iShop li:last-child img.iFull{-webkit-border-bottom-right-radius:9px}
+*[dir=rtl] #iPL{background: url(Img/select.gif),url(Img/rtl-chevron-select.png),url(Img/rtl-loader.gif),url(Img/rtl-loader-select.gif),url(Img/rtl-check-sel.png)}
