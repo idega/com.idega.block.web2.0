@@ -15,7 +15,7 @@ li.iRadio.__sel,
 
 /* List right text */
 
-.iMenu li span,
+.iMenu li:not(.iMore) span,
 .iPanel li span {
 	color:#f80;
 }
