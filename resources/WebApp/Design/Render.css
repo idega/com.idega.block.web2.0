@@ -50,8 +50,8 @@ li.iRadio span{margin-right:23px}
 .iMenu li:last-child,.iMenu li:last-child a,.iPanel li:last-child,.iPanel li:last-child a{-webkit-border-bottom-right-radius:8px;-webkit-border-bottom-left-radius:8px}
 .iLoader{display:none}
 .iLoader,#iLoader{color:#2f343c;font-size:15px;font-weight:bold;text-shadow:#fff 0 1px 0;line-height:15px;text-align:center;position:absolute;top:0;bottom:0;width:100%;z-index:100}
-#iLoader{margin-top:50%}
-#iLoader span:first-child{padding-right:6px;padding-left:28px;background:url(Img/loader-gray-100x12x1.png) left center no-repeat;line-height:20px}
+.iLoader,#iLoader{top:50px}
+.iLoader span:first-child,#iLoader span:first-child{padding-right:6px;padding-left:28px;background:url(Img/loader-page.gif) left center no-repeat;line-height:20px}
 .iBlock div,.iBlock p{border-width: 1px;border-style:solid;border-color:#a9acaf;-webkit-border-radius:8px;background-color:#fff}
 .iBlock{margin:9px 9px 20px}
 .iBlock p,.iBlock div p{margin:8px;font-size:14px;line-height:18px;font-weight:normal}
