@@ -16,7 +16,7 @@
  *
  */
  
-(function(jQuery) {
+;(function(jQuery) {
 		  
 	var self = null;
  
