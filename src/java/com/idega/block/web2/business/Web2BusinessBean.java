@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.71 2009/03/09 14:37:52 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.72 2009/04/02 14:25:27 laddi Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -50,10 +50,10 @@ import com.idega.util.StringUtil;
  * fancybox - lightbox, Mac style. http://fancy.klade.lv
  * CodeMirror - In-browser code editing made slightly less painful. http://marijn.haverbeke.nl/codemirror/
  * 
- * Last modified: $Date: 2009/03/09 14:37:52 $ by $Author: valdas $
+ * Last modified: $Date: 2009/04/02 14:25:27 $ by $Author: laddi $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.71 $
+ * @version $Revision: 1.72 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -1009,6 +1009,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public void addWebAppFilesToPage(IWContext iwc) {
 		PresentationUtil.addStyleSheetToHeader(iwc, getBundle().getResourcesVirtualPath() + "/WebApp/Design/Render.css");
+		if (iwc.isMozilla()) {
+			PresentationUtil.addStyleSheetToHeader(iwc, getBundle().getResourcesVirtualPath() + "/WebApp/Design/Firefox.css");
+		}
 		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundle().getResourcesVirtualPath() + "/WebApp/Action/Logic.js");
 	}
 	
