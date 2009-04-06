@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.72 2009/04/02 14:25:27 laddi Exp $
+ * $Id: Web2BusinessBean.java,v 1.73 2009/04/06 14:49:00 civilis Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.apache.myfaces.renderkit.html.util.AddResource;
 import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -50,10 +51,10 @@ import com.idega.util.StringUtil;
  * fancybox - lightbox, Mac style. http://fancy.klade.lv
  * CodeMirror - In-browser code editing made slightly less painful. http://marijn.haverbeke.nl/codemirror/
  * 
- * Last modified: $Date: 2009/04/02 14:25:27 $ by $Author: laddi $
+ * Last modified: $Date: 2009/04/06 14:49:00 $ by $Author: civilis $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.72 $
+ * @version $Revision: 1.73 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -283,6 +284,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	private String smoothboxScriptFilePath = null;
 	private String smoothboxStyleFilePath = null;
+	
+	@Autowired
+	private JQuery jQuery;
 	
 	/**
 	 * 
@@ -1213,4 +1217,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public String getBundleUriToLinkLinksWithFilesStyleFile() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder("linkslinker")).append(SLASH).append("1.0").append(SLASH).append("linkslinker.css").toString();
 	}
+
+	public JQuery getJQuery() {
+    	return jQuery;
+    }
 }
