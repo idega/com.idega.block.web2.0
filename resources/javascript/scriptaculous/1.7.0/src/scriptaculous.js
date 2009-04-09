@@ -33,6 +33,34 @@ var Scriptaculous = {
   requireMultiple: function(libraries) {
     LazyLoader.loadMultiple(libraries, null);
   },
+  getLibraries: function() {
+  	var libraries = new Array();
+    
+  	if (IdegaResourcesHandler == null || IdegaResourcesHandler.length == 0) {
+		$A(document.getElementsByTagName("script")).findAll( function(s) {
+			return (s.src && s.src.match(/scriptaculous\.js(\?.*)?$/))
+		}).each( function(s) {
+			var path = s.src.replace(/scriptaculous\.js(\?.*)?$/,'');
+			var includes = s.src.match(/\?.*load=([a-z,]*)/);
+			(includes ? includes[1] : 'builder,effects,dragdrop,controls,slider').split(',').each(
+				function(include) { libraries.push(path+include+'.js') });
+    	});
+	} else {
+		var scriptaculousPath = null;
+		for (var i = 0; (i < IdegaResourcesHandler.length && scriptaculousPath == null); i++) {
+			scriptaculousPath = IdegaResourcesHandler[i];
+			
+			if (scriptaculousPath.indexOf('scriptaculous.js') == -1) {
+				scriptaculousPath = null;
+			}
+		}
+		if (scriptaculousPath != null) {
+			var path = scriptaculousPath.replace(/scriptaculous\.js(\?.*)?$/,'');
+			'builder,effects,dragdrop,controls,slider'.split(',').each(function(include) { libraries.push(path+include+'.js'); });
+		}
+	}
+  	return libraries;
+  },
   load: function() {
     if((typeof Prototype=='undefined') || 
        (typeof Element == 'undefined') || 
@@ -41,16 +69,7 @@ var Scriptaculous = {
                   Prototype.Version.split(".")[1]) < 1.5)
        throw("script.aculo.us requires the Prototype JavaScript framework >= 1.5.0");
     
-    var libraries = new Array();
-    $A(document.getElementsByTagName("script")).findAll( function(s) {
-      return (s.src && s.src.match(/scriptaculous\.js(\?.*)?$/))
-    }).each( function(s) {
-      var path = s.src.replace(/scriptaculous\.js(\?.*)?$/,'');
-      var includes = s.src.match(/\?.*load=([a-z,]*)/);
-      (includes ? includes[1] : 'builder,effects,dragdrop,controls,slider').split(',').each(
-       function(include) { libraries.push(path+include+'.js') });
-    });
-    Scriptaculous.requireMultiple(libraries);
+    Scriptaculous.requireMultiple(Scriptaculous.getLibraries());
   }
 }
 
