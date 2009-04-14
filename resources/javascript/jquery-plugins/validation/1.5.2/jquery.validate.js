@@ -6,14 +6,14 @@
  *
  * Copyright (c) 2006 - 2008 Jörn Zaefferer
  *
- * $Id: jquery.validate.js,v 1.1 2009/04/06 14:49:40 civilis Exp $
+ * $Id: jquery.validate.js,v 1.2 2009/04/14 14:04:53 valdas Exp $
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  */
 
-(function($) {
+;(function($) {
 
 $.extend($.fn, {
 	// http://docs.jquery.com/Plugins/Validation/validate
