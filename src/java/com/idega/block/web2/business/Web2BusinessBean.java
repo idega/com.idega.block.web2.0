@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.73 2009/04/06 14:49:00 civilis Exp $
+ * $Id: Web2BusinessBean.java,v 1.74 2009/04/17 10:47:05 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -51,10 +51,10 @@ import com.idega.util.StringUtil;
  * fancybox - lightbox, Mac style. http://fancy.klade.lv
  * CodeMirror - In-browser code editing made slightly less painful. http://marijn.haverbeke.nl/codemirror/
  * 
- * Last modified: $Date: 2009/04/06 14:49:00 $ by $Author: civilis $
+ * Last modified: $Date: 2009/04/17 10:47:05 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.73 $
+ * @version $Revision: 1.74 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -156,6 +156,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public static final String FANCY_BOX_LATEST_VERSION = Web2BusinessBean.FANCY_BOX_1_0_VERSION;
 	public static final String FANCY_BOX_1_0_VERSION = "1.0";
+	public static final String FANCY_BOX_1_2_1_VERSION = "1.2.1";
 	
 	public static final String CODE_MIRROR_LATEST_VERSION = Web2BusinessBean.CODE_MIRROR_0_6_VERSION;
 	public static final String CODE_MIRROR_0_6_VERSION = "0.6";
@@ -1167,16 +1168,29 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	}
 
 	public String getBundleURIToFancyBoxStyleFile() {
-		return new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(FANCY_BOX_LATEST_VERSION).append(SLASH)
-			.append(FANCY_BOX_FOLDER_NAME_PREFIX).append(".css").toString();
+		return getBundleURIToFancyBoxStyleFile(FANCY_BOX_LATEST_VERSION);
+	}
+	
+	public String getBundleURIToFancyBoxStyleFile(String version) {
+		return new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(version).append(SLASH)
+		.append(FANCY_BOX_FOLDER_NAME_PREFIX).append(".css").toString();
 	}
 
 	public List<String> getBundleURIsToFancyBoxScriptFiles() {
+		return getBundleURIsToFancyBoxScriptFiles(FANCY_BOX_LATEST_VERSION);
+	}
+	
+	public List<String> getBundleURIsToFancyBoxScriptFiles(String version) {
 		List<String> scripts = new ArrayList<String>();
-		scripts.add(new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(FANCY_BOX_LATEST_VERSION).append(SLASH)
+		scripts.add(new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(version).append(SLASH)
 					.append(FANCY_BOX_FOLDER_NAME_PREFIX).append(".js").toString());
-		scripts.add(new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(FANCY_BOX_LATEST_VERSION).append(SLASH)
+		if (version.equals(FANCY_BOX_1_0_VERSION)) {
+			scripts.add(new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(version).append(SLASH)
 					.append(FANCY_BOX_FOLDER_NAME_PREFIX).append("PngFix.js").toString());
+		}
+		if (version.equals(FANCY_BOX_1_2_1_VERSION)) {
+			scripts.add(getBundleURIToJQueryPlugin(JQueryPlugin.EASING));
+		}
 		return scripts;
 	}
 
