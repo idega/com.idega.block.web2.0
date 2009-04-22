@@ -35,7 +35,7 @@ var humanMsg = {
 		)
 	},
 
-	displayMsg: function(msg) {
+	displayMsg: function(msg, properties) {
 		if (msg == '')
 			return;
 
@@ -65,6 +65,11 @@ var humanMsg = {
 			}
 		);
 
+		var timeOut = 5000;
+		if (properties && properties.timeout) {
+			timeOut = properties.timeout;
+		}
+
 		// Watch for mouse & keyboard in .5s
 		humanMsg.t1 = setTimeout(function() {
 			humanMsg.bindEvents();
@@ -72,7 +77,12 @@ var humanMsg = {
 		// Remove message after 5s
 		humanMsg.t2 = setTimeout(function() {
 			humanMsg.removeMsg();
-		}, 5000);
+			
+			if (properties && properties.callback) {
+				properties.callback();
+			}
+			
+		}, timeOut);
 	},
 
 	bindEvents: function() {
