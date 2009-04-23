@@ -301,7 +301,7 @@ jQuery.fn.jqGrid = function( p ) {
 			if(tmp) { tmp["id"] = rowid; if(extraparam) jQuery.extend(tmp,extraparam);}
 			if(!theT.grid.hDiv.loading) {
 				theT.grid.hDiv.loading = true;
-				jQuery("div.loading",theT.grid.hDiv).fadeIn("fast");
+				jQuery("div.loading",theT.grid.hDiv).show("fast");
 				jQuery.post(url,tmp,function(res,stat){
 					if (stat === "success"){
 						if( typeof succesfunc === "function") res = succesfunc(res);
@@ -334,7 +334,7 @@ jQuery.fn.jqGrid = function( p ) {
 					} else {alert("Error Row: "+rowid+" Result: " +res+" Status: "+stat)}				
 				});
 				theT.grid.hDiv.loading = false;
-				jQuery("div.loading",theT.grid.hDiv).fadeOut("fast");
+				jQuery("div.loading",theT.grid.hDiv).hide("fast");
 				jQuery("#"+rowid,theT.grid.bDiv).unbind("keydown");
 			}
 		}
@@ -597,7 +597,7 @@ jQuery.fn.jqGrid = function( p ) {
 		  	if(ts.p.rowheight) jQuery(grid.bDiv).css({height:rowh+2+'px'});
 		 	if( ts.p.altRows === true ) { jQuery("tbody tr:odd", t).addClass("alt"); }
 			grid.hDiv.loading = false;
-			jQuery("div.loading",grid.hDiv).fadeOut("fast");
+			jQuery("div.loading",grid.hDiv).hide("fast");
 			updatepager();
 			return false;
 		}
@@ -645,7 +645,7 @@ jQuery.fn.jqGrid = function( p ) {
 		  	if(ts.p.rowheight) jQuery(grid.bDiv).css({height:rowh+2+'px'});
 		 	if( ts.p.altRows === true ) { jQuery("tbody tr:odd", t).addClass("alt"); }
 			grid.hDiv.loading = false;
-			jQuery("div.loading",grid.hDiv).fadeOut("fast");
+			jQuery("div.loading",grid.hDiv).hide("fast");
 			updatepager();
 			return false;
 		}
@@ -661,7 +661,7 @@ jQuery.fn.jqGrid = function( p ) {
 		var populate = function () {
 			if(!grid.hDiv.loading) {
 				grid.hDiv.loading = true;
-				jQuery("div.loading",grid.hDiv).fadeIn("fast");
+				jQuery("div.loading",grid.hDiv).show("fast");
                 
                 switch(ts.p.datatype) {
                     case "json":
@@ -733,7 +733,7 @@ jQuery.fn.jqGrid = function( p ) {
 			else if(!isMSIE){ resizeFirstRow(grid.bDiv);ts.scrollLeft = ts.scrollLeft;}
 			ts.scrollTop = 0;
 			grid.hDiv.loading = false;
-			jQuery("div.loading",grid.hDiv).fadeOut("fast");
+			jQuery("div.loading",grid.hDiv).hide("fast");
 		}
 		var populatesubgrid = function( rd ) {
 			var res,sid,dp;
@@ -747,7 +747,7 @@ jQuery.fn.jqGrid = function( p ) {
 							dp[ts.p.colModel[i].name]= jQuery("td:eq("+i+")",rd).text().replace(/\&nbsp\;/ig,'');
 			if(!grid.hDiv.loading) {
 				grid.hDiv.loading = true;
-				jQuery("div.loading",grid.hDiv).fadeIn("fast");
+				jQuery("div.loading",grid.hDiv).show("fast");
 				switch(ts.p.datatype) {
 					case "xml":
 					
@@ -838,7 +838,7 @@ jQuery.fn.jqGrid = function( p ) {
         		result += jQuery(dummy).html();
         		sjxml = null
         		grid.hDiv.loading = false;
-        		jQuery("div.loading",grid.hDiv).fadeOut("fast");
+        		jQuery("div.loading",grid.hDiv).hide("fast");
       		}
       		return result;
     	}
