@@ -321,7 +321,7 @@ $.navigator = {
                     } else {
             			if(!p.processing) {
             				p.processing = true;
-                            $("div.loading","#"+IDs.themodal).fadeIn("fast");
+                            $("div.loading","#"+IDs.themodal).show("fast");
             				$(this).attr("disabled",true);
                             // we add to pos data array the action - the name is oper
                             postdata.oper = postdata.id == "_empty" ? "add" : "edit";
@@ -389,7 +389,7 @@ $.navigator = {
                                     }
                                     p.processing=false;
                                     $("#sData", "#"+frmtb).attr("disabled",false);
-                                    $("div.loading","#"+IDs.themodal).fadeOut("fast");
+                                    $("div.loading","#"+IDs.themodal).hide("fast");
                                 }
                             });
                         }                    
@@ -621,7 +621,7 @@ $.navigator = {
                     } else {
                 		if(!p.processing) {
                 			p.processing = true;
-                            $("div.loading","#"+IDs.themodal).fadeIn("fast");
+                            $("div.loading","#"+IDs.themodal).show("fast");
                 			$(this).attr("disabled",true);
                             $.ajax({
                                 url:url,
@@ -655,7 +655,7 @@ $.navigator = {
                                     }
                                     p.processing=false;
                                     $("#dData", "#"+dtbl).attr("disabled",false);
-                                    $("div.loading","#"+IDs.themodal).fadeOut("fast");
+                                    $("div.loading","#"+IDs.themodal).hide("fast");
                                     if(ret[0]) $("#"+IDs.themodal).jqmHide();                                
                                 }
                             });

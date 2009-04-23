@@ -53,7 +53,7 @@ jQuery.fn.addSubGrid = function(t,row,pos) {
 							dp[ts.p.colModel[i].name]= jQuery("td:eq("+i+")",rd).text().replace(/\&nbsp\;/ig,'');
 			if(!ts.grid.hDiv.loading) {
 				ts.grid.hDiv.loading = true;
-				jQuery("div.loading",ts.grid.hDiv).fadeIn("fast");
+				jQuery("div.loading",ts.grid.hDiv).show("fast");
 				switch(ts.p.datatype) {
 					case "xml":
 					
@@ -150,7 +150,7 @@ jQuery.fn.addSubGrid = function(t,row,pos) {
 				jQuery("#"+pID+sbid).append(jQuery(dummy).html());
 		   		sjxml = null;
 		   		ts.grid.hDiv.loading = false;
-		   		jQuery("div.loading",ts.grid.hDiv).fadeOut("fast");
+		   		jQuery("div.loading",ts.grid.hDiv).hide("fast");
 			}
 			return false;
 		}

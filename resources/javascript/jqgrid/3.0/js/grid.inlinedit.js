@@ -119,7 +119,7 @@ $.editMethods = {
 			if(tmp) { tmp["id"] = rowid; if(extraparam) $.extend(tmp,extraparam);}
 			if(!$t.grid.hDiv.loading) {
 				$t.grid.hDiv.loading = true;
-				$("div.loading",$t.grid.hDiv).fadeIn("fast");
+				$("div.loading",$t.grid.hDiv).show("fast");
 				$.post(url,tmp,function(res,stat){
 					if (stat === "success"){
 						var ret;
@@ -156,7 +156,7 @@ $.editMethods = {
 					} else {alert("Error Row: "+rowid+" Result: " +res+" Status: "+stat)}				
 				});
 				$t.grid.hDiv.loading = false;
-				$("div.loading",$t.grid.hDiv).fadeOut("fast");
+				$("div.loading",$t.grid.hDiv).hide("fast");
 				$("#"+rowid,$t.grid.bDiv).unbind("keydown");
 			}
 		}

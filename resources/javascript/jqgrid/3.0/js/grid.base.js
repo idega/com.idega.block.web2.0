@@ -441,7 +441,7 @@ jQuery.fn.jqGrid = function( p ) {
 		  	if(ts.p.rowheight) jQuery(grid.bDiv).css({height:rowh+2+'px'});
 		 	if( ts.p.altRows === true ) { jQuery("tbody tr:odd", t).addClass("alt"); }
 			grid.hDiv.loading = false;
-			jQuery("div.loading",grid.hDiv).fadeOut("fast");
+			jQuery("div.loading",grid.hDiv).hide("fast");
 			updatepager();
 			return false;
 		};
@@ -487,7 +487,7 @@ jQuery.fn.jqGrid = function( p ) {
 		  	if(ts.p.rowheight) jQuery(grid.bDiv).css({height:rowh+2+'px'});
 		 	if( ts.p.altRows === true ) { jQuery("tbody tr:odd", t).addClass("alt"); }
 			grid.hDiv.loading = false;
-			jQuery("div.loading",grid.hDiv).fadeOut("fast");
+			jQuery("div.loading",grid.hDiv).hide("fast");
 			updatepager();
 			return false;
 		};
@@ -517,7 +517,6 @@ jQuery.fn.jqGrid = function( p ) {
 		var populate = function () {
 			if(!grid.hDiv.loading) {
 				grid.hDiv.loading = true;
-				jQuery("div.loading",grid.hDiv).fadeIn("fast");
 				var gdata = {page: ts.p.page, rows: ts.p.rowNum, sidx: ts.p.sortname, sord:ts.p.sortorder, _nd: (new Date().getTime()), _search:ts.p.search};
 				if (ts.p.search ===true) gdata =jQuery.extend(gdata,ts.p.searchdata);
 				switch(ts.p.datatype)
@@ -647,7 +646,7 @@ jQuery.fn.jqGrid = function( p ) {
 			}
 			ts.scrollTop = 0;
 			ts.grid.hDiv.loading = false;
-			jQuery("div.loading",ts.grid.hDiv).fadeOut("fast");
+			jQuery("div.loading",ts.grid.hDiv).hide("fast");
 		};
 		var parseDate = function(format, date) { //so only numbers for now
 			var tsp = {m : 1, d : 1, y : 1970, h : 0, i : 0, s : 0};
@@ -974,15 +973,15 @@ jQuery.fn.jqGrid = function( p ) {
 			jQuery(grid.cDiv,ts).show().width(grid.width).css("text-align","center");
 			if(ts.p.hidegrid==true) {
 				jQuery(".HeaderButton",grid.cDiv).toggle( function(){
-					if(ts.p.pager) jQuery(ts.p.pager).fadeOut("slow");
-					jQuery(grid.bDiv,ts).fadeOut("slow");
-					jQuery(grid.hDiv,ts).fadeOut("slow");
+					if(ts.p.pager) jQuery(ts.p.pager).hide("slow");
+					jQuery(grid.bDiv,ts).hide("slow");
+					jQuery(grid.hDiv,ts).hide("slow");
 					jQuery("img",this).attr("src",ts.p.imgpath+"down.gif");
 					},
 					function() {
-					jQuery(grid.hDiv,ts).fadeIn("slow");
-					jQuery(grid.bDiv,ts).fadeIn("slow");
-					if(ts.p.pager) jQuery(ts.p.pager).fadeIn("slow");
+					jQuery(grid.hDiv,ts).show("slow");
+					jQuery(grid.bDiv,ts).show("slow");
+					if(ts.p.pager) jQuery(ts.p.pager).show("slow");
 					jQuery("img",this).attr("src",ts.p.imgpath+"up.gif");
 					}
 				);
