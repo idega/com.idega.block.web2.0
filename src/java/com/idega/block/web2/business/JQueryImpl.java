@@ -13,7 +13,7 @@ import com.idega.util.FilePathBuilder;
 
 /**
  * @author <a href="mailto:civilis@idega.com">Vytautas Čivilis</a>
- * @version $Revision: 1.1 $ Last modified: $Date: 2009/04/06 14:48:36 $ by $Author: civilis $
+ * @version $Revision: 1.2 $ Last modified: $Date: 2009/04/27 12:50:49 $ by $Author: valdas $
  */
 @Service
 @Scope("singleton")
@@ -59,20 +59,20 @@ public class JQueryImpl implements JQuery {
 	}
 	
 	public List<String> getBundleURISToValidation() {
-		
-		FilePathBuilder pathBuilder = new FilePathBuilder(
-		        JQUERY_VALIDATION_FOLDER_PATH);
+		return getBundleURISToValidation(Boolean.TRUE);
+	}
+	
+	public List<String> getBundleURISToValidation(boolean addAdditionalMethods) {
+		FilePathBuilder pathBuilder = new FilePathBuilder(JQUERY_VALIDATION_FOLDER_PATH);
 		pathBuilder.addFolder(JQUERY_VALIDATION_LATEST_VERSION);
 		
-		ArrayList<String> validationScripts = new ArrayList<String>();
+		List<String> validationScripts = new ArrayList<String>(addAdditionalMethods ? 2 : 1);
 		
-		String validateScript = pathBuilder
-		        .getPathWithAddedFile("jquery.validate.js");
-		String additionalMethodsScript = pathBuilder
-		        .getPathWithAddedFile("additional-methods.js");
+		validationScripts.add(getFullURI(pathBuilder.getPathWithAddedFile("jquery.validate.js")));
 		
-		validationScripts.add(getFullURI(validateScript));
-		validationScripts.add(getFullURI(additionalMethodsScript));
+		if (addAdditionalMethods) {
+			validationScripts.add(getFullURI(pathBuilder.getPathWithAddedFile("additional-methods.js")));
+		}
 		
 		return validationScripts;
 	}
