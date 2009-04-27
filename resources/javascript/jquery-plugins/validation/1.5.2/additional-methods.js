@@ -1,21 +1,18 @@
-var $j = jQuery.noConflict();
-
 jQuery.validator.addMethod("maxWords", function(value, element, params) { 
     return this.optional(element) || value.match(/\b\w+\b/g).length < params; 
-}, $j.format("Please enter {0} words or less.")); 
+}, jQuery.format("Please enter {0} words or less.")); 
  
 jQuery.validator.addMethod("minWords", function(value, element, params) { 
     return this.optional(element) || value.match(/\b\w+\b/g).length >= params; 
-}, $j.format("Please enter at least {0} words.")); 
+}, jQuery.format("Please enter at least {0} words.")); 
  
 jQuery.validator.addMethod("rangeWords", function(value, element, params) { 
     return this.optional(element) || value.match(/\b\w+\b/g).length >= params[0] && value.match(/bw+b/g).length < params[1]; 
-}, $j.format("Please enter between {0} and {1} words."));
-
+}, jQuery.format("Please enter between {0} and {1} words."));
 
 jQuery.validator.addMethod("letterswithbasicpunc", function(value, element) {
 	return this.optional(element) || /^[a-z-.,()'\"\s]+$/i.test(value);
-}, "Letters or punctuation only please");  
+}, "Letters or punctuation only please");
 
 jQuery.validator.addMethod("alphanumeric", function(value, element) {
 	return this.optional(element) || /^\w+$/i.test(value);
@@ -109,7 +106,7 @@ jQuery.validator.addMethod(
 	"dateITA",
 	function(value, element) {
 		var check = false;
-		var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/
+		var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
 		if( re.test(value)){
 			var adata = value.split('/');
 			var gg = parseInt(adata[0],10);
