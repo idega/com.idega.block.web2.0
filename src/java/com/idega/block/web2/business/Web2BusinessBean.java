@@ -1,5 +1,5 @@
 /*
- * $Id: Web2BusinessBean.java,v 1.75 2009/04/23 09:42:31 valdas Exp $
+ * $Id: Web2BusinessBean.java,v 1.76 2009/05/05 08:59:35 valdas Exp $
  * Created on May 3, 2006
  *
  * Copyright (C) 2006 Idega Software hf. All Rights Reserved.
@@ -51,10 +51,10 @@ import com.idega.util.StringUtil;
  * fancybox - lightbox, Mac style. http://fancy.klade.lv
  * CodeMirror - In-browser code editing made slightly less painful. http://marijn.haverbeke.nl/codemirror/
  * 
- * Last modified: $Date: 2009/04/23 09:42:31 $ by $Author: valdas $
+ * Last modified: $Date: 2009/05/05 08:59:35 $ by $Author: valdas $
  * 
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
- * @version $Revision: 1.75 $
+ * @version $Revision: 1.76 $
  */
 @Scope("singleton")
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
@@ -154,7 +154,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SEXY_LIGHT_BOX_LATEST_VERSION = Web2BusinessBean.SEXY_LIGHT_BOX_2_0_1_VERSION;
 	public static final String SEXY_LIGHT_BOX_2_0_1_VERSION = "2.0.1";
 	
-	public static final String FANCY_BOX_LATEST_VERSION = Web2BusinessBean.FANCY_BOX_1_0_VERSION;
+	public static final String FANCY_BOX_LATEST_VERSION = Web2BusinessBean.FANCY_BOX_1_2_1_VERSION;
 	public static final String FANCY_BOX_1_0_VERSION = "1.0";
 	public static final String FANCY_BOX_1_2_1_VERSION = "1.2.1";
 	
