@@ -73,6 +73,8 @@ JQGridParams.prototype = {
     rightsChanger: false,
     downloadDocument: true,
     allowPDFSigning: true,
+    showAttachmentStatistics: false,
+    caseId: null,
     identifier: null,
     callbackAfterInserted: null
 };
@@ -101,6 +103,8 @@ JQGrid.prototype.createGrid = function(tblSelector, params) {
             rightsChanger: params.rightsChanger,
             downloadDocument: params.downloadDocument,
             allowPDFSigning: params.allowPDFSigning,
+            showAttachmentStatistics: params.showAttachmentStatistics,
+   			caseId: params.caseId,
             identifier: params.identifier,
             callbackAfterInserted: params.callbackAfterInserted
         });
