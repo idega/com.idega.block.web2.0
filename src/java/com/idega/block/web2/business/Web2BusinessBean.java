@@ -15,6 +15,7 @@ import java.util.List;
 import org.apache.myfaces.renderkit.html.util.AddResource;
 import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +57,7 @@ import com.idega.util.StringUtil;
  * @author <a href="mailto:eiki@idega.com">Eirikur S. Hrafnsson</a>
  * @version $Revision: 1.76 $
  */
-@Scope("singleton")
+@Scope(BeanDefinition.SCOPE_SINGLETON)
 @Service(Web2Business.SPRING_BEAN_IDENTIFIER)
 public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
@@ -1235,4 +1236,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public JQuery getJQuery() {
     	return jQuery;
     }
+
+	public String getBundleUriToGritterScriptFile() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("gritter")).append(SLASH).append("1.2").append(SLASH).append("gritter.js").toString();
+	}
+
+	public String getBundleUriToGritterStyleSheet() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("gritter")).append(SLASH).append("1.2").append(SLASH).append("gritter.css").toString();
+	}
 }
