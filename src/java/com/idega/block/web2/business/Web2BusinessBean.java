@@ -10,6 +10,7 @@
 package com.idega.block.web2.business;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.myfaces.renderkit.html.util.AddResource;
@@ -231,6 +232,10 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public static final String SMOOTHBOX_SCRIPT_FILE = "smoothbox.js";
 	public static final String SMOOTHBOX_STYLE_FILE = "smoothbox.css";
+	
+	public static final String TINY_MCE_LATEST_VERSION = Web2BusinessBean.TINY_MCE_VERSION_3_2_6;
+	public static final String TINY_MCE_VERSION_3_2_6 = "3.2.6";
+	public static final String TINY_MCE_FOLDER = "tinymce";
 
 	protected String rootScriptsFolderBundleURI;
 	protected String rootLibsFolderBundleURI;
@@ -1243,5 +1248,18 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 
 	public String getBundleUriToGritterStyleSheet() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder("gritter")).append(SLASH).append("1.2").append(SLASH).append("gritter.css").toString();
+	}
+
+	public List<String> getScriptsForTinyMCE() {
+		return getScriptsForTinyMCE(TINY_MCE_LATEST_VERSION);
+	}
+	
+	public List<String> getScriptsForTinyMCE(String version) {
+		String tinyMCEFolder = new StringBuilder(getBundleURIWithinScriptsFolder(TINY_MCE_FOLDER)).append(SLASH).append(version).append(SLASH).toString();
+		
+		return Arrays.asList(
+				tinyMCEFolder + "tiny_mce.js",
+				tinyMCEFolder + "jquery.tinymce.js"
+		);
 	}
 }
