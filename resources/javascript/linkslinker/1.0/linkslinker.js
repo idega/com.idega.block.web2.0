@@ -42,7 +42,7 @@ LinksLinker.linkLinks = function(addStyleForNonFileLinks, containerId) {
 LinksLinker.linkTag = function(tag, link) {
 	var checker = null;
 	for (var i = 0; i < link.linker.length; i++) {
-		checker = '.' + link.linker[i];
+		checker = link.linker[i];
 		if (tag.attr('rel').toLowerCase().indexOf(checker) != -1 || tag.attr('href').toLowerCase().indexOf(checker) != -1) {
 			tag.addClass(link.css);
 			tag.addClass('linkedWithLinker');
