@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.myfaces.renderkit.html.util.AddResource;
 import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -1266,15 +1264,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		);
 	}
 
-	public boolean validateJCaptcha(HttpServletRequest request, String userCaptchaResponse) {
-		Boolean isResponseCorrect =Boolean.FALSE;
+	public boolean validateJCaptcha(String sessionId, String userCaptchaResponse) {
+		Boolean isResponseCorrect = Boolean.FALSE;
 
-		//remenber that we need an id to validate!
-        String captchaId = request.getSession().getId();
-        
         // Call the Service method
          try {
-             isResponseCorrect = CaptchaServiceSingleton.getInstance().validateResponseForID(captchaId, userCaptchaResponse);
+             isResponseCorrect = CaptchaServiceSingleton.getInstance().validateResponseForID(sessionId, userCaptchaResponse);
          }
          catch (CaptchaServiceException e) {
               //should not happen, may be thrown if the id is not valid

@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.idega.block.web2.business.Web2Business;
 import com.idega.presentation.IWBaseComponent;
 import com.idega.presentation.IWContext;
-import com.idega.presentation.Image;
 import com.idega.presentation.text.Text;
 import com.idega.presentation.ui.Form;
 import com.idega.presentation.ui.HiddenInput;
@@ -66,8 +65,7 @@ public class JCaptchaTest extends IWBaseComponent {
 		form.add(new HiddenInput(PARAMETER_ACTION, String.valueOf(ACTION_RESULT)));
 		add(form);
 		
-		Image image = new Image(getWeb2Business().getJCaptchaImageURL());
-		form.add(image);
+		form.add(new JCaptchaImage());
 		
 		TextInput input = new TextInput(PARAMETER_CAPTCHA);
 		form.add(input);
@@ -82,7 +80,7 @@ public class JCaptchaTest extends IWBaseComponent {
 		add(form);
 
 		String userCaptchaResponse = iwc.getParameter(PARAMETER_CAPTCHA);
-		if (getWeb2Business().validateJCaptcha(iwc.getRequest(), userCaptchaResponse)) {
+		if (getWeb2Business().validateJCaptcha(iwc.getSessionId(), userCaptchaResponse)) {
 			form.add(new Text("Match!"));
 		}
 		else {
