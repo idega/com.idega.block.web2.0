@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.myfaces.renderkit.html.util.AddResource;
 import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ import com.idega.util.CoreConstants;
 import com.idega.util.CoreUtil;
 import com.idega.util.PresentationUtil;
 import com.idega.util.StringUtil;
+import com.octo.captcha.service.CaptchaServiceException;
 
 /**
  * A service bean with handy methods for getting paths to Web 2.0 script libraries and more.
@@ -1261,5 +1264,26 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 				tinyMCEFolder + "tiny_mce.js",
 				tinyMCEFolder + "jquery.tinymce.js"
 		);
+	}
+
+	public boolean validateJCaptcha(HttpServletRequest request, String userCaptchaResponse) {
+		Boolean isResponseCorrect =Boolean.FALSE;
+
+		//remenber that we need an id to validate!
+        String captchaId = request.getSession().getId();
+        
+        // Call the Service method
+         try {
+             isResponseCorrect = CaptchaServiceSingleton.getInstance().validateResponseForID(captchaId, userCaptchaResponse);
+         }
+         catch (CaptchaServiceException e) {
+              //should not happen, may be thrown if the id is not valid
+         }
+         
+         return isResponseCorrect.booleanValue();
+	}
+	
+	public String getJCaptchaImageURL() {
+		return "/jcaptcha.jpg";
 	}
 }
