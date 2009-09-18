@@ -15,6 +15,7 @@ import com.octo.captcha.service.CaptchaServiceException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
+@SuppressWarnings("restriction")
 public class ImageCaptchaServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -8970660545568735821L;
