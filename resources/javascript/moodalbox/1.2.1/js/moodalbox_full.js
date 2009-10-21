@@ -61,7 +61,7 @@ var MOOdalBox = {
 		$A($$('a')).each(function(el){
 			// we use a regexp to check for links that 
 			// have a rel attribute starting with "moodalbox"
-			if(el.rel && el.href && el.rel.test('^moodalbox', 'i')) {
+			if(el && el.rel && el.href && el.rel.test('^moodalbox', 'i') && this && this.click) {
 				el.onclick = this.click.pass(el, this);
 				this.anchors.push(el);
 			}
