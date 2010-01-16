@@ -13,7 +13,7 @@
  *
  * Date: Wed Jan 13 15:23:05 2010 -0500
  */
-(function( window, undefined ) {
+function initjQuery(window, undefined) {
 
 // Define a local copy of jQuery
 var jQuery = function( selector, context ) {
@@ -5996,5 +5996,5 @@ jQuery.each([ "Height", "Width" ], function( i, name ) {
 // Expose jQuery to the global object
 window.jQuery = window.$ = jQuery;
 
-})(window);
-jQuery.noConflict();
+}
+initjQuery(window);
