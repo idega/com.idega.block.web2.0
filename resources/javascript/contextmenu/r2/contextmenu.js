@@ -16,7 +16,7 @@
  *
  */
 
-(function($) {
+;(function(jQuery) {
 
  	var menu, shadow, trigger, content, hash, currentTarget;
   var defaults = {
@@ -48,9 +48,9 @@
     onShowMenu: null
  	};
 
-  $.fn.contextMenu = function(id, options) {
+  jQuery.fn.contextMenu = function(id, options) {
     if (!menu) {                                      // Create singleton menu
-      menu = $('<div id="jqContextMenu"></div>')
+      menu = jQuery('<div id="jqContextMenu"></div>')
                .hide()
                .css({position:'absolute', zIndex:'500'})
                .appendTo('body')
@@ -59,7 +59,7 @@
                });
     }
     if (!shadow) {
-      shadow = $('<div></div>')
+      shadow = jQuery('<div></div>')
                  .css({backgroundColor:'#000',position:'absolute',opacity:0.2,zIndex:499})
                  .appendTo('body')
                  .hide();
@@ -67,9 +67,9 @@
     hash = hash || [];
     hash.push({
       id : id,
-      menuStyle: $.extend({}, defaults.menuStyle, options.menuStyle || {}),
-      itemStyle: $.extend({}, defaults.itemStyle, options.itemStyle || {}),
-      itemHoverStyle: $.extend({}, defaults.itemHoverStyle, options.itemHoverStyle || {}),
+      menuStyle: jQuery.extend({}, defaults.menuStyle, options.menuStyle || {}),
+      itemStyle: jQuery.extend({}, defaults.itemStyle, options.itemStyle || {}),
+      itemHoverStyle: jQuery.extend({}, defaults.itemHoverStyle, options.itemHoverStyle || {}),
       bindings: options.bindings || {},
       shadow: options.shadow || options.shadow === false ? options.shadow : defaults.shadow,
       onContextMenu: options.onContextMenu || defaults.onContextMenu,
@@ -79,7 +79,7 @@
     });
 
     var index = hash.length - 1;
-    $(this).bind('contextmenu', function(e) {
+    jQuery(this).bind('contextmenu', function(e) {
       // Check if onContextMenu() defined
       var bShowContext = (!!hash[index].onContextMenu) ? hash[index].onContextMenu(e) : true;
       if (bShowContext) display(index, this, e, options);
@@ -90,13 +90,13 @@
 
   function display(index, trigger, e, options) {
     var cur = hash[index];
-    content = $('#'+cur.id).find('ul:first').clone(true);
+    content = jQuery('#'+cur.id).find('ul:first').clone(true);
     content.css(cur.menuStyle).find('li').css(cur.itemStyle).hover(
       function() {
-        $(this).css(cur.itemHoverStyle);
+        jQuery(this).css(cur.itemHoverStyle);
       },
       function(){
-        $(this).css(cur.itemStyle);
+        jQuery(this).css(cur.itemStyle);
       }
     ).find('img').css({verticalAlign:'middle',paddingRight:'2px'});
 
@@ -108,8 +108,8 @@
 		// updating the content
     if (!!cur.onShowMenu) menu = cur.onShowMenu(e, menu);
 
-    $.each(cur.bindings, function(id, func) {
-      $('#'+id, menu).bind('click', function(e) {
+    jQuery.each(cur.bindings, function(id, func) {
+      jQuery('#'+id, menu).bind('click', function(e) {
         hide();
         func(trigger, currentTarget);
       });
@@ -117,7 +117,7 @@
 
     menu.css({'left':e[cur.eventPosX],'top':e[cur.eventPosY]}).show();
     if (cur.shadow) shadow.css({width:menu.width(),height:menu.height(),left:e.pageX+2,top:e.pageY+2}).show();
-    $(document).one('click', hide);
+    jQuery(document).one('click', hide);
   }
 
   function hide() {
@@ -126,11 +126,11 @@
   }
 
   // Apply defaults
-  $.contextMenu = {
+  jQuery.contextMenu = {
     defaults : function(userDefaults) {
-      $.each(userDefaults, function(i, val) {
+      jQuery.each(userDefaults, function(i, val) {
         if (typeof val == 'object' && defaults[i]) {
-          $.extend(defaults[i], val);
+          jQuery.extend(defaults[i], val);
         }
         else defaults[i] = val;
       });
@@ -139,10 +139,10 @@
 
 })(jQuery);
 
-$(function() {
-	var contextMenuInHtml = $('div.contextMenu');
+jQuery(function() {
+	var contextMenuInHtml = jQuery('div.contextMenu');
 	if (contextMenuInHtml == null) {
-		contextMenuInHtml = $j('div.contextMenu')
+		contextMenuInHtml = jQueryj('div.contextMenu')
 	}
 	contextMenuInHtml.hide();
 });
