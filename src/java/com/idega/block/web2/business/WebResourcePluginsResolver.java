@@ -5,15 +5,16 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-@Scope("singleton")
+@Scope(BeanDefinition.SCOPE_SINGLETON)
 @Service("iwResourcePluginsResolver")
 public class WebResourcePluginsResolver implements Map<String, String> {
 
 	@Autowired
-	private Web2Business web2;
+	private JQuery jQuery;
 	
 	public void clear() {
 		throw new UnsupportedOperationException(this.getClass().getName() + ": UnsupportedOperationException");
@@ -33,7 +34,7 @@ public class WebResourcePluginsResolver implements Map<String, String> {
 
 	public String get(Object key) {
 		if (Web2BusinessBean.JQUERY_FOLDER_NAME_PREFIX.equals(key)) {
-			return web2.getBundleURIToJQueryLib();
+			return jQuery.getBundleURIToJQueryLib();
 		}
 		
 		//	TODO: add more "resolvers"
