@@ -157,9 +157,10 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SEXY_LIGHT_BOX_LATEST_VERSION = Web2BusinessBean.SEXY_LIGHT_BOX_2_0_1_VERSION;
 	public static final String SEXY_LIGHT_BOX_2_0_1_VERSION = "2.0.1";
 	
-	public static final String FANCY_BOX_LATEST_VERSION = Web2BusinessBean.FANCY_BOX_1_2_1_VERSION;
+	public static final String FANCY_BOX_LATEST_VERSION = Web2BusinessBean.FANCY_BOX_1_3_0_VERSION;
 	public static final String FANCY_BOX_1_0_VERSION = "1.0";
 	public static final String FANCY_BOX_1_2_1_VERSION = "1.2.1";
+	public static final String FANCY_BOX_1_3_0_VERSION = "1.3.0";
 	
 	public static final String CODE_MIRROR_LATEST_VERSION = Web2BusinessBean.CODE_MIRROR_0_6_VERSION;
 	public static final String CODE_MIRROR_0_6_VERSION = "0.6";
@@ -1197,8 +1198,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 			scripts.add(new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(version).append(SLASH)
 					.append(FANCY_BOX_FOLDER_NAME_PREFIX).append("PngFix.js").toString());
 		}
-		if (version.equals(FANCY_BOX_1_2_1_VERSION)) {
+		if (!version.equals(FANCY_BOX_1_0_VERSION)) {
 			scripts.add(getBundleURIToJQueryPlugin(JQueryPlugin.EASING));
+		}
+		if (version.equals(FANCY_BOX_1_3_0_VERSION)) {
+			scripts.add(getBundleURIToJQueryPlugin(JQueryPlugin.MOUSE_WHEEL));
 		}
 		return scripts;
 	}
