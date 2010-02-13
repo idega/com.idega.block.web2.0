@@ -13,7 +13,7 @@
  *   http://www.gnu.org/licenses/gpl.html
  */
 
-;(function($) {
+;(function(jQuery) {
 
 	var tmp, loading, overlay, wrap, outer, inner, content, close, nav_left, nav_right;
 
@@ -23,48 +23,48 @@
 
 	var loadingTimer, loadingFrame = 1;
 
-	var start_pos, final_pos, busy = false, shadow = 20, fx = $.extend($('<div/>')[0], { prop: 0 }), titleh = 0, isIE6 = !$.support.opacity && !window.XMLHttpRequest;
+	var start_pos, final_pos, busy = false, shadow = 20, fx = jQuery.extend(jQuery('<div/>')[0], { prop: 0 }), titleh = 0, isIE6 = !jQuery.support.opacity && !window.XMLHttpRequest;
 
-	$.fn.fixPNG = function() {
+	jQuery.fn.fixPNG = function() {
 		return this.each(function () {
-			var image = $(this).css('backgroundImage');
+			var image = jQuery(this).css('backgroundImage');
 
 			if (image.match(/^url\(["']?(.*\.png)["']?\)$/i)) {
 				image = RegExp.$1;
-				$(this).css({
+				jQuery(this).css({
 					'backgroundImage': 'none',
-					'filter': "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=" + ($(this).css('backgroundRepeat') == 'no-repeat' ? 'crop' : 'scale') + ", src='" + image + "')"
+					'filter': "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=" + (jQuery(this).css('backgroundRepeat') == 'no-repeat' ? 'crop' : 'scale') + ", src='" + image + "')"
 				}).each(function () {
-					var position = $(this).css('position');
+					var position = jQuery(this).css('position');
 					if (position != 'absolute' && position != 'relative')
-						$(this).css('position', 'relative');
+						jQuery(this).css('position', 'relative');
 				}).css('zoom', 1);
 			}
 		});
 	};
 
-	$.fn.fancybox = function(options) {
-		$(this).data('fancybox', $.extend({}, options));
+	jQuery.fn.fancybox = function(options) {
+		jQuery(this).data('fancybox', jQuery.extend({}, options));
 
-		$(this).unbind('click.fb').bind('click.fb', function(e) {
+		jQuery(this).unbind('click.fb').bind('click.fb', function(e) {
 			e.preventDefault();
 
 			if (busy) return;
 
 			busy = true;
 
-			$(this).blur();
+			jQuery(this).blur();
 
 			selectedArray	= [];
 			selectedIndex	= 0;
 
-			var rel = $(this).attr('rel') || '';
+			var rel = jQuery(this).attr('rel') || '';
 
 			if (!rel || rel == '' || rel === 'nofollow') {
 				selectedArray.push(this);
 
 			} else {
-				selectedArray	= $("a[rel=" + rel + "], area[rel=" + rel + "]");
+				selectedArray	= jQuery("a[rel=" + rel + "], area[rel=" + rel + "]");
 				selectedIndex	= selectedArray.index( this );
 			}
 
@@ -82,7 +82,7 @@
 
 	*/
 
-	$.fancybox = function(obj, opts) {
+	jQuery.fancybox = function(obj, opts) {
 		if (busy) return;
 
 		busy = true;
@@ -90,12 +90,12 @@
 		selectedArray	= [];
 		selectedIndex	= 0;
 
-		if ($.isArray(obj)) {
+		if (jQuery.isArray(obj)) {
 			for (var i = 0, j = obj.length; i < j; i++) {
 				if (typeof obj[i] == 'object') {
-					$(obj[i]).data('fancybox', $.extend({}, opts, obj[i]));
+					jQuery(obj[i]).data('fancybox', jQuery.extend({}, opts, obj[i]));
 				} else {
-					obj[i] = $({}).data('fancybox', $.extend({content : obj[i]}, opts));
+					obj[i] = jQuery({}).data('fancybox', jQuery.extend({content : obj[i]}, opts));
 				}
 			}
 
@@ -103,9 +103,9 @@
 
 		} else {
 			if (typeof obj == 'object') {
-				$(obj).data('fancybox', $.extend({}, opts, obj));
+				jQuery(obj).data('fancybox', jQuery.extend({}, opts, obj));
 			} else {
-				obj = $({}).data('fancybox', $.extend({content : obj}, opts));
+				obj = jQuery({}).data('fancybox', jQuery.extend({content : obj}, opts));
 			}
 
 			selectedArray.push(obj);
@@ -114,26 +114,26 @@
 		fancybox_start();
 	};
 
-	$.fancybox.showActivity = function() {
+	jQuery.fancybox.showActivity = function() {
 		clearInterval(loadingTimer);
 
 		loading.show();
 		loadingTimer = setInterval(fancybox_animate_loading, 66);
 	};
 	
-	$.fancybox.hideActivity = function() {
+	jQuery.fancybox.hideActivity = function() {
 		loading.hide();
 	};
 
-	$.fancybox.next = function() {
-		return $.fancybox.pos( currentIndex + 1);
+	jQuery.fancybox.next = function() {
+		return jQuery.fancybox.pos( currentIndex + 1);
 	};
 	
-	$.fancybox.prev = function() {
-		return $.fancybox.pos( currentIndex - 1);
+	jQuery.fancybox.prev = function() {
+		return jQuery.fancybox.pos( currentIndex - 1);
 	};
 
-	$.fancybox.pos = function(pos) {
+	jQuery.fancybox.pos = function(pos) {
 		if (busy) return;
 
 		pos = parseInt(pos);
@@ -156,29 +156,29 @@
 		return;
 	};
 
-	$.fancybox.cancel = function() {
+	jQuery.fancybox.cancel = function() {
 		if (busy) return;
 
 		busy = true;
 
-		$.event.trigger('fancybox-cancel');
+		jQuery.event.trigger('fancybox-cancel');
 
 		fancybox_abort();
 
-		if (selectedOpts && $.isFunction(selectedOpts.onCancel)) {
+		if (selectedOpts && jQuery.isFunction(selectedOpts.onCancel)) {
 			selectedOpts.onCancel(selectedArray, selectedIndex, selectedOpts);
 		};
 
 		busy = false;
 	};
 
-	// Note: within an iframe use - parent.$.fancybox.close();
-	$.fancybox.close = function() {
+	// Note: within an iframe use - parent.jQuery.fancybox.close();
+	jQuery.fancybox.close = function() {
 		if (busy || wrap.is(':hidden')) return;
 
 		busy = true;
 
-		if (currentOpts && $.isFunction(currentOpts.onCleanup)) {
+		if (currentOpts && jQuery.isFunction(currentOpts.onCleanup)) {
 			if (currentOpts.onCleanup(currentArray, currentIndex, currentOpts) === false) {
 				busy = false;
 				return;
@@ -187,25 +187,25 @@
 
 		fancybox_abort();
 
-		$(close.add( nav_left ).add( nav_right )).hide();
+		jQuery(close.add( nav_left ).add( nav_right )).hide();
 
-		$('#fancybox-title').remove();
+		jQuery('#fancybox-title').remove();
 
 		wrap.add(inner).add(overlay).unbind();
 
-		$(window).unbind("resize.fb scroll.fb");
-		$(document).unbind('keydown.fb');
+		jQuery(window).unbind("resize.fb scroll.fb");
+		jQuery(document).unbind('keydown.fb');
 
 		function _cleanup() {
 			overlay.fadeOut('fast');
 
 			wrap.hide();
 
-			$.event.trigger('fancybox-cleanup');
+			jQuery.event.trigger('fancybox-cleanup');
 
 			inner.empty();
 
-			if ($.isFunction(currentOpts.onClosed)) {
+			if (jQuery.isFunction(currentOpts.onClosed)) {
 				currentOpts.onClosed(currentArray, currentIndex, currentOpts);
 			}
 
@@ -236,7 +236,7 @@
 
 			fx.prop = 1;
 
-			$(fx).animate({ prop: 0 }, {
+			jQuery(fx).animate({ prop: 0 }, {
 				 duration	: currentOpts.speedOut,
 				 easing		: currentOpts.easingOut,
 				 step		: fancybox_draw,
@@ -248,7 +248,7 @@
 		}
 	};
 
-	$.fancybox.resize = function() {
+	jQuery.fancybox.resize = function() {
 		if (busy || wrap.is(':hidden')) return;
 
 		busy = true;
@@ -261,10 +261,10 @@
 
 		c.replaceWith(c.children());
 
-		$.fancybox.center();
+		jQuery.fancybox.center();
 	};
 
-	$.fancybox.center = function() {
+	jQuery.fancybox.center = function() {
 		busy = true;
 
 		var view	= fancybox_get_viewport();
@@ -299,7 +299,7 @@
 	};
 
 	function fancybox_error() {
-		$.fancybox('<p id="fancybox_error">The requested content cannot be loaded.<br />Please try again later.</p>', {
+		jQuery.fancybox('<p id="fancybox_error">The requested content cannot be loaded.<br />Please try again later.</p>', {
 			'scrolling'		: 'no',
 			'padding'		: 20,
 			'transitionIn'	: 'none',
@@ -312,12 +312,12 @@
 
 		var obj	= selectedArray[ selectedIndex ];
 
-		selectedOpts = $.extend({}, $.fn.fancybox.defaults, (typeof $(obj).data('fancybox') == 'undefined' ? selectedOpts : $(obj).data('fancybox')));
+		selectedOpts = jQuery.extend({}, jQuery.fn.fancybox.defaults, (typeof jQuery(obj).data('fancybox') == 'undefined' ? selectedOpts : jQuery(obj).data('fancybox')));
 
-		var href, type, title = obj.title || $(obj).title || selectedOpts.title || '';
+		var href, type, title = obj.title || jQuery(obj).title || selectedOpts.title || '';
 
 		if (obj.nodeName && !selectedOpts.orig) {
-			selectedOpts.orig = $(obj).children("img:first").length ? $(obj).children("img:first") : $(obj);
+			selectedOpts.orig = jQuery(obj).children("img:first").length ? jQuery(obj).children("img:first") : jQuery(obj);
 		}
 
 		if (title == '' && selectedOpts.orig) title = selectedOpts.orig.attr('alt');
@@ -343,13 +343,13 @@
 			} else if (href.match(swfRegExp)) {
 				type = 'swf';
 
-			} else if ($(obj).hasClass("iframe")) {
+			} else if (jQuery(obj).hasClass("iframe")) {
 				type = 'iframe';
 
 			} else if (href.match(/#/)) {
 				obj = href.substr(href.indexOf("#"));
 
-				type = $(obj).length > 0 ? 'inline' : 'ajax';
+				type = jQuery(obj).length > 0 ? 'inline' : 'ajax';
 			} else {
 				type = 'ajax';
 			}
@@ -374,7 +374,7 @@
 			selectedOpts.showCloseButton	= false;
 		}
 
-		if ($.isFunction(selectedOpts.onStart)) {
+		if (jQuery.isFunction(selectedOpts.onStart)) {
 			if (selectedOpts.onStart(selectedArray, selectedIndex, selectedOpts) === false) {
 				busy = false;
 				return;
@@ -383,8 +383,8 @@
 
 		tmp.css('padding', (shadow + selectedOpts.padding + selectedOpts.margin));
 
-		$('.fancybox-inline-tmp').unbind('fancybox-cancel').bind('fancybox-change', function() {
-			$(this).replaceWith(inner.children());
+		jQuery('.fancybox-inline-tmp').unbind('fancybox-cancel').bind('fancybox-change', function() {
+			jQuery(this).replaceWith(inner.children());
 		});
 
 		switch (type) {
@@ -395,13 +395,13 @@
 			break;
 
 			case 'inline' :
-				$('<div class="fancybox-inline-tmp" />').hide().insertBefore( $(obj) ).bind('fancybox-cleanup', function() {
-					$(this).replaceWith(inner.children());
+				jQuery('<div class="fancybox-inline-tmp" />').hide().insertBefore( jQuery(obj) ).bind('fancybox-cleanup', function() {
+					jQuery(this).replaceWith(inner.children());
 				}).bind('fancybox-cancel', function() {
-					$(this).replaceWith(tmp.children());
+					jQuery(this).replaceWith(tmp.children());
 				});
 
-				$(obj).appendTo(tmp);
+				jQuery(obj).appendTo(tmp);
 
 				fancybox_process_inline();
 			break;
@@ -409,7 +409,7 @@
 			case 'image':
 				busy = false;
 
-				$.fancybox.showActivity();
+				jQuery.fancybox.showActivity();
 
 				imgPreloader = new Image;
 
@@ -433,7 +433,7 @@
 
 				str += '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="' + selectedOpts.width + '" height="' + selectedOpts.height + '"><param name="movie" value="' + href + '"></param>';
 
-				$.each(selectedOpts.swf, function(name, val) {
+				jQuery.each(selectedOpts.swf, function(name, val) {
 					str += '<param name="' + name + '" value="' + val + '"></param>';
 					emb += ' ' + name + '="' + val + '"';
 				});
@@ -456,9 +456,9 @@
 				}
 
 				busy = false;
-				$.fancybox.showActivity();
+				jQuery.fancybox.showActivity();
 
-				ajaxLoader = $.ajax($.extend(selectedOpts.ajax, {
+				ajaxLoader = jQuery.ajax(jQuery.extend(selectedOpts.ajax, {
 					url		: href,
 					data	: data,
 					error	: fancybox_error,
@@ -473,7 +473,7 @@
 			break;
 
 			case 'iframe' :
-				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '" frameborder="0" hspace="0" scrolling="' + selectedOpts.scrolling + '" src="' + selectedOpts.href + '"></iframe>').appendTo(tmp);
+				jQuery('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '" frameborder="0" hspace="0" scrolling="' + selectedOpts.scrolling + '" src="' + selectedOpts.href + '"></iframe>').appendTo(tmp);
 
 				fancybox_show();
 			break;
@@ -486,7 +486,7 @@
 		selectedOpts.width	= imgPreloader.width;
 		selectedOpts.height	= imgPreloader.height;
 
-		$("<img />").attr({
+		jQuery("<img />").attr({
 			'id'	: 'fancybox-img',
 			'src'	: imgPreloader.src,
 			'alt'	: selectedOpts.title
@@ -508,9 +508,9 @@
 	function fancybox_show() {
 		loading.hide();
 
-		if (wrap.is(":visible") && $.isFunction(currentOpts.onCleanup)) {
+		if (wrap.is(":visible") && jQuery.isFunction(currentOpts.onCleanup)) {
 			if (currentOpts.onCleanup(currentArray, currentIndex, currentOpts) === false) {
-				$.event.trigger('fancybox-cancel');
+				jQuery.event.trigger('fancybox-cancel');
 
 				busy = false;
 				return;
@@ -526,7 +526,7 @@
 
 		if (currentOpts.overlayShow) {
 			if (isIE6) {
-				$('select:not(#fancybox-tmp select)').filter(function() {
+				jQuery('select:not(#fancybox-tmp select)').filter(function() {
 					return this.style.visibility !== 'hidden';
 				}).css({'visibility':'hidden'}).one('fancybox-cleanup', function() {
 					this.style.visibility = 'inherit';
@@ -544,7 +544,7 @@
 		fancybox_process_title();
 
 		if (wrap.is(":visible")) {
-			$( close.add( nav_left ).add( nav_right ) ).hide();
+			jQuery( close.add( nav_left ).add( nav_right ) ).hide();
 
 			var pos = wrap.position();
 
@@ -558,7 +558,7 @@
 			var equal = (start_pos.width == final_pos.width && start_pos.height == final_pos.height);
 
 			inner.fadeOut(currentOpts.changeFade, function() {
-				$.event.trigger('fancybox-change');
+				jQuery.event.trigger('fancybox-change');
 
 				inner.css({
 						top			: currentOpts.padding,
@@ -575,7 +575,7 @@
 
 				fx.prop = 0;
 
-				$(fx).animate({ prop: 1 }, {
+				jQuery(fx).animate({ prop: 1 }, {
 					 duration	: equal ? 0 : currentOpts.changeSpeed,
 					 easing		: currentOpts.easingChange,
 					 step		: fancybox_draw,
@@ -605,7 +605,7 @@
 
 			fx.prop = 0;
 
-			$(fx).animate({ prop: 1 }, {
+			jQuery(fx).animate({ prop: 1 }, {
 				 duration	: currentOpts.speedIn,
 				 easing		: currentOpts.easingIn,
 				 step		: fancybox_draw,
@@ -653,25 +653,25 @@
 	function _finish() {
 		inner.css('overflow', overflow = (currentOpts.scrolling == 'auto' ? (currentOpts.type == 'image' || currentOpts.type == 'iframe' || currentOpts.type == 'swf' ? 'hidden' : 'auto') : (currentOpts.scrolling == 'yes' ? 'auto' : 'visible')));
 
-		if (!$.support.opacity) {
+		if (!jQuery.support.opacity) {
 			inner.get(0).style.removeAttribute('filter');
 			wrap.get(0).style.removeAttribute('filter');
 		}
 
-		$('#fancybox-title').show();
+		jQuery('#fancybox-title').show();
 
-		if (currentOpts.hideOnContentClick)	inner.one('click',		$.fancybox.close);
-		if (currentOpts.hideOnOverlayClick)	overlay.one('click',	$.fancybox.close);
+		if (currentOpts.hideOnContentClick)	inner.one('click',		jQuery.fancybox.close);
+		if (currentOpts.hideOnOverlayClick)	overlay.one('click',	jQuery.fancybox.close);
 
 		if (currentOpts.showCloseButton) close.show();
 
 		fancybox_set_navigation();
 
-		$(window).bind("resize.fb", $.fancybox.center);
+		jQuery(window).bind("resize.fb", jQuery.fancybox.center);
 
-		currentOpts.centerOnScroll ? $(window).bind("scroll.fb", $.fancybox.center) : $(window).unbind("scroll.fb");
+		currentOpts.centerOnScroll ? jQuery(window).bind("scroll.fb", jQuery.fancybox.center) : jQuery(window).unbind("scroll.fb");
 
-		if ($.isFunction(currentOpts.onComplete)) currentOpts.onComplete(currentArray, currentIndex, currentOpts);
+		if (jQuery.isFunction(currentOpts.onComplete)) currentOpts.onComplete(currentArray, currentIndex, currentOpts);
 
 		busy = false;
 
@@ -733,7 +733,7 @@
 	};
 
 	function fancybox_get_zoom_from() {
-		var orig	= selectedOpts.orig ? $(selectedOpts.orig) : false;
+		var orig	= selectedOpts.orig ? jQuery(selectedOpts.orig) : false;
 		var from 	= {};
 
 		if (orig && orig.length) {
@@ -761,22 +761,22 @@
 	};
 
 	function fancybox_set_navigation() {
-		$(document).unbind('keydown.fb').bind('keydown.fb', function(e) {
+		jQuery(document).unbind('keydown.fb').bind('keydown.fb', function(e) {
 			if (e.keyCode == 27 && currentOpts.enableEscapeButton) {
 				e.preventDefault();
-				$.fancybox.close();
+				jQuery.fancybox.close();
 
 			} else if (e.keyCode == 37) {
 				e.preventDefault();
-				$.fancybox.prev();
+				jQuery.fancybox.prev();
 
 			} else if (e.keyCode == 39) {
 				e.preventDefault();
-				$.fancybox.next();
+				jQuery.fancybox.next();
 			}
 		});
 
-		if ($.fn.mousewheel) {
+		if (jQuery.fn.mousewheel) {
 			wrap.unbind('mousewheel.fb');
 
 			if (currentArray.length > 1) {
@@ -785,7 +785,7 @@
 
 					if (busy || delta == 0) return;
 
-					delta > 0 ? $.fancybox.prev() : $.fancybox.next();
+					delta > 0 ? jQuery.fancybox.prev() : jQuery.fancybox.next();
 				});
 			}
 		}
@@ -827,13 +827,13 @@
 			return;
 		}
 
-		$('div', loading).css('top', (loadingFrame * -40) + 'px');
+		jQuery('div', loading).css('top', (loadingFrame * -40) + 'px');
 
 		loadingFrame = (loadingFrame + 1) % 12;
 	};
 
 	function fancybox_get_viewport() {
-		return [ $(window).width(), $(window).height(), $(document).scrollLeft(), $(document).scrollTop() ];
+		return [ jQuery(window).width(), jQuery(window).height(), jQuery(document).scrollLeft(), jQuery(document).scrollTop() ];
 	};
 
 	function fancybox_get_obj_pos(obj) {
@@ -852,7 +852,7 @@
 	};
 
 	function fancybox_process_title() {
-		$('#fancybox-title').remove();
+		jQuery('#fancybox-title').remove();
 
 		titleh = 0;
 
@@ -861,14 +861,14 @@
 		var obj		= currentArray[ currentIndex ];
 		var title	= currentOpts.title;
 
-		title = $.isFunction(currentOpts.titleFormat) ? currentOpts.titleFormat(title, currentArray, currentIndex, currentOpts) : fancybox_format_title(title);
+		title = jQuery.isFunction(currentOpts.titleFormat) ? currentOpts.titleFormat(title, currentArray, currentIndex, currentOpts) : fancybox_format_title(title);
 
 		if (!title || title == '') return;
 
 		var width	= final_pos.width - (currentOpts.padding * 2);
 		var titlec	= 'fancybox-title-' + currentOpts.titlePosition;
 
-		$('<div id="fancybox-title" class="' + titlec + '" />').css({
+		jQuery('<div id="fancybox-title" class="' + titlec + '" />').css({
 			'width'			: width,
 			'paddingLeft'	: currentOpts.padding,
 			'paddingRight'	: currentOpts.padding
@@ -876,23 +876,23 @@
 
 		switch (currentOpts.titlePosition) {
 			case 'inside':
-				titleh = $("#fancybox-title").outerHeight(true) - currentOpts.padding;
+				titleh = jQuery("#fancybox-title").outerHeight(true) - currentOpts.padding;
 				final_pos.height += titleh;
 			break;
 
 			case 'over':
-				$('#fancybox-title').css('bottom', currentOpts.padding);
+				jQuery('#fancybox-title').css('bottom', currentOpts.padding);
 			break;
 
 			default:
-				$('#fancybox-title').css('bottom', $("#fancybox-title").outerHeight(true) * -1);
+				jQuery('#fancybox-title').css('bottom', jQuery("#fancybox-title").outerHeight(true) * -1);
 			break;
 		}
 
-		$('#fancybox-title').appendTo( outer ).hide();
+		jQuery('#fancybox-title').appendTo( outer ).hide();
 
 		if (isIE6) {
-			$('#fancybox-title span').fixPNG();
+			jQuery('#fancybox-title span').fixPNG();
 		}
 	};
 
@@ -917,46 +917,46 @@
 	};
 
 	function fancybox_init() {
-		if ($("#fancybox-wrap").length) return;
+		if (jQuery("#fancybox-wrap").length) return;
 
-		$('body').append(
-			tmp			= $('<div id="fancybox-tmp"></div>'),
-			loading		= $('<div id="fancybox-loading"><div></div></div>'),
-			overlay		= $('<div id="fancybox-overlay"></div>'),
-			wrap		= $('<div id="fancybox-wrap"></div>')
+		jQuery('body').append(
+			tmp			= jQuery('<div id="fancybox-tmp"></div>'),
+			loading		= jQuery('<div id="fancybox-loading"><div></div></div>'),
+			overlay		= jQuery('<div id="fancybox-overlay"></div>'),
+			wrap		= jQuery('<div id="fancybox-wrap"></div>')
 		);
 
-		outer = $('<div id="fancybox-outer"></div>')
+		outer = jQuery('<div id="fancybox-outer"></div>')
 			.append('<div class="fancy-bg" id="fancy-bg-n"></div><div class="fancy-bg" id="fancy-bg-ne"></div><div class="fancy-bg" id="fancy-bg-e"></div><div class="fancy-bg" id="fancy-bg-se"></div><div class="fancy-bg" id="fancy-bg-s"></div><div class="fancy-bg" id="fancy-bg-sw"></div><div class="fancy-bg" id="fancy-bg-w"></div><div class="fancy-bg" id="fancy-bg-nw"></div>')
 			.appendTo( wrap );
 
 		outer.append(
-			inner		= $('<div id="fancybox-inner"></div>'),
-			close		= $('<a id="fancybox-close"></a>'),
+			inner		= jQuery('<div id="fancybox-inner"></div>'),
+			close		= jQuery('<a id="fancybox-close"></a>'),
 
-			nav_left	= $('<a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a>'),
-			nav_right	= $('<a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a>')
+			nav_left	= jQuery('<a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a>'),
+			nav_right	= jQuery('<a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a>')
 		);
 		
-		close.click($.fancybox.close);
-		loading.click($.fancybox.cancel);
+		close.click(jQuery.fancybox.close);
+		loading.click(jQuery.fancybox.cancel);
 
 		nav_left.click(function(e) {
 			e.preventDefault();
-			$.fancybox.prev();
+			jQuery.fancybox.prev();
 		});
 
 		nav_right.click(function(e) {
 			e.preventDefault();
-			$.fancybox.next();
+			jQuery.fancybox.next();
 		});
 
-		if (!$.support.opacity) {
+		if (!jQuery.support.opacity) {
 			outer.find('.fancy-bg').fixPNG();
 		}
 
 		if (isIE6) {
-			$(close.add('.fancy-ico').add('div', loading)).fixPNG();
+			jQuery(close.add('.fancy-ico').add('div', loading)).fixPNG();
 
 			overlay.get(0).style.setExpression('height',	"document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px'");
 			loading.get(0).style.setExpression('top',		"(-20 + (document.documentElement.clientHeight ? document.documentElement.clientHeight/2 : document.body.clientHeight/2 ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop )) + 'px'");
@@ -965,7 +965,7 @@
 		}
 	};
 
-	$.fn.fancybox.defaults = {
+	jQuery.fn.fancybox.defaults = {
 		padding				:	10,
 		margin				:	20,
 		opacity				:	false,
@@ -1017,7 +1017,7 @@
 		onClosed			:	null
 	};
 
-	$(document).ready(function() {
+	jQuery(document).ready(function() {
 		fancybox_init();
 	});
 
