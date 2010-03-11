@@ -1194,7 +1194,6 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public List<String> getBundleURIsToFancyBoxScriptFiles(String version) {
 		List<String> scripts = new ArrayList<String>();
-//		version = FANCY_BOX_1_3_0_VERSION;	//	TODO
 		scripts.add(new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(version).append(SLASH)
 					.append(FANCY_BOX_FOLDER_NAME_PREFIX).append(".js").toString());
 		if (version.equals(FANCY_BOX_1_0_VERSION)) {
