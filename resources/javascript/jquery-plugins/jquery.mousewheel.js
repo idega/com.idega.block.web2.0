@@ -9,52 +9,5 @@
  * Requires: 1.2.2+
  */
 
-(function($) {
-
-var types = ['DOMMouseScroll', 'mousewheel'];
-
-$.event.special.mousewheel = {
-	setup: function() {
-		if ( this.addEventListener )
-			for ( var i=types.length; i; )
-				this.addEventListener( types[--i], handler, false );
-		else
-			this.onmousewheel = handler;
-	},
-	
-	teardown: function() {
-		if ( this.removeEventListener )
-			for ( var i=types.length; i; )
-				this.removeEventListener( types[--i], handler, false );
-		else
-			this.onmousewheel = null;
-	}
-};
-
-$.fn.extend({
-	mousewheel: function(fn) {
-		return fn ? this.bind("mousewheel", fn) : this.trigger("mousewheel");
-	},
-	
-	unmousewheel: function(fn) {
-		return this.unbind("mousewheel", fn);
-	}
-});
-
-
-function handler(event) {
-	var args = [].slice.call( arguments, 1 ), delta = 0, returnValue = true;
-	
-	event = $.event.fix(event || window.event);
-	event.type = "mousewheel";
-	
-	if ( event.wheelDelta ) delta = event.wheelDelta/120;
-	if ( event.detail     ) delta = -event.detail/3;
-	
-	// Add events and delta to the front of the arguments
-	args.unshift(event, delta);
-
-	return $.event.handle.apply(this, args);
-}
-
-})(jQuery);
+(function(b){function d(a){var f=[].slice.call(arguments,1),e=0;a=b.event.fix(a||window.event);a.type="mousewheel";if(a.wheelDelta)e=a.wheelDelta/120;if(a.detail)e=-a.detail/3;f.unshift(a,e);return b.event.handle.apply(this,f)}var c=["DOMMouseScroll","mousewheel"];b.event.special.mousewheel={setup:function(){if(this.addEventListener)for(var a=c.length;a;)this.addEventListener(c[--a],d,false);else this.onmousewheel=d},teardown:function(){if(this.removeEventListener)for(var a=c.length;a;)this.removeEventListener(c[--a],
+d,false);else this.onmousewheel=null}};b.fn.extend({mousewheel:function(a){return a?this.bind("mousewheel",a):this.trigger("mousewheel")},unmousewheel:function(a){return this.unbind("mousewheel",a)}})})(jQuery);
