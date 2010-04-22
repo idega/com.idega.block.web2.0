@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pxml>
+  <map>
+    <key>
+      <name>component_name</name>
+      <type>java.lang.String</type>
+      <value>JCaptchaImage</value>
+      <simple>false</simple>
+      <reload>false</reload>
+    </key>
+    <key>
+      <name>component_type</name>
+      <type>java.lang.String</type>
+      <value>iw.element</value>
+      <simple>false</simple>
+      <reload>false</reload>
+    </key>
+    <key>
+      <name>is_block</name>
+      <type>java.lang.String</type>
+      <value>false</value>
+      <simple>false</simple>
+      <reload>false</reload>
+    </key>
+    <key>
+      <name>is_widget</name>
+      <type>java.lang.String</type>
+      <value>false</value>
+      <simple>false</simple>
+      <reload>false</reload>
+    </key>
+  </map>
+</pxml>
+
