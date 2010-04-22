@@ -16,6 +16,7 @@ import com.idega.business.IBOServiceBean;
 import com.idega.idegaweb.IWBundle;
 import com.idega.presentation.IWContext;
 import com.idega.util.PresentationUtil;
+import com.octo.captcha.service.CaptchaServiceException;
 
 /**
  * A service bean with handy methods for getting paths to Web 2.0 script libraries and more.
@@ -108,10 +109,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	
 	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
 	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
-	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_2_3_VERSION;
+	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_4_2_VERSION;
 	public static final String JQUERY_UI_LATEST_VERSION = Web2BusinessBean.JQUERY_UI_1_5b_VERSION;
 	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
 	public static final String JQUERY_1_2_3_VERSION = "1.2.3";
+	public static final String JQUERY_1_4_2_VERSION = "1.4.2";
 	public static final String JQUERY_UI_1_5b_VERSION = "1.5b";
 	
 	public static final String SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX = "scriptaculous";
@@ -734,5 +736,23 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 		AddResource adder = AddResourceFactory.getInstance(iwc);
 		adder.addInlineScriptAtPosition(iwc, AddResource.HEADER_BEGIN, buffer.toString());
 
+	}
+
+	public boolean validateJCaptcha(String sessionId, String userCaptchaResponse) {
+		Boolean isResponseCorrect = Boolean.FALSE;
+
+        // Call the Service method
+         try {
+             isResponseCorrect = CaptchaServiceSingleton.getInstance().validateResponseForID(sessionId, userCaptchaResponse);
+         }
+         catch (CaptchaServiceException e) {
+              //should not happen, may be thrown if the id is not valid
+         }
+         
+         return isResponseCorrect.booleanValue();
+	}
+	
+	public String getJCaptchaImageURL() {
+		return "/jcaptcha.jpg";
 	}
 }

@@ -318,4 +318,8 @@ public interface Web2Business extends IBOService {
 	public String getCodePressScriptFilePath();
 
 	public void addTablesorterScriptFilesToPage(IWContext iwc, String className, String theme);
+	
+	public boolean validateJCaptcha(String sessionId, String userCaptchaResponse);
+	
+	public String getJCaptchaImageURL();
 }

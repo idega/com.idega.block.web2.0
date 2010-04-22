@@ -194,6 +194,13 @@
       <url>http://java.sun.com/products/servlet/docs.html</url>
       <properties/>
     </dependency>
+    <dependency>
+		<groupId>captcha</groupId>
+		<artifactId>jcaptcha</artifactId>
+		<version>1.0</version>
+		<type>jar</type>
+		<url>http://jcaptcha.octo.com</url>
+	</dependency>
   </dependencies>
   <properties/>
 </project>
