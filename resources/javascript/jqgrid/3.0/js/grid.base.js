@@ -399,13 +399,18 @@ jQuery.fn.jqGrid = function( p ) {
 			if(!ts.p.xmlReader.repeatitems) f = reader("xml");
 			if( !ts.p.keyIndex ) {
 				idn = ts.p.xmlReader.id;
-				if( idn.indexOf("[") === -1 )
+				if (idn.indexOf("[") === -1)
 					var getId = function( trow, k) { return jQuery(idn,trow).text() || k }
 				else 
-					var getId = function( trow, k) { return trow.getAttribute(idn.replace(/[\[\]]/g,"")) || k }
+					var getId = function( trow, k) {return trow.getAttribute(idn.replace(/[\[\]]/g,"")) || k }
 			} else {
 				var getId = function(trow) { return f.length >= ts.p.keyIndex ? jQuery(f[ts.p.keyIndex],trow).text() : jQuery(ts.p.xmlReader.cell+":eq("+ts.p.keyIndex+")",trow).text() }
 			}
+			
+			var getStyleClassFromXml = function(trow) {
+				return trow == null ? null : trow.getAttribute('styleClass');
+			}
+			
 			jQuery(ts.p.xmlReader.page,xml).each( function() { ts.p.page = this.textContent  || this.text ; });
 			jQuery(ts.p.xmlReader.total,xml).each( function() { ts.p.lastpage = this.textContent  || this.text ; }  );
 			jQuery(ts.p.xmlReader.records,xml).each( function() { ts.p.records = this.textContent  || this.text ; }  );
@@ -413,6 +418,11 @@ jQuery.fn.jqGrid = function( p ) {
 			jQuery(ts.p.xmlReader.root+">"+ts.p.xmlReader.row,xml).each( function( j ) {
 				row = document.createElement("tr");
 				row.id = getId(this,j+1);
+				var stClFromXml = getStyleClassFromXml(this);
+				if (stClFromXml != null) {
+					jQuery(row).addClass(stClFromXml);
+				}
+				
 				if(ts.p.multiselect) {
 					addMulti(t,row);
 					gi = 1;
