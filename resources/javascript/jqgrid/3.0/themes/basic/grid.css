@@ -159,19 +159,19 @@ div.noContentInCasesListGridBody {
 }
 
 .caseTasksPart div.header {
-	background: url(images/icons/cog.gif) 4px no-repeat;
+	background: url(images/icons/tasks.png) 4px no-repeat;
 }
 
 .caseFormsPart div.header {
-	background: url(images/icons/folder_page.gif) 4px no-repeat;
+	background: url(images/icons/documents.png) 4px no-repeat;
 }
 
 .caseEmailsPart div.header {
-	background: url(images/icons/email_open.gif) 4px no-repeat;
+	background: url(images/icons/e-mail.png) 4px no-repeat;
 }
 
 .caseContactsPart div.header {
-	background: url(images/icons/group.gif) 4px no-repeat;
+	background: url(images/icons/contacts.png) 4px no-repeat;
 }
 
 .caseTasksPart th, .caseTasksPart td {
