@@ -57,7 +57,7 @@
 					}).appendTo('body');
                 })(),
                 lastScrollTop = null,
-                updateSize = function() {
+                updateSize = function(event) {
 					//	Prepare html
 					var html = $(this).val().replace(/(<|>)/g, '');
 					// IE is different, as per usual
@@ -79,12 +79,16 @@
 					var toChange = $(this);
 						
                     // Don't do anything if scrollTip hasen't changed:
-                    if (lastScrollTop === scrollTop) { return; }
+                    if (lastScrollTop === scrollTop) {
+                    	AutoResize.executeCustomCallback(event);
+                    	return;
+                    }
                     lastScrollTop = scrollTop;
 					
                     // Check for limit:
                     if ( scrollTop >= settings.limit ) {
                         $(this).css('overflow-y','');
+                        AutoResize.executeCustomCallback(event);
                         return;
                     }
                     // Fire off callback:
@@ -92,7 +96,10 @@
 					
                     // Either animate or directly apply height:
                     settings.animate && textarea.css('display') === 'block' ?
-                        toChange.stop().animate({height:scrollTop}, settings.animateDuration, settings.animateCallback)
+                        toChange.stop().animate({height:scrollTop}, settings.animateDuration, function() {
+                        	settings.animateCallback();
+                        	AutoResize.executeCustomCallback(event);
+                        })
                         : toChange.height(scrollTop);
                     }
                 };
@@ -114,3 +121,10 @@
     
     
 })(jQuery);
+
+AutoResize = {};
+AutoResize.executeCustomCallback = function(event) {
+	if (event && event.callback) {
+		event.callback();
+	}
+}
