@@ -45,13 +45,6 @@
 		<artifactId>jcaptcha</artifactId>
 		<version>1.0</version>
 	</dependency>
-    <!--  
-	<dependency>
-      <groupId>jmaki</groupId>
-      <artifactId>ajax-wrapper-comp</artifactId>
-      <version>0.4b1</version>
-    </dependency>
-    -->
   </dependencies>
   <properties />
 </project>
