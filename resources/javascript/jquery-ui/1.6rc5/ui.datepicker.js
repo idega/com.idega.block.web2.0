@@ -100,7 +100,8 @@ function Datepicker() {
 		constrainInput: true, // The input is constrained by the current date format
 		showButtonPanel: false, // True to show button panel, false to not show it
 		rangeSelect: false, // Allows for selecting a date range on one date picker
-		rangeSeparator: ' - ' // Text between two dates in a range
+		rangeSeparator: ' - ', // Text between two dates in a range
+		showTime: false
 	};
 	$.extend(this._defaults, this.regional['']);
 	this.dpDiv = $('<div id="' + this._mainDivId + '" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-helper-hidden-accessible"></div>');
@@ -1076,6 +1077,8 @@ $.extend(Datepicker.prototype, {
 		var dayNames = (settings ? settings.dayNames : null) || this._defaults.dayNames;
 		var monthNamesShort = (settings ? settings.monthNamesShort : null) || this._defaults.monthNamesShort;
 		var monthNames = (settings ? settings.monthNames : null) || this._defaults.monthNames;
+		var showTime = (settings ? settings.showTime : false) || this._defaults.showTime;
+		
 		// Check whether a format character is doubled
 		var lookAhead = function(match) {
 			var matches = (iFormat + 1 < format.length && format.charAt(iFormat + 1) == match);
@@ -1141,6 +1144,20 @@ $.extend(Datepicker.prototype, {
 							output += format.charAt(iFormat);
 					}
 			}
+		
+		if (showTime) {
+			var tmpDate = new Date();
+			var hours = tmpDate.getHours();
+			if (hours < 10) {
+				hours = '0' + hours;
+			}
+			var minutes = tmpDate.getMinutes();
+			if (minutes < 10) {
+				minutes = '0' + minutes;
+			}
+			output += ' ' + hours + ':' + minutes;
+		}	
+		
 		return output;
 	},
 
@@ -1602,7 +1619,7 @@ $.extend(Datepicker.prototype, {
 			new Date().getFullYear() % 100 + parseInt(shortYearCutoff, 10));
 		return {shortYearCutoff: shortYearCutoff,
 			dayNamesShort: this._get(inst, 'dayNamesShort'), dayNames: this._get(inst, 'dayNames'),
-			monthNamesShort: this._get(inst, 'monthNamesShort'), monthNames: this._get(inst, 'monthNames')};
+			monthNamesShort: this._get(inst, 'monthNamesShort'), monthNames: this._get(inst, 'monthNames'), showTime: this._get(inst, 'showTime')};
 	},
 
 	/* Format the given date for display. */
