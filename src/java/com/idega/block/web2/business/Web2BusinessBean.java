@@ -122,8 +122,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String PROTOTYPE_1_5_0_VERSION = "1.5.0";
 	public static final String PROTOTYPE_1_4_0_VERSION = "1.4.0";
 	
-	public static final String YUI_LATEST_VERSION = Web2BusinessBean.YUI_2_3_0_VERSION;
-	public static final String YUI_2_3_0_VERSION = "2.3.0";
+	public static final String YUI_LATEST_VERSION = Web2BusinessBean.YUI_2_8_2_VERSION;
+	public static final String YUI_2_3_0_VERSION = "2.3.0",
+								YUI_2_8_2_VERSION = "2.8.2";
 	public static final String YUI_UTILITIES_SCRIPT_FILE = "utilities.js";
 	public static final String YUI_UTILITIES_COMRESSED_SCRIPT_FILE = "utilities_compressed.js";
 	
