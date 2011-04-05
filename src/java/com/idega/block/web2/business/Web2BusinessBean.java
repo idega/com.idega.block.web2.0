@@ -158,13 +158,14 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SEXY_LIGHT_BOX_LATEST_VERSION = Web2BusinessBean.SEXY_LIGHT_BOX_2_0_1_VERSION;
 	public static final String SEXY_LIGHT_BOX_2_0_1_VERSION = "2.0.1";
 	
-	public static final String FANCY_BOX_LATEST_VERSION = Web2BusinessBean.FANCY_BOX_1_3_3_VERSION;
+	public static final String FANCY_BOX_LATEST_VERSION = Web2BusinessBean.FANCY_BOX_1_3_4_VERSION;
 	public static final String FANCY_BOX_1_0_VERSION = "1.0";
 	public static final String FANCY_BOX_1_2_1_VERSION = "1.2.1";
 	public static final String FANCY_BOX_1_3_0_VERSION = "1.3.0";
 	public static final String FANCY_BOX_1_3_1_VERSION = "1.3.1";
 	public static final String FANCY_BOX_1_3_2_VERSION = "1.3.2";
 	public static final String FANCY_BOX_1_3_3_VERSION = "1.3.3";
+	public static final String FANCY_BOX_1_3_4_VERSION = "1.3.4";
 	
 	public static final String CODE_MIRROR_LATEST_VERSION = Web2BusinessBean.CODE_MIRROR_0_6_VERSION;
 	public static final String CODE_MIRROR_0_6_VERSION = "0.6";
