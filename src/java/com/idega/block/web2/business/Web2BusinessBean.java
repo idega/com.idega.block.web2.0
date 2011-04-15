@@ -213,7 +213,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	
 	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
 	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
-	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_5_1_VERSION;
+	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_5_2_VERSION;
 	public static final String JQUERY_UI_LATEST_VERSION = Web2BusinessBean.JQUERY_UI_1_5b_VERSION;
 	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
 	public static final String JQUERY_1_2_3_VERSION = "1.2.3";
@@ -226,6 +226,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String JQUERY_1_4_2_VERSION = "1.4.2";
 	public static final String JQUERY_1_4_4_VERSION = "1.4.4";
 	public static final String JQUERY_1_5_1_VERSION = "1.5.1";
+	public static final String JQUERY_1_5_2_VERSION = "1.5.2";
 	public static final String JQUERY_UI_1_5b_VERSION = "1.5b";
 	
 	public static final String CONTROL_MODAL_JS_FILE_NAME = "control.modal.js";
