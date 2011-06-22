@@ -1296,4 +1296,21 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public String getJCaptchaImageURL() {
 		return "/jcaptcha.jpg";
 	}
+
+	@Override
+	public String getSWFUploadObjectScript() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("swfobject")).append(SLASH).append("2.2").append(SLASH).append("swfobject.js").toString();
+	}
+
+	@Override
+	public String getSWFUploadScript() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("swfupload")).append(SLASH).append("1.0").append(SLASH).append("vendor").append(SLASH).append("swfupload")
+			.append(SLASH).append("swfupload.js").toString();
+	}
+
+	@Override
+	public String getSWFUploadPlugin() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("swfupload")).append(SLASH).append("1.0").append(SLASH).append("vendor").append(SLASH).append("swfupload")
+		.append(SLASH).append("swfupload.swf").toString();
+	}
 }
