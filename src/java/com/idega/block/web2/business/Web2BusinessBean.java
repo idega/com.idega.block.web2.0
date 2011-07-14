@@ -32,8 +32,8 @@ import com.octo.captcha.service.CaptchaServiceException;
 /**
  * A service bean with handy methods for getting paths to Web 2.0 script libraries and more.
  * Scripts include<br>
- * Scriptaculous - Effects and drag and drop, just include prototype.js file first then scriptaculous.js file, <a href="http://script.aculo.us/">http://script.aculo.us/</a><br/>
- * Prototype - Dom search and manipulation and Ajax and OOP addons for javascript, just include the prototype.js file, <a href="http://prototype.conio.net/ ">http://prototype.conio.net/</a> , a quick guide http://particletree.com/features/quick-guide-to-prototype/<br/>
+ * Scriptaculous - Effects and drag and drop, just include prototype.js file first then scriptaculous.js file, <a href="http://script.aculo.us/">http://script.aculo.us/</a><br/> 
+ * Prototype - Dom search and manipulation and Ajax and OOP addons for javascript, just include the prototype.js file, <a href="http://prototype.conio.net/ ">http://prototype.conio.net/</a> , a quick guide http://particletree.com/features/quick-guide-to-prototype/<br/> 
  * Behaviour - Get clean HTML by registering javascript unto CSS classes, just include the behaviour.js file,  <a href="http://bennolan.com/behaviour/">http://bennolan.com/behaviour/</a><br/>
  * Reflection - Create a reflection effect for your images, include the reflection.js file and add the css class "reflect" to your image, <a href="http://cow.neondragon.net/stuff/reflection/">http://cow.neondragon.net/stuff/reflection/</a>
  * Mootools - A great Web2 library with effects, plugins, extendable and lightweight, http://www.mootools.net
@@ -209,7 +209,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX = "sexylightbox";
 	public static final String FANCY_BOX_FOLDER_NAME_PREFIX = "fancybox";
 	public static final String CODE_MIRROR_FOLDER_NAME_PREFIX = "codemirror";
-
+	
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
 	public static final String BEHAVIOUR_JS_FILE_NAME = "behaviour.js";
@@ -219,7 +219,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String RICO_JS_FILE_NAME = "rico.js";
 	public static final String DOJO_JS_FILE_NAME = "dojo.js";
 	public static final String JMAKI_JS_FILE_NAME = "jmaki.js";
-
+	
 	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
 	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
 	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_5_2_VERSION;
