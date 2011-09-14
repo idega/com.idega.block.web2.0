@@ -1427,9 +1427,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		String version = "1.2.0";
 		List<String> files = new ArrayList<String>();
 
-		files.add(getBundleURIWithinScriptsFolder(new StringBuilder(TAGEDIT_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH)
-				.append(TAGEDIT_SCRIPT_FILE_UI).toString()));
-		files.add(getBundleURIWithinScriptsFolder(new StringBuilder(TAGEDIT_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH)
+		files.add(getBundleURIWithinScriptsFolder(new StringBuilder(JQUERY_PLUGINS_FOLDER_NAME_PREFIX).append(SLASH)
 				.append(TAGEDIT_SCRIPT_FILE_AUTOGROW).toString()));
 		files.add(getBundleURIWithinScriptsFolder(new StringBuilder(TAGEDIT_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH)
 				.append(TAGEDIT_SCRIPT_FILE_TAGEDIT).toString()));

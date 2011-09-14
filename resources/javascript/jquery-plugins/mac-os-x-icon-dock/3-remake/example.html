@@ -1,0 +1,47 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>CSS Mac Dock</title>
+<script type="text/javascript" src="jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="mac-os-x-icon-dock.js"></script> 
+
+<link href="mac-os-x-icon-dock.css" rel="stylesheet" type="text/css" />
+<link href="example.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--bottom dock -->
+<h1>If images does not enlarge than probably jQuery is not found.</h1>
+<div id="dock">
+	<ul>
+		<li><a href="#address"><span>Address</span><img src="new_16.gif" alt="[address]" /></a></li><!--
+		<li><a href="#band"><span>Band</span><img src="img/icon-band.png" alt="[band]" /></a> hello</li>
+		--><li><a href="#calendar"><span>Calendar</span><img src="new_16.gif" alt="[calendar]" /></a></li><!--
+		<li class="active"><a href="#chat"><span>Chat</span><img src="img/icon-chat.png" alt="[chat]" /></a></li>
+		--><li class="active"><a href="#music"><span>Music</span><img src="new_16.gif" alt="[music]" /></a></li><!--
+		--><li><a href="#photo"><span>Photo</span><img src="new_16.gif" alt="[photo]" /></a></li><!--
+		--><li><a href="#text"><span>Text</span><img src="new_16.gif" alt="[text]" /></a></li><!--
+		--><li class="seperator"></li><!--
+		--><li><a href="#folder?src=/apps/"><span>Applications</span><img src="new_16.gif" alt="[apps]" /></a></li><!--
+		--><li><a href="#folder?src=/pictures/"><span>Pictures</span><img src="new_16.gif" alt="[pictures]" /></a></li><!--
+		<li><a href="#folder?src=/documents/"><span>Documents</span><img src="img/icon-documents.png" alt="[documents]" /></a></li>
+		--><li><a href="#bin"><span>Bin</span><img src="new_16.gif" alt="[bin]" /></a></li>
+	</ul>
+</div>
+
+<script>
+
+//var smth = MacOsXIconDock.createMacOsXIconDock({
+//	dock : $("#dock")
+//});
+//smth.startMacOsXIconDock();
+
+$("#dock").macOsXIconDock();//.fadeOut('fast').delay(1000).fadeIn("fast");
+</script>
+ 
+
+</body>
+</html>
+
+
