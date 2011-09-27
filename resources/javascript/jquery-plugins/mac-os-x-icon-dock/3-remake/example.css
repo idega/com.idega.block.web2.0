@@ -1,0 +1,11 @@
+/* Dock */
+	#dock {
+		display: block;
+		position : absolute;
+		top: 60%;
+		width: 50%;
+		height: 20%;
+		text-align: center;
+		/*overflow: hidden;*/
+		
+	}

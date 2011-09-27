@@ -552,6 +552,13 @@ img.jqResize {
 	clear: none;
 }
 
+.selectCaseHandlerLabelStyle {
+	font-size: 11px;
+	float: left;
+	clear: none;
+	margin-left: 10px;
+}
+
 .takeCaseSelect {
 	border: 1px #a8a8a8 solid;
 	font-size: 10px;

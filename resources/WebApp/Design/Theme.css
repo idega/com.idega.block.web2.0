@@ -2,7 +2,7 @@
 #iHeader { background-color:#888 }
 
 /* Main background color */
-#WebApp { background-color:#ccc }
+body { background-color:#ccc }
 
 /* Selection color */
 .iMore:not(.__lod):active,
