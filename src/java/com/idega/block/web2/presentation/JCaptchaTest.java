@@ -35,7 +35,6 @@ public class JCaptchaTest extends IWBaseComponent {
 	/* (non-Javadoc)
 	 * @see com.idega.presentation.IWBaseComponent#initializeComponent(javax.faces.context.FacesContext)
 	 */
-	@Override
 	protected void initializeComponent(FacesContext context) {
 		IWContext iwc = IWContext.getIWContext(context);
 		

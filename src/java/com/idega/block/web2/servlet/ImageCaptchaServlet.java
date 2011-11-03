@@ -20,12 +20,10 @@ public class ImageCaptchaServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -8970660545568735821L;
 
-	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
 	}
 
-	@Override
 	protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
 		byte[] captchaChallengeAsJpeg = null;
 		// the output stream to render the captcha image as jpeg into

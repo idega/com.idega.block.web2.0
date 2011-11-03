@@ -36,7 +36,7 @@ public class ImageCaptchaEngine extends ListImageCaptchaEngine {
 
 		WordGenerator wgen = new RandomWordGenerator("ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789");
 		RandomRangeColorGenerator cgen = new RandomRangeColorGenerator(new int[] { 0, 100 }, new int[] { 0, 100 }, new int[] { 0, 100 });
-		TextPaster textPaster = new RandomTextPaster(new Integer(numberOfLetters), new Integer(numberOfLetters), cgen, true);
+		TextPaster textPaster = new RandomTextPaster(new Integer(numberOfLetters), new Integer(numberOfLetters), cgen, Boolean.valueOf(true));
 
 		BackgroundGenerator backgroundGenerator = new FunkyBackgroundGenerator(new Integer(imageWidth), new Integer(imageHeight));
 
