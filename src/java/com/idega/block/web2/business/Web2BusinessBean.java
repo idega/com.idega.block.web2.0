@@ -755,4 +755,20 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business{
 	public String getJCaptchaImageURL() {
 		return "/jcaptcha.jpg";
 	}
+	
+	public static final String HUMAN_MESSAGES_FOLDER_NAME_PREFIX = "humanmsg";
+	public static final String HUMAN_MESAGES_LATEST_VERSION = Web2BusinessBean.HUMAN_MESAGES_1_0_VERSION;
+	public static final String HUMAN_MESAGES_1_0_VERSION = "1.0";
+	
+	private String getBundleUriToHumanizedMessages(String version) {
+		return getBundleURIWithinScriptsFolder(new StringBuilder(HUMAN_MESSAGES_FOLDER_NAME_PREFIX).append(SLASH).append(HUMAN_MESAGES_LATEST_VERSION).append(SLASH).toString());
+	}
+
+	public String getBundleUriToHumanizedMessagesScript() {
+		return new StringBuilder(getBundleUriToHumanizedMessages(HUMAN_MESAGES_LATEST_VERSION)).append("js").append(SLASH).append("humanmsg.js").toString();
+	}
+
+	public String getBundleUriToHumanizedMessagesStyleSheet() {
+		return new StringBuilder(getBundleUriToHumanizedMessages(HUMAN_MESAGES_LATEST_VERSION)).append("css").append(SLASH).append("humanmsg.css").toString();
+	}
 }

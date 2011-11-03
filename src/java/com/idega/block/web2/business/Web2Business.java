@@ -322,4 +322,8 @@ public interface Web2Business extends IBOService {
 	public boolean validateJCaptcha(String sessionId, String userCaptchaResponse);
 	
 	public String getJCaptchaImageURL();
+	
+	//	Humanized messages
+	public String getBundleUriToHumanizedMessagesScript();
+	public String getBundleUriToHumanizedMessagesStyleSheet();
 }
