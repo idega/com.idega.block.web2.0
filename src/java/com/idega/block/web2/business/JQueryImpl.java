@@ -21,19 +21,16 @@ public class JQueryImpl implements JQuery {
 
 	// TODO: move all the jquery code from web2business to this class
 
-	public static final String JQUERY_VALIDATION_LATEST_VERSION = "1.5.2";
+	public static final String JQUERY_VALIDATION_LATEST_VERSION = "1.9.0";
 	public static final String JQUERY_VALIDATION_FOLDER_PATH = "jquery-plugins/validation";
 
 	@Autowired
 	private Web2Business web2Business;
 
-	@Override
 	public String getBundleURIToJQueryLib() {
-
 		return getWeb2Business().getBundleURIToJQueryLib();
 	}
 
-	@Override
 	public String getBundleURIToJQueryLib(String jqueryLibraryVersion) {
 
 		try {
@@ -45,31 +42,30 @@ public class JQueryImpl implements JQuery {
 		}
 	}
 
-	@Override
 	public String getBundleURIToJQueryUILib(JQueryUIType type) {
 
 		return getWeb2Business().getBundleURIToJQueryUILib(type);
 	}
 
-	@Override
 	public String getBundleURIToJQueryUILib(String jqueryUILibraryVersion,
 	        String fileName) {
 		return getWeb2Business().getBundleURIToJQueryUILib(
 		    jqueryUILibraryVersion, fileName);
 	}
 
-	@Override
 	public String getBundleURIToJQueryPlugin(JQueryPlugin plugin) {
 		return getWeb2Business().getBundleURIToJQueryPlugin(plugin);
 	}
 
-	@Override
 	public List<String> getBundleURISToValidation() {
-		return getBundleURISToValidation(Boolean.TRUE);
+		return getBundleURISToValidation(null, Boolean.TRUE);
+	}
+	
+	public List<String> getBundleURISToValidation(String language) {
+		return getBundleURISToValidation(language, Boolean.TRUE);
 	}
 
-	@Override
-	public List<String> getBundleURISToValidation(boolean addAdditionalMethods) {
+	public List<String> getBundleURISToValidation(String language, boolean addAdditionalMethods) {
 		FilePathBuilder pathBuilder = new FilePathBuilder(JQUERY_VALIDATION_FOLDER_PATH);
 		pathBuilder.addFolder(JQUERY_VALIDATION_LATEST_VERSION);
 
@@ -77,6 +73,9 @@ public class JQueryImpl implements JQuery {
 
 		validationScripts.add(getFullURI(pathBuilder.getPathWithAddedFile("jquery.validate.js")));
 
+		if (language != null) {
+			validationScripts.add(getFullURI(pathBuilder.getPathWithAddedFile("localization/messages_"+ language +".js")));
+		}
 		if (addAdditionalMethods) {
 			validationScripts.add(getFullURI(pathBuilder.getPathWithAddedFile("additional-methods.js")));
 		}
