@@ -61,6 +61,10 @@ public class JQueryImpl implements JQuery {
 		return getBundleURISToValidation(null, Boolean.TRUE);
 	}
 	
+	public List<String> getBundleURISToValidation(boolean addAdditionalMethods) {
+		return getBundleURISToValidation(null, addAdditionalMethods);
+	}
+	
 	public List<String> getBundleURISToValidation(String language) {
 		return getBundleURISToValidation(language, Boolean.TRUE);
 	}
