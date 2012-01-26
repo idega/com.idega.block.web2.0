@@ -3,6 +3,7 @@ package com.idega.block.web2.business;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -77,7 +78,7 @@ public class JQueryImpl implements JQuery {
 
 		validationScripts.add(getFullURI(pathBuilder.getPathWithAddedFile("jquery.validate.js")));
 
-		if (language != null) {
+		if (language != null && !language.equals(Locale.ENGLISH.getLanguage())) {
 			validationScripts.add(getFullURI(pathBuilder.getPathWithAddedFile("localization/messages_"+ language +".js")));
 		}
 		if (addAdditionalMethods) {
