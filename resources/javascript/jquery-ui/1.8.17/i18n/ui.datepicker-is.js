@@ -14,7 +14,7 @@ jQuery(function($){
 		dayNamesShort: ['Sun','M&aacute;n','&THORN;ri','Mi&eth;','Fim','F&ouml;s','Lau'],
 		dayNamesMin: ['Su','M&aacute;','&THORN;r','Mi','Fi','F&ouml;','La'],
 		weekHeader: 'Vika',
-		dateFormat: 'dd/mm/yy',
+		dateFormat: 'd.m.yy',
 		firstDay: 0,
 		isRTL: false,
 		showMonthAfterYear: false,
