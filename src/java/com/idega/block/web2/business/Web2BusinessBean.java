@@ -114,6 +114,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String MOOTOOLS_MORE_COMPRESSED_SCRIPT_FILE = "mootools-more-compressed.js";
 	public static final String MOOTOOLS_STYLE_FILE = "mootools.css";
 
+	public static final String KNOCKOUT_LATEST_VERSION = Web2BusinessBean.KNOCKOUT_2_0_0_VERSION;
+	public static final String KNOCKOUT_2_0_0_VERSION = "2.0.0";
+	public static final String KNOCKOUT_COMPRESSED_SCRIPT_FILE = "knockout.js";
 
 	public static final String TAGEDIT_SCRIPT_FILE_UI = "jquery-ui-1.8.6.custom.min.js";
 	public static final String TAGEDIT_SCRIPT_FILE_AUTOGROW = "jquery.autoGrowInput.js";
@@ -210,6 +213,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX = "sexylightbox";
 	public static final String FANCY_BOX_FOLDER_NAME_PREFIX = "fancybox";
 	public static final String CODE_MIRROR_FOLDER_NAME_PREFIX = "codemirror";
+	public static final String KNOCKOUT_FOLDER_NAME_PREFIX = "knockout";
 
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -1344,5 +1348,16 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 
 	public String getSWFUploadPlugin() {
 	        return new StringBuilder(getBundleURIWithinScriptsFolder("swfupload")).append(SLASH).append("1.0").append(SLASH).append("vendor").append(SLASH).append("swfupload").append(SLASH).append("swfupload.swf").toString();
+	}
+		
+	public String getBundleURIToKnockoutLib(String knockoutVersion) {
+		StringBuffer buf = new StringBuffer();
+		buf.append(KNOCKOUT_FOLDER_NAME_PREFIX).append(SLASH).append(knockoutVersion).append(SLASH).append(KNOCKOUT_COMPRESSED_SCRIPT_FILE);
+
+		return getBundleURIWithinScriptsFolder(buf.toString());
+	}
+	
+	public String getBundleURIToKnockoutLib() {
+		return getBundleURIToKnockoutLib(KNOCKOUT_LATEST_VERSION);
 	}
 }

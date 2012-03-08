@@ -28,10 +28,12 @@ public class JQueryImpl implements JQuery {
 	@Autowired
 	private Web2Business web2Business;
 
+	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryLib() {
 		return getWeb2Business().getBundleURIToJQueryLib();
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryLib(String jqueryLibraryVersion) {
 
 		try {
@@ -43,17 +45,20 @@ public class JQueryImpl implements JQuery {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryUILib(JQueryUIType type) {
 
 		return getWeb2Business().getBundleURIToJQueryUILib(type);
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryUILib(String jqueryUILibraryVersion,
 	        String fileName) {
 		return getWeb2Business().getBundleURIToJQueryUILib(
 		    jqueryUILibraryVersion, fileName);
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryPlugin(JQueryPlugin plugin) {
 		return getWeb2Business().getBundleURIToJQueryPlugin(plugin);
 	}
