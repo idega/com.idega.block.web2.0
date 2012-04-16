@@ -262,7 +262,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SMOOTHBOX_SCRIPT_FILE = "smoothbox.js";
 	public static final String SMOOTHBOX_STYLE_FILE = "smoothbox.css";
 
-	public static final String TINY_MCE_LATEST_VERSION = Web2BusinessBean.TINY_MCE_VERSION_3_2_6;
+	public static final String TINY_MCE_LATEST_VERSION = "3.5b3";
 	public static final String TINY_MCE_VERSION_3_2_6 = "3.2.6";
 	public static final String TINY_MCE_FOLDER = "tinymce";
 
@@ -328,6 +328,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the latest version of the behaviour.js library (special modified version to work alongside Scriptaculous)
 	 */
+	@Override
 	public String getBundleURIToBehaviourLib(){
 		if(this.behaviourScriptPath==null){
 			this.behaviourScriptPath = getBundleURIWithinScriptsFolder(BEHAVIOUR_JS_FILE_NAME);
@@ -336,6 +337,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return this.behaviourScriptPath;
 	}
 
+	@Override
 	public String getBundleURIToJQGrid(){
 
 		if (jqGridScriptPath == null) {
@@ -345,6 +347,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return jqGridScriptPath;
 	}
 
+	@Override
 	public String getBundleURIToJQGridStyles(){
 		if (jqGridStylesPath == null) {
 			jqGridStylesPath = new StringBuffer(getBundleURIToScriptsFolder()).append(JQGRID_ROOT_FOLDER_NAME_PREFIX)
@@ -357,6 +360,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the latest version of the SoundManager2 javascript sound api
 	 */
+	@Override
 	public String getBundleURIToSoundManager2Lib(){
 		if(this.soundManager2ScriptPath==null){
 			StringBuffer path = new StringBuffer(SOUNDMANAGER2_FOLDER_NAME).append(SLASH).append(SOUNDMANAGER2_JS_FILE_NAME);
@@ -370,6 +374,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the latest version of the SoundManager2 javascript sound api's flash file
 	 */
+	@Override
 	public String getBundleURIToSoundManager2FlashFile(){
 		if(this.soundManager2FlashFilePath==null){
 			StringBuffer path = new StringBuffer(SOUNDMANAGER2_FOLDER_NAME).append(SLASH).append(SOUNDMANAGER2_FLASH_FILE);
@@ -383,6 +388,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the latest version of the SoundManager2 javascript sound api's test file
 	 */
+	@Override
 	public String getBundleURIToSoundManager2TestSoundFile(){
 		if(this.soundManager2TestFilePath==null){
 			StringBuffer path = new StringBuffer(SOUNDMANAGER2_FOLDER_NAME).append(SLASH).append(SOUNDMANAGER2_TEST_FILE_NAME);
@@ -395,6 +401,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the latest version of the reflection.js library, works with all browser that support the "canvas" tag
 	 */
+	@Override
 	public String getBundleURIToReflectionLib(){
 		if(this.reflectionScriptPath==null){
 			StringBuffer buf = new StringBuffer();
@@ -409,6 +416,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the latest version of the prototype.js library (within the latest Scriptaculous folder)
 	 */
+	@Override
 	public String getBundleURIToPrototypeLib(){
 		if(this.prototypeScriptPath==null){
 			this.prototypeScriptPath =  getBundleURIToPrototypeLib(SCRIPTACULOUS_LATEST_VERSION);
@@ -421,12 +429,14 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 * @param scriptaculousLibraryVersion The version for the scriptaculous library
 	 * @return The full URI with context to the prototype.js library of a specific version of the Scriptaculous library
 	 */
+	@Override
 	public String getBundleURIToPrototypeLib(String scriptaculousLibraryVersion){
 		StringBuffer buf = new StringBuffer(getBundleURIToScriptaculousLibRootFolder(scriptaculousLibraryVersion));
 		buf.append("lib/").append(PROTOTYPE_JS_FILE_NAME);
 		return buf.toString();
 	}
 
+	@Override
 	public String getBundleURIToDojoLib() {
 		if(this.dojoScriptPath == null){
 			this.dojoScriptPath =  getBundleURIWithinLibsFolder("dojo/" + DOJO_LATEST_VERSION + SLASH + DOJO_JS_FILE_NAME);
@@ -438,6 +448,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the latest version of the scriptaculous.js, ATTENTION scriptaculous needs prototype.js added before it!
 	 */
+	@Override
 	public String getBundleURIToScriptaculousLib(){
 		if(this.scriptaculousScriptPath==null){
 			this.scriptaculousScriptPath = getBundleURIToScriptaculousLib(SCRIPTACULOUS_LATEST_VERSION);
@@ -450,6 +461,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 * @param scriptaculousLibraryVersion The version for the scriptaculous library
 	 * @return The full URI with context to the specific version of the scriptaculous.js, ATTENTION scriptaculous needs prototype.js added before it!
 	 */
+	@Override
 	public String getBundleURIToScriptaculousLib(String scriptaculousLibraryVersion){
 		StringBuffer buf = new StringBuffer(getBundleURIToScriptaculousLibRootFolder(scriptaculousLibraryVersion));
 		buf.append("src/").append(SCRIPTACULOUS_JS_FILE_NAME);
@@ -460,6 +472,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the latest version of the scriptaculous.js root folder, usually ../ from scriptaculous.js
 	 */
+	@Override
 	public String getBundleURIToScriptaculousLibRootFolder(){
 		return getBundleURIToScriptaculousLibRootFolder(SCRIPTACULOUS_LATEST_VERSION);
 	}
@@ -468,6 +481,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 * @param scriptaculousLibraryVersion The version for the scriptaculous library
 	 * @return The full URI with context to the specific version of the scriptaculous.js root folder, usually ../ from scriptaculous.js
 	 */
+	@Override
 	public String getBundleURIToScriptaculousLibRootFolder(String scriptaculousLibraryVersion){
 		StringBuffer buf = new StringBuffer();
 		buf.append(SCRIPTACULOUS_ROOT_FOLDER_NAME_PREFIX).append(SLASH).append(scriptaculousLibraryVersion).append(SLASH);
@@ -479,6 +493,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the latest version of the mootools-all-compressed.js
 	 */
+	@Override
 	public String getBundleURIToMootoolsLib(){
 		if(this.mooToolsScriptPath==null){
 			this.mooToolsScriptPath = getBundleURIToMootoolsLib(MOOTOOLS_LATEST_VERSION);
@@ -491,6 +506,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 * @param mootoolsLibraryVersion The version for the mootools library
 	 * @return The full URI with context to the specific version of the mootools-all-compressed.js
 	 */
+	@Override
 	public String getBundleURIToMootoolsLib(String mootoolsLibraryVersion){
 		StringBuffer buf = new StringBuffer();
 		buf.append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append(mootoolsLibraryVersion).append(SLASH).append(MOOTOOLS_COMPRESSED_SCRIPT_FILE);
@@ -503,6 +519,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the latest version of the jquery-compressed.js
 	 */
+	@Override
 	public String getBundleURIToJQueryLib() {
 
 		if(jQueryCompressedScriptPath == null)
@@ -515,11 +532,13 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the latest version of the jquery-compressed.js
 	 */
+	@Override
 	public String getBundleURIToJQueryUILib(JQueryUIType type) {
 
 		return getBundleURIToJQueryUILib(JQUERY_UI_LATEST_VERSION, type.getFileName());
 	}
 
+	@Override
 	public String getBundleURIToJQueryPlugin(JQueryPlugin plugin) {
 		StringBuilder uri = new StringBuilder(JQUERY_PLUGINS_FOLDER_NAME_PREFIX).append(SLASH).append(JQUERY_FOLDER_NAME_PREFIX).append(plugin.getFileName());
 		return getBundleURIWithinScriptsFolder(uri.toString());
@@ -529,6 +548,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 * @param jqueryLibraryVersion The version for the jquery library
 	 * @return The full URI with context to the specific version of the jquery-compressed.js
 	 */
+	@Override
 	public String getBundleURIToJQueryLib(String jqueryLibraryVersion){
 		StringBuffer buf = new StringBuffer();
 		buf.append(JQUERY_FOLDER_NAME_PREFIX).append(SLASH).append(jqueryLibraryVersion).append(SLASH).append(JQUERY_COMPRESSED_SCRIPT_FILE);
@@ -536,6 +556,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 
+	@Override
 	public String getBundleURIToJQueryUILib(String jqueryUILibraryVersion, String fileName) {
 		StringBuffer buf = new StringBuffer();
 		buf.append(JQUERY_UI_FOLDER_NAME_PREFIX).append(SLASH).append(jqueryUILibraryVersion).append(SLASH).append(fileName);
@@ -546,6 +567,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the mootools.css (same for all versions)
 	 */
+	@Override
 	public String getBundleURIToMootoolsStyleFile() {
 		if (mooToolsStylePath == null) {
 			StringBuffer style = new StringBuffer().append(MOOTOOLS_FOLDER_NAME_PREFIX).append(SLASH).append("css").append(SLASH).append(MOOTOOLS_STYLE_FILE);
@@ -558,6 +580,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the all the script's parent folder e.g. web2.0.bundle/resources/javascript/
 	 */
+	@Override
 	public String getBundleURIToScriptsFolder(){
 		if(this.rootScriptsFolderBundleURI == null){
 			IWBundle iwb = this.getBundle();
@@ -566,6 +589,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return this.rootScriptsFolderBundleURI;
 	}
 
+	@Override
 	public String getBundleURIToLibsFolder() {
 		if(this.rootLibsFolderBundleURI == null) {
 			IWBundle iwb = this.getBundle();
@@ -574,6 +598,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return this.rootLibsFolderBundleURI;
 	}
 
+	@Override
 	public String getBundleURIWithinLibsFolder(String uriExtension) {
 		StringBuffer buf = new StringBuffer(getBundleURIToLibsFolder());
 		buf.append(uriExtension);
@@ -585,6 +610,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 * @param uriExtension a path within the scripts folder
 	 * @return The full URI with context to a resource within the parent script folder e.g. uriExtension="scriptaculous-js-1.6.1/test/" would result in "...web2.0.bundle/resources/javascript/scriptaculous-js-1.6.1/test/"
 	 */
+	@Override
 	public String getBundleURIWithinScriptsFolder(String uriExtension){
 		StringBuffer buf = new StringBuffer(getBundleURIToScriptsFolder());
 		buf.append(uriExtension);
@@ -596,6 +622,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return WEB2_BUNDLE_IDENTIFIER;
 	}
 
+	@Override
 	public String getBundleURIToRicoLib(){
 		if(this.ricoScriptPath==null){
 			this.ricoScriptPath =  getBundleURIWithinScriptsFolder(RICO_JS_FILE_NAME);
@@ -609,6 +636,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to version 1.4 of the prototype.js library (standard download)
 	 */
+	@Override
 	public String getBundleURIToRico(){
 		if(this.ricoScriptPath==null){
 			this.ricoScriptPath =  getBundleURIWithinScriptsFolder(RICO_JS_FILE_NAME);
@@ -621,6 +649,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the jMaki widgets parent folder e.g. web2.0.bundle/resources/jmaki/
 	 */
+	@Override
 	public String getBundleURIToJMakiWidgetsFolder(){
 		if(this.jMakiWidgetsURI == null){
 			IWBundle iwb = this.getBundle();
@@ -633,6 +662,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 *
 	 * @return The full URI with context to the jmaki.js library
 	 */
+	@Override
 	public String getBundleURIToJMakiLib(){
 		if(this.jMakiScriptPath == null){
 			this.jMakiScriptPath = getBundleURIWithinScriptsFolder(JMAKI_JS_FILE_NAME);
@@ -640,16 +670,19 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return this.jMakiScriptPath;
 	}
 
+	@Override
 	public String getBundleURIToLightboxLibRootFolder() {
 		return getBundleURIToLightboxLibRootFolder(LIGHTBOX_LATEST_VERSION);
 	}
 
+	@Override
 	public String getBundleURIToLightboxLibRootFolder(String versionNumber) {
 		StringBuffer buf = new StringBuffer();
 		buf.append(LIGHTBOX_ROOT_FOLDER_NAME_PREFIX).append(SLASH).append(versionNumber).append(SLASH);
 		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 
+	@Override
 	public String getLightboxImagesPath() {
 		if (lightboxImagesPath == null) {
 			StringBuffer images = new StringBuffer(getBundleURIToLightboxLibRootFolder()).append("images").append(SLASH);
@@ -658,6 +691,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return lightboxImagesPath;
 	}
 
+	@Override
 	public String getInlineEditScriptPath() {
 		if (inlideEditScriptFilePath == null) {
 			StringBuffer script = new StringBuffer(getBundleUriToInlineEditScript());
@@ -682,6 +716,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return smoothboxStyleFilePath;
 	}
 
+	@Override
 	public String getLightboxScriptPath() {
 		if (lightboxScriptPath == null) {
 			StringBuffer script = new StringBuffer(getBundleURIToLightboxLibRootFolder()).append("js").append(SLASH);
@@ -690,6 +725,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return lightboxScriptPath;
 	}
 
+	@Override
 	public String getLightboxStylePath() {
 		if (lightboxStylePath == null) {
 			StringBuffer style = new StringBuffer(getBundleURIToLightboxLibRootFolder()).append("css").append(SLASH);
@@ -698,6 +734,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return lightboxStylePath;
 	}
 
+	@Override
 	public String getLightboxScriptFilePath() {
 		if (lightboxScriptFilePath == null) {
 			StringBuffer script = new StringBuffer(getLightboxScriptPath()).append(LIGTHBOX_SCRIPT_FILE);
@@ -706,6 +743,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return lightboxScriptFilePath;
 	}
 
+	@Override
 	public String getLightboxStyleFilePath() {
 		if (lightboxStyleFilePath == null) {
 			StringBuffer style = new StringBuffer(getLightboxStylePath()).append(LIGTHBOX_STYLE_FILE);
@@ -714,16 +752,19 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return lightboxStyleFilePath;
 	}
 
+	@Override
 	public String getBundleURIToThickboxLibRootFolder() {
 		return getBundleURIToThickboxLibRootFolder(THICKBOX_LATEST_VERSION);
 	}
 
+	@Override
 	public String getBundleURIToThickboxLibRootFolder(String versionNumber) {
 		StringBuffer buf = new StringBuffer();
 		buf.append(THICKBOX_ROOT_FOLDER_NAME_PREFIX).append(SLASH).append(versionNumber).append(SLASH);
 		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 
+	@Override
 	public String getThickboxScriptPath() {
 		if (thickboxScriptPath == null) {
 			StringBuffer script = new StringBuffer(getBundleURIToThickboxLibRootFolder()).append("js").append(SLASH);
@@ -732,6 +773,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return thickboxScriptPath;
 	}
 
+	@Override
 	public String getThickboxStylePath() {
 		if (thickboxStylePath == null) {
 			StringBuffer style = new StringBuffer(getBundleURIToThickboxLibRootFolder()).append("css").append(SLASH);
@@ -740,6 +782,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return thickboxStylePath;
 	}
 
+	@Override
 	public String getThickboxScriptFilePath() {
 		if (thickboxScriptFilePath == null) {
 			StringBuffer script = new StringBuffer(getThickboxScriptPath()).append(THICKBOX_SCRIPT_FILE);
@@ -748,6 +791,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return thickboxScriptFilePath;
 	}
 
+	@Override
 	public String getThickboxStyleFilePath() {
 		if (thickboxStyleFilePath == null) {
 			StringBuffer style = new StringBuffer(getThickboxStylePath()).append(THICKBOX_STYLE_FILE);
@@ -756,12 +800,14 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return thickboxStyleFilePath;
 	}
 
+	@Override
 	public String getPrototypeScriptFilePath(String version) {
 		StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(PROTOTYPE_ROOT_FOLDER_NAME_PREFIX);
 		script.append(SLASH).append(version).append(SLASH).append(PROTOTYPE_JS_FILE_NAME);
 		return script.toString();
 	}
 
+	@Override
 	public String getBundleURIToControlModalLib() {
 		if (controlModalScriptPath == null) {
 			controlModalScriptPath = getBundleURIWithinScriptsFolder(CONTROL_MODAL_JS_FILE_NAME);
@@ -769,18 +815,21 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return controlModalScriptPath;
 	}
 
+	@Override
 	public String getNiftyCubeScriptFilePath() {
 		StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(NIFTYCUBE_FOLDER_NAME_PREFIX);
 		script.append(SLASH).append(NIFTYCUBE_JS_FILE_NAME);
 		return script.toString();
 	}
 
+	@Override
 	public String getMootoolsBasedBehaviourScriptFilePath() {
 		StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(MOOTOOLS_BASED_BEHAVIOUR_FILE);
 		return script.toString();
 	}
 
 	/** MOOdalBox starts **/
+	@Override
 	public String getMoodalboxScriptFilePath(boolean needFullScript) {
 		StringBuffer script = new StringBuffer(getMoodalboxScriptPath());
 		if (needFullScript) {
@@ -792,6 +841,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return script.toString();
 	}
 
+	@Override
 	public String getMoodalboxStyleFilePath() {
 		if (moodalboxStyleFilePath == null) {
 			StringBuffer style = new StringBuffer(getMoodalboxStylePath()).append(MOODALBOX_STYLE_FILE);
@@ -800,6 +850,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return moodalboxStyleFilePath;
 	}
 
+	@Override
 	public String getMoodalboxStylePath() {
 		if (moodalboxStylePath == null) {
 			StringBuffer style = new StringBuffer(getBundleURIToMoodalboxLibRootFolder()).append("css").append(SLASH);
@@ -808,6 +859,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return moodalboxStylePath;
 	}
 
+	@Override
 	public String getMoodalboxScriptPath() {
 		if (moodalboxScriptPath == null) {
 			StringBuffer script = new StringBuffer(getBundleURIToMoodalboxLibRootFolder()).append("js").append(SLASH);
@@ -816,10 +868,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return moodalboxScriptPath;
 	}
 
+	@Override
 	public String getBundleURIToMoodalboxLibRootFolder() {
 		return getBundleURIToMoodalboxLibRootFolder(MOODALBOX_LATEST_VERSION);
 	}
 
+	@Override
 	public String getBundleURIToMoodalboxLibRootFolder(String versionNumber) {
 		StringBuffer buf = new StringBuffer();
 		buf.append(MOODALBOX_ROOT_FOLDER_NAME_PREFIX).append(SLASH).append(versionNumber).append(SLASH);
@@ -828,6 +882,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	/** MOOdalBox ends **/
 
 	/** Slimbox starts **/
+	@Override
 	public String getSlimboxScriptFilePath() {
 		StringBuffer script = new StringBuffer(getSlimboxScriptPath());
 		script.append(SLIMBOX_SCRIPT_FILE);
@@ -835,6 +890,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return script.toString();
 	}
 
+	@Override
 	public String getSlimboxStyleFilePath() {
 		if (slimboxStyleFilePath == null) {
 			StringBuffer style = new StringBuffer(getSlimboxStylePath()).append(SLIMBOX_STYLE_FILE);
@@ -870,6 +926,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	}
 	/** Slimbox ends **/
 
+	@Override
 	public String getTranscornersScriptFilePath() {
 		if (transcornersScriptFilePath == null) {
 			StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(TRANSCORNERS_ROOT_FOLDER_NAME_PREFIX);
@@ -879,6 +936,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return transcornersScriptFilePath;
 	}
 
+	@Override
 	public String getReflectionForMootoolsScriptFilePath() {
 		if (reflectionForMootoolsScriptFilePath == null) {
 			StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(REFLECTION_ROOT_FOLDER_NAME_PREFIX);
@@ -889,6 +947,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return reflectionForMootoolsScriptFilePath;
 	}
 
+	@Override
 	public String getCodePressScriptFilePath() {
 		if (codePressScriptFilePath == null) {
 			StringBuffer script = new StringBuffer(getBundleURIToScriptsFolder()).append(CODEPRESS_ROOT_FOLDER_NAME_PREFIX);
@@ -902,6 +961,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 * @param needFullScript true if the full version of the script needs to be included
 	 * @return The full URI with context to the latest version of the mootools-all-compressed.js OR mootools-all.js depending on the parameter
 	 */
+	@Override
 	public String getBundleURIToMootoolsLib(boolean needFullScript){
 		if(this.mooToolsScriptPath==null){
 			this.mooToolsScriptPath = getBundleURIToMootoolsLib(MOOTOOLS_LATEST_VERSION, needFullScript);
@@ -915,6 +975,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	 * @param mootoolsLibraryVersion The version for the mootools library
 	 * @return The full URI with context to the specific version of the mootools-all-compressed.js
 	 */
+	@Override
 	public String getBundleURIToMootoolsLib(String mootoolsLibraryVersion, boolean needFullScript){
 		StringBuffer buf = new StringBuffer();
 		if(needFullScript) {
@@ -925,6 +986,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 
+	@Override
 	public String getBundleURIToYUIScript(String version, boolean needFullScript) {
 		StringBuffer script = new StringBuffer(YUI_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH);
 		if (needFullScript) {
@@ -936,10 +998,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return getBundleURIWithinScriptsFolder(script.toString());
 	}
 
+	@Override
 	public String getBundleURIToYUIScript(boolean needFullScript) {
 		return getBundleURIToYUIScript(YUI_LATEST_VERSION, needFullScript);
 	}
 
+	@Override
 	public String getBundleURIToYUIScript() {
 		return getBundleURIToYUIScript(YUI_LATEST_VERSION, false);
 	}
@@ -952,6 +1016,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return getBundleURIWithinScriptsFolder(new StringBuffer(INLINE_EDIT_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH).toString());
 	}
 
+	@Override
 	public String getBundleUriToMootabsScript(String version) {
 		return new StringBuffer(getPathToMootabs(version)).append(MOOTABS_SCRIPT_FILE).toString();
 	}
@@ -960,30 +1025,37 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return getBundleURIWithinScriptsFolder(new StringBuffer(SMOOTHBOX_FOLDER_NAME_PREFIX).append(SLASH).toString());
 	}
 
+	@Override
 	public String getBundleUriToSmoothboxScript() {
 		return new StringBuffer(getPathToSmoothbox()).append(SMOOTHBOX_SCRIPT_FILE).toString();
 	}
 
+	@Override
 	public String getBundleUriToSmoothboxStylesheet() {
 		return new StringBuffer(getPathToSmoothbox()).append(SMOOTHBOX_STYLE_FILE).toString();
 	}
 
+	@Override
 	public String getBundleUriToInlineEditScript(String version) {
 		return new StringBuffer(getPathToInlineEdit(version)).append(INLINE_EDIT_SCRIPT_FILE).toString();
 	}
 
+	@Override
 	public String getBundleUriToMootabsScript() {
 		return getBundleUriToMootabsScript(MOOTABS_LATEST_VERSION);
 	}
 
+	@Override
 	public String getBundleUriToInlineEditScript() {
 		return getBundleUriToInlineEditScript(INLINE_EDIT_LATEST_VERSION);
 	}
 
+	@Override
 	public String getBundleUriToMootabsStyle(String version) {
 		return new StringBuffer(getPathToMootabs(version)).append(MOOTABS_STYLE_FILE).toString();
 	}
 
+	@Override
 	public String getBundleUriToMootabsStyle() {
 		return getBundleUriToMootabsStyle(MOOTABS_LATEST_VERSION);
 	}
@@ -992,18 +1064,22 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return getBundleURIWithinScriptsFolder(new StringBuffer(MOORAINBOW_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH).toString());
 	}
 
+	@Override
 	public String getBundleUriToMooRainbowScript(String version) {
 		return new StringBuffer(getPathToMooRainbow(version)).append(MOORAINBOW_SCRIPT_FILE).toString();
 	}
 
+	@Override
 	public String getBundleUriToMooRainbowScript() {
 		return getBundleUriToMooRainbowScript(MOORAINBOW_LATEST_VERSION);
 	}
 
+	@Override
 	public String getBundleUriToMooRainbowStyle(String version) {
 		return new StringBuffer(getPathToMooRainbow(version)).append(MOORAINBOW_STYLE_FILE).toString();
 	}
 
+	@Override
 	public String getBundleUriToMooRainbowStyle() {
 		return getBundleUriToMooRainbowStyle(MOORAINBOW_LATEST_VERSION);
 	}
@@ -1012,6 +1088,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return getBundleURIWithinScriptsFolder(new StringBuffer(CONTEXT_MENU_FOLDER_NAME_PREFIX).append(SLASH).append(version).append(SLASH).toString());
 	}
 
+	@Override
 	public String getBundleUriToContextMenuScript(String version, boolean compressedFile) {
 		StringBuffer uri = new StringBuffer(getPathToContextMenu(version));
 		String file = CONTEXT_MENU_SCRIPT_FILE;
@@ -1022,14 +1099,17 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return uri.toString();
 	}
 
+	@Override
 	public String getBundleUriToContextMenuScript(boolean compressedFile) {
 		return getBundleUriToContextMenuScript(Web2BusinessBean.CONTEXT_MENU_LATEST_VERSION, compressedFile);
 	}
 
+	@Override
 	public String getBundleUriToContextMenuScript() {
 		return getBundleUriToContextMenuScript(Web2BusinessBean.CONTEXT_MENU_LATEST_VERSION, true);
 	}
 
+	@Override
 	public void addTablesorterScriptFilesToPage(IWContext iwc, String className, String theme) {
 		if (StringUtil.isEmpty(theme)) {
 			theme = "blue";
@@ -1047,6 +1127,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 
 	}
 
+	@Override
 	public void addWebAppFilesToPage(IWContext iwc) {
 		PresentationUtil.addStyleSheetToHeader(iwc, getBundle().getResourcesVirtualPath() + "/WebApp/Design/Render.css");
 		if (iwc.isMozilla()) {
@@ -1059,33 +1140,40 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return getBundleURIWithinScriptsFolder(new StringBuilder(HUMAN_MESSAGES_FOLDER_NAME_PREFIX).append(SLASH).append(HUMAN_MESAGES_LATEST_VERSION).append(SLASH).toString());
 	}
 
+	@Override
 	public String getBundleUriToHumanizedMessagesScript() {
 		return new StringBuilder(getBundleUriToHumanizedMessages(HUMAN_MESAGES_LATEST_VERSION)).append("js").append(SLASH).append("humanmsg.js").toString();
 	}
 
+	@Override
 	public String getBundleUriToHumanizedMessagesStyleSheet() {
 		return new StringBuilder(getBundleUriToHumanizedMessages(HUMAN_MESAGES_LATEST_VERSION)).append("css").append(SLASH).append("humanmsg.css").toString();
 	}
 
+	@Override
 	public String getBundleUtiToGreyBoxScript() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder(GREY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append("js").append(SLASH).append("greybox.js")
 				.toString();
 	}
 
+	@Override
 	public String getBundleUtiToGreyBoxStyleSheet() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder(GREY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append("css").append(SLASH).append("greybox.css")
 				.toString();
 	}
 
+	@Override
 	public String getBundleURIToJSTreeStyleFile() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder(JS_TREE_FOLDER_NAME_PREFIX)).append(SLASH).append(JS_TREE_LATEST_VERSION).append(SLASH)
 			.append("css").append(SLASH).append(JS_TREE_FILE).append(".css").toString();
 	}
 
+	@Override
 	public List<String> getBundleURIsToJSTreeScriptFiles() {
 		return getBundleURIsToJSTreeScriptFiles(false, false, false);
 	}
 
+	@Override
 	public List<String> getBundleURIsToJSTreeScriptFiles(boolean usesXmlDataTypes, boolean usesMetadataRules, boolean usesCookies) {
 		List<String> files = new ArrayList<String>();
 
@@ -1116,10 +1204,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return files;
 	}
 
+	@Override
 	public List<String> getBundleURIsToSexyLightBoxScriptFiles() {
 		return getBundleURIsToSexyLightBoxScriptFiles(true);
 	}
 
+	@Override
 	public List<String> getBundleURIsToSexyLightBoxScriptFiles(boolean useCompressedScript) {
 		List<String> files = new ArrayList<String>();
 
@@ -1133,12 +1223,14 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return files;
 	}
 
+	@Override
 	public String getBundleURIToSexyLightBoxStyleFile() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder(SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(SEXY_LIGHT_BOX_LATEST_VERSION)
 					.append(SLASH).append(SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX).append(".css")
 				.toString();
 	}
 
+	@Override
 	public String getSexyLightBoxInitAction(IWContext iwc, String variableName) {
 		String imagesDir = new StringBuilder(getBundleURIWithinScriptsFolder(SEXY_LIGHT_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(SEXY_LIGHT_BOX_LATEST_VERSION)
 							.append(SLASH).append("sexyimages").toString();
@@ -1157,16 +1249,19 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return initAction.toString();
 	}
 
+	@Override
 	public void insertSexyLightBoxIntoPage(IWContext iwc) {
 		PresentationUtil.addJavaScriptSourcesLinesToHeader(iwc, getBundleURIsToSexyLightBoxScriptFiles());
 		PresentationUtil.addStyleSheetToHeader(iwc, getBundleURIToSexyLightBoxStyleFile());
 		PresentationUtil.addJavaScriptActionToBody(iwc, getSexyLightBoxInitAction(iwc, getSexyLightBoxVariableName()));
 	}
 
+	@Override
 	public String getSexyLightBoxVariableName() {
 		return "Sexy";
 	}
 
+	@Override
 	public List<String> getBundleURIsToMooToolsLib(String version, boolean needCompressedFiles, boolean needMooToolsMore, boolean addBridgingScript) {
 		List<String> files = new ArrayList<String>();
 
@@ -1190,31 +1285,38 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return files;
 	}
 
+	@Override
 	public List<String> getBundleURIsToMooToolsLib(boolean needCompressedFiles, boolean needMooToolsMore, boolean addBridgingScript) {
 		return getBundleURIsToMooToolsLib(MOOTOOLS_LATEST_VERSION, needCompressedFiles, needMooToolsMore, addBridgingScript);
 	}
 
+	@Override
 	public List<String> getBundleURIsToMooToolsLib() {
 		return getBundleURIsToMooToolsLib(MOOTOOLS_LATEST_VERSION, true, true, true);
 	}
 
+	@Override
 	public String getBrowserPlusScriptFile() {
 		return "http://bp.yahooapis.com/2.1.6/browserplus-min.js";
 	}
 
+	@Override
 	public String getBundleURIToFancyBoxStyleFile() {
 		return getBundleURIToFancyBoxStyleFile(FANCY_BOX_LATEST_VERSION);
 	}
 
+	@Override
 	public String getBundleURIToFancyBoxStyleFile(String version) {
 		return new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(version).append(SLASH)
 		.append(FANCY_BOX_FOLDER_NAME_PREFIX).append(".css").toString();
 	}
 
+	@Override
 	public List<String> getBundleURIsToFancyBoxScriptFiles() {
 		return getBundleURIsToFancyBoxScriptFiles(FANCY_BOX_LATEST_VERSION);
 	}
 
+	@Override
 	public List<String> getBundleURIsToFancyBoxScriptFiles(String version) {
 		List<String> scripts = new ArrayList<String>();
 		scripts.add(new StringBuilder(getBundleURIWithinScriptsFolder(FANCY_BOX_FOLDER_NAME_PREFIX)).append(SLASH).append(version).append(SLASH)
@@ -1233,28 +1335,34 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	}
 
 
+	@Override
 	public String getBundleURIToCodeMirrorFolder() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder(CODE_MIRROR_FOLDER_NAME_PREFIX)).append(SLASH).append(CODE_MIRROR_LATEST_VERSION).append(SLASH)
 		.append("js/").toString();
 	}
 
+	@Override
 	public String getBundleURIToCodeMirrorScriptFile() {
 		return getBundleURIToCodeMirrorScriptFile(CODE_MIRROR_FOLDER_NAME_PREFIX + ".js");
 	}
 
+	@Override
 	public String getBundleURIToCodeMirrorScriptFile(String scriptFile) {
 		return new StringBuilder(getBundleURIToCodeMirrorFolder()).append(scriptFile).toString();
 	}
 
+	@Override
 	public String getBundleURIToCodeMirrorStyleFile(String styleFile) {
 		return new StringBuilder(getBundleURIWithinScriptsFolder(CODE_MIRROR_FOLDER_NAME_PREFIX)).append(SLASH).append(CODE_MIRROR_LATEST_VERSION).append(SLASH)
 		.append("css/").append(styleFile).toString();
 	}
 
+	@Override
 	public String getBundleUriToLinkLinksWithFilesScriptFile() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder("linkslinker")).append(SLASH).append("1.0").append(SLASH).append("linkslinker.js").toString();
 	}
 
+	@Override
 	public String getActionToLinkLinksWithFiles(String containerId, boolean executeOnLoad, boolean addStyleForNonFileLinks) {
 		String action = new StringBuilder("LinksLinker.linkLinks(").append(addStyleForNonFileLinks).append(", ")
 			.append(StringUtil.isEmpty(containerId) ? "null" : new StringBuilder("'").append(containerId).append("'").toString()).append(");").toString();
@@ -1266,35 +1374,48 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return action;
 	}
 
+	@Override
 	public String getBundleUriToLinkLinksWithFilesStyleFile() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder("linkslinker")).append(SLASH).append("1.0").append(SLASH).append("linkslinker.css").toString();
 	}
 
+	@Override
 	public JQuery getJQuery() {
     	return jQuery;
     }
 
+	@Override
 	public String getBundleUriToGritterScriptFile() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder("gritter")).append(SLASH).append("1.2").append(SLASH).append("gritter.js").toString();
 	}
 
+	@Override
 	public String getBundleUriToGritterStyleSheet() {
 		return new StringBuilder(getBundleURIWithinScriptsFolder("gritter")).append(SLASH).append("1.2").append(SLASH).append("gritter.css").toString();
 	}
 
+	@Override
 	public List<String> getScriptsForTinyMCE() {
 		return getScriptsForTinyMCE(TINY_MCE_LATEST_VERSION);
 	}
 
+	@Override
 	public List<String> getScriptsForTinyMCE(String version) {
+		List<String> files = Arrays.asList("tiny_mce.js","jquery.tinymce.js");
+		return getBundleUrisToTinyMceScriptFiles(version, files);
+	}
+	
+	@Override
+	public List<String> getBundleUrisToTinyMceScriptFiles(String version, List<String> files){
 		String tinyMCEFolder = new StringBuilder(getBundleURIWithinScriptsFolder(TINY_MCE_FOLDER)).append(SLASH).append(version).append(SLASH).toString();
-
-		return Arrays.asList(
-				tinyMCEFolder + "tiny_mce.js",
-				tinyMCEFolder + "jquery.tinymce.js"
-		);
+		ArrayList<String> uris = new ArrayList<String>(files.size());
+		for(String name : files){
+			uris.add(tinyMCEFolder + name);
+		}
+		return uris;
 	}
 
+	@Override
 	public boolean validateJCaptcha(String sessionId, String userCaptchaResponse) {
 		Boolean isResponseCorrect = Boolean.FALSE;
 
@@ -1309,10 +1430,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
          return isResponseCorrect.booleanValue();
 	}
 
+	@Override
 	public String getJCaptchaImageURL() {
 		return "/jcaptcha.jpg";
 	}
 
+	@Override
 	public List<String> getBundleURIsToTageditLib() {
 		String version = "1.2.0";
 		List<String> files = new ArrayList<String>();
@@ -1323,6 +1446,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 				.append(TAGEDIT_SCRIPT_FILE_TAGEDIT).toString()));
 		return files;
 	}
+	@Override
 	public List<String> getBundleURIsToTageditStyleFiles(){
 		String version = "1.2.0";
 		List<String> files = new ArrayList<String>();
@@ -1338,18 +1462,22 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return files;
 	}
 
+	@Override
 	public String getSWFUploadObjectScript() {
         return new StringBuilder(getBundleURIWithinScriptsFolder("swfobject")).append(SLASH).append("2.2").append(SLASH).append("swfobject.js").toString();
 	}
 
+	@Override
 	public String getSWFUploadScript() {
 	        return new StringBuilder(getBundleURIWithinScriptsFolder("swfupload")).append(SLASH).append("1.0").append(SLASH).append("vendor").append(SLASH).append("swfupload").append(SLASH).append("swfupload.js").toString();
 	}
 
+	@Override
 	public String getSWFUploadPlugin() {
 	        return new StringBuilder(getBundleURIWithinScriptsFolder("swfupload")).append(SLASH).append("1.0").append(SLASH).append("vendor").append(SLASH).append("swfupload").append(SLASH).append("swfupload.swf").toString();
 	}
 		
+	@Override
 	public String getBundleURIToKnockoutLib(String knockoutVersion) {
 		StringBuffer buf = new StringBuffer();
 		buf.append(KNOCKOUT_FOLDER_NAME_PREFIX).append(SLASH).append(knockoutVersion).append(SLASH).append(KNOCKOUT_COMPRESSED_SCRIPT_FILE);
@@ -1357,7 +1485,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return getBundleURIWithinScriptsFolder(buf.toString());
 	}
 	
+	@Override
 	public String getBundleURIToKnockoutLib() {
 		return getBundleURIToKnockoutLib(KNOCKOUT_LATEST_VERSION);
 	}
+
 }
