@@ -10,7 +10,6 @@
 package com.idega.block.web2.business;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.myfaces.renderkit.html.util.AddResource;
@@ -1401,7 +1400,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 
 	@Override
 	public List<String> getScriptsForTinyMCE(String version) {
-		List<String> files = Arrays.asList("tiny_mce.js","jquery.tinymce.js");
+		List<String> files = new ArrayList();
+		files.add("tiny_mce.js");
+		if(TINY_MCE_VERSION_3_2_6.equals(version)){
+			files.add("jquery.tinymce.js");
+		}
+//		List<String> files = Arrays.asList("tiny_mce.js","jquery.tinymce.js");
 		return getBundleUrisToTinyMceScriptFiles(version, files);
 	}
 	
