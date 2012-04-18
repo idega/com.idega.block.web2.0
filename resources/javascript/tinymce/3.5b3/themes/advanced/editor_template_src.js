@@ -1112,7 +1112,7 @@
 			}
 
 			if (c = cm.get('formatselect')) {
-				p = getParent(DOM.isBlock);
+				p = getParent(ed.dom.isBlock);
 
 				if (p)
 					c.select(p.nodeName.toLowerCase());
@@ -1210,7 +1210,7 @@
 						return;
 
 					// Handle prefix
-					if (tinymce.isIE && n.scopeName !== 'HTML')
+					if (tinymce.isIE && n.scopeName !== 'HTML' && n.scopeName)
 						na = n.scopeName + ':' + na;
 
 					// Remove internal prefix
@@ -1271,7 +1271,7 @@
 						if (v) {
 							ti += 'class: ' + v + ' ';
 
-							if (DOM.isBlock(n) || na == 'img' || na == 'span')
+							if (ed.dom.isBlock(n) || na == 'img' || na == 'span')
 								na += '.' + v;
 						}
 					}
