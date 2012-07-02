@@ -1376,4 +1376,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		
 		return "http://maps.googleapis.com/maps/api/js?key=" + apiKey + "&sensor=" + Boolean.valueOf(useSensor).toString();
 	}
+
+	@Override
+	public String getScriptURLForLabelify(String version) {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("labelify")).append(SLASH).append(version).append(SLASH).append("labelify.js").toString();
+	}
 }
