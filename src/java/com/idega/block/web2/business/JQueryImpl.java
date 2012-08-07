@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +17,8 @@ import com.idega.util.FilePathBuilder;
  * @version $Revision: 1.2 $ Last modified: $Date: 2009/04/27 12:50:49 $ by $Author: valdas $
  */
 @Service
-@Scope("singleton")
+@Scope(BeanDefinition.SCOPE_SINGLETON)
 public class JQueryImpl implements JQuery {
-
-	// TODO: move all the jquery code from web2business to this class
 
 	public static final String JQUERY_VALIDATION_LATEST_VERSION = "1.5.2";
 	public static final String JQUERY_VALIDATION_FOLDER_PATH = "jquery-plugins/validation";
@@ -27,37 +26,35 @@ public class JQueryImpl implements JQuery {
 	@Autowired
 	private Web2Business web2Business;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public String getBundleURIToJQueryLib() {
-
 		return getWeb2Business().getBundleURIToJQueryLib();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public String getBundleURIToJQueryLib(String jqueryLibraryVersion) {
-
 		try {
-			return getWeb2Business().getBundleURIToJQueryLib(
-			    jqueryLibraryVersion);
-
+			return getWeb2Business().getBundleURIToJQueryLib( jqueryLibraryVersion);
 		} catch (RemoteException e) {
 			throw new IBORuntimeException(e);
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public String getBundleURIToJQueryUILib(JQueryUIType type) {
-
 		return getWeb2Business().getBundleURIToJQueryUILib(type);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public String getBundleURIToJQueryUILib(String jqueryUILibraryVersion,
-	        String fileName) {
-		return getWeb2Business().getBundleURIToJQueryUILib(
-		    jqueryUILibraryVersion, fileName);
+	public String getBundleURIToJQueryUILib(String jqueryUILibraryVersion, String fileName) {
+		return getWeb2Business().getBundleURIToJQueryUILib(jqueryUILibraryVersion, fileName);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public String getBundleURIToJQueryPlugin(JQueryPlugin plugin) {
 		return getWeb2Business().getBundleURIToJQueryPlugin(plugin);
