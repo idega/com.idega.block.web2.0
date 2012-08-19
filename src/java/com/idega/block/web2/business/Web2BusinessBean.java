@@ -1511,8 +1511,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		ArrayList<String> files = new ArrayList<String>();
 		
 		// dependencies
-//		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(version).append("/dependencies/templates/tmpl.js").toString());
-		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(version).append("/dependencies/load-image/load-image.js").toString());
+		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload"))
+				.append(SLASH).append(version).append("/dependencies/load-image/load-image.js").toString());
 				
 		//files
 		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(version).append("/js/jquery.iframe-transport.js").toString());
@@ -1531,9 +1531,18 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(version).append("/css/jquery.fileupload-ui.css").toString());
 		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(version).append("/css/style.css").toString());
 		
-		// TODO: download these
-		files.add("http://blueimp.github.com/cdn/css/bootstrap.min.css");
-		files.add("http://blueimp.github.com/cdn/css/bootstrap-responsive.min.css");
 		return files;
+	}
+
+	@Override
+	public String getBundleUriToBootstrapMainScriptFile(String version) {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("bootstrap"))
+			.append(SLASH).append(version).append("/js/bootstrap.min.js").toString();
+	}
+
+	@Override
+	public String getBundleUriToBootstrapMainStyleFile(String version) {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("bootstrap"))
+		.append(SLASH).append(version).append("/css/bootstrap.min.css").toString();
 	}
 }
