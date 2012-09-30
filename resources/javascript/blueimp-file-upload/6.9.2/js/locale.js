@@ -11,19 +11,26 @@
 
 /*global window */
 
-window.locale = {
-    "fileupload": {
-        "errors": {
-            "maxFileSize": "File is too big",
-            "minFileSize": "File is too small",
-            "acceptFileTypes": "Filetype not allowed",
-            "maxNumberOfFiles": "Max number of files exceeded",
-            "uploadedBytes": "Uploaded bytes exceed file size",
-            "emptyResult": "Empty file upload result"
-        },
-        "error": "Error",
-        "start": "Start",
-        "cancel": "Cancel",
-        "destroy": "Delete"
-    }
-};
+if(typeof(window.locale) == 'undefined'){window.locale = {}; }
+
+if(window.locale.fileupload == undefined){
+	window.locale.fileupload = {};
+} 
+
+{
+	var defaults = {
+	        "errors": {
+	            "maxFileSize": "File is too big",
+	            "minFileSize": "File is too small",
+	            "acceptFileTypes": "Filetype not allowed",
+	            "maxNumberOfFiles": "Max number of files exceeded",
+	            "uploadedBytes": "Uploaded bytes exceed file size",
+	            "emptyResult": "Empty file upload result"
+	        },
+	        "error": "Error",
+	        "start": "Start",
+	        "cancel": "Cancel",
+	        "destroy": "Delete"
+	};
+	window.locale.fileupload = jQuery.extend({},defaults , window.locale.fileupload);
+}
