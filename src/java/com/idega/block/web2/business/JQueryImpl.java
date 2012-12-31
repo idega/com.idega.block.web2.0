@@ -3,6 +3,7 @@ package com.idega.block.web2.business;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -20,7 +21,7 @@ import com.idega.util.FilePathBuilder;
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class JQueryImpl implements JQuery {
 
-	public static final String JQUERY_VALIDATION_LATEST_VERSION = "1.5.2";
+	public static final String JQUERY_VALIDATION_LATEST_VERSION = "1.9.0";
 	public static final String JQUERY_VALIDATION_FOLDER_PATH = "jquery-plugins/validation";
 
 	@Autowired
@@ -36,7 +37,7 @@ public class JQueryImpl implements JQuery {
 	@Override
 	public String getBundleURIToJQueryLib(String jqueryLibraryVersion) {
 		try {
-			return getWeb2Business().getBundleURIToJQueryLib( jqueryLibraryVersion);
+			return getWeb2Business().getBundleURIToJQueryLib(jqueryLibraryVersion);
 		} catch (RemoteException e) {
 			throw new IBORuntimeException(e);
 		}
@@ -62,11 +63,19 @@ public class JQueryImpl implements JQuery {
 
 	@Override
 	public List<String> getBundleURISToValidation() {
-		return getBundleURISToValidation(Boolean.TRUE);
+		return getBundleURISToValidation(null, Boolean.TRUE);
 	}
 
 	@Override
 	public List<String> getBundleURISToValidation(boolean addAdditionalMethods) {
+		return getBundleURISToValidation(null, addAdditionalMethods);
+	}
+
+	public List<String> getBundleURISToValidation(String language) {
+		return getBundleURISToValidation(language, Boolean.TRUE);
+	}
+
+	public List<String> getBundleURISToValidation(String language, boolean addAdditionalMethods) {
 		FilePathBuilder pathBuilder = new FilePathBuilder(JQUERY_VALIDATION_FOLDER_PATH);
 		pathBuilder.addFolder(JQUERY_VALIDATION_LATEST_VERSION);
 
@@ -74,6 +83,9 @@ public class JQueryImpl implements JQuery {
 
 		validationScripts.add(getFullURI(pathBuilder.getPathWithAddedFile("jquery.validate.js")));
 
+		if (language != null && !language.equals(Locale.ENGLISH.getLanguage())) {
+			validationScripts.add(getFullURI(pathBuilder.getPathWithAddedFile("localization/messages_"+ language +".js")));
+		}
 		if (addAdditionalMethods) {
 			validationScripts.add(getFullURI(pathBuilder.getPathWithAddedFile("additional-methods.js")));
 		}
@@ -95,4 +107,5 @@ public class JQueryImpl implements JQuery {
 	Web2Business getWeb2Business() {
 		return web2Business;
 	}
+
 }

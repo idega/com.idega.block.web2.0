@@ -8,7 +8,7 @@ public class Web2BusinessHomeImpl extends IBOHomeImpl implements Web2BusinessHom
 
 	private static final long serialVersionUID = 7355513602965646962L;
 
-	public Class getBeanInterfaceClass() {
+	public Class<Web2Business> getBeanInterfaceClass() {
 		return Web2Business.class;
 	}
 

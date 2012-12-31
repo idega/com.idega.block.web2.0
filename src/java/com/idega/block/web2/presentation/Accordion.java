@@ -81,6 +81,7 @@ public class Accordion extends Block {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void main(IWContext iwc) {
 		Web2Business business = ELUtil.getInstance().getBean(Web2Business.class);
 		

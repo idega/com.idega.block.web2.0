@@ -15,7 +15,7 @@ public class WebResourcePluginsResolver implements Map<String, String> {
 
 	@Autowired
 	private JQuery jQuery;
-	
+
 	public void clear() {
 		throw new UnsupportedOperationException(this.getClass().getName() + ": UnsupportedOperationException");
 	}
@@ -33,12 +33,13 @@ public class WebResourcePluginsResolver implements Map<String, String> {
 	}
 
 	public String get(Object key) {
-		if (Web2BusinessBean.JQUERY_FOLDER_NAME_PREFIX.equals(key)) {
+		if (Web2BusinessBean.JQUERY_FOLDER_NAME_PREFIX.equals(key))
 			return jQuery.getBundleURIToJQueryLib();
-		}
-		
+		else if ("url_parser".equals(key))
+			return jQuery.getBundleURIToJQueryPlugin(JQueryPlugin.URL_PARSER);
+
 		//	TODO: add more "resolvers"
-		
+
 		return key.toString();
 	}
 
@@ -69,5 +70,4 @@ public class WebResourcePluginsResolver implements Map<String, String> {
 	public Collection<String> values() {
 		throw new UnsupportedOperationException(this.getClass().getName() + ": UnsupportedOperationException");
 	}
-
 }
