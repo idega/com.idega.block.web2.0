@@ -1503,6 +1503,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 
 	@Override
 	public boolean validateJCaptcha(String sessionId, String userCaptchaResponse) {
+		if (StringUtil.isEmpty(sessionId) || StringUtil.isEmpty(userCaptchaResponse))
+			return Boolean.FALSE;
+
 		Boolean isResponseCorrect = Boolean.FALSE;
 
         // Call the Service method
@@ -1659,7 +1662,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return new StringBuilder(getBundleURIWithinScriptsFolder("bootstrap"))
 		.append(SLASH).append(version).append("/css/bootstrap.min.css").toString();
 	}
-	
+
 
 	@Override
 	public String getBundleUriToBootstrapMainScriptFile() {
