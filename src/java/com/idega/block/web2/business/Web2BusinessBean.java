@@ -1659,4 +1659,18 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return new StringBuilder(getBundleURIWithinScriptsFolder("bootstrap"))
 		.append(SLASH).append(version).append("/css/bootstrap.min.css").toString();
 	}
+	
+
+	@Override
+	public String getBundleUriToBootstrapMainScriptFile() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("bootstrap"))
+			.append(SLASH).append("2.2.2").append("/js/bootstrap.min.js").toString();
+	}
+
+
+	@Override
+	public String getBundleUriToBootstrapMainStyleFile() {
+		return new StringBuilder(getBundleURIWithinScriptsFolder("bootstrap"))
+		.append(SLASH).append("2.2.2").append("/css/bootstrap.min.css").toString();
+	}
 }
