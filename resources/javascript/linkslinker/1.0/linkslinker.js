@@ -17,9 +17,8 @@ LinksLinker.linkLinks = function(addStyleForNonFileLinks, containerId) {
 	}
 	
 	var links = containerId == null ? jQuery('a') : jQuery('a', jQuery('#' + containerId));
-	if (links == null || links.length == 0) {
+	if (links == null || links.length == 0)
 		return;
-	}
 	
 	jQuery.each(links, function() {
 		var tag = jQuery(this);
@@ -43,7 +42,9 @@ LinksLinker.linkTag = function(tag, link) {
 	var checker = null;
 	for (var i = 0; i < link.linker.length; i++) {
 		checker = link.linker[i];
-		if (tag.attr('rel').toLowerCase().indexOf(checker) != -1 || tag.attr('href').toLowerCase().indexOf(checker) != -1) {
+		var relAttr = tag.attr('rel');
+		var hrefAttr = tag.attr('href');
+		if ((relAttr != null && relAttr.toLowerCase().indexOf(checker) != -1) || (hrefAttr != null && hrefAttr.toLowerCase().indexOf(checker) != -1)) {
 			tag.addClass(link.css);
 			tag.addClass('linkedWithLinker');
 			return true;
