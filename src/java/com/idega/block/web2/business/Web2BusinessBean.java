@@ -265,7 +265,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SMOOTHBOX_SCRIPT_FILE = "smoothbox.js";
 	public static final String SMOOTHBOX_STYLE_FILE = "smoothbox.css";
 
-	public static final String TINY_MCE_LATEST_VERSION = "3.5b3";
+	public static final String TINY_MCE_LATEST_VERSION = "3.5.8";
+	public static final String TINY_MCE_VERSION_3_5b3 = "3.5b3";
 	public static final String TINY_MCE_VERSION_3_2_6 = "3.2.6";
 	public static final String TINY_MCE_FOLDER = "tinymce";
 
