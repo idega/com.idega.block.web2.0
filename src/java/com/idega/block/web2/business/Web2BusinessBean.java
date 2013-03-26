@@ -217,6 +217,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String FANCY_BOX_FOLDER_NAME_PREFIX = "fancybox";
 	public static final String CODE_MIRROR_FOLDER_NAME_PREFIX = "codemirror";
 	public static final String KNOCKOUT_FOLDER_NAME_PREFIX = "knockout";
+	public static final String DROPKICK_FOLDER_NAME_PREFIX = "dropkick";
 
 	public static final String SCRIPTACULOUS_JS_FILE_NAME = "scriptaculous.js";
 	public static final String PROTOTYPE_JS_FILE_NAME = "prototype.js";
@@ -265,7 +266,8 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SMOOTHBOX_SCRIPT_FILE = "smoothbox.js";
 	public static final String SMOOTHBOX_STYLE_FILE = "smoothbox.css";
 
-	public static final String TINY_MCE_LATEST_VERSION = "3.5b3";
+	public static final String TINY_MCE_LATEST_VERSION = "3.5.8";
+	public static final String TINY_MCE_VERSION_3_5b3 = "3.5b3";
 	public static final String TINY_MCE_VERSION_3_2_6 = "3.2.6";
 	public static final String TINY_MCE_FOLDER = "tinymce";
 
@@ -273,6 +275,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String JQUERY_MEDIA_0_96 = "0.96";
 
 	public static final String PROPERTY_GOOGLE_API_KEY = "google.api.key";
+	
+	public static final String DROPKICK_LATEST_VERSION = Web2BusinessBean.DROPKICK_1_0_0_VERSION;
+	public static final String DROPKICK_1_0_0_VERSION = "1.0.0";
 
 	protected String rootScriptsFolderBundleURI;
 	protected String rootLibsFolderBundleURI;
@@ -1407,6 +1412,33 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return scripts;
 	}
 
+	@Override
+	public String getBundleURIToDropkickStyleFile() {
+		return getBundleURIToDropkickStyleFile(DROPKICK_LATEST_VERSION);
+	}
+
+
+	@Override
+	public String getBundleURIToDropkickStyleFile(String version) {
+		return new StringBuilder(getBundleURIWithinScriptsFolder(DROPKICK_FOLDER_NAME_PREFIX)).append(SLASH).append(version).append(SLASH)
+		.append(DROPKICK_FOLDER_NAME_PREFIX).append(".css").toString();
+	}
+
+
+	@Override
+	public List<String> getBundleURIsToDropkickScriptFiles() {
+		return getBundleURIsToDropkickScriptFiles(DROPKICK_LATEST_VERSION);
+	}
+
+
+	@Override
+	public List<String> getBundleURIsToDropkickScriptFiles(String version) {
+		List<String> scripts = new ArrayList<String>();
+		scripts.add(new StringBuilder(getBundleURIWithinScriptsFolder(DROPKICK_FOLDER_NAME_PREFIX)).append(SLASH).append(version).append(SLASH)
+					.append(DROPKICK_FOLDER_NAME_PREFIX).append(".js").toString());
+
+		return scripts;
+	}
 
 	@Override
 	public String getBundleURIToCodeMirrorFolder() {
