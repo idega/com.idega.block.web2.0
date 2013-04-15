@@ -275,7 +275,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String JQUERY_MEDIA_0_96 = "0.96";
 
 	public static final String PROPERTY_GOOGLE_API_KEY = "google.api.key";
-	
+
 	public static final String DROPKICK_LATEST_VERSION = Web2BusinessBean.DROPKICK_1_0_0_VERSION;
 	public static final String DROPKICK_1_0_0_VERSION = "1.0.0";
 
@@ -1681,31 +1681,35 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return files;
 	}
 
+	@Override
+	public String getBundleUriToBootstrapFolder() {
+		return getBundleURIWithinScriptsFolder("bootstrap");
+	}
 
 	@Override
 	public String getBundleUriToBootstrapMainScriptFile(String version) {
-		return new StringBuilder(getBundleURIWithinScriptsFolder("bootstrap"))
+		return new StringBuilder(getBundleUriToBootstrapFolder())
 			.append(SLASH).append(version).append("/js/bootstrap.min.js").toString();
 	}
 
 
 	@Override
 	public String getBundleUriToBootstrapMainStyleFile(String version) {
-		return new StringBuilder(getBundleURIWithinScriptsFolder("bootstrap"))
+		return new StringBuilder(getBundleUriToBootstrapFolder())
 		.append(SLASH).append(version).append("/css/bootstrap.min.css").toString();
 	}
 
 
 	@Override
 	public String getBundleUriToBootstrapMainScriptFile() {
-		return new StringBuilder(getBundleURIWithinScriptsFolder("bootstrap"))
+		return new StringBuilder(getBundleUriToBootstrapFolder())
 			.append(SLASH).append("2.2.2").append("/js/bootstrap.min.js").toString();
 	}
 
 
 	@Override
 	public String getBundleUriToBootstrapMainStyleFile() {
-		return new StringBuilder(getBundleURIWithinScriptsFolder("bootstrap"))
+		return new StringBuilder(getBundleUriToBootstrapFolder())
 		.append(SLASH).append("2.2.2").append("/css/bootstrap.min.css").toString();
 	}
 }
