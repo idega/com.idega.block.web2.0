@@ -1712,4 +1712,14 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return new StringBuilder(getBundleUriToBootstrapFolder())
 		.append(SLASH).append("2.2.2").append("/css/bootstrap.min.css").toString();
 	}
+
+	@Override
+	public String getBundleUriToLoadMaskScript() {
+		return getBundleURIWithinScriptsFolder("load-mask/0.4/jquery.loadmask.min.js");
+	}
+
+	@Override
+	public String getBundleUriToLoadMaskStyle() {
+		return getBundleURIWithinScriptsFolder("load-mask/0.4/jquery.loadmask.css");
+	}
 }
