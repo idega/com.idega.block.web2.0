@@ -8,7 +8,25 @@
 
 (function($){
 	
-	var defaultHandlers = ['swfupload_loaded_handler','file_queued_handler','file_queue_error_handler','file_dialog_start_handler','file_dialog_complete_handler','upload_start_handler','upload_progress_handler','upload_error_handler','upload_success_handler','upload_complete_handler','queue_complete_handler'];
+	var defaultHandlers = [
+		'swfupload_preload_handler',
+		'swfupload_load_failed_handler',
+		'swfupload_loaded_handler',
+		'file_dialog_start_handler',
+		'file_queued_handler',
+		'file_queue_error_handler',
+		'file_dialog_complete_handler',
+		'upload_resize_start_handler',
+		'upload_start_handler',
+		'upload_progress_handler',
+		'upload_error_handler',
+		'upload_success_handler',
+		'upload_complete_handler',
+		'mouse_click_handler',
+		'mouse_out_handler',
+		'mouse_over_handler',
+		'queue_complete_handler'
+	];
 	var additionalHandlers = [];
 	
 	$.fn.swfupload = function(){
