@@ -17,7 +17,7 @@
 /* ******************* */
 var SWFUpload;
 
-if (SWFUpload == undefined) {
+if (!SWFUpload || SWFUpload == undefined) {
 	SWFUpload = function (settings) {
 		this.initSWFUpload(settings);
 	};
