@@ -232,7 +232,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
 	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
 	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_7_1_VERSION;
-	public static final String JQUERY_UI_LATEST_VERSION = Web2BusinessBean.JQUERY_UI_1_8_17_VERSION;
+	public static final String JQUERY_UI_LATEST_VERSION = "1.10.3";
 	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
 	public static final String JQUERY_1_2_3_VERSION = "1.2.3";
 	public static final String JQUERY_1_2_6_VERSION = "1.2.6";
