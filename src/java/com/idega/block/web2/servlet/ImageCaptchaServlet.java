@@ -3,6 +3,8 @@ package com.idega.block.web2.servlet;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -12,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.idega.block.web2.business.CaptchaServiceSingleton;
 import com.octo.captcha.service.CaptchaServiceException;
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 public class ImageCaptchaServlet extends HttpServlet {
 
@@ -36,9 +36,9 @@ public class ImageCaptchaServlet extends HttpServlet {
 			String captchaId = httpServletRequest.getSession().getId();
 			// call the ImageCaptchaService getChallenge method
 			BufferedImage challenge = CaptchaServiceSingleton.getInstance().getImageChallengeForID(captchaId, httpServletRequest.getLocale());
-			// a jpeg encoder
-			JPEGImageEncoder jpegEncoder = JPEGCodec.createJPEGEncoder(jpegOutputStream);
-			jpegEncoder.encode(challenge);
+			ImageIO.write(challenge, "jpeg", jpegOutputStream);
+//			JPEGImageEncoder jpegEncoder = JPEGCodec.createJPEGEncoder(jpegOutputStream);
+//			jpegEncoder.encode(challenge);
 		}
 		catch (IllegalArgumentException e) {
 			httpServletResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
