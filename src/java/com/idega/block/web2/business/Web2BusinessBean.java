@@ -275,7 +275,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String JQUERY_MEDIA_0_96 = "0.96";
 
 	public static final String PROPERTY_GOOGLE_API_KEY = "google.api.key";
-	
+
 	public static final String DROPKICK_LATEST_VERSION = Web2BusinessBean.DROPKICK_1_0_0_VERSION;
 	public static final String DROPKICK_1_0_0_VERSION = "1.0.0";
 
@@ -1167,7 +1167,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 			theme = "blue";
 		}
 		PresentationUtil.addStyleSheetToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/"+theme+"/style.css");
-		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.1.2.3.packed.js");
+		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToJQueryLib());
 		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.metadata.js");
 		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.tablesorter.min.js");
 
@@ -1691,7 +1691,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		return new StringBuilder(getBundleURIWithinScriptsFolder("bootstrap"))
 		.append(SLASH).append(version).append("/css/bootstrap.min.css").toString();
 	}
-	
+
 
 	@Override
 	public String getBundleUriToBootstrapMainScriptFile() {
