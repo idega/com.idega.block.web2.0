@@ -334,6 +334,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	private String smoothboxScriptFilePath = null;
 	private String smoothboxStyleFilePath = null;
 
+	private static final String BLUEIMP_UPLOADER_LATEST_VERSION = "6.9.2";
 	@Autowired
 	private JQuery jQuery;
 
@@ -1648,6 +1649,17 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	}
 
 
+	@Override
+	public Collection<String> getBundleUrisToBlueimpFileUploadBasicScriptFiles() {
+		ArrayList<String> files = new ArrayList<String>();
+
+		//files
+		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(BLUEIMP_UPLOADER_LATEST_VERSION).append("/js/jquery.fileupload.js").toString());
+		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(BLUEIMP_UPLOADER_LATEST_VERSION).append("/js/jquery.iframe-transport.js").toString());
+
+		return files;
+	}
+	
 	@Override
 	public Collection<String> getBundleUrisToBlueimpFileUploadScriptFiles(
 			String version) {
