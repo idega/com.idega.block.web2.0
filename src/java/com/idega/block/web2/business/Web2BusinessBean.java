@@ -232,7 +232,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
 	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
 	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_7_1_VERSION;
-	public static final String JQUERY_UI_LATEST_VERSION = Web2BusinessBean.JQUERY_UI_1_8_17_VERSION;
+	public static final String JQUERY_UI_LATEST_VERSION = "1.10.3";
 	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
 	public static final String JQUERY_1_2_3_VERSION = "1.2.3";
 	public static final String JQUERY_1_2_6_VERSION = "1.2.6";
@@ -334,6 +334,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	private String smoothboxScriptFilePath = null;
 	private String smoothboxStyleFilePath = null;
 
+	private static final String BLUEIMP_UPLOADER_LATEST_VERSION = "6.9.2";
 	@Autowired
 	private JQuery jQuery;
 
@@ -1167,7 +1168,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 			theme = "blue";
 		}
 		PresentationUtil.addStyleSheetToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/"+theme+"/style.css");
-		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.1.2.3.packed.js");
+		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToJQueryLib());
 		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.metadata.js");
 		PresentationUtil.addJavaScriptSourceLineToHeader(iwc, getBundleURIToScriptsFolder() + "tablesorter/jquery.tablesorter.min.js");
 
@@ -1651,6 +1652,17 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	}
 
 
+	@Override
+	public Collection<String> getBundleUrisToBlueimpFileUploadBasicScriptFiles() {
+		ArrayList<String> files = new ArrayList<String>();
+
+		//files
+		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(BLUEIMP_UPLOADER_LATEST_VERSION).append("/js/jquery.fileupload.js").toString());
+		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(BLUEIMP_UPLOADER_LATEST_VERSION).append("/js/jquery.iframe-transport.js").toString());
+
+		return files;
+	}
+	
 	@Override
 	public Collection<String> getBundleUrisToBlueimpFileUploadScriptFiles(
 			String version) {
