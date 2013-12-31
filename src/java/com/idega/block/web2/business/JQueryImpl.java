@@ -17,7 +17,7 @@ import com.idega.util.FilePathBuilder;
  * @author <a href="mailto:civilis@idega.com">Vytautas Čivilis</a>
  * @version $Revision: 1.2 $ Last modified: $Date: 2009/04/27 12:50:49 $ by $Author: valdas $
  */
-@Service
+@Service("jQuery")
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class JQueryImpl implements JQuery {
 
@@ -71,10 +71,12 @@ public class JQueryImpl implements JQuery {
 		return getBundleURISToValidation(null, addAdditionalMethods);
 	}
 
+	@Override
 	public List<String> getBundleURISToValidation(String language) {
 		return getBundleURISToValidation(language, Boolean.TRUE);
 	}
 
+	@Override
 	public List<String> getBundleURISToValidation(String language, boolean addAdditionalMethods) {
 		FilePathBuilder pathBuilder = new FilePathBuilder(JQUERY_VALIDATION_FOLDER_PATH);
 		pathBuilder.addFolder(JQUERY_VALIDATION_LATEST_VERSION);
