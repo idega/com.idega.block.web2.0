@@ -250,25 +250,11 @@ div.noContentInCasesListGridBody {
 	text-align: center !important;
 }
 
-.caseContactsPart th, .caseContactsPart td {
-	width: 32% !important;
-}
 
 .caseContactsPart table {
 	border-right: 1px #a8a8a8 solid;
 }
 
-.caseContactsPart th.casesGridHeaderCell_3, 
-.caseContactsPart td.casesGridBodyCell_3 {
-	width: 4% !important;
-	text-align: center !important;
-	padding: 2px 0 !important;
-}
-
-.caseContactsPart th.casesGridHeaderCell_4, 
-.caseContactsPart td.casesGridBodyCell_4 {
-	display: none;
-}
 
 tr.subgrid td.casesGridBodyCell_0 img {
 	margin-top: -3px;
