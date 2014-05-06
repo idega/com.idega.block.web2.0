@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.myfaces.renderkit.html.util.AddResource;
 import org.apache.myfaces.renderkit.html.util.AddResourceFactory;
@@ -232,7 +233,6 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String JQUERY_COMPRESSED_SCRIPT_FILE = "jquery-compressed.js";
 	public static final String JQUERY_SCRIPT_FILE = "jquery.js";
 	public static final String JQUERY_LATEST_VERSION = Web2BusinessBean.JQUERY_1_7_1_VERSION;
-	public static final String JQUERY_UI_LATEST_VERSION = "1.10.3";
 	public static final String JQUERY_1_1_3_1_VERSION = "1.1.3.1";
 	public static final String JQUERY_1_2_3_VERSION = "1.2.3";
 	public static final String JQUERY_1_2_6_VERSION = "1.2.6";
@@ -253,6 +253,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String NIFTYCUBE_JS_FILE_NAME = "niftycube.js";
 	public static final String TRANSCORNERS_JS_FILE_NAME = "Transcorners.js";
 	public static final String CODEPRESS_JS_FILE_NAME = "codepress.js";
+	
+	public static final String TIME_AGO_LATEST_VERSION = "1.4.0";
+	public static final String TIMEPICKER_LATEST_VERSION = "1.4.3";
 
 	public static final String SOUNDMANAGER2_JS_FILE_NAME = "soundmanager2.js";
 	public static final String SOUNDMANAGER2_FLASH_FILE = "soundmanager2.swf";
@@ -1733,5 +1736,35 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	@Override
 	public String getBundleUriToLoadMaskStyle() {
 		return getBundleURIWithinScriptsFolder("load-mask/0.4/jquery.loadmask.css");
+	}
+	
+	@Override
+	public List<String> getBundleUrisToTimeAgoScript(Locale locale){
+		return Arrays.asList(
+				getBundleURIWithinScriptsFolder("time_ago/"+TIME_AGO_LATEST_VERSION +"/jquery.timeago.js"),
+				getBundleURIWithinScriptsFolder("time_ago/"+TIME_AGO_LATEST_VERSION +"/locales/jquery.timeago."+(locale == null ? CoreConstants.EMPTY : locale.getLanguage())+".js")
+		);
+	}
+	
+	@Override
+	public List<String> getBundleUrisToTimePickerScript(Locale locale){
+		String localeString;
+		if(locale == null){
+			localeString = "en-GB";
+		}else{
+			localeString = locale.getLanguage();
+			if(localeString.equals("en")){
+				localeString = localeString + "-GB";
+			}
+		}
+		return Arrays.asList(
+				getBundleURIWithinScriptsFolder("date_time_picker/"+TIMEPICKER_LATEST_VERSION +"/jquery-ui-timepicker-addon.js"),
+				getBundleURIWithinScriptsFolder("date_time_picker/"+TIMEPICKER_LATEST_VERSION +"/i18n/jquery-ui-timepicker-"+localeString+".js")
+		);
+	}
+	
+	@Override
+	public String getBundleUriToTimePickerStyle(){
+		return getBundleURIWithinScriptsFolder("date_time_picker/"+TIMEPICKER_LATEST_VERSION +"/jquery-ui-timepicker-addon.css");
 	}
 }
