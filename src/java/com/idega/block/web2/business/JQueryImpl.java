@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,8 @@ import com.idega.util.FilePathBuilder;
  * @author <a href="mailto:civilis@idega.com">Vytautas Čivilis</a>
  * @version $Revision: 1.2 $ Last modified: $Date: 2009/04/27 12:50:49 $ by $Author: valdas $
  */
-@Service
-@Scope("singleton")
+@Service(JQuery.BEAN_NAME)
+@Scope(BeanDefinition.SCOPE_SINGLETON)
 public class JQueryImpl implements JQuery {
 
 	// TODO: move all the jquery code from web2business to this class
@@ -28,11 +29,13 @@ public class JQueryImpl implements JQuery {
 	@Autowired
 	private Web2Business web2Business;
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryLib() {
 		return getWeb2Business().getBundleURIToJQueryLib();
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryLib(String jqueryLibraryVersion) {
 
@@ -45,12 +48,14 @@ public class JQueryImpl implements JQuery {
 		}
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryUILib(JQueryUIType type) {
 
 		return getWeb2Business().getBundleURIToJQueryUILib(type);
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryUILib(String jqueryUILibraryVersion,
 	        String fileName) {
@@ -58,23 +63,28 @@ public class JQueryImpl implements JQuery {
 		    jqueryUILibraryVersion, fileName);
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryPlugin(JQueryPlugin plugin) {
 		return getWeb2Business().getBundleURIToJQueryPlugin(plugin);
 	}
 
+	@Override
 	public List<String> getBundleURISToValidation() {
 		return getBundleURISToValidation(null, Boolean.TRUE);
 	}
 	
+	@Override
 	public List<String> getBundleURISToValidation(boolean addAdditionalMethods) {
 		return getBundleURISToValidation(null, addAdditionalMethods);
 	}
 	
+	@Override
 	public List<String> getBundleURISToValidation(String language) {
 		return getBundleURISToValidation(language, Boolean.TRUE);
 	}
 
+	@Override
 	public List<String> getBundleURISToValidation(String language, boolean addAdditionalMethods) {
 		FilePathBuilder pathBuilder = new FilePathBuilder(JQUERY_VALIDATION_FOLDER_PATH);
 		pathBuilder.addFolder(JQUERY_VALIDATION_LATEST_VERSION);
