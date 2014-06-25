@@ -101,7 +101,14 @@ var humanMsg = {
 			.unbind('keypress', humanMsg.removeMsg)
 
 		// If message is fully transparent, fade it out
-		if (jQuery('#'+humanMsg.msgID).css('opacity') == humanMsg.msgOpacity) {
+		var opacity =jQuery('#'+humanMsg.msgID).css('opacity');
+		var opacity2 = humanMsg.msgOpacity;
+		var difference = opacity - opacity2;
+		if(difference < 0){
+			difference *= -1;
+		}
+//		if (jQuery('#'+humanMsg.msgID).css('opacity') == humanMsg.msgOpacity) {
+		if((difference < 0,01)){
 			jQuery('#'+humanMsg.msgID).fadeTo('slow', 0, function() {
 				jQuery(this).css('display', 'none');
 			});
