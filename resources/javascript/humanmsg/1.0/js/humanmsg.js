@@ -73,7 +73,7 @@ var humanMsg = {
 		// Watch for mouse & keyboard in .5s
 		humanMsg.t1 = setTimeout(function() {
 			humanMsg.bindEvents();
-		}, 500);
+		}, timeOut);
 		// Remove message after 5s
 		humanMsg.t2 = setTimeout(function() {
 			humanMsg.removeMsg();
