@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.idega.business.IBORuntimeException;
 import com.idega.util.FilePathBuilder;
+import com.idega.util.expression.ELUtil;
 
 /**
  * @author <a href="mailto:civilis@idega.com">Vytautas Čivilis</a>
@@ -27,14 +28,14 @@ public class JQueryImpl implements JQuery {
 	@Autowired
 	private Web2Business web2Business;
 
-	@SuppressWarnings("deprecation")
 	@Override
+	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryLib() {
 		return getWeb2Business().getBundleURIToJQueryLib();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
+	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryLib(String jqueryLibraryVersion) {
 		try {
 			return getWeb2Business().getBundleURIToJQueryLib(jqueryLibraryVersion);
@@ -43,20 +44,20 @@ public class JQueryImpl implements JQuery {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
+	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryUILib(JQueryUIType type) {
 		return getWeb2Business().getBundleURIToJQueryUILib(type);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
+	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryUILib(String jqueryUILibraryVersion, String fileName) {
 		return getWeb2Business().getBundleURIToJQueryUILib(jqueryUILibraryVersion, fileName);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
+	@SuppressWarnings("deprecation")
 	public String getBundleURIToJQueryPlugin(JQueryPlugin plugin) {
 		return getWeb2Business().getBundleURIToJQueryPlugin(plugin);
 	}
@@ -65,12 +66,10 @@ public class JQueryImpl implements JQuery {
 	public List<String> getBundleURISToValidation() {
 		return getBundleURISToValidation(null, Boolean.TRUE);
 	}
-
 	@Override
 	public List<String> getBundleURISToValidation(boolean addAdditionalMethods) {
 		return getBundleURISToValidation(null, addAdditionalMethods);
 	}
-
 	@Override
 	public List<String> getBundleURISToValidation(String language) {
 		return getBundleURISToValidation(language, Boolean.TRUE);
@@ -107,6 +106,9 @@ public class JQueryImpl implements JQuery {
 	}
 
 	Web2Business getWeb2Business() {
+		if (web2Business == null) {
+			ELUtil.getInstance().autowire(this);
+		}
 		return web2Business;
 	}
 

@@ -29,6 +29,7 @@ import com.idega.util.CoreConstants;
 import com.idega.util.CoreUtil;
 import com.idega.util.PresentationUtil;
 import com.idega.util.StringUtil;
+import com.idega.util.expression.ELUtil;
 import com.octo.captcha.service.CaptchaServiceException;
 
 /**
@@ -338,6 +339,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	private String smoothboxStyleFilePath = null;
 
 	private static final String BLUEIMP_UPLOADER_LATEST_VERSION = "6.9.2";
+
 	@Autowired
 	private JQuery jQuery;
 
@@ -1497,6 +1499,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 
 	@Override
 	public JQuery getJQuery() {
+		if (jQuery == null) {
+			ELUtil.getInstance().autowire(this);
+		}
     	return jQuery;
     }
 
@@ -1665,7 +1670,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 
 		return files;
 	}
-	
+
 	@Override
 	public Collection<String> getBundleUrisToBlueimpFileUploadScriptFiles(
 			String version) {
