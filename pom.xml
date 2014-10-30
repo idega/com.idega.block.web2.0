@@ -8,7 +8,6 @@
   </parent>
   <packaging>jar</packaging>
   <artifactId>com.idega.block.web2.0</artifactId>
-  <version>5.0.0-SNAPSHOT</version>
   <name>Web2.0</name>
   <inceptionYear>2006</inceptionYear>
   <description>Web2.0, scripts for enabling web 2.0 features</description>
