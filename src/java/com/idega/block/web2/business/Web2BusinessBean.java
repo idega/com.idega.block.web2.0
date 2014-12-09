@@ -254,7 +254,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String NIFTYCUBE_JS_FILE_NAME = "niftycube.js";
 	public static final String TRANSCORNERS_JS_FILE_NAME = "Transcorners.js";
 	public static final String CODEPRESS_JS_FILE_NAME = "codepress.js";
-	
+
 	public static final String TIME_AGO_LATEST_VERSION = "1.4.0";
 	public static final String TIMEPICKER_LATEST_VERSION = "1.4.3";
 
@@ -270,10 +270,12 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public static final String SMOOTHBOX_SCRIPT_FILE = "smoothbox.js";
 	public static final String SMOOTHBOX_STYLE_FILE = "smoothbox.css";
 
-	public static final String TINY_MCE_LATEST_VERSION = "3.5.8";
-	public static final String TINY_MCE_VERSION_3_5b3 = "3.5b3";
-	public static final String TINY_MCE_VERSION_3_2_6 = "3.2.6";
-	public static final String TINY_MCE_FOLDER = "tinymce";
+	public static final String	TINY_MCE_VERSION_4_1_7 = "4.1.7",
+								TINY_MCE_VERSION_3_5_8 = "3.5.8",
+								TINY_MCE_VERSION_3_5b3 = "3.5b3",
+								TINY_MCE_VERSION_3_2_6 = "3.2.6",
+								TINY_MCE_FOLDER = "tinymce",
+								TINY_MCE_LATEST_VERSION = TINY_MCE_VERSION_3_5_8;
 
 	public static final String BX_SLIDER_3_0 = "3.0";
 	public static final String JQUERY_MEDIA_0_96 = "0.96";
@@ -1526,7 +1528,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 
 	@Override
 	public List<String> getScriptsForTinyMCE(String version) {
-		List<String> files = Arrays.asList("tiny_mce.js","jquery.tinymce.js");
+		List<String> files = version.startsWith("4.") ? Arrays.asList("tinymce.min.js","jquery.tinymce.min.js") : Arrays.asList("tiny_mce.js","jquery.tinymce.js");
 		return getBundleUrisToTinyMceScriptFiles(version, files);
 	}
 
@@ -1742,7 +1744,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public String getBundleUriToLoadMaskStyle() {
 		return getBundleURIWithinScriptsFolder("load-mask/0.4/jquery.loadmask.css");
 	}
-	
+
 	@Override
 	public List<String> getBundleUrisToTimeAgoScript(Locale locale){
 		return Arrays.asList(
@@ -1750,7 +1752,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 				getBundleURIWithinScriptsFolder("time_ago/"+TIME_AGO_LATEST_VERSION +"/locales/jquery.timeago."+(locale == null ? CoreConstants.EMPTY : locale.getLanguage())+".js")
 		);
 	}
-	
+
 	@Override
 	public List<String> getBundleUrisToTimePickerScript(Locale locale){
 		String localeString;
@@ -1767,7 +1769,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 				getBundleURIWithinScriptsFolder("date_time_picker/"+TIMEPICKER_LATEST_VERSION +"/i18n/jquery-ui-timepicker-"+localeString+".js")
 		);
 	}
-	
+
 	@Override
 	public String getBundleUriToTimePickerStyle(){
 		return getBundleURIWithinScriptsFolder("date_time_picker/"+TIMEPICKER_LATEST_VERSION +"/jquery-ui-timepicker-addon.css");
