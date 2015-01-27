@@ -1774,4 +1774,9 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public String getBundleUriToTimePickerStyle(){
 		return getBundleURIWithinScriptsFolder("date_time_picker/"+TIMEPICKER_LATEST_VERSION +"/jquery-ui-timepicker-addon.css");
 	}
+
+	@Override
+	public String getBundleUriToJCaretScript() {
+		return getBundleURIWithinScriptsFolder("jcaret/1.02/jquery.caret.min.js");
+	}
 }
