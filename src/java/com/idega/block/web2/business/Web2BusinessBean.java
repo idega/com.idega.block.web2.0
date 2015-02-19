@@ -1746,6 +1746,11 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	}
 
 	@Override
+	public List<String> getBundleUrisToTimeAgoScript(){
+		IWContext iwc = CoreUtil.getIWContext();
+		return getBundleUrisToTimeAgoScript(iwc.getCurrentLocale());
+	}
+	@Override
 	public List<String> getBundleUrisToTimeAgoScript(Locale locale){
 		return Arrays.asList(
 				getBundleURIWithinScriptsFolder("time_ago/"+TIME_AGO_LATEST_VERSION +"/jquery.timeago.js"),
