@@ -48,6 +48,9 @@ var humanMsg = {
 		// Show message
 		jQuery('#'+humanMsg.msgID).css('opacity', 0);
 		jQuery('#'+humanMsg.msgID).css('display', 'block');
+		if (properties && properties.background) {
+			jQuery('#'+humanMsg.msgID).css('background-color', properties.background);
+		}
 		jQuery('#'+humanMsg.msgID).animate(
 			{opacity: humanMsg.msgOpacity},
 			200,
