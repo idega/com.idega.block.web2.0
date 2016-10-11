@@ -16,7 +16,7 @@ LinksLinker.linkLinks = function(addStyleForNonFileLinks, containerId) {
 		LinksLinker.linkers.push({linker: ['mailto:'], css: 'Mail'});
 	}
 	
-	var links = containerId == null ? jQuery('a') : jQuery('a', jQuery('#' + containerId));
+	var links = containerId == null ? jQuery('a') : jQuery('a', jQuery('[id=' + containerId + ']'));
 	if (links == null || links.length == 0)
 		return;
 	
