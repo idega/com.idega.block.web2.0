@@ -1680,15 +1680,26 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 		ArrayList<String> files = new ArrayList<String>();
 
 		// dependencies
-		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload"))
-				.append(SLASH).append(version).append("/dependencies/load-image/load-image.js").toString());
+		if (version.equals(BLUEIMP_UPLOADER_LATEST_VERSION)) {
+			files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload"))
+					.append(SLASH).append(version).append("/dependencies/load-image/load-image.js").toString());
+		}
 
 		//files
-		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(version).append("/js/jquery.iframe-transport.js").toString());
-		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(version).append("/js/jquery.fileupload.js").toString());
-		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(version).append("/js/jquery.fileupload-fp.js").toString());
-		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(version).append("/js/jquery.fileupload-ui.js").toString());
-		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH).append(version).append("/js/locale.js").toString());
+		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH)
+				.append(version).append("/js/jquery.iframe-transport.js").toString());
+		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH)
+				.append(version).append("/js/jquery.fileupload.js").toString());
+		if (version.equals(BLUEIMP_UPLOADER_LATEST_VERSION)) {
+			files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH)
+					.append(version).append("/js/jquery.fileupload-fp.js").toString());
+		}
+		files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH)
+				.append(version).append("/js/jquery.fileupload-ui.js").toString());
+		if (version.equals(BLUEIMP_UPLOADER_LATEST_VERSION)) {
+			files.add(new StringBuilder(getBundleURIWithinScriptsFolder("blueimp-file-upload")).append(SLASH)
+					.append(version).append("/js/locale.js").toString());
+		}
 
 		return files;
 	}
