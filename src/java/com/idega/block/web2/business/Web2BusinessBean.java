@@ -1653,7 +1653,7 @@ public class Web2BusinessBean extends IBOServiceBean implements Web2Business {
 	public String getScriptURLForGoogleMaps(boolean useSensor) {
 		String apiKey = getIWApplicationContext().getApplicationSettings().getProperty(PROPERTY_GOOGLE_API_KEY, "");
 
-		return "http://maps.googleapis.com/maps/api/js?key=" + apiKey + "&sensor=" + Boolean.valueOf(useSensor).toString();
+		return "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&sensor=" + Boolean.valueOf(useSensor).toString();
 	}
 
 
