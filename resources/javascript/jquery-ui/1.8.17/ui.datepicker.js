@@ -101,7 +101,8 @@ function Datepicker() {
 		showButtonPanel: false, // True to show button panel, false to not show it
 		rangeSelect: false, // Allows for selecting a date range on one date picker
 		rangeSeparator: ' - ', // Text between two dates in a range
-		showTime: false
+		showTime: false,
+		readonly: false
 	};
 	$.extend(this._defaults, this.regional['']);
 	this.dpDiv = $('<div id="' + this._mainDivId + '" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-helper-hidden-accessible-datepicker"></div>');
@@ -181,6 +182,7 @@ $.extend(Datepicker.prototype, {
 		if (showOn == 'button' || showOn == 'both') { // pop-up date picker when button clicked
 			var buttonText = this._get(inst, 'buttonText');
 			var buttonImage = this._get(inst, 'buttonImage');
+			var readonly = this._get(inst, 'readonly');
 			var trigger = $(this._get(inst, 'buttonImageOnly') ?
 				$('<img/>').addClass(this._triggerClass).
 					attr({ src: buttonImage, alt: buttonText, title: buttonText }) :
@@ -188,13 +190,15 @@ $.extend(Datepicker.prototype, {
 					html(buttonImage == '' ? buttonText : $('<img/>').attr(
 					{ src:buttonImage, alt:buttonText, title:buttonText })));
 			input[isRTL ? 'before' : 'after'](trigger);
-			trigger.click(function() {
-				if ($.datepicker._datepickerShowing && $.datepicker._lastInput == target)
-					$.datepicker._hideDatepicker();
-				else
-					$.datepicker._showDatepicker(target);
-				return false;
-			});
+			if (!readonly){
+				trigger.click(function() {
+					if ($.datepicker._datepickerShowing && $.datepicker._lastInput == target)
+						$.datepicker._hideDatepicker();
+					else
+						$.datepicker._showDatepicker(target);
+					return false;
+				});
+			}
 		}
 		input.addClass(this.markerClassName).keydown(this._doKeyDown).keypress(this._doKeyPress).
 			bind("setData.datepicker", function(event, key, value) {
